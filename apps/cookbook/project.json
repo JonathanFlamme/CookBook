@@ -2,7 +2,7 @@
   "name": "cookbook",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "cookbook",
+  "prefix": "app",
   "sourceRoot": "apps/cookbook/src",
   "tags": [],
   "targets": {
