@@ -1,1 +1,37 @@
-<p>home works!</p>
+<header>
+  <h2 class="title">Cookbook</h2>
+  <mat-toolbar class="toolbar">
+    <button
+      (click)="toggleMenu()"
+      class="menu-burger"
+      *ngIf="isHandset$ | async"
+      type="button"
+    >
+      <fa-icon icon="bars"></fa-icon>
+    </button>
+    <a
+      mat-button
+      routerLink="/home"
+      routerLinkActive="active"
+      *ngIf="(isHandset$ | async) !== true"
+      >Accueil</a
+    >
+    <a
+      mat-button
+      routerLink="/users"
+      routerLinkActive="active"
+      *ngIf="(isHandset$ | async) !== true"
+      >Profile</a
+    >
+  </mat-toolbar>
+</header>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" [opened]="sidenavOpened" class="sidenav">
+    <a mat-button routerLink="/home" routerLinkActive="active">Accueil</a>
+    <a mat-button routerLink="/users" routerLinkActive="active">Profile</a>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav">
+    <!-- Contenu principal ici -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

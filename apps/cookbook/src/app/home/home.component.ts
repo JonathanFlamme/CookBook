@@ -1,25 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {  Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable, map, shareReplay } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  public helloApi: string = '';
+export class HomeComponent  {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  public sidenavOpened = false;
 
-  constructor(private http: HttpClient) {}
+  public isHandset$: Observable<boolean> = this.breakpointObserver
+  .observe(Breakpoints.Handset)
+  .pipe(
+    map((result) => result.matches),
+    shareReplay(),
+  );
 
-  ngOnInit() {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    ) {}
 
-    this.http.get<{ message: string }>(`http://localhost:3000`).subscribe({
-    next:() => {
-    console.log('success');
-    },
-    error: () => {
-    console.log('error');
-    },
-  })
+  toggleMenu() {
+    this.sidenavOpened = !this.sidenavOpened;
+    this.sidenav.toggle();
   }
 }
