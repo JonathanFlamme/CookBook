@@ -7,13 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent,HomeComponent],
-  imports: [AppRoutingModule, HttpClientModule, BrowserModule,BrowserAnimationsModule,SharedModule,MaterialModule],
+  declarations: [AppComponent, HeaderComponent],
+  imports: [
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    MaterialModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
