@@ -1,15 +1,15 @@
-import { Category } from './category.model';
-import { Ingredient } from './ingredient.model';
-import { Step } from './step.model';
+import { CategoryModel } from './category.model';
+import { IngredientModel } from './ingredient.model';
+import { StepModel } from './step.model';
 
-export interface Recipe {
+export interface RecipeModel {
   id: number;
   userId: number;
   name: string;
   duration: string;
-  ingredients: Ingredient[];
-  steps: Step[];
-  categories: Category[];
+  ingredients: IngredientModel[];
+  steps: StepModel[];
+  categories: CategoryModel[];
   createAt: Date;
   updateAt: Date;
 }

@@ -1,4 +1,4 @@
-export interface Step {
+export interface StepModel {
   id: number;
   recipeId: number;
   description: string;
