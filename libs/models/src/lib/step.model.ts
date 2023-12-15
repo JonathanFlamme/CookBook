@@ -1,6 +1,6 @@
 export interface StepModel {
-  id: number;
-  recipeId: number;
+  id: string;
+  recipeId: string;
   description: string;
   sort: number;
 }
