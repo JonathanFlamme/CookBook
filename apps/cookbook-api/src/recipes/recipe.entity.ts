@@ -10,6 +10,7 @@ import {
 import { RecipeModel } from '@cookbook/models';
 import { CategoryEntity } from '../categories/category.entity';
 import { StepEntity } from '../steps/step.entity';
+import { IngredientEntity } from '../ingredients/ingredient.entity';
 
 @Entity({ name: 'step' })
 export class RecipeEntity implements RecipeModel {

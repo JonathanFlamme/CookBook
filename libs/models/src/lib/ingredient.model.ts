@@ -1,6 +1,6 @@
 export interface IngredientModel {
-  id: number;
-  recipeId: number;
+  id: string;
+  recipeId: string;
   name: string;
   quantity: string;
 }
