@@ -13,7 +13,7 @@ import { StepEntity } from '../steps/step.entity';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { UserEntity } from '../users/user.entity';
 
-@Entity({ name: 'step' })
+@Entity({ name: 'recipe' })
 export class RecipeEntity implements RecipeModel {
   @PrimaryColumn('uuid')
   id: string;

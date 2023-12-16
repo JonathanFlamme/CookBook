@@ -9,7 +9,7 @@ import {
 import { IngredientModel } from '@cookbook/models';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
-@Entity({ name: 'step' })
+@Entity({ name: 'ingredient' })
 export class IngredientEntity implements IngredientModel {
   @PrimaryColumn('uuid')
   id: string;

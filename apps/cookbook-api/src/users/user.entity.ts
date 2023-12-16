@@ -9,7 +9,7 @@ import {
 import { UserModel, UserRole } from '@cookbook/models';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
-@Entity({ name: 'step' })
+@Entity({ name: 'user' })
 export class UserEntity implements UserModel {
   @PrimaryColumn('uuid')
   id: string;

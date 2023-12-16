@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import databaseConfig from '../orm/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app/app.service';
@@ -7,9 +8,11 @@ import { IngredientsModule } from './ingredients/ingredients.module';
 import { StepsModule } from './steps/steps.module';
 import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(databaseConfig),
     RecipesModule,
     IngredientsModule,
     StepsModule,
