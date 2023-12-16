@@ -1,4 +1,4 @@
-import { CategoryType } from '@cookbook/models';
+import { CategoryModel, CategoryType } from '@cookbook/models';
 import {
   Column,
   CreateDateColumn,
@@ -7,9 +7,10 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'category' })
-export class CategoryEntity {
+export class CategoryEntity implements CategoryModel {
   @PrimaryColumn('uuid')
   id: string;
 
@@ -24,6 +25,8 @@ export class CategoryEntity {
   @UpdateDateColumn({ type: 'timestamp' })
   updateAt: Date;
 
-  @ManyToOne(() => RecipeEntity, (recipe) => recipe.categories, { onDelete: 'CASCADE' }
-  recipe: RecipeEntity)
+  @ManyToOne(() => RecipeEntity, (recipe) => recipe.categories, {
+    onDelete: 'CASCADE',
+  })
+  recipe: RecipeEntity;
 }

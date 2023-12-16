@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { StepModel } from '@cookbook/models';
+import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'step' })
 export class StepEntity implements StepModel {
@@ -28,6 +29,8 @@ export class StepEntity implements StepModel {
   @UpdateDateColumn({ type: 'timestamp' })
   updateAt: Date;
 
-  @ManyToOne(() => RecipeEntity, (recipe) => recipe.steps, { onDelete: 'CASCADE' }
-  recipe: RecipeEntity)
+  @ManyToOne(() => RecipeEntity, (recipe) => recipe.steps, {
+    onDelete: 'CASCADE',
+  })
+  recipe: RecipeEntity;
 }

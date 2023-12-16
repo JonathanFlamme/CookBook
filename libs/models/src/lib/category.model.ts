@@ -1,6 +1,6 @@
 export interface CategoryModel {
-  id: number;
-  recipeId: number;
+  id: string;
+  recipeId: string;
   type: CategoryType;
 }
 
