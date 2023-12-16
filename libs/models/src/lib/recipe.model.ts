@@ -3,9 +3,9 @@ import { IngredientModel } from './ingredient.model';
 import { StepModel } from './step.model';
 
 export interface RecipeModel {
-  id: number;
-  userId: number;
-  name: string;
+  id: string;
+  userId: string;
+  title: string;
   duration: string;
   ingredients: IngredientModel[];
   steps: StepModel[];
