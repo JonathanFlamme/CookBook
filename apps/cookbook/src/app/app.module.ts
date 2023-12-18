@@ -10,9 +10,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
+import { CategoriesComponent } from './components/categories.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, CategoriesComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
