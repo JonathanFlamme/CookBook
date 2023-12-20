@@ -12,4 +12,5 @@ export enum CategoryType {
   Apero = 'apero',
   Entree = 'entree',
   Plat = 'plat',
+  Milkshake = 'milkshake',
 }
