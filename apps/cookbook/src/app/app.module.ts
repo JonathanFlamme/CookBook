@@ -11,9 +11,15 @@ import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { CategoriesComponent } from './components/categories.component';
+import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, CategoriesComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    CategoriesComponent,
+    RecipeCreateComponent,
+  ],
   imports: [
     AppRoutingModule,
     HttpClientModule,
