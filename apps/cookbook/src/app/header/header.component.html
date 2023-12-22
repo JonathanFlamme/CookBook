@@ -18,6 +18,13 @@
     >
     <a
       mat-button
+      routerLink="/recipes/create"
+      routerLinkActive="active"
+      *ngIf="(isHandset$ | async) !== true"
+      >Ajouter une recette</a
+    >
+    <a
+      mat-button
       routerLink="/users"
       routerLinkActive="active"
       *ngIf="(isHandset$ | async) !== true"
@@ -28,10 +35,13 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" [opened]="sidenavOpened" class="sidenav">
     <a mat-button routerLink="/home" routerLinkActive="active">Accueil</a>
+    <a mat-button routerLink="/recipe/create" routerLinkActive="active"
+      >Ajouter une recette</a
+    >
     <a mat-button routerLink="/users" routerLinkActive="active">Profile</a>
   </mat-sidenav>
 
-  <mat-sidenav-content class="sidenav">
-    <!-- Contenu principal ici -->
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

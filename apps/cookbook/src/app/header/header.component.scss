@@ -8,17 +8,16 @@ header {
   width: 100%;
 }
 
-.title{
+.title {
   font-size: 2rem;
-  font-weight:600;
+  font-weight: 600;
   margin-left: 1rem;
 }
 .mat-toolbar {
   width: auto;
   gap: 20px;
 
-
-    & a {
+  & a {
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -27,36 +26,37 @@ header {
   }
 }
 
- .menu-burger {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+.menu-burger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
-    /* Styles spécifiques à fa-icon à l'intérieur de .menu-burger */
-    fa-icon {
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
+  /* Styles spécifiques à fa-icon à l'intérieur de .menu-burger */
+  fa-icon {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
   }
+}
 
+// .sidenav-container {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//   background-color: #ff6f61;
+//   height: 100%;
+// }
 
-  .sidenav-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ff6f61;
-    height: 100%
-     }
+.sidenav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff6f61;
+  height: 100%;
+}
 
-  .sidenav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .sidenav-content {
-    margin-left: 0; /* Ajustez cette valeur selon vos besoins */
-  }
+.sidenav-content {
+  margin-left: 0; /* Ajustez cette valeur selon vos besoins */
+}
