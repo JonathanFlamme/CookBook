@@ -1,0 +1,51 @@
+<form class="form" [formGroup]="recipeForm" (ngSubmit)="submit()">
+  <input matInput placeholder="Titre" formControlName="title" required />
+  <input matInput placeholder="Durée" formControlName="duration" required />
+
+  <label for="ingredients">Ingrédients</label>
+  <div formArrayName="ingredients" required>
+    <div
+      *ngFor="let ingredient of ingredients.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <input matInput formControlName="name" placeholder="Nom" required />
+      <input
+        matInput
+        formControlName="quantity"
+        placeholder="Quantité"
+        required
+      />
+    </div>
+  </div>
+  <button mat-flat-button type="button" (click)="addIngredient()">
+    <span>Ajouter un ingrédient</span>
+  </button>
+
+  <label for="steps">Étapes</label>
+  <div formArrayName="steps" required>
+    <div *ngFor="let step of steps.controls; let i = index" [formGroupName]="i">
+      <input
+        matInput
+        formControlName="description"
+        placeholder="Description"
+        required
+      />
+    </div>
+  </div>
+  <button mat-flat-button type="button" (click)="addStep()">
+    <span>Ajouter une étape</span>
+  </button>
+
+  <label for="categories">Catégories</label>
+  <mat-select formControlName="categories">
+    <mat-option *ngFor="let category of categories" [value]="category">
+      <app-categories [category]="category"></app-categories>
+    </mat-option>
+  </mat-select>
+
+  <div>
+    <button mat-flat-button [disabled]="recipeForm.invalid" type="submit">
+      <span>Ajouter la recette</span>
+    </button>
+  </div>
+</form>
