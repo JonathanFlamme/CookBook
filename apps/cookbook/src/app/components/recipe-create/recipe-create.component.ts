@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryType } from '@cookbook/models';
+import { RecipeService } from '../../shared/recipes/recipe.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-create',
   templateUrl: './recipe-create.component.html',
   styleUrl: './recipe-create.component.scss',
 })
-export class RecipeCreateComponent {
+export class RecipeCreateComponent implements OnDestroy {
   public categories = Object.values(CategoryType);
 
-  constructor(private fb: FormBuilder) {}
+  private subscriptions: Subscription[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private readonly recipeService: RecipeService,
+  ) {}
 
   get ingredients(): FormArray {
     return this.recipeForm.get('ingredients') as FormArray;
@@ -21,16 +28,31 @@ export class RecipeCreateComponent {
   }
 
   public recipeForm = this.fb.group({
-    title: this.fb.control<string>('', Validators.required),
-    duration: this.fb.control<string>('', Validators.required),
-    categories: this.fb.control<CategoryType[]>([], Validators.required),
-    ingredients: this.fb.array([]),
-    steps: this.fb.array([]),
+    title: this.fb.nonNullable.control<string>('', Validators.required),
+    duration: this.fb.nonNullable.control<string>('', Validators.required),
+    categories: this.fb.array<FormGroup>([
+      this.fb.group({
+        type: this.fb.nonNullable.control<CategoryType>(
+          CategoryType.Apero,
+          Validators.required,
+        ),
+      }),
+    ]),
+    ingredients: this.fb.array<FormGroup>([
+      this.fb.group({
+        name: this.fb.nonNullable.control<string>('', Validators.required),
+        quantity: this.fb.nonNullable.control<string>('', Validators.required),
+      }),
+    ]),
+    steps: this.fb.array<FormGroup>([
+      this.fb.group({
+        description: this.fb.nonNullable.control<string>(
+          '',
+          Validators.required,
+        ),
+      }),
+    ]),
   });
-
-  public submit() {
-    console.log(this.recipeForm.value);
-  }
 
   addIngredient() {
     this.ingredients.push(
@@ -47,5 +69,22 @@ export class RecipeCreateComponent {
         description: this.fb.control<string>('', Validators.required),
       }),
     );
+  }
+
+  public addRecipe() {
+    const recipe = this.recipeForm.value;
+
+    this.recipeService.create(recipe).subscribe({
+      next: (Recipe) => {
+        console.log(Recipe);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  public ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub?.unsubscribe());
   }
 }
