@@ -12,6 +12,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { CategoriesComponent } from './components/categories.component';
 import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
+import { RecipesListComponent } from './recipes-list/recipes-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RecipeCreateComponent } from './components/recipe-create/recipe-create.
     HeaderComponent,
     CategoriesComponent,
     RecipeCreateComponent,
+    RecipesListComponent,
   ],
   imports: [
     AppRoutingModule,

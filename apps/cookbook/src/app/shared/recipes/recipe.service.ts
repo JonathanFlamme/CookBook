@@ -11,6 +11,10 @@ export class RecipeService {
 
   constructor(private readonly http: HttpClient) {}
 
+  public list(): Observable<RecipeModel[]> {
+    return this.http.get<RecipeModel[]>(`${this.baseUrl}/recipes`);
+  }
+
   public create(
     title: string,
     duration: string,

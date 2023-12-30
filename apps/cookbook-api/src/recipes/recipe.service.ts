@@ -13,7 +13,15 @@ export class RecipeService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  userId = 'd62318c5-1344-4b05-895d-27ec5fb115c2';
+  public userId = 'd62318c5-1344-4b05-895d-27ec5fb115c2';
+
+  async list(): Promise<RecipeEntity[]> {
+    const recipes = await this.recipeRepository.find({
+      where: { userId: this.userId },
+      relations: ['ingredients', 'steps', 'categories'],
+    });
+    return recipes;
+  }
 
   async create(body: RecipeDto): Promise<RecipeModel> {
     const recipe = this.recipeRepository.create({
