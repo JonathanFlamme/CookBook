@@ -1,8 +1,5 @@
 <form class="form" [formGroup]="recipeForm" (ngSubmit)="addRecipe()">
   <input matInput placeholder="Titre" formControlName="title" required />
-  <!-- <mat-error *ngIf="recipeForm.controls.title?.hasError('required')" i18n>
-    This field is required
-  </mat-error> -->
 
   <input matInput placeholder="Durée" formControlName="duration" required />
 

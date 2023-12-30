@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { IngredientModel } from '@cookbook/models';
@@ -11,7 +11,7 @@ import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'ingredient' })
 export class IngredientEntity implements IngredientModel {
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()

@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserModel, UserRole } from '@cookbook/models';
@@ -11,7 +11,7 @@ import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity implements UserModel {
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.User })

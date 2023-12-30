@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { StepModel } from '@cookbook/models';
@@ -11,7 +11,7 @@ import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'step' })
 export class StepEntity implements StepModel {
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -19,9 +19,6 @@ export class StepEntity implements StepModel {
 
   @Column({ type: 'text' })
   description: string;
-
-  @Column({ type: 'int' })
-  sort: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createAt: Date;

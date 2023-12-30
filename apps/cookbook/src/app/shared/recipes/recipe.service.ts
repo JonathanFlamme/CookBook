@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RecipeModel } from '@cookbook/models';
+import { CategoryType, RecipeModel } from '@cookbook/models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,9 +11,19 @@ export class RecipeService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public create(recipe: Partial<RecipeModel>): Observable<RecipeModel> {
+  public create(
+    title: string,
+    duration: string,
+    ingredients: { name: string; quantity: string }[],
+    steps: { description: string }[],
+    categories: CategoryType,
+  ): Observable<RecipeModel> {
     return this.http.post<RecipeModel>(`${this.baseUrl}/recipes`, {
-      recipe,
+      title,
+      duration,
+      ingredients,
+      steps,
+      categories,
     });
   }
 }

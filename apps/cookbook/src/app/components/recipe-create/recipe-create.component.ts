@@ -30,35 +30,19 @@ export class RecipeCreateComponent implements OnDestroy {
   public recipeForm = this.fb.group({
     title: this.fb.nonNullable.control<string>('', Validators.required),
     duration: this.fb.nonNullable.control<string>('', Validators.required),
-    categories: this.fb.array<FormGroup>([
-      this.fb.group({
-        type: this.fb.nonNullable.control<CategoryType>(
-          CategoryType.Apero,
-          Validators.required,
-        ),
-      }),
-    ]),
-    ingredients: this.fb.array<FormGroup>([
-      this.fb.group({
-        name: this.fb.nonNullable.control<string>('', Validators.required),
-        quantity: this.fb.nonNullable.control<string>('', Validators.required),
-      }),
-    ]),
-    steps: this.fb.array<FormGroup>([
-      this.fb.group({
-        description: this.fb.nonNullable.control<string>(
-          '',
-          Validators.required,
-        ),
-      }),
-    ]),
+    categories: this.fb.nonNullable.control<CategoryType>(
+      CategoryType.Apero,
+      Validators.required,
+    ),
+    ingredients: this.fb.array<FormGroup>([]),
+    steps: this.fb.array<FormGroup>([]),
   });
 
   addIngredient() {
     this.ingredients.push(
       this.fb.group({
-        name: this.fb.control<string>('', Validators.required),
-        quantity: this.fb.control<string>('', Validators.required),
+        name: this.fb.nonNullable.control<string>('', Validators.required),
+        quantity: this.fb.nonNullable.control<string>('', Validators.required),
       }),
     );
   }
@@ -74,14 +58,23 @@ export class RecipeCreateComponent implements OnDestroy {
   public addRecipe() {
     const recipe = this.recipeForm.value;
 
-    this.recipeService.create(recipe).subscribe({
-      next: (Recipe) => {
-        console.log(Recipe);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    const sub = this.recipeService
+      .create(
+        recipe.title!,
+        recipe.duration!,
+        recipe.ingredients!,
+        recipe.steps!,
+        recipe.categories!,
+      )
+      .subscribe({
+        next: (Recipe) => {
+          console.log(Recipe);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    this.subscriptions.push(sub);
   }
 
   public ngOnDestroy() {

@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
-import { RecipeEntity } from './recipe.entity';
+import { RecipeDto } from './recipe.dto';
+import { RecipeModel } from '@cookbook/models';
 
 @Controller()
 export class RecipeController {
@@ -8,10 +9,9 @@ export class RecipeController {
 
   /**
    * Create a new recipe
-   *
    */
   @Post('recipes')
-  create(@Body() body: RecipeEntity): Promise<RecipeEntity> {
+  create(@Body() body: RecipeDto): Promise<RecipeModel> {
     return this.recipeService.create(body);
   }
 }

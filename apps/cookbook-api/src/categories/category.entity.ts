@@ -4,14 +4,14 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'category' })
 export class CategoryEntity implements CategoryModel {
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
