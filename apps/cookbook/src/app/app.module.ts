@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { CategoriesComponent } from './components/categories.component';
 import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
+import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
     CategoriesComponent,
     RecipeCreateComponent,
     RecipesListComponent,
+    RecipeViewComponent,
   ],
   imports: [
     AppRoutingModule,

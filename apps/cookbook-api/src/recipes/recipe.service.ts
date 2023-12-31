@@ -15,6 +15,14 @@ export class RecipeService {
 
   public userId = 'd62318c5-1344-4b05-895d-27ec5fb115c2';
 
+  async view(recipeId: string): Promise<RecipeEntity> {
+    const recipe = await this.recipeRepository.findOne({
+      where: { id: recipeId, userId: this.userId },
+      relations: ['ingredients', 'steps', 'categories'],
+    });
+    return recipe;
+  }
+
   async list(): Promise<RecipeEntity[]> {
     const recipes = await this.recipeRepository.find({
       where: { userId: this.userId },

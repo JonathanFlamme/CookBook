@@ -1,0 +1,25 @@
+<ng-container *ngIf="!loading">
+  <div class="container-title">
+    <h1>{{ recipe.title }}</h1>
+    <p>{{ recipe.duration }}</p>
+    <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
+  </div>
+  <div class="container">
+    <div class="container-steps">
+      <h2>Étapes</h2>
+      <ol>
+        <li *ngFor="let step of recipe.steps">
+          {{ step.description }}
+        </li>
+      </ol>
+    </div>
+    <div class="container-ingredients">
+      <h2>Ingrédients</h2>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          {{ ingredient.name }} : {{ ingredient.quantity }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
