@@ -36,11 +36,20 @@ export class RecipeService {
     category.type = body.categories;
     recipe.categories = [category];
 
-    await this.recipeRepository.save(recipe);
+    try {
+      await this.recipeRepository.save(recipe);
+    } catch (error) {
+      console.error(error);
+    }
+
     return recipe;
   }
 
   async delete(recipeId: string): Promise<void> {
-    await this.recipeRepository.delete({ id: recipeId, userId: this.userId });
+    try {
+      await this.recipeRepository.delete({ id: recipeId, userId: this.userId });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
