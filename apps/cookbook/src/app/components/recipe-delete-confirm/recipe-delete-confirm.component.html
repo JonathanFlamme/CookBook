@@ -1,0 +1,9 @@
+<h4 mat-dialog-title>Voulez vous vraiment supprimer la recette :</h4>
+<div mat-dialog-content class="dialog-content">
+  <p>{{ recipe.title }}</p>
+</div>
+<div mat-dialog-actions>
+  <button class="custom-button" mat-button mat-dialog-close (click)="delete()">
+    Supprimer
+  </button>
+</div>

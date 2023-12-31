@@ -30,4 +30,8 @@ export class RecipeService {
       categories,
     });
   }
+
+  public delete(recipeId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`);
+  }
 }

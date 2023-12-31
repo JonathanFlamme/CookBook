@@ -39,4 +39,8 @@ export class RecipeService {
     await this.recipeRepository.save(recipe);
     return recipe;
   }
+
+  async delete(recipeId: string): Promise<void> {
+    await this.recipeRepository.delete({ id: recipeId, userId: this.userId });
+  }
 }
