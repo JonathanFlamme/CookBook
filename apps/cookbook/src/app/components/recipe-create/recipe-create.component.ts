@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryType } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-create',
@@ -17,6 +18,7 @@ export class RecipeCreateComponent implements OnDestroy {
   constructor(
     private fb: FormBuilder,
     private readonly recipeService: RecipeService,
+    private readonly router: Router,
   ) {}
 
   get ingredients(): FormArray {
@@ -67,8 +69,8 @@ export class RecipeCreateComponent implements OnDestroy {
         recipe.categories!,
       )
       .subscribe({
-        next: (Recipe) => {
-          console.log(Recipe);
+        next: () => {
+          this.router.navigate(['/recipes']);
         },
         error: (error) => {
           console.log(error);
