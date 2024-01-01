@@ -15,6 +15,7 @@ import { RecipeCreateComponent } from './components/recipe-create/recipe-create.
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
+import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.compon
     RecipesListComponent,
     RecipeViewComponent,
     RecipeEditComponent,
+    IngredientDeleteConfirmComponent,
   ],
   imports: [
     AppRoutingModule,

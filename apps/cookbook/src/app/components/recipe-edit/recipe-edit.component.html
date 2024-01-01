@@ -16,6 +16,9 @@
         placeholder="Quantité"
         required
       />
+      <button mat-flat-button type="button" class="trash" (click)="delete(i)">
+        <fa-icon icon="trash-can"></fa-icon>
+      </button>
     </div>
   </div>
   <button mat-flat-button type="button" (click)="addIngredient()">

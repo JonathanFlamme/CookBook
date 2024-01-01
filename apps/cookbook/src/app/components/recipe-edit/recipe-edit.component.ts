@@ -4,6 +4,9 @@ import { CategoryType, RecipeModel } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IngredientService } from '../../shared/ingredients/ingredient.service';
+import { MatDialog } from '@angular/material/dialog';
+import { IngredientDeleteConfirmComponent } from '../ingredient-delete-confirm/ingredient-delete-confirm.component';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -21,8 +24,10 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly recipeService: RecipeService,
+    private readonly ingredientService: IngredientService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
+    private readonly dialog: MatDialog,
   ) {}
 
   get ingredients(): FormArray {
@@ -104,6 +109,7 @@ export class RecipeEditComponent implements OnInit {
         this.recipeForm.patchValue({
           categories: recipe.categories[0].type,
         });
+        this.recipe = recipe;
         this.loading = false;
       },
       error: (error) => {
@@ -116,7 +122,6 @@ export class RecipeEditComponent implements OnInit {
 
   edit() {
     const recipe = this.recipeForm.value;
-    console.log(recipe);
     const sub = this.recipeService
       .update(
         this.recipeId,
@@ -135,5 +140,17 @@ export class RecipeEditComponent implements OnInit {
         },
       });
     this.subscriptions.push(sub);
+  }
+
+  public delete(index: number): void {
+    const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
+      data: this.recipe.ingredients[index],
+    });
+
+    dialogRef.afterClosed().subscribe((ingredient) => {
+      if (ingredient) {
+        this.router.navigate(['/recipes', this.recipeId]);
+      }
+    });
   }
 }

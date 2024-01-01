@@ -38,7 +38,6 @@ export class RecipeDeleteConfirmComponent {
   ) {}
 
   public delete(): void {
-    this.dialogRef.close(this.recipe.id);
     this.recipeService.delete(this.recipe.id).subscribe({
       next: () => {
         this.dialogRef.close(this.recipe.id);
