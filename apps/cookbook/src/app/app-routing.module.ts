@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'recipes/:recipeId',
         component: RecipeViewComponent,
+      },
+      {
+        path: 'recipes/:recipeId/edit',
+        component: RecipeEditComponent,
       },
     ],
   },

@@ -14,6 +14,7 @@ import { CategoriesComponent } from './components/categories.component';
 import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
     RecipeCreateComponent,
     RecipesListComponent,
     RecipeViewComponent,
+    RecipeEditComponent,
   ],
   imports: [
     AppRoutingModule,

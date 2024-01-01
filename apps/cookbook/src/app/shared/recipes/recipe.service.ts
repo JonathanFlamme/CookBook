@@ -35,6 +35,23 @@ export class RecipeService {
     });
   }
 
+  public update(
+    recipeId: string,
+    title: string,
+    duration: string,
+    ingredients: { name: string; quantity: string }[],
+    steps: { description: string }[],
+    categories: CategoryType,
+  ): Observable<RecipeModel> {
+    return this.http.patch<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {
+      title,
+      duration,
+      ingredients,
+      steps,
+      categories,
+    });
+  }
+
   public delete(recipeId: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`);
   }

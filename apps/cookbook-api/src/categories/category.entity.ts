@@ -17,6 +17,7 @@ export class CategoryEntity implements CategoryModel {
   @Column()
   recipeId: string;
 
+  @Column({ type: 'enum', enum: CategoryType })
   type: CategoryType;
 
   @CreateDateColumn({ type: 'timestamp' })

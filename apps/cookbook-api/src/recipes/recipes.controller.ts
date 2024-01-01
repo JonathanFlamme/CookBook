@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   ParseUUIDPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
@@ -39,6 +40,17 @@ export class RecipeController {
   @Post('recipes')
   create(@Body() body: RecipeDto): Promise<RecipeModel> {
     return this.recipeService.create(body);
+  }
+
+  /**
+   * Update a recipe
+   */
+  @Patch('recipes/:recipeId')
+  update(
+    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Body() body: RecipeDto,
+  ): Promise<RecipeModel> {
+    return this.recipeService.update(recipeId, body);
   }
 
   /**
