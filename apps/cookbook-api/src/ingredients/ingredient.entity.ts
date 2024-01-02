@@ -24,10 +24,10 @@ export class IngredientEntity implements IngredientModel {
   quantity: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updateAt: Date;
+  updatedAt: Date;
 
   @ManyToOne(() => RecipeEntity, (recipe) => recipe.steps, {
     onDelete: 'CASCADE',

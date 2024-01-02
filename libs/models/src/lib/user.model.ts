@@ -8,6 +8,8 @@ export interface UserModel {
   email: string;
   password: string;
   recipes: RecipeModel[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export enum UserRole {

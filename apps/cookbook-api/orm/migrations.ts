@@ -1,3 +1,3 @@
-import { Init1704132158455 } from '../migrations/1704132158455-Init'; // Replace './path/to/Init1704132158455' with the actual path to the module or class.
+import { Init1704191983557 } from '../migrations/1704191983557-Init';
 
-export const migrations = [Init1704132158455];
+export const migrations = [Init1704191983557];

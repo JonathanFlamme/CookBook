@@ -21,10 +21,10 @@ export class CategoryEntity implements CategoryModel {
   type: CategoryType;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updateAt: Date;
+  updatedAt: Date;
 
   @ManyToOne(() => RecipeEntity, (recipe) => recipe.categories, {
     onDelete: 'CASCADE',

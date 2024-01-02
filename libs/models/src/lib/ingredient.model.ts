@@ -3,4 +3,6 @@ export interface IngredientModel {
   recipeId: string;
   name: string;
   quantity: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

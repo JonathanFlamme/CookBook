@@ -28,10 +28,10 @@ export class RecipeEntity implements RecipeModel {
   duration: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updateAt: Date;
+  updatedAt: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.recipes, { onDelete: 'CASCADE' })
   user: UserEntity;

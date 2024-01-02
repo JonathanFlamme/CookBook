@@ -2,6 +2,8 @@ export interface CategoryModel {
   id: string;
   recipeId: string;
   type: CategoryType;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export enum CategoryType {

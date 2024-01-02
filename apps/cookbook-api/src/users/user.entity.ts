@@ -30,10 +30,10 @@ export class UserEntity implements UserModel {
   password: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updateAt: Date;
+  updatedAt: Date;
 
   @OneToMany(() => RecipeEntity, (recipe) => recipe.user, {
     onDelete: 'CASCADE',

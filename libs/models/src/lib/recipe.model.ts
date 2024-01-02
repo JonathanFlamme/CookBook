@@ -10,6 +10,6 @@ export interface RecipeModel {
   ingredients: IngredientModel[];
   steps: StepModel[];
   categories: CategoryModel[];
-  createAt: Date;
-  updateAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
