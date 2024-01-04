@@ -15,12 +15,13 @@ export class RecipeService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  public userId = 'fb48e979-bfac-467f-b899-3194719156fb';
+  public userId = '6b31c1a2-ce6e-46ec-8b88-c8964f55f6ca';
 
   async view(recipeId: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
       where: { id: recipeId, userId: this.userId },
       relations: ['ingredients', 'steps', 'categories'],
+      order: { steps: { sort: 'ASC' } },
     });
     return recipe;
   }
@@ -63,13 +64,16 @@ export class RecipeService {
     if (!recipe) {
       throw new Error('Recipe not found');
     }
-
+    // update ingredients or create new ones
     const ingredients = body.ingredients.map((ingredient, index) => {
+      // if the ingredient already exists, update it
       if (recipe.ingredients[index]) {
         recipe.ingredients[index].name = ingredient.name;
         recipe.ingredients[index].quantity = ingredient.quantity;
+        recipe.ingredients[index].quantity = ingredient.quantity;
         return recipe.ingredients[index];
       }
+      // if the ingredient doesn't exist, create it
       if (!recipe.ingredients[index]) {
         const newIngredient = new IngredientEntity();
         newIngredient.name = ingredient.name;
@@ -78,14 +82,19 @@ export class RecipeService {
       }
     });
 
+    // update steps or create new ones
     const steps = body.steps.map((step, index) => {
+      // if the step already exists, update it
       if (recipe.steps[index]) {
         recipe.steps[index].description = step.description;
+        recipe.steps[index].sort = step.sort;
         return recipe.steps[index];
       }
+      // if the step doesn't exist, create it
       if (!recipe.steps[index]) {
         const newStep = new StepEntity();
         newStep.description = step.description;
+        newStep.sort = step.sort;
         return newStep;
       }
     });

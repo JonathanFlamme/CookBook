@@ -23,7 +23,7 @@ export class RecipeService {
     title: string,
     duration: string,
     ingredients: { name: string; quantity: string }[],
-    steps: { description: string }[],
+    steps: { description: string; sort: number }[],
     categories: CategoryType,
   ): Observable<RecipeModel> {
     return this.http.post<RecipeModel>(`${this.baseUrl}/recipes`, {
@@ -40,7 +40,7 @@ export class RecipeService {
     title: string,
     duration: string,
     ingredients: { name: string; quantity: string }[],
-    steps: { description: string }[],
+    steps: { description: string; sort: number }[],
     categories: CategoryType,
   ): Observable<RecipeModel> {
     return this.http.patch<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {

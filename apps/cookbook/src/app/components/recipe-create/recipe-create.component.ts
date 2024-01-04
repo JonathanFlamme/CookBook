@@ -50,16 +50,18 @@ export class RecipeCreateComponent implements OnDestroy {
   }
 
   addStep() {
+    const currentSort = this.steps.length;
+
     this.steps.push(
       this.fb.group({
         description: this.fb.control<string>('', Validators.required),
+        sort: this.fb.control<number>(currentSort, Validators.required),
       }),
     );
   }
 
   public addRecipe() {
     const recipe = this.recipeForm.value;
-
     const sub = this.recipeService
       .create(
         recipe.title!,
@@ -81,5 +83,15 @@ export class RecipeCreateComponent implements OnDestroy {
 
   public ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub?.unsubscribe());
+  }
+
+  public deleteStep(index: number) {
+    this.steps.removeAt(index);
+
+    this.steps.controls.forEach((step) => {
+      if (step.value.sort > index) {
+        step.patchValue({ sort: step.value.sort - 1 });
+      }
+    });
   }
 }

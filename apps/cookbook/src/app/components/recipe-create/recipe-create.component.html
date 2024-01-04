@@ -22,15 +22,24 @@
     <span>Ajouter un ingrédient</span>
   </button>
 
-  <label for="steps">Étapes</label>
+  <label for="steps">Étapes :</label>
   <div formArrayName="steps" required>
     <div *ngFor="let step of steps.controls; let i = index" [formGroupName]="i">
+      <span>Etape {{ step.value.sort + 1 }} :</span>
       <input
         matInput
         formControlName="description"
         placeholder="Description"
         required
       />
+      <button
+        mat-flat-button
+        type="button"
+        class="trash"
+        (click)="deleteStep(i)"
+      >
+        <fa-icon icon="trash-can"></fa-icon>
+      </button>
     </div>
   </div>
   <button mat-flat-button type="button" (click)="addStep()">
