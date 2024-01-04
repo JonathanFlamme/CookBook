@@ -6,9 +6,25 @@ import {
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 // app.module.ts
-import { faBars, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faTrashCan,
+  faPen,
+  faArrowDown,
+  faArrowUp,
+  faCheck,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 
-const icons = [faBars, faTrashCan, faPen];
+const icons = [
+  faBars,
+  faTrashCan,
+  faPen,
+  faArrowDown,
+  faArrowUp,
+  faCheck,
+  faXmark,
+];
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule],
