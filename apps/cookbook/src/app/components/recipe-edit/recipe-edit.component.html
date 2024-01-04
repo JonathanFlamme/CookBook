@@ -22,10 +22,19 @@
         type="button"
         class="trash"
         (click)="deleteIngredient(i)"
+        [disabled]="disableDeleteIngredientButton"
       >
         <fa-icon icon="trash-can"></fa-icon>
       </button>
     </div>
+    <ng-container *ngIf="ingredientConfirmButton">
+      <button mat-flat-button type="button" (click)="cancel('ingredient')">
+        <fa-icon icon="xmark"></fa-icon>
+      </button>
+      <button mat-flat-button type="button" (click)="ingredientsValidated()">
+        <fa-icon icon="check"></fa-icon>
+      </button>
+    </ng-container>
   </div>
   <button mat-flat-button type="button" (click)="addIngredient()">
     <span>Ajouter un ingrédient</span>
@@ -73,7 +82,7 @@
     </div>
 
     <ng-container *ngIf="stepConfirmButton">
-      <button mat-flat-button type="button" (click)="cancel()">
+      <button mat-flat-button type="button" (click)="cancel('step')">
         <fa-icon icon="xmark"></fa-icon>
       </button>
       <button mat-flat-button type="button" (click)="stepsValidated()">

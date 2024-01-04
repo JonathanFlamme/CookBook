@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IngredientDeleteConfirmComponent } from '../ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from '../step-delete-confirm/step-delete-confirm.component';
 import { StepService } from '../../shared/steps/step.service';
+import { IngredientService } from '../../shared/ingredients/ingredient.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -19,11 +20,17 @@ export class RecipeEditComponent implements OnInit {
   public recipe!: RecipeModel;
   public categories = Object.values(CategoryType);
 
-  public disableDeleteStepButton = false;
+  //buttons to ingredient
+  public ingredientConfirmButton = false;
+  public disableDeleteIngredientButton = false;
+
+  //buttons to step
   public stepConfirmButton = false;
+  public disableDeleteStepButton = false;
   public disableMoveStepButton = false;
 
   public addNumber: number = 0;
+  public addIngredientNumber: number = 0;
 
   private recipeId!: string;
   private subscriptions: Subscription[] = [];
@@ -32,6 +39,7 @@ export class RecipeEditComponent implements OnInit {
     private fb: FormBuilder,
     private readonly recipeService: RecipeService,
     private readonly stepService: StepService,
+    private readonly ingredientService: IngredientService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly dialog: MatDialog,
@@ -134,8 +142,13 @@ export class RecipeEditComponent implements OnInit {
     this.subscriptions.push(sub);
   }
 
-  // Added
+  // Add
   addIngredient() {
+    this.ingredientConfirmButton = true;
+    this.disableDeleteIngredientButton = true;
+
+    this.addIngredientNumber = this.addIngredientNumber + 1;
+
     this.ingredients.push(
       this.fb.group({
         name: this.fb.nonNullable.control<string>('', Validators.required),
@@ -224,40 +237,81 @@ export class RecipeEditComponent implements OnInit {
 
   // Validation
   public stepsValidated(): void {
+    this.ingredientConfirmButton = false;
+    this.disableDeleteIngredientButton = false;
     this.stepConfirmButton = false;
     this.disableDeleteStepButton = false;
     this.disableMoveStepButton = false;
+
     this.addNumber = 0;
 
-    const steps = this.recipeForm.value.steps;
+    const sub = this.stepService
+      .update(this.recipeId, this.recipeForm.value.steps!)
+      .subscribe({
+        next: (steps) => {
+          this.recipe.steps = steps;
+          this.recipeForm.patchValue({
+            steps: steps,
+          });
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
+    this.subscriptions.push(sub);
+  }
 
-    const sub = this.stepService.update(this.recipeId, steps!).subscribe({
-      next: (steps) => {
-        this.recipe.steps = steps;
+  public ingredientsValidated(): void {
+    this.ingredientConfirmButton = false;
+    this.disableDeleteIngredientButton = false;
 
-        this.recipeForm.patchValue({
-          steps: steps,
-        });
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
+    this.addIngredientNumber = 0;
+
+    const sub = this.ingredientService
+      .update(this.recipeId, this.recipeForm.value.ingredients!)
+      .subscribe({
+        next: (ingredients) => {
+          this.recipe.ingredients = ingredients;
+          this.recipeForm.patchValue({
+            ingredients: ingredients,
+          });
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
     this.subscriptions.push(sub);
   }
 
   // cancel
-  public cancel(): void {
-    this.stepConfirmButton = false;
-    this.disableDeleteStepButton = false;
-    this.disableMoveStepButton = false;
+  public cancel(type: string): void {
+    // cancel steps
+    if (type === 'step') {
+      this.stepConfirmButton = false;
+      this.disableDeleteStepButton = false;
+      this.disableMoveStepButton = false;
 
-    for (let i = 0; i < this.addNumber; i++) {
-      this.steps.removeAt(this.steps.length - 1);
+      for (let i = 0; i < this.addNumber; i++) {
+        this.steps.removeAt(this.steps.length - 1);
+      }
+      this.recipeForm.patchValue({
+        steps: this.recipe.steps,
+      });
+      this.addNumber = 0;
     }
-    this.recipeForm.patchValue({
-      steps: this.recipe.steps,
-    });
-    this.addNumber = 0;
+
+    // cancel ingredients
+    if (type === 'ingredient') {
+      this.ingredientConfirmButton = false;
+      this.disableDeleteIngredientButton = false;
+
+      for (let i = 0; i < this.addIngredientNumber; i++) {
+        this.ingredients.removeAt(this.ingredients.length - 1);
+      }
+      this.recipeForm.patchValue({
+        ingredients: this.recipe.ingredients,
+      });
+      this.addIngredientNumber = 0;
+    }
   }
 }
