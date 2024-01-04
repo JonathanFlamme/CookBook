@@ -177,26 +177,37 @@ export class RecipeEditComponent implements OnInit {
 
   // Delete ingredient
   public deleteIngredient(index: number): void {
-    const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
-      data: this.recipe.ingredients[index],
-    });
+    if (!this.recipe.ingredients[index]) {
+      this.ingredients.removeAt(index);
+    }
+    if (this.recipe.ingredients[index]) {
+      const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
+        data: this.recipe.ingredients[index],
+      });
 
-    dialogRef.afterClosed().subscribe((ingredient) => {
-      if (ingredient) {
-        this.router.navigate(['/recipes', this.recipeId]);
-      }
-    });
+      dialogRef.afterClosed().subscribe((ingredient) => {
+        if (ingredient) {
+          this.router.navigate(['/recipes', this.recipeId]);
+        }
+      });
+    }
   }
 
   public deleteStep(index: number): void {
-    const dialogRef = this.dialog.open(StepDeleteConfirmComponent, {
-      data: this.recipe.steps[index],
-    });
-    dialogRef.afterClosed().subscribe((step) => {
-      if (step) {
-        this.router.navigate(['/recipes', this.recipeId]);
-      }
-    });
+    if (!this.recipe.steps[index]) {
+      this.steps.removeAt(index);
+    }
+
+    if (this.recipe.steps[index]) {
+      const dialogRef = this.dialog.open(StepDeleteConfirmComponent, {
+        data: this.recipe.steps[index],
+      });
+      dialogRef.afterClosed().subscribe((step) => {
+        if (step) {
+          this.router.navigate(['/recipes', this.recipeId]);
+        }
+      });
+    }
   }
 
   // Move
@@ -284,34 +295,16 @@ export class RecipeEditComponent implements OnInit {
   }
 
   // cancel
-  public cancel(type: string): void {
-    // cancel steps
-    if (type === 'step') {
-      this.stepConfirmButton = false;
-      this.disableDeleteStepButton = false;
-      this.disableMoveStepButton = false;
+  public cancel(): void {
+    this.ingredientConfirmButton = false;
+    this.disableDeleteIngredientButton = false;
+    this.stepConfirmButton = false;
+    this.disableDeleteStepButton = false;
+    this.disableMoveStepButton = false;
 
-      for (let i = 0; i < this.addNumber; i++) {
-        this.steps.removeAt(this.steps.length - 1);
-      }
-      this.recipeForm.patchValue({
-        steps: this.recipe.steps,
-      });
-      this.addNumber = 0;
-    }
-
-    // cancel ingredients
-    if (type === 'ingredient') {
-      this.ingredientConfirmButton = false;
-      this.disableDeleteIngredientButton = false;
-
-      for (let i = 0; i < this.addIngredientNumber; i++) {
-        this.ingredients.removeAt(this.ingredients.length - 1);
-      }
-      this.recipeForm.patchValue({
-        ingredients: this.recipe.ingredients,
-      });
-      this.addIngredientNumber = 0;
-    }
+    this.recipeForm.patchValue({
+      ingredients: this.recipe.ingredients,
+      steps: this.recipe.steps,
+    });
   }
 }
