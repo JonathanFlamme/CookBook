@@ -22,13 +22,13 @@
         type="button"
         class="trash"
         (click)="deleteIngredient(i)"
-        [disabled]="disableDeleteIngredientButton"
+        [disabled]="disableDeleteIngredientButton && recipe.ingredients[i]"
       >
         <fa-icon icon="trash-can"></fa-icon>
       </button>
     </div>
     <ng-container *ngIf="ingredientConfirmButton">
-      <button mat-flat-button type="button" (click)="cancel('ingredient')">
+      <button mat-flat-button type="button" (click)="cancel()">
         <fa-icon icon="xmark"></fa-icon>
       </button>
       <button mat-flat-button type="button" (click)="ingredientsValidated()">
@@ -75,14 +75,14 @@
         type="button"
         class="trash"
         (click)="deleteStep(i)"
-        [disabled]="disableDeleteStepButton"
+        [disabled]="disableDeleteStepButton && recipe.steps[i]"
       >
         <fa-icon icon="trash-can"></fa-icon>
       </button>
     </div>
 
     <ng-container *ngIf="stepConfirmButton">
-      <button mat-flat-button type="button" (click)="cancel('step')">
+      <button mat-flat-button type="button" (click)="cancel()">
         <fa-icon icon="xmark"></fa-icon>
       </button>
       <button mat-flat-button type="button" (click)="stepsValidated()">
