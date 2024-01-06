@@ -29,9 +29,6 @@ export class RecipeEditComponent implements OnInit {
   public disableDeleteStepButton = false;
   public disableMoveStepButton = false;
 
-  public addNumber: number = 0;
-  public addIngredientNumber: number = 0;
-
   private recipeId!: string;
   private subscriptions: Subscription[] = [];
 
@@ -110,7 +107,6 @@ export class RecipeEditComponent implements OnInit {
         });
         this.recipe = recipe;
         this.loading = false;
-        console.log(recipe);
       },
       error: (error) => {
         console.error(error);
@@ -147,8 +143,6 @@ export class RecipeEditComponent implements OnInit {
     this.ingredientConfirmButton = true;
     this.disableDeleteIngredientButton = true;
 
-    this.addIngredientNumber = this.addIngredientNumber + 1;
-
     this.ingredients.push(
       this.fb.group({
         name: this.fb.nonNullable.control<string>('', Validators.required),
@@ -162,8 +156,6 @@ export class RecipeEditComponent implements OnInit {
     this.disableDeleteStepButton = true;
     this.disableMoveStepButton = true;
 
-    this.addNumber = this.addNumber + 1;
-    console.log(this.steps.length);
     this.steps.push(
       this.fb.group({
         description: this.fb.control<string>('', Validators.required),
@@ -254,8 +246,6 @@ export class RecipeEditComponent implements OnInit {
     this.disableDeleteStepButton = false;
     this.disableMoveStepButton = false;
 
-    this.addNumber = 0;
-
     const sub = this.stepService
       .update(this.recipeId, this.recipeForm.value.steps!)
       .subscribe({
@@ -275,8 +265,6 @@ export class RecipeEditComponent implements OnInit {
   public ingredientsValidated(): void {
     this.ingredientConfirmButton = false;
     this.disableDeleteIngredientButton = false;
-
-    this.addIngredientNumber = 0;
 
     const sub = this.ingredientService
       .update(this.recipeId, this.recipeForm.value.ingredients!)
