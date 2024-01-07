@@ -1,0 +1,47 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    fixedInViewport
+    [opened]="(isHandset$ | async) === false"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  >
+    <mat-toolbar>
+      <a mat-button [routerLink]="['/recettes']"><h1>CookBook</h1></a>
+    </mat-toolbar>
+    <div class="menu">
+      <mat-nav-list>
+        <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
+          >Recettes</a
+        >
+        <a
+          mat-button
+          [routerLink]="['/recipes/create']"
+          routerLinkActive="active"
+          >Ajouter une recette</a
+        >
+        <a mat-button [routerLink]="['/users']" routerLinkActive="active"
+          >Profile</a
+        >
+        <button mat-button (click)="sidenav.toggle()">
+          <fa-icon icon="chevron-right"></fa-icon>
+        </button>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <mat-toolbar class="menu-reduced" *ngIf="(isHandset$ | async) === true">
+      <a mat-button [routerLink]="['/home']"><h1>CookBook</h1></a>
+
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        *ngIf="(isHandset$ | async) === true"
+      >
+        <fa-icon icon="bars"></fa-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
