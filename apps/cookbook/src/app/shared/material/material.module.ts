@@ -13,6 +13,7 @@ import {
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatDialogModule,
 } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    MatButtonModule,
   ],
   exports: [
     MatSidenavModule,
@@ -34,6 +36,7 @@ import {
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    MatButtonModule,
   ],
   declarations: [],
   providers: [

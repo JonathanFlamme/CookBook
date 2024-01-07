@@ -17,7 +17,10 @@
         "tsConfig": "apps/cookbook/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/cookbook/src/favicon.ico", "apps/cookbook/src/assets"],
-        "styles": ["apps/cookbook/src/styles.scss"],
+        "styles": [
+          "apps/cookbook/src/styles.scss",
+          "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -64,10 +67,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/cookbook/**/*.ts", "apps/cookbook/**/*.html"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
