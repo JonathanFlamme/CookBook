@@ -85,12 +85,12 @@ export class RecipeCreateComponent implements OnDestroy {
     this.subscriptions.forEach((sub) => sub?.unsubscribe());
   }
 
-  public deleteStep(index: number) {
-    this.steps.removeAt(index);
+  public delete(formArray: FormArray, index: number) {
+    formArray.removeAt(index);
 
-    this.steps.controls.forEach((step) => {
-      if (step.value.sort > index) {
-        step.patchValue({ sort: step.value.sort - 1 });
+    formArray.controls.forEach((array) => {
+      if (array.value.sort > index) {
+        array.patchValue({ sort: array.value.sort - 1 });
       }
     });
   }
