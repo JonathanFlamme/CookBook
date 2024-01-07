@@ -7,7 +7,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
   >
     <mat-toolbar>
-      <a mat-button [routerLink]="['/recettes']"><h1>CookBook</h1></a>
+      <a mat-button [routerLink]="['/recipes']"><h1>CookBook</h1></a>
     </mat-toolbar>
     <div class="menu">
       <mat-nav-list>
@@ -23,9 +23,6 @@
         <a mat-button [routerLink]="['/users']" routerLinkActive="active"
           >Profile</a
         >
-        <button mat-button (click)="sidenav.toggle()">
-          <fa-icon icon="chevron-right"></fa-icon>
-        </button>
       </mat-nav-list>
     </div>
   </mat-sidenav>

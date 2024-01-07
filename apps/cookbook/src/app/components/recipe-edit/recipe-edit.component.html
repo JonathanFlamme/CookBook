@@ -1,3 +1,9 @@
+<header>
+  <div class="title">
+    <h1>Modifier la recette</h1>
+  </div>
+</header>
+
 <form class="form" [formGroup]="recipeForm" (ngSubmit)="edit()">
   <mat-form-field>
     <input matInput placeholder="Titre" formControlName="title" required />
@@ -34,11 +40,23 @@
         <fa-icon icon="trash-can"></fa-icon>
       </button>
     </div>
-    <ng-container *ngIf="ingredientConfirmButton">
-      <button type="button" (click)="cancel()">
+    <ng-container>
+      <button
+        *ngIf="ingredientCancelButton"
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="cancel()"
+      >
         <fa-icon icon="xmark"></fa-icon>
       </button>
-      <button type="button" (click)="ingredientsValidated()">
+      <button
+        *ngIf="ingredientConfirmButton"
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="ingredientsValidated()"
+      >
         <fa-icon icon="check"></fa-icon>
       </button>
     </ng-container>
@@ -97,8 +115,9 @@
       </button>
     </div>
 
-    <ng-container *ngIf="stepConfirmButton">
+    <ng-container>
       <button
+        *ngIf="stepCancelButton"
         mat-raised-button
         color="primary"
         type="button"
@@ -107,6 +126,7 @@
         <fa-icon icon="xmark"></fa-icon>
       </button>
       <button
+        *ngIf="stepConfirmButton"
         mat-raised-button
         color="primary"
         type="button"
