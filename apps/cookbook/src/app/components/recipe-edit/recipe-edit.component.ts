@@ -22,10 +22,12 @@ export class RecipeEditComponent implements OnInit {
 
   //buttons to ingredient
   public ingredientConfirmButton = false;
+  public ingredientCancelButton = false;
   public disableDeleteIngredientButton = false;
 
   //buttons to step
   public stepConfirmButton = false;
+  public stepCancelButton = false;
   public disableDeleteStepButton = false;
   public disableMoveStepButton = false;
 
@@ -171,6 +173,11 @@ export class RecipeEditComponent implements OnInit {
   public deleteIngredient(index: number): void {
     if (!this.recipe.ingredients[index]) {
       this.ingredients.removeAt(index);
+
+      if (this.recipe.ingredients.length === this.ingredients.value.length) {
+        this.ingredientConfirmButton = false;
+      }
+      return;
     }
     if (this.recipe.ingredients[index]) {
       const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
@@ -188,6 +195,11 @@ export class RecipeEditComponent implements OnInit {
   public deleteStep(index: number): void {
     if (!this.recipe.steps[index]) {
       this.steps.removeAt(index);
+
+      if (this.recipe.steps.length === this.steps.value.length) {
+        this.stepConfirmButton = false;
+      }
+      return;
     }
 
     if (this.recipe.steps[index]) {
@@ -209,6 +221,7 @@ export class RecipeEditComponent implements OnInit {
       return;
     }
     this.stepConfirmButton = true;
+    this.stepCancelButton = true;
     this.disableDeleteStepButton = true;
 
     const step = formArray.controls[index].value;
@@ -227,6 +240,7 @@ export class RecipeEditComponent implements OnInit {
     }
     this.stepConfirmButton = true;
     this.disableDeleteStepButton = true;
+    this.stepCancelButton = true;
 
     const step = formArray.controls[index].value;
     const nextStep = formArray.controls[index + 1].value;
@@ -241,8 +255,10 @@ export class RecipeEditComponent implements OnInit {
   // Validation
   public stepsValidated(): void {
     this.ingredientConfirmButton = false;
+    this.ingredientCancelButton = false;
     this.disableDeleteIngredientButton = false;
     this.stepConfirmButton = false;
+    this.stepCancelButton = false;
     this.disableDeleteStepButton = false;
     this.disableMoveStepButton = false;
 
