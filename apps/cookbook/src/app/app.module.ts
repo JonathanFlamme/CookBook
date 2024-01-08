@@ -17,6 +17,7 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
+import { RecipeCardComponent } from './recipes-list/recipe-card/recipe-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { StepDeleteConfirmComponent } from './components/step-delete-confirm/ste
     RecipeEditComponent,
     IngredientDeleteConfirmComponent,
     StepDeleteConfirmComponent,
+    RecipeCardComponent,
   ],
   imports: [
     AppRoutingModule,
