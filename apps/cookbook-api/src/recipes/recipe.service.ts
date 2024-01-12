@@ -3,7 +3,7 @@ import { RecipeEntity } from './recipe.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel } from '@cookbook/models';
+import { RecipeModel, UserIdTemporaly } from '@cookbook/models';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
 
@@ -14,7 +14,7 @@ export class RecipeService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  public userId = '6b31c1a2-ce6e-46ec-8b88-c8964f55f6ca';
+  public userId = UserIdTemporaly.UserId;
 
   async view(recipeId: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
@@ -38,11 +38,10 @@ export class RecipeService {
       userId: this.userId,
       title: body.title,
       duration: body.duration,
+      categories: body.categories,
       ingredients: body.ingredients,
       steps: body.steps,
     });
-
-    recipe.categories = body.categories;
 
     try {
       await this.recipeRepository.save(recipe);
@@ -98,9 +97,9 @@ export class RecipeService {
 
     recipe.title = body.title;
     recipe.duration = body.duration;
+    recipe.categories = body.categories;
     recipe.ingredients = ingredients;
     recipe.steps = steps;
-    recipe.categories = body.categories;
 
     try {
       await this.recipeRepository.save(recipe);
