@@ -1,3 +1,3 @@
-import { Init1704191983557 } from '../migrations/1704191983557-Init';
+import { Init1705097140761 } from '../migrations/1705097140761-Init';
 
-export const migrations = [Init1704191983557];
+export const migrations = [Init1705097140761];

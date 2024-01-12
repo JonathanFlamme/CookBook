@@ -32,8 +32,8 @@ export class RecipeCreateComponent implements OnDestroy {
   public recipeForm = this.fb.group({
     title: this.fb.nonNullable.control<string>('', Validators.required),
     duration: this.fb.nonNullable.control<string>('', Validators.required),
-    categories: this.fb.nonNullable.control<CategoryType>(
-      CategoryType.Apero,
+    categories: this.fb.nonNullable.control<CategoryType[]>(
+      [],
       Validators.required,
     ),
     ingredients: this.fb.array<FormGroup>([]),

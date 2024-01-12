@@ -3,7 +3,6 @@ import { RecipeEntity } from './recipe.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RecipeDto } from './recipe.dto';
-import { CategoryEntity } from '../categories/category.entity';
 import { RecipeModel } from '@cookbook/models';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
@@ -20,7 +19,7 @@ export class RecipeService {
   async view(recipeId: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
       where: { id: recipeId, userId: this.userId },
-      relations: ['ingredients', 'steps', 'categories'],
+      relations: ['ingredients', 'steps'],
       order: { steps: { sort: 'ASC' } },
     });
     return recipe;
@@ -29,7 +28,7 @@ export class RecipeService {
   async list(): Promise<RecipeEntity[]> {
     const recipes = await this.recipeRepository.find({
       where: { userId: this.userId },
-      relations: ['ingredients', 'steps', 'categories'],
+      relations: ['ingredients', 'steps'],
     });
     return recipes;
   }
@@ -43,9 +42,7 @@ export class RecipeService {
       steps: body.steps,
     });
 
-    const category = new CategoryEntity();
-    category.type = body.categories;
-    recipe.categories = [category];
+    recipe.categories = body.categories;
 
     try {
       await this.recipeRepository.save(recipe);
@@ -59,7 +56,7 @@ export class RecipeService {
   async update(recipeId: string, body: RecipeDto): Promise<RecipeModel> {
     const recipe = await this.recipeRepository.findOne({
       where: { id: recipeId, userId: this.userId },
-      relations: ['ingredients', 'steps', 'categories'],
+      relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
       throw new Error('Recipe not found');
@@ -103,7 +100,7 @@ export class RecipeService {
     recipe.duration = body.duration;
     recipe.ingredients = ingredients;
     recipe.steps = steps;
-    recipe.categories[0].type = body.categories;
+    recipe.categories = body.categories;
 
     try {
       await this.recipeRepository.save(recipe);

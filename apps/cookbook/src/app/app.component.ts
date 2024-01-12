@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title = 'cookbook';
 
+  public userId = '	3adf32aa-ae4b-4507-9b97-b1caacf15378';
 }

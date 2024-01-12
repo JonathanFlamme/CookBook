@@ -4,6 +4,7 @@ import { EntityManager, Repository } from 'typeorm';
 import { StepEntity } from './step.entity';
 import { RecipeEntity } from '../recipes/recipe.entity';
 import { StepDto } from './step.dto';
+import { UserIdTemporaly } from '@cookbook/models';
 
 @Injectable()
 export class StepService {
@@ -17,12 +18,12 @@ export class StepService {
     private readonly stepRepository: Repository<StepEntity>,
   ) {}
 
-  public userId = '6b31c1a2-ce6e-46ec-8b88-c8964f55f6ca';
+  public userId = UserIdTemporaly.UserId;
 
   async update(recipeId: string, body: StepDto[]): Promise<StepEntity[]> {
     const recipe = await this.recipeRepository.findOne({
       where: { id: recipeId, userId: this.userId },
-      relations: ['ingredients', 'steps', 'categories'],
+      relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
       throw new Error('Recipe not found');
