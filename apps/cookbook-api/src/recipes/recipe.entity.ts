@@ -7,8 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { RecipeModel } from '@cookbook/models';
-import { CategoryEntity } from '../categories/category.entity';
+import { CategoryType, RecipeModel } from '@cookbook/models';
 import { StepEntity } from '../steps/step.entity';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { UserEntity } from '../users/user.entity';
@@ -26,6 +25,9 @@ export class RecipeEntity implements RecipeModel {
 
   @Column({ type: 'text' })
   duration: string;
+
+  @Column({ type: 'text', array: true })
+  categories: CategoryType[];
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
@@ -45,9 +47,4 @@ export class RecipeEntity implements RecipeModel {
     cascade: true,
   })
   steps: StepEntity[];
-
-  @OneToMany(() => CategoryEntity, (category) => category.recipe, {
-    cascade: true,
-  })
-  categories: CategoryEntity[];
 }

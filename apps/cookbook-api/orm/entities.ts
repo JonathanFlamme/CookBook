@@ -1,4 +1,3 @@
-import { CategoryEntity } from '../src/categories/category.entity';
 import { IngredientEntity } from '../src/ingredients/ingredient.entity';
 import { RecipeEntity } from '../src/recipes/recipe.entity';
 import { StepEntity } from '../src/steps/step.entity';
@@ -9,5 +8,4 @@ export const entities = [
   RecipeEntity,
   IngredientEntity,
   StepEntity,
-  CategoryEntity,
 ];

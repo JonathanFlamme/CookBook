@@ -4,6 +4,7 @@ import { IngredientEntity } from './ingredient.entity';
 import { Repository } from 'typeorm';
 import { IngredientDto } from './ingredient.dto';
 import { RecipeEntity } from '../recipes/recipe.entity';
+import { UserIdTemporaly } from '@cookbook/models';
 
 @Injectable()
 export class IngredientService {
@@ -15,7 +16,7 @@ export class IngredientService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  public userId = '6b31c1a2-ce6e-46ec-8b88-c8964f55f6ca';
+  public userId = UserIdTemporaly.UserId;
 
   async update(
     recipeId: string,
@@ -23,7 +24,7 @@ export class IngredientService {
   ): Promise<IngredientEntity[]> {
     const recipe = await this.recipeRepository.findOne({
       where: { id: recipeId, userId: this.userId },
-      relations: ['ingredients', 'steps', 'categories'],
+      relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
       throw new Error('Recipe not found');

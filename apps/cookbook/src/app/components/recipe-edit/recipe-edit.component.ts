@@ -55,8 +55,8 @@ export class RecipeEditComponent implements OnInit {
   public recipeForm = this.fb.group({
     title: this.fb.nonNullable.control<string>('', Validators.required),
     duration: this.fb.nonNullable.control<string>('', Validators.required),
-    categories: this.fb.nonNullable.control<CategoryType>(
-      CategoryType.Apero,
+    categories: this.fb.nonNullable.control<CategoryType[]>(
+      [],
       Validators.required,
     ),
     ingredients: this.fb.array<FormGroup>([]),
@@ -105,7 +105,7 @@ export class RecipeEditComponent implements OnInit {
 
         // fill the form with the recipe.categories data
         this.recipeForm.patchValue({
-          categories: recipe.categories[0].type,
+          categories: recipe.categories,
         });
         this.recipe = recipe;
         this.loading = false;

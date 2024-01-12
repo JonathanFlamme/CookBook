@@ -16,3 +16,7 @@ export enum UserRole {
   Admin = 'admin',
   User = 'user',
 }
+
+export enum UserIdTemporaly {
+  UserId = '3adf32aa-ae4b-4507-9b97-b1caacf15378',
+}

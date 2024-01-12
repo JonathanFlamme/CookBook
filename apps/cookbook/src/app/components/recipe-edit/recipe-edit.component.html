@@ -141,14 +141,12 @@
   </button>
 
   <!-- Categories -->
-  <mat-form-field>
-    <label for="categories">Catégories</label>
-    <mat-select formControlName="categories">
-      <mat-option *ngFor="let category of categories" [value]="category">
-        <app-categories [category]="category"></app-categories>
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <label for="categories">Catégories</label>
+  <mat-button-toggle-group formControlName="categories" multiple>
+    <mat-button-toggle *ngFor="let category of categories" [value]="category">
+      <app-categories [category]="category"></app-categories>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 
   <div>
     <button

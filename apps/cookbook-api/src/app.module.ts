@@ -6,7 +6,6 @@ import { AppService } from './app/app.service';
 import { RecipesModule } from './recipes/recipes.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { StepsModule } from './steps/steps.module';
-import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -16,7 +15,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     RecipesModule,
     IngredientsModule,
     StepsModule,
-    CategoriesModule,
     UsersModule,
   ],
   controllers: [AppController],

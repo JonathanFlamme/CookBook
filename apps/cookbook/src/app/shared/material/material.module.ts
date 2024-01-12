@@ -15,6 +15,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatButtonModule,
     MatListModule,
+    MatButtonToggleModule,
   ],
   exports: [
     MatSidenavModule,
@@ -40,6 +42,7 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatButtonModule,
     MatListModule,
+    MatButtonToggleModule,
   ],
   declarations: [],
   providers: [

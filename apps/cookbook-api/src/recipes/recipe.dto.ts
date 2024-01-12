@@ -17,5 +17,5 @@ export class RecipeDto {
   steps?: StepDto[];
 
   @IsOptional()
-  categories?: CategoryType;
+  categories?: CategoryType[];
 }
