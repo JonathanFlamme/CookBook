@@ -1,0 +1,32 @@
+<header>
+  <div class="title">
+    <h1>Se connecter</h1>
+  </div>
+</header>
+
+<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-form-field>
+    <mat-label>Identifiant</mat-label>
+    <input matInput formControlName="identifier" type="email" required />
+    <mat-error *ngIf="loginForm.controls.identifier.errors?.['required']">
+      L'identifiant est obligatoire
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Mot de passe</mat-label>
+    <input matInput formControlName="password" type="password" required />
+    <mat-error *ngIf="loginForm.controls.password.errors?.['required']">
+      Le mot de passe est obligatoire
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="loginForm.invalid"
+  >
+    Se connecter
+  </button>
+</form>

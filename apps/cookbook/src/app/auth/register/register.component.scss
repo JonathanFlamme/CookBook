@@ -1,0 +1,23 @@
+header {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 6rem;
+  color: #ff6f61;
+
+  & .title {
+    width: 100%;
+    border-bottom: 2px solid #ff6f61;
+
+    & h1 {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 50%;
+  overflow: hidden;
+}

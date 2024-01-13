@@ -18,6 +18,8 @@ import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.compon
 import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
 import { RecipeCardComponent } from './recipes-list/recipe-card/recipe-card.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { RecipeCardComponent } from './recipes-list/recipe-card/recipe-card.comp
     IngredientDeleteConfirmComponent,
     StepDeleteConfirmComponent,
     RecipeCardComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     AppRoutingModule,
