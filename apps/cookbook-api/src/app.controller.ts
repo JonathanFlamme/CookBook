@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { RegisterDto } from './auth/register.dto';
+import { LoginDto } from './auth/login.dto';
 import { UserEntity } from './users/user.entity';
 
 @Controller()
@@ -10,6 +11,14 @@ export class AppController {
   @Get()
   getData() {
     return this.authService.getData();
+  }
+
+  /**
+   * Register a new user
+   */
+  @Post('login')
+  login(@Body() body: LoginDto): Promise<UserEntity> {
+    return this.authService.login(body);
   }
 
   /**

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +10,26 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   public loginForm = this.fb.group({
-    identifier: this.fb.control<string>('', Validators.required),
+    email: this.fb.control<string>('', Validators.required),
     password: this.fb.control<string>('', Validators.required),
   });
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+  ) {}
 
   public login(): void {
-    console.log(this.loginForm.value);
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login(email!, password!).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }
