@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+
 import databaseConfig from '../orm/config';
 
 import { AppController } from './app.controller';

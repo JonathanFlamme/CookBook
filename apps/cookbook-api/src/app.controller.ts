@@ -1,8 +1,19 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Request,
+  Res,
+} from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { RegisterDto } from './auth/register.dto';
-import { LoginDto } from './auth/login.dto';
 import { UserEntity } from './users/user.entity';
+import { LocalAuthGuard } from './auth/local-auth.gard';
+import { JwtAuthGuard } from './auth/jwt-auth.gard';
+import { Response as ResponseType } from 'express';
+import { Request as RequestType } from 'express';
 
 @Controller()
 export class AppController {
@@ -14,11 +25,18 @@ export class AppController {
   }
 
   /**
-   * Register a new user
+   * Login a new user
    */
-  @Post('login')
-  login(@Body() body: LoginDto): Promise<UserEntity> {
-    return this.authService.login(body);
+  @UseGuards(LocalAuthGuard)
+  @Post('auth/login')
+  async login(
+    @Request() req: RequestType,
+    @Res() res: ResponseType,
+  ): Promise<Partial<UserEntity>> {
+    const authToken = await this.authService.generateToken(req.user);
+    this.authService.storeTokenInCookie(res, authToken.access_token);
+    res.status(200).send(authToken.payload);
+    return;
   }
 
   /**
@@ -27,5 +45,11 @@ export class AppController {
   @Post('register')
   register(@Body() body: RegisterDto): Promise<UserEntity> {
     return this.authService.register(body);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    return req.user;
   }
 }

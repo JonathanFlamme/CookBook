@@ -1,18 +1,16 @@
 import bcrypt from 'bcrypt';
-import {
-  ConflictException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { RegisterDto } from './register.dto';
 import { UserEntity } from '../users/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LoginDto } from './login.dto';
-
+import { JwtService } from '@nestjs/jwt';
+import { Response as ResponseType } from 'express';
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly jwtService: JwtService,
+
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
   ) {}
@@ -47,22 +45,37 @@ export class AuthService {
   }
 
   /**
-   * Login user
+   * Generate Token
    */
-  async login(body: LoginDto): Promise<UserEntity> {
+  async generateToken(user: Partial<UserEntity>) {
+    const payload = { userId: user.id, role: user.role };
+
+    return {
+      payload,
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+  /**
+   * Verify validate user
+   */
+  async validateUser(email: string, password: string): Promise<UserEntity> {
     const user = await this.userRepository.findOne({
-      where: { email: body.email },
+      where: { email },
     });
-
-    if (!user) {
-      throw new UnauthorizedException('Invalid email');
+    const isValid = await bcrypt.compare(password, user.password);
+    if (user && isValid) {
+      return user;
     }
+    return null;
+  }
 
-    // compare the password with the hashed password
-    const isValid = await bcrypt.compare(body.password, user.password);
-    if (!isValid) {
-      throw new UnauthorizedException('Invalid password');
-    }
-    return user;
+  // Store Token in Cookie
+  public storeTokenInCookie(res: ResponseType, authToken: string) {
+    res.cookie('access_token', authToken, {
+      maxAge: 1000 * 60 * 15,
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+    });
   }
 }
