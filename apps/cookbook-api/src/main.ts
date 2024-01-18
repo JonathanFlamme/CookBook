@@ -10,11 +10,11 @@ async function bootstrap() {
     bufferLogs: true,
   });
 
+  app.use(cookieParser());
   app.enableCors({
     origin: true,
     credentials: true,
   });
-  app.use(cookieParser());
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
