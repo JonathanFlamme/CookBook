@@ -57,4 +57,11 @@ export class AuthService {
         }),
       );
   }
+
+  public autoLogin(): void {
+    const user = this.storageService.getSavedUser();
+    if (user) {
+      this.isLoggedInSubject.next(user);
+    }
+  }
 }

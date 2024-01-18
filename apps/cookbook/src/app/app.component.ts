@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './shared/auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title = 'cookbook';
 
-  public userId = '	3adf32aa-ae4b-4507-9b97-b1caacf15378';
+  constructor(private readonly authService: AuthService) {}
+
+  public ngOnInit(): void {
+    this.authService.autoLogin();
+  }
 }
