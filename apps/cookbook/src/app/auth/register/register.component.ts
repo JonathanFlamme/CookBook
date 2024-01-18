@@ -41,7 +41,7 @@ export class RegisterComponent {
       .subscribe({
         next: () => {
           this.registerForm.reset();
-          this.router.navigateByUrl('/recipes');
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           console.error(error);
