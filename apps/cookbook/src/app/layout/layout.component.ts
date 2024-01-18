@@ -23,8 +23,14 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.authService.isLogged$.subscribe((isLogged) => {
-      this.isLogged = isLogged;
+    this.authService.isLogged$.subscribe({
+      next: (isLogged) => {
+        this.isLogged = isLogged;
+      },
     });
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 }

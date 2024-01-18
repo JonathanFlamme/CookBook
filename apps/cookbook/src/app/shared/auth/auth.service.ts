@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserModel } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private readonly storageService: StorageService,
+    private readonly router: Router,
   ) {}
 
   public register(
@@ -63,5 +65,11 @@ export class AuthService {
     if (user) {
       this.isLoggedInSubject.next(user);
     }
+  }
+
+  public logout(): void {
+    this.storageService.clean();
+    this.isLoggedInSubject.next(null);
+    this.router.navigate(['/login']);
   }
 }
