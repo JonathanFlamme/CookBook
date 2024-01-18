@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '@cookbook/models';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { StorageService } from './storage.service';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:3000';
+
+  private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
+  public isLogged$ = this.isLoggedInSubject.asObservable();
 
   constructor(
     private readonly http: HttpClient,
@@ -33,13 +36,24 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<UserModel> {
     return this.http
-      .post<UserModel>(`${this.baseUrl}/auth/login`, {
-        username,
-        password,
-      })
+      .post<UserModel>(
+        `${this.baseUrl}/auth/login`,
+        {
+          username,
+          password,
+        },
+        {
+          withCredentials: true,
+        },
+      )
       .pipe(
+        catchError((error) => {
+          console.error(error);
+          throw error;
+        }),
         tap((user) => {
           this.storageService.saveUser(user);
+          this.isLoggedInSubject.next(user);
         }),
       );
   }
