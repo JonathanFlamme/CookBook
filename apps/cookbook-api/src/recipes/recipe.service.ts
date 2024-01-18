@@ -15,9 +15,9 @@ export class RecipeService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  async view(req: RequestType, recipeId: string): Promise<RecipeEntity> {
+  async view(recipeId: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: req.user['userId'] },
+      where: { id: recipeId },
       relations: ['ingredients', 'steps'],
       order: { steps: { sort: 'ASC' } },
     });

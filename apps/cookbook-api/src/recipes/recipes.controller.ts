@@ -24,13 +24,11 @@ export class RecipeController {
   /**
    * View a recipe
    */
-  @UseGuards(JwtAuthGuard)
   @Get('recipes/:recipeId')
   view(
-    @Request() req: RequestType,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
   ): Promise<RecipeEntity> {
-    return this.recipeService.view(req, recipeId);
+    return this.recipeService.view(recipeId);
   }
   /**
    * List all recipes
