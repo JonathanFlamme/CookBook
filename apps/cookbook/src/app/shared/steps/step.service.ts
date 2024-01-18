@@ -18,12 +18,14 @@ export class StepService {
     return this.http.patch<StepModel[]>(
       `${this.baseUrl}/recipes/${recipeId}/steps`,
       steps,
+      { withCredentials: true },
     );
   }
 
   public delete(recipeId: string, stepId: string): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/recipes/${recipeId}/steps/${stepId}`,
+      { withCredentials: true },
     );
   }
 }

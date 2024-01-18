@@ -4,7 +4,7 @@ import { IngredientEntity } from './ingredient.entity';
 import { Repository } from 'typeorm';
 import { IngredientDto } from './ingredient.dto';
 import { RecipeEntity } from '../recipes/recipe.entity';
-import { UserIdTemporaly } from '@cookbook/models';
+import { Request as RequestType } from 'express';
 
 @Injectable()
 export class IngredientService {
@@ -16,14 +16,13 @@ export class IngredientService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  public userId = UserIdTemporaly.UserId;
-
   async update(
+    req: RequestType,
     recipeId: string,
     body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: this.userId },
+      where: { id: recipeId, userId: req.user['userId'] },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
