@@ -1,6 +1,6 @@
 // External dependencies
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
@@ -20,6 +20,7 @@ import { StepDeleteConfirmComponent } from './components/step-delete-confirm/ste
 import { RecipeCardComponent } from './recipes-list/recipe-card/recipe-card.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { HttpInterceptor } from './shared/auth/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { RegisterComponent } from './auth/register/register.component';
     SharedModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
