@@ -15,14 +15,27 @@
           >Recettes</a
         >
         <a
+          *ngIf="isLogged"
           mat-button
           [routerLink]="['/recipes/create']"
           routerLinkActive="active"
           >Ajouter une recette</a
         >
-        <a mat-button [routerLink]="['/users']" routerLinkActive="active"
-          >Profile</a
+        <a
+          *ngIf="!isLogged"
+          mat-button
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          >Se connecter</a
         >
+        <a
+          *ngIf="!isLogged"
+          mat-button
+          [routerLink]="['/register']"
+          routerLinkActive="active"
+          >S'inscrire</a
+        >
+        <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
       </mat-nav-list>
     </div>
   </mat-sidenav>

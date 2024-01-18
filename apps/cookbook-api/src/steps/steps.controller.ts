@@ -5,10 +5,14 @@ import {
   Param,
   ParseUUIDPipe,
   Patch,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { StepService } from './step.service';
 import { StepDto } from './step.dto';
 import { StepEntity } from './step.entity';
+import { Request as RequestType } from 'express';
+import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 
 @Controller()
 export class StepsController {
@@ -17,13 +21,15 @@ export class StepsController {
   /**
    * Update steps
    */
+  @UseGuards(JwtAuthGuard)
   @Patch('recipes/:recipeId/steps')
   update(
+    @Request() req: RequestType,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Body() body: StepDto[],
   ): Promise<StepEntity[]> {
     console.log('body', body);
-    return this.stepService.update(recipeId, body);
+    return this.stepService.update(req, recipeId, body);
   }
 
   /**

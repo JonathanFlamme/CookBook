@@ -3,9 +3,10 @@ import { RecipeEntity } from './recipe.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel, UserIdTemporaly } from '@cookbook/models';
+import { RecipeModel } from '@cookbook/models';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
+import { Request as RequestType } from 'express';
 
 @Injectable()
 export class RecipeService {
@@ -14,11 +15,9 @@ export class RecipeService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
-  public userId = UserIdTemporaly.UserId;
-
   async view(recipeId: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: this.userId },
+      where: { id: recipeId },
       relations: ['ingredients', 'steps'],
       order: { steps: { sort: 'ASC' } },
     });
@@ -27,15 +26,14 @@ export class RecipeService {
 
   async list(): Promise<RecipeEntity[]> {
     const recipes = await this.recipeRepository.find({
-      where: { userId: this.userId },
       relations: ['ingredients', 'steps'],
     });
     return recipes;
   }
 
-  async create(body: RecipeDto): Promise<RecipeModel> {
+  async create(req: RequestType, body: RecipeDto): Promise<RecipeModel> {
     const recipe = this.recipeRepository.create({
-      userId: this.userId,
+      userId: req.user['userId'],
       title: body.title,
       duration: body.duration,
       categories: body.categories,
@@ -52,9 +50,13 @@ export class RecipeService {
     return recipe;
   }
 
-  async update(recipeId: string, body: RecipeDto): Promise<RecipeModel> {
+  async update(
+    req: RequestType,
+    recipeId: string,
+    body: RecipeDto,
+  ): Promise<RecipeModel> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: this.userId },
+      where: { id: recipeId, userId: req.user['userId'] },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
@@ -110,9 +112,12 @@ export class RecipeService {
     return recipe;
   }
 
-  async delete(recipeId: string): Promise<void> {
+  async delete(req: RequestType, recipeId: string): Promise<void> {
     try {
-      await this.recipeRepository.delete({ id: recipeId, userId: this.userId });
+      await this.recipeRepository.delete({
+        id: recipeId,
+        userId: req.user['userId'],
+      });
     } catch (error) {
       console.error(error);
     }

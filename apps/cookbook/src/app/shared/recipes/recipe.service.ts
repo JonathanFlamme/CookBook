@@ -12,7 +12,9 @@ export class RecipeService {
   constructor(private readonly http: HttpClient) {}
 
   public view(recipeId: string): Observable<RecipeModel> {
-    return this.http.get<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`);
+    return this.http.get<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {
+      withCredentials: true,
+    });
   }
 
   public list(): Observable<RecipeModel[]> {
@@ -26,13 +28,17 @@ export class RecipeService {
     steps: { description: string; sort: number }[],
     categories: CategoryType[],
   ): Observable<RecipeModel> {
-    return this.http.post<RecipeModel>(`${this.baseUrl}/recipes`, {
-      title,
-      duration,
-      ingredients,
-      steps,
-      categories,
-    });
+    return this.http.post<RecipeModel>(
+      `${this.baseUrl}/recipes`,
+      {
+        title,
+        duration,
+        ingredients,
+        steps,
+        categories,
+      },
+      { withCredentials: true },
+    );
   }
 
   public update(
@@ -43,16 +49,22 @@ export class RecipeService {
     steps: { description: string; sort: number }[],
     categories: CategoryType[],
   ): Observable<RecipeModel> {
-    return this.http.patch<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {
-      title,
-      duration,
-      ingredients,
-      steps,
-      categories,
-    });
+    return this.http.patch<RecipeModel>(
+      `${this.baseUrl}/recipes/${recipeId}`,
+      {
+        title,
+        duration,
+        ingredients,
+        steps,
+        categories,
+      },
+      { withCredentials: true },
+    );
   }
 
   public delete(recipeId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`);
+    return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`, {
+      withCredentials: true,
+    });
   }
 }

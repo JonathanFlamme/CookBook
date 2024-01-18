@@ -4,7 +4,7 @@ import { EntityManager, Repository } from 'typeorm';
 import { StepEntity } from './step.entity';
 import { RecipeEntity } from '../recipes/recipe.entity';
 import { StepDto } from './step.dto';
-import { UserIdTemporaly } from '@cookbook/models';
+import { Request as RequestType } from 'express';
 
 @Injectable()
 export class StepService {
@@ -18,11 +18,13 @@ export class StepService {
     private readonly stepRepository: Repository<StepEntity>,
   ) {}
 
-  public userId = UserIdTemporaly.UserId;
-
-  async update(recipeId: string, body: StepDto[]): Promise<StepEntity[]> {
+  async update(
+    req: RequestType,
+    recipeId: string,
+    body: StepDto[],
+  ): Promise<StepEntity[]> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: this.userId },
+      where: { id: recipeId, userId: req.user['userId'] },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
