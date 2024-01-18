@@ -21,8 +21,12 @@
           routerLinkActive="active"
           >Ajouter une recette</a
         >
-        <a mat-button [routerLink]="['/login']" routerLinkActive="active"
-          >Login</a
+        <a
+          *ngIf="!isLogged"
+          mat-button
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          >Se connecter</a
         >
         <a
           *ngIf="!isLogged"
