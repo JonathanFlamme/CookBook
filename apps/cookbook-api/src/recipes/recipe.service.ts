@@ -31,6 +31,14 @@ export class RecipeService {
     return recipes;
   }
 
+  async listByUserId(req: RequestType): Promise<RecipeEntity[]> {
+    const recipes = await this.recipeRepository.find({
+      where: { userId: req.user['userId'] },
+      relations: ['ingredients', 'steps'],
+    });
+    return recipes;
+  }
+
   async create(req: RequestType, body: RecipeDto): Promise<RecipeModel> {
     const recipe = this.recipeRepository.create({
       userId: req.user['userId'],

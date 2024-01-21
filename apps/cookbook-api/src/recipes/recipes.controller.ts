@@ -38,6 +38,15 @@ export class RecipeController {
     return this.recipeService.list();
   }
 
+  /*
+   * List all recipes by user id
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('my-recipes')
+  listByUserId(@Request() req: RequestType): Promise<RecipeEntity[]> {
+    return this.recipeService.listByUserId(req);
+  }
+
   /**
    * Create a new recipe
    */

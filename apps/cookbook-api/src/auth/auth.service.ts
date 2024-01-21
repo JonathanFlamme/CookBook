@@ -48,7 +48,7 @@ export class AuthService {
    * Generate Token
    */
   async generateToken(user: Partial<UserEntity>) {
-    const payload = { userId: user.id, role: user.role };
+    const payload = { id: user.id, role: user.role };
 
     return {
       payload,

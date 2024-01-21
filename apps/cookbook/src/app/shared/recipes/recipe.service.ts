@@ -21,6 +21,10 @@ export class RecipeService {
     return this.http.get<RecipeModel[]>(`${this.baseUrl}/recipes`);
   }
 
+  public listByUserId(): Observable<RecipeModel[]> {
+    return this.http.get<RecipeModel[]>(`${this.baseUrl}/my-recipes`);
+  }
+
   public create(
     title: string,
     duration: string,
