@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IngredientModel } from '@cookbook/models';
+import { IngredientModel, UnitList } from '@cookbook/models';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'ingredient' })
@@ -20,8 +20,11 @@ export class IngredientEntity implements IngredientModel {
   @Column({ type: 'text' })
   name: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'text' })
   quantity: string;
+
+  @Column({ type: 'enum', enum: UnitList, nullable: true })
+  unit: UnitList;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
