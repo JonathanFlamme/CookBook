@@ -6,13 +6,12 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
-import { jwtConstants } from './constants';
 
 @Module({
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret,
+      secret: process.env.TOKEN_KEY,
       signOptions: { expiresIn: '15m' },
     }),
     TypeOrmModule.forFeature([UserEntity]),
