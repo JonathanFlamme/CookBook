@@ -1,9 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryType } from '@cookbook/models';
+import { CategoryType, UnitList } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 
 @Component({
   selector: 'app-recipe-create',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RecipeCreateComponent implements OnDestroy {
   public categories = Object.values(CategoryType);
+  public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
 
   private subscriptions: Subscription[] = [];
 
@@ -45,6 +47,10 @@ export class RecipeCreateComponent implements OnDestroy {
       this.fb.group({
         name: this.fb.nonNullable.control<string>('', Validators.required),
         quantity: this.fb.nonNullable.control<string>('', Validators.required),
+        unit: this.fb.nonNullable.control<UnitList>(
+          UnitList.Gram,
+          Validators.required,
+        ),
       }),
     );
   }

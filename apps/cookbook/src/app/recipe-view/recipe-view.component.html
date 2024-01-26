@@ -19,7 +19,13 @@
     <div class="container-header">
       <div class="container-header-title">
         <h1>{{ recipe.title }}</h1>
-        <button *ngIf="ownRecipe" routerLink="edit">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          *ngIf="ownRecipe"
+          routerLink="edit"
+        >
           <fa-icon icon="pen"></fa-icon>
           <span>Modifier</span>
         </button>
@@ -42,6 +48,7 @@
         <ul>
           <li *ngFor="let ingredient of recipe.ingredients">
             {{ ingredient.name }} : {{ ingredient.quantity }}
+            <app-unit-list [unit]="ingredient.unit"></app-unit-list>
           </li>
         </ul>
       </div>

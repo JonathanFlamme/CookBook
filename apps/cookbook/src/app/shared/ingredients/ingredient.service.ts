@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IngredientModel } from '@cookbook/models';
+import { IngredientModel, UnitList } from '@cookbook/models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class IngredientService {
 
   public update(
     recipeId: string,
-    ingredient: { name: string; quantity: string }[],
+    ingredient: { name: string; quantity: string; unit: UnitList }[],
   ): Observable<IngredientModel[]> {
     return this.http.patch<IngredientModel[]>(
       `${this.baseUrl}/recipes/${recipeId}/ingredients`,

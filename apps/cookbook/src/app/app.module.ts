@@ -22,6 +22,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
+import { UnitListComponent } from './components/unit-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.compon
     LoginComponent,
     RegisterComponent,
     MyRecipesListComponent,
+    UnitListComponent,
   ],
   imports: [
     AppRoutingModule,

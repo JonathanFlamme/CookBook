@@ -21,3 +21,54 @@ header {
   width: 80%;
   overflow: hidden;
 }
+
+.duration {
+  display: flex;
+  gap: 10px;
+
+  & mat-form-field {
+    width: 50%;
+  }
+
+  & span {
+    padding-top: 20px;
+    font-size: 1.2rem;
+  }
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+.container {
+  font-size: 1.2rem;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.button-submit {
+  margin-top: 20px;
+}
+
+.form-container {
+  display: flex;
+  font-size: 1.2rem;
+  align-items: center;
+  gap: 10px;
+  & span {
+    margin-right: 10px;
+  }
+
+  & .name {
+    flex-grow: 2;
+  }
+
+  & .unit {
+    width: 100px;
+  }
+
+  & button {
+    margin-left: 10px;
+  }
+}
