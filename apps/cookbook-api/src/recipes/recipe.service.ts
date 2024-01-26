@@ -76,7 +76,7 @@ export class RecipeService {
       if (recipe.ingredients[index]) {
         recipe.ingredients[index].name = ingredient.name;
         recipe.ingredients[index].quantity = ingredient.quantity;
-        recipe.ingredients[index].quantity = ingredient.quantity;
+        recipe.ingredients[index].unit = ingredient.unit;
         return recipe.ingredients[index];
       }
       // if the ingredient doesn't exist, create it
@@ -84,6 +84,7 @@ export class RecipeService {
         const newIngredient = new IngredientEntity();
         newIngredient.name = ingredient.name;
         newIngredient.quantity = ingredient.quantity;
+        newIngredient.unit = ingredient.unit;
         return newIngredient;
       }
     });

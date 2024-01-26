@@ -1,5 +1,5 @@
-import { IngredientModel } from '@cookbook/models';
-import { IsString } from 'class-validator';
+import { IngredientModel, UnitList } from '@cookbook/models';
+import { IsEnum, IsString } from 'class-validator';
 
 export class IngredientDto implements Partial<IngredientModel> {
   @IsString()
@@ -7,4 +7,7 @@ export class IngredientDto implements Partial<IngredientModel> {
 
   @IsString()
   quantity: string;
+
+  @IsEnum(UnitList)
+  unit: UnitList;
 }

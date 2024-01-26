@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryType, RecipeModel } from '@cookbook/models';
+import { CategoryType, RecipeModel, UnitList } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { IngredientDeleteConfirmComponent } from '../ingredient-delete-confirm/i
 import { StepDeleteConfirmComponent } from '../step-delete-confirm/step-delete-confirm.component';
 import { StepService } from '../../shared/steps/step.service';
 import { IngredientService } from '../../shared/ingredients/ingredient.service';
+import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -19,6 +20,8 @@ export class RecipeEditComponent implements OnInit {
   public loading = true;
   public recipe!: RecipeModel;
   public categories = Object.values(CategoryType);
+
+  public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
 
   //buttons to ingredient
   public ingredientConfirmButton = false;
@@ -86,6 +89,10 @@ export class RecipeEditComponent implements OnInit {
                 ingredient.quantity,
                 Validators.required,
               ),
+              unit: this.fb.nonNullable.control<UnitList>(
+                ingredient.unit,
+                Validators.required,
+              ),
             }),
           );
         });
@@ -149,6 +156,10 @@ export class RecipeEditComponent implements OnInit {
       this.fb.group({
         name: this.fb.nonNullable.control<string>('', Validators.required),
         quantity: this.fb.nonNullable.control<string>('', Validators.required),
+        unit: this.fb.nonNullable.control<UnitList>(
+          UnitList.Gram,
+          Validators.required,
+        ),
       }),
     );
   }

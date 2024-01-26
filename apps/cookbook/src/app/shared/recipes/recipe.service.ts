@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CategoryType, RecipeModel } from '@cookbook/models';
+import { CategoryType, RecipeModel, UnitList } from '@cookbook/models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class RecipeService {
   public create(
     title: string,
     duration: string,
-    ingredients: { name: string; quantity: string }[],
+    ingredients: { name: string; quantity: string; unit: UnitList }[],
     steps: { description: string; sort: number }[],
     categories: CategoryType[],
   ): Observable<RecipeModel> {
@@ -49,7 +49,7 @@ export class RecipeService {
     recipeId: string,
     title: string,
     duration: string,
-    ingredients: { name: string; quantity: string }[],
+    ingredients: { name: string; quantity: string; unit: UnitList }[],
     steps: { description: string; sort: number }[],
     categories: CategoryType[],
   ): Observable<RecipeModel> {
