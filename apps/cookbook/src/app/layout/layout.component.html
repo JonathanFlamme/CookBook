@@ -1,5 +1,6 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container>
   <mat-sidenav
+    class="sidenav"
     #sidenav
     mode="over"
     fixedInViewport
@@ -9,8 +10,8 @@
     <mat-toolbar>
       <a mat-button [routerLink]="['/recipes']"><h1>CookBook</h1></a>
     </mat-toolbar>
-    <div class="menu">
-      <mat-nav-list>
+    <mat-nav-list class="nav-list">
+      <div class="menu-top">
         <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
           >Recettes</a
         >
@@ -28,6 +29,8 @@
           routerLinkActive="active"
           >Ajouter une recette</a
         >
+      </div>
+      <div class="menu-bottom">
         <a
           *ngIf="!isLogged"
           mat-button
@@ -43,8 +46,8 @@
           >S'inscrire</a
         >
         <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
-      </mat-nav-list>
-    </div>
+      </div>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="sidenav-content">
