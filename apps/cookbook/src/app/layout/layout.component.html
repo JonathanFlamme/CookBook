@@ -17,6 +17,13 @@
         <a
           *ngIf="isLogged"
           mat-button
+          [routerLink]="['/my-recipes']"
+          routerLinkActive="active"
+          >Mes recettes</a
+        >
+        <a
+          *ngIf="isLogged"
+          mat-button
           [routerLink]="['/recipes/create']"
           routerLinkActive="active"
           >Ajouter une recette</a

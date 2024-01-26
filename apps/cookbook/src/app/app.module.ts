@@ -17,10 +17,11 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
-import { RecipeCardComponent } from './recipes-list/recipe-card/recipe-card.component';
+import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
+import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HttpInterceptor } from './shared/auth/http.interceptor';
     RecipeCardComponent,
     LoginComponent,
     RegisterComponent,
+    MyRecipesListComponent,
   ],
   imports: [
     AppRoutingModule,

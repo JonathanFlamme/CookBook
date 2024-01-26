@@ -7,6 +7,7 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'recipes',
         component: RecipesListComponent,
+      },
+      {
+        path: 'my-recipes',
+        component: MyRecipesListComponent,
       },
       {
         path: 'login',

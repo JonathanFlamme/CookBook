@@ -7,6 +7,15 @@ header {
   & .title {
     width: 100%;
     border-bottom: 2px solid #ff6f61;
+    display: flex;
+    justify-content: space-between;
+
+    & .title-button {
+      padding-top: 20px;
+    }
+    & fa-icon {
+      color: #ff6f61;
+    }
 
     & h1 {
       margin-bottom: 0.5rem;
