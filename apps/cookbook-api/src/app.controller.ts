@@ -1,19 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  Request,
-  Res,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, Res } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { RegisterDto } from './auth/register.dto';
 import { UserEntity } from './users/user.entity';
 import { LocalAuthGuard } from './auth/local-auth.gard';
 import { JwtAuthGuard } from './auth/jwt-auth.gard';
 import { Response as ResponseType } from 'express';
-import { Request as RequestType } from 'express';
+import { User } from './auth/user.decorateur';
 
 @Controller()
 export class AppController {
@@ -30,10 +22,10 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(
-    @Request() req: RequestType,
+    @User() user: UserEntity,
     @Res() res: ResponseType,
   ): Promise<Partial<UserEntity>> {
-    const authToken = await this.authService.generateToken(req.user);
+    const authToken = await this.authService.generateToken(user);
     this.authService.storeTokenInCookie(res, authToken.access_token);
     res.status(200).send(authToken.payload);
     return;
@@ -49,7 +41,7 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
+  getProfile(@User() user: UserEntity) {
+    return user;
   }
 }
