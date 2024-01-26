@@ -7,7 +7,6 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
-  Request,
   UseGuards,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
@@ -15,7 +14,8 @@ import { RecipeDto } from './recipe.dto';
 import { RecipeModel } from '@cookbook/models';
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { Request as RequestType } from 'express';
+import { User } from '../auth/user.decorateur';
+import { UserEntity } from '../users/user.entity';
 
 @Controller()
 export class RecipeController {
@@ -43,8 +43,8 @@ export class RecipeController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('my-recipes')
-  listByUserId(@Request() req: RequestType): Promise<RecipeEntity[]> {
-    return this.recipeService.listByUserId(req);
+  listByUserId(@User() user: UserEntity): Promise<RecipeEntity[]> {
+    return this.recipeService.listByUserId(user.id);
   }
 
   /**
@@ -53,10 +53,10 @@ export class RecipeController {
   @UseGuards(JwtAuthGuard)
   @Post('recipes')
   create(
-    @Request() req: RequestType,
+    @User() user: UserEntity,
     @Body() body: RecipeDto,
   ): Promise<RecipeModel> {
-    return this.recipeService.create(req, body);
+    return this.recipeService.create(user.id, body);
   }
 
   /**
@@ -65,11 +65,11 @@ export class RecipeController {
   @UseGuards(JwtAuthGuard)
   @Patch('recipes/:recipeId')
   update(
-    @Request() req: RequestType,
+    @User() user: UserEntity,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Body() body: RecipeDto,
   ): Promise<RecipeModel> {
-    return this.recipeService.update(req, recipeId, body);
+    return this.recipeService.update(user.id, recipeId, body);
   }
 
   /**
@@ -78,9 +78,9 @@ export class RecipeController {
   @UseGuards(JwtAuthGuard)
   @Delete('recipes/:recipeId')
   delete(
-    @Request() req: RequestType,
+    @User() user: UserEntity,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
   ): Promise<void> {
-    return this.recipeService.delete(req, recipeId);
+    return this.recipeService.delete(user.id, recipeId);
   }
 }

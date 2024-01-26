@@ -12,7 +12,7 @@ import { LocalStrategy } from './local.strategy';
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_KEY,
-      signOptions: { expiresIn: '15m' },
+      signOptions: { expiresIn: '4h' },
     }),
     TypeOrmModule.forFeature([UserEntity]),
   ],

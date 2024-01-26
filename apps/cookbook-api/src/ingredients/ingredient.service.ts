@@ -4,7 +4,6 @@ import { IngredientEntity } from './ingredient.entity';
 import { Repository } from 'typeorm';
 import { IngredientDto } from './ingredient.dto';
 import { RecipeEntity } from '../recipes/recipe.entity';
-import { Request as RequestType } from 'express';
 
 @Injectable()
 export class IngredientService {
@@ -17,12 +16,12 @@ export class IngredientService {
   ) {}
 
   async update(
-    req: RequestType,
+    userId: string,
     recipeId: string,
     body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: req.user['userId'] },
+      where: { id: recipeId, userId },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {

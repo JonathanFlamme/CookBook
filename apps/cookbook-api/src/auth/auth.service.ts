@@ -72,7 +72,7 @@ export class AuthService {
   // Store Token in Cookie
   public storeTokenInCookie(res: ResponseType, authToken: string) {
     res.cookie('access_token', authToken, {
-      maxAge: 1000 * 60 * 15,
+      maxAge: 1000 * 60 * 60 * 4,
       httpOnly: true,
       secure: true,
       sameSite: 'strict',

@@ -6,7 +6,6 @@ import { RecipeDto } from './recipe.dto';
 import { RecipeModel } from '@cookbook/models';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
-import { Request as RequestType } from 'express';
 
 @Injectable()
 export class RecipeService {
@@ -31,17 +30,17 @@ export class RecipeService {
     return recipes;
   }
 
-  async listByUserId(req: RequestType): Promise<RecipeEntity[]> {
+  async listByUserId(userId: string): Promise<RecipeEntity[]> {
     const recipes = await this.recipeRepository.find({
-      where: { userId: req.user['userId'] },
+      where: { userId },
       relations: ['ingredients', 'steps'],
     });
     return recipes;
   }
 
-  async create(req: RequestType, body: RecipeDto): Promise<RecipeModel> {
+  async create(userId: string, body: RecipeDto): Promise<RecipeModel> {
     const recipe = this.recipeRepository.create({
-      userId: req.user['userId'],
+      userId,
       title: body.title,
       duration: body.duration,
       categories: body.categories,
@@ -59,12 +58,12 @@ export class RecipeService {
   }
 
   async update(
-    req: RequestType,
+    userId: string,
     recipeId: string,
     body: RecipeDto,
   ): Promise<RecipeModel> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId: req.user['userId'] },
+      where: { id: recipeId, userId },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
@@ -121,11 +120,11 @@ export class RecipeService {
     return recipe;
   }
 
-  async delete(req: RequestType, recipeId: string): Promise<void> {
+  async delete(userId: string, recipeId: string): Promise<void> {
     try {
       await this.recipeRepository.delete({
         id: recipeId,
-        userId: req.user['userId'],
+        userId,
       });
     } catch (error) {
       console.error(error);
