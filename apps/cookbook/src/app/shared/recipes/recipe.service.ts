@@ -22,7 +22,9 @@ export class RecipeService {
   }
 
   public listByUserId(): Observable<RecipeModel[]> {
-    return this.http.get<RecipeModel[]>(`${this.baseUrl}/my-recipes`);
+    return this.http.get<RecipeModel[]>(`${this.baseUrl}/my-recipes`, {
+      withCredentials: true,
+    });
   }
 
   public create(
