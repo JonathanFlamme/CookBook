@@ -20,3 +20,50 @@ header {
   margin: auto;
   width: 80%;
 }
+
+.duration {
+  display: flex;
+  gap: 10px;
+
+  & mat-form-field {
+    width: 50%;
+  }
+
+  & span {
+    padding-top: 20px;
+    font-size: 1.2rem;
+  }
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+.container {
+  font-size: 1.2rem;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.button-submit {
+  margin-top: 20px;
+}
+
+.form-container {
+  display: flex;
+  font-size: 1.2rem;
+  align-items: center;
+
+  & span {
+    margin-right: 10px;
+  }
+
+  & mat-form-field {
+    flex: 1 1 0;
+  }
+
+  & button {
+    margin-left: 10px;
+  }
+}
