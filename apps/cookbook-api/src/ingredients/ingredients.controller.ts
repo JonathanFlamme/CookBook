@@ -29,8 +29,6 @@ export class IngredientsController {
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Body(new SanitizerPipe()) body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
-    console.log('body', body);
-
     return this.ingredientService.update(user.id, recipeId, body);
   }
 
