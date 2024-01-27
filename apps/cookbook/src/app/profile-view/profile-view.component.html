@@ -1,0 +1,26 @@
+<header>
+  <div class="title">
+    <h1>Profile</h1>
+  </div>
+</header>
+
+<div *ngIf="!loading" class="profile-container">
+  <table>
+    <tr>
+      <td>Prénom :</td>
+      <td>{{ profile.givenName }}</td>
+    </tr>
+    <tr>
+      <td>Nom :</td>
+      <td>{{ profile.familyName }}</td>
+    </tr>
+    <tr>
+      <td>Email :</td>
+      <td>{{ profile.email }}</td>
+    </tr>
+    <tr>
+      <td>Role :</td>
+      <td><app-user-role [role]="profile.role"></app-user-role></td>
+    </tr>
+  </table>
+</div>
