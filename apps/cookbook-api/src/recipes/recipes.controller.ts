@@ -16,6 +16,7 @@ import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorateur';
 import { UserEntity } from '../users/user.entity';
+import { SanitizerPipe } from '../common/sanitizer.pipe';
 
 @Controller()
 export class RecipeController {
@@ -54,7 +55,7 @@ export class RecipeController {
   @Post('recipes')
   create(
     @User() user: UserEntity,
-    @Body() body: RecipeDto,
+    @Body(new SanitizerPipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
     return this.recipeService.create(user.id, body);
   }
@@ -67,7 +68,7 @@ export class RecipeController {
   update(
     @User() user: UserEntity,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
-    @Body() body: RecipeDto,
+    @Body(new SanitizerPipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
     return this.recipeService.update(user.id, recipeId, body);
   }

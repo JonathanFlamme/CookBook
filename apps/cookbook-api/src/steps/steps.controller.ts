@@ -13,6 +13,7 @@ import { StepEntity } from './step.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { UserEntity } from '../users/user.entity';
 import { User } from '../auth/user.decorateur';
+import { SanitizerPipe } from '../common/sanitizer.pipe';
 
 @Controller()
 export class StepsController {
@@ -26,7 +27,7 @@ export class StepsController {
   update(
     @User() user: UserEntity,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
-    @Body() body: StepDto[],
+    @Body(new SanitizerPipe()) body: StepDto[],
   ): Promise<StepEntity[]> {
     return this.stepService.update(user.id, recipeId, body);
   }
