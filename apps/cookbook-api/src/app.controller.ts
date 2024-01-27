@@ -6,15 +6,11 @@ import { LocalAuthGuard } from './auth/local-auth.gard';
 import { JwtAuthGuard } from './auth/jwt-auth.gard';
 import { Response as ResponseType } from 'express';
 import { User } from './auth/user.decorateur';
+import { SanitizerPipe } from './common/sanitizer.pipe';
 
 @Controller()
 export class AppController {
   constructor(private readonly authService: AuthService) {}
-
-  @Get()
-  getData() {
-    return this.authService.getData();
-  }
 
   /**
    * Login a new user
@@ -35,7 +31,7 @@ export class AppController {
    * Register a new user
    */
   @Post('register')
-  register(@Body() body: RegisterDto): Promise<UserEntity> {
+  register(@Body(new SanitizerPipe()) body: RegisterDto): Promise<UserEntity> {
     return this.authService.register(body);
   }
 

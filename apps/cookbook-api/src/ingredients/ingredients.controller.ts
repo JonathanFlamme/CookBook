@@ -13,6 +13,7 @@ import { IngredientEntity } from './ingredient.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { UserEntity } from '../users/user.entity';
 import { User } from '../auth/user.decorateur';
+import { SanitizerPipe } from '../common/sanitizer.pipe';
 
 @Controller()
 export class IngredientsController {
@@ -26,10 +27,8 @@ export class IngredientsController {
   update(
     @User() user: UserEntity,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
-    @Body() body: IngredientDto[],
+    @Body(new SanitizerPipe()) body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
-    console.log('body', body);
-
     return this.ingredientService.update(user.id, recipeId, body);
   }
 
