@@ -45,6 +45,13 @@
           routerLinkActive="active"
           >S'inscrire</a
         >
+        <a
+          *ngIf="isLogged"
+          mat-button
+          [routerLink]="['/profile']"
+          routerLinkActive="active"
+          >Profil</a
+        >
         <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
       </div>
     </mat-nav-list>

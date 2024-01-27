@@ -8,6 +8,7 @@ import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.compon
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileViewComponent,
       },
       {
         path: 'recipes/create',
