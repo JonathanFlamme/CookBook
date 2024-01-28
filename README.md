@@ -22,6 +22,7 @@
 
 1. `npm start`
 2. Visit [localhost:4200](http://localhost:4200/) to access a cookbook
+3. To see the Admin section, create a user, then set its role to Admin with Adminer [localhost:8080](http://localhost:8080/)
 
 ## Author
 

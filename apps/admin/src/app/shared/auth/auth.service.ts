@@ -20,22 +20,6 @@ export class AuthService {
     private readonly router: Router,
   ) {}
 
-  public register(
-    givenName: string,
-    familyName: string,
-    email: string,
-    password: string,
-    confirmPassword: string,
-  ): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.baseUrl}/register`, {
-      givenName,
-      familyName,
-      email,
-      password,
-      confirmPassword,
-    });
-  }
-
   public login(username: string, password: string): Observable<UserModel> {
     return this.http
       .post<UserModel>(
@@ -62,6 +46,7 @@ export class AuthService {
 
   public autoLogin(): void {
     const user = this.storageService.getSavedUser();
+    console.log(user);
     if (user) {
       this.isLoggedInSubject.next(user);
     }
@@ -70,7 +55,7 @@ export class AuthService {
   public logout(): void {
     this.storageService.clean();
     this.isLoggedInSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/admin/login']);
   }
 
   // check if user is admin

@@ -19,4 +19,12 @@ export class UserService {
     });
     return user;
   }
+
+  /**
+   * List users
+   */
+  async list(): Promise<UserEntity[]> {
+    const users = await this.userRepository.find();
+    return users;
+  }
 }

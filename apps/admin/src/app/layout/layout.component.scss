@@ -1,0 +1,48 @@
+.mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  gap: 20px;
+  background-color: #ff6f61;
+  color: white;
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  background-color: #ff6f61;
+  height: 100vh;
+
+  & .nav-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 40px;
+
+    & .menu-top {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .menu-bottom {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.menu-reduced {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-burger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sidenav-content {
+  margin-left: 0;
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map } from 'rxjs';
-import { AuthService } from '../shared/auth/auth.service';
 import { UserModel } from '@cookbook/models';
+import { AuthService } from '../shared/auth/auth.service';
 
 @Component({
   selector: 'app-layout',
