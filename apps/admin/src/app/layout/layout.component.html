@@ -27,14 +27,6 @@
           routerLinkActive="active"
           >Se connecter</a
         >
-
-        <a
-          *ngIf="isLogged"
-          mat-button
-          [routerLink]="['profile']"
-          routerLinkActive="active"
-          >Profil</a
-        >
         <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
 
         <a mat-button href="http://localhost:4200/recipes">Mode User</a>
