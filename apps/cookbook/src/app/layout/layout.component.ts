@@ -12,6 +12,7 @@ import { UserModel } from '@cookbook/models';
 export class LayoutComponent implements OnInit {
   public reduced = false;
   public isLogged: UserModel | null = null;
+  public isAdmin: boolean = false;
 
   public isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -23,6 +24,8 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
+
     this.authService.isLogged$.subscribe({
       next: (isLogged) => {
         this.isLogged = isLogged;

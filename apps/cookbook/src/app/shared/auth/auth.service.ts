@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserModel } from '@cookbook/models';
+import { UserModel, UserRole } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
@@ -71,5 +71,18 @@ export class AuthService {
     this.storageService.clean();
     this.isLoggedInSubject.next(null);
     this.router.navigate(['/login']);
+  }
+
+  // check if user is admin
+
+  public isAdmin(): boolean {
+    const user = this.storageService.getSavedUser();
+    if (!user) {
+      return false;
+    }
+    if (user.role === UserRole.Admin) {
+      return true;
+    }
+    return false;
   }
 }
