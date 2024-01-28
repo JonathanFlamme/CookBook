@@ -1,0 +1,31 @@
+<mat-table [dataSource]="users">
+  <!-- name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <div class="user-name-wrapper">
+        <div class="user-name">{{ user.givenName }} {{ user.familyName }}</div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <div class="user-email-wrapper">
+        <div class="user-email">{{ user.email }}</div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="role">
+    <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <div class="user-role-wrapper">
+        <div class="user-role">{{ user.role }}</div>
+      </div>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let user; columns: displayedColumns"></mat-row>
+</mat-table>

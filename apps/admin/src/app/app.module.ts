@@ -13,6 +13,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
     RecipesListComponent,
     RecipeCardComponent,
     LoginComponent,
+    UsersListComponent,
+    UserTableComponent,
   ],
   imports: [
     AppRoutingModule,
