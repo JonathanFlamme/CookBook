@@ -16,7 +16,7 @@
 1. Copy the `.env.sample` file and rename it to `.env`
 2. Run `npm install`
 3. Run `docker-compose up `
-4. Run migrations to create the databases `nx migration:run cookbook-API `
+4. Run migrations to create the databases `nx migration:run cookbook-api `
 
 ## Usage
 
