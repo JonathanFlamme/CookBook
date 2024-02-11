@@ -11,11 +11,10 @@ import {
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel } from '@cookbook/models';
+import { RecipeModel, UserRequest } from '@cookbook/models';
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorateur';
-import { UserEntity } from '../users/user.entity';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
 
 @Controller()
@@ -44,8 +43,8 @@ export class RecipeController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('my-recipes')
-  listByUserId(@User() user: UserEntity): Promise<RecipeEntity[]> {
-    return this.recipeService.listByUserId(user.id);
+  listByUserId(@User() user: UserRequest): Promise<RecipeEntity[]> {
+    return this.recipeService.listByUserId(user.userId);
   }
 
   /**
@@ -54,10 +53,10 @@ export class RecipeController {
   @UseGuards(JwtAuthGuard)
   @Post('recipes')
   create(
-    @User() user: UserEntity,
+    @User() user: UserRequest,
     @Body(new SanitizerPipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
-    return this.recipeService.create(user.id, body);
+    return this.recipeService.create(user.userId, body);
   }
 
   /**
@@ -66,11 +65,11 @@ export class RecipeController {
   @UseGuards(JwtAuthGuard)
   @Patch('recipes/:recipeId')
   update(
-    @User() user: UserEntity,
+    @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Body(new SanitizerPipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
-    return this.recipeService.update(user.id, recipeId, body);
+    return this.recipeService.update(user.userId, recipeId, body);
   }
 
   /**
@@ -79,9 +78,9 @@ export class RecipeController {
   @UseGuards(JwtAuthGuard)
   @Delete('recipes/:recipeId')
   delete(
-    @User() user: UserEntity,
+    @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
   ): Promise<void> {
-    return this.recipeService.delete(user.id, recipeId);
+    return this.recipeService.delete(user.userId, recipeId);
   }
 }

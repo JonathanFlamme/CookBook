@@ -11,9 +11,9 @@ import { IngredientService } from './ingredient.service'; // Import the 'Ingredi
 import { IngredientDto } from './ingredient.dto';
 import { IngredientEntity } from './ingredient.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { UserEntity } from '../users/user.entity';
 import { User } from '../auth/user.decorateur';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
+import { UserRequest } from '@cookbook/models';
 
 @Controller()
 export class IngredientsController {
@@ -25,11 +25,11 @@ export class IngredientsController {
   @UseGuards(JwtAuthGuard)
   @Patch('recipes/:recipeId/ingredients')
   update(
-    @User() user: UserEntity,
+    @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Body(new SanitizerPipe()) body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
-    return this.ingredientService.update(user.id, recipeId, body);
+    return this.ingredientService.update(user.userId, recipeId, body);
   }
 
   /**

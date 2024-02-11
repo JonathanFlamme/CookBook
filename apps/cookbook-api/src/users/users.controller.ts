@@ -3,6 +3,7 @@ import { UserEntity } from './user.entity';
 import { User } from '../auth/user.decorateur';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
+import { UserRequest } from '@cookbook/models';
 
 @Controller()
 export class UserController {
@@ -13,7 +14,7 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  view(@User() user: UserEntity): Promise<UserEntity> {
-    return this.userService.view(user.id);
+  view(@User() user: UserRequest): Promise<UserEntity> {
+    return this.userService.view(user.userId);
   }
 }
