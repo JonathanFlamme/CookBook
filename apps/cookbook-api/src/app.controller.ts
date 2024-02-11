@@ -6,6 +6,7 @@ import { LocalAuthGuard } from './auth/local-auth.gard';
 import { Response as ResponseType } from 'express';
 import { User } from './auth/user.decorateur';
 import { SanitizerPipe } from './common/sanitizer.pipe';
+import { UserRequest } from '@cookbook/models';
 
 @Controller()
 export class AppController {
@@ -17,9 +18,9 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(
-    @User() user: UserEntity,
+    @User() user: UserRequest,
     @Res() res: ResponseType,
-  ): Promise<Partial<UserEntity>> {
+  ): Promise<UserRequest> {
     const authToken = await this.authService.generateToken(user);
     this.authService.storeTokenInCookie(res, authToken.access_token);
     res.status(200).send(authToken.payload);

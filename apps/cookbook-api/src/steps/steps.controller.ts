@@ -11,9 +11,9 @@ import { StepService } from './step.service';
 import { StepDto } from './step.dto';
 import { StepEntity } from './step.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { UserEntity } from '../users/user.entity';
 import { User } from '../auth/user.decorateur';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
+import { UserRequest } from '@cookbook/models';
 
 @Controller()
 export class StepsController {
@@ -25,11 +25,11 @@ export class StepsController {
   @UseGuards(JwtAuthGuard)
   @Patch('recipes/:recipeId/steps')
   update(
-    @User() user: UserEntity,
+    @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Body(new SanitizerPipe()) body: StepDto[],
   ): Promise<StepEntity[]> {
-    return this.stepService.update(user.id, recipeId, body);
+    return this.stepService.update(user.userId, recipeId, body);
   }
 
   /**

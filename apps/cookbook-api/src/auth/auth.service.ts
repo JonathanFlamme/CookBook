@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Response as ResponseType } from 'express';
+import { UserRequest } from '@cookbook/models';
 @Injectable()
 export class AuthService {
   constructor(
@@ -47,8 +48,8 @@ export class AuthService {
   /**
    * Generate Token
    */
-  async generateToken(user: Partial<UserEntity>) {
-    const payload = { id: user.id, role: user.role };
+  async generateToken(user: UserRequest) {
+    const payload = { id: user.userId, role: user.role };
 
     return {
       payload,
