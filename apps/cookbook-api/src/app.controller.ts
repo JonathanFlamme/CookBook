@@ -18,7 +18,7 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(
-    @User() user: UserRequest,
+    @User() user: UserEntity,
     @Res() res: ResponseType,
   ): Promise<UserRequest> {
     const authToken = await this.authService.generateToken(user);
