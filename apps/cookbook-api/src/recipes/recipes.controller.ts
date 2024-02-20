@@ -11,11 +11,13 @@ import {
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel, UserRequest } from '@cookbook/models';
+import { RecipeModel, UserRequest, UserRole } from '@cookbook/models';
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorateur';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
+import { Auth } from '../auth/auth.decorator';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller()
 export class RecipeController {
@@ -50,7 +52,8 @@ export class RecipeController {
   /**
    * Create a new recipe
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Post('recipes')
   create(
     @User() user: UserRequest,
@@ -62,7 +65,8 @@ export class RecipeController {
   /**
    * Update a recipe
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('recipes/:recipeId')
   update(
     @User() user: UserRequest,
@@ -75,7 +79,8 @@ export class RecipeController {
   /**
    * Delete a recipe
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('recipes/:recipeId')
   delete(
     @User() user: UserRequest,
