@@ -23,5 +23,5 @@ export enum UserIdTemporaly {
 
 export interface UserRequest {
   userId: string;
-  role: UserRole;
+  role: string;
 }

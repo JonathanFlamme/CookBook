@@ -13,7 +13,9 @@ import { StepEntity } from './step.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorateur';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
-import { UserRequest } from '@cookbook/models';
+import { UserRequest, UserRole } from '@cookbook/models';
+import { Auth } from '../auth/auth.decorator';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller()
 export class StepsController {
@@ -22,7 +24,8 @@ export class StepsController {
   /**
    * Update steps
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('recipes/:recipeId/steps')
   update(
     @User() user: UserRequest,
@@ -35,6 +38,8 @@ export class StepsController {
   /**
    * Delete a step
    */
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('recipes/:recipeId/steps/:stepId')
   async delete(
     @Param('recipeId', ParseUUIDPipe) recipeId: string,

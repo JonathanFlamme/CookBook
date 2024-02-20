@@ -13,7 +13,9 @@ import { IngredientEntity } from './ingredient.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorateur';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
-import { UserRequest } from '@cookbook/models';
+import { UserRequest, UserRole } from '@cookbook/models';
+import { Auth } from '../auth/auth.decorator';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller()
 export class IngredientsController {
@@ -22,7 +24,8 @@ export class IngredientsController {
   /**
    * Update ingredients
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('recipes/:recipeId/ingredients')
   update(
     @User() user: UserRequest,
@@ -35,7 +38,8 @@ export class IngredientsController {
   /**
    * Delete an ingredient
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('ingredients/:ingredientId')
   delete(
     @Param('ingredientId', ParseUUIDPipe) ingredientId: string,
