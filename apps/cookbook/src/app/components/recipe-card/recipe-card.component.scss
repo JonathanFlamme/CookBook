@@ -1,6 +1,18 @@
 .card {
   max-width: 100%;
   border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & mat-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+  }
 }
 
 .trash {
