@@ -24,25 +24,28 @@ header {
 }
 
 .container {
-  width: 50%;
-  margin: auto;
+  width: 80%;
+  margin-left: 96px;
 }
 
 .container-header {
   display: flex;
   flex-direction: column;
   align-items: left;
+  justify-content: center;
   padding: 20px;
 
   &-title {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
   }
 }
 
 .image {
-  width: 250px;
+  width: 200px;
+  justify-content: center;
+  margin: auto;
 }
 
 .container-steps {
@@ -57,4 +60,21 @@ header {
 
 fa-icon {
   margin-right: 10px;
+}
+
+ng-container {
+  height: 100vh;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  & h2 {
+    color: #ff6f61;
+    border-bottom: 2px solid #ff6f61;
+    margin-bottom: 1rem;
+  }
 }

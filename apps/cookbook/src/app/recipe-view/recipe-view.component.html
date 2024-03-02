@@ -1,6 +1,6 @@
 <header>
   <div class="title">
-    <h1>Recette</h1>
+    <h1>{{ recipe.title }}</h1>
     <div class="title-button">
       <button
         mat-button
@@ -24,22 +24,19 @@
 </header>
 
 <ng-container *ngIf="!loading">
+  <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
   <div class="container">
-    <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
     <div class="container-header">
-      <div class="container-header-title">
-        <h1>{{ recipe.title }}</h1>
-      </div>
+      <h3>{{ recipe.duration }} minutes</h3>
 
-      <p>{{ recipe.duration }} minutes</p>
       <div class="categories">
         <li *ngFor="let category of recipe.categories">
           <app-categories [category]="category"></app-categories>
         </li>
       </div>
     </div>
-    <div class="ingredients">
-      <h2>Ingrédients :</h2>
+    <div class="list">
+      <h2>Ingrédients</h2>
       <ul>
         <li *ngFor="let ingredient of recipe.ingredients">
           {{ ingredient.name }} : {{ ingredient.quantity }}
@@ -47,7 +44,7 @@
         </li>
       </ul>
     </div>
-    <div class="steps">
+    <div class="list">
       <h2>Étapes</h2>
       <ol>
         <li *ngFor="let step of recipe.steps">
