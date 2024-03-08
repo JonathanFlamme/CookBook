@@ -7,6 +7,7 @@ import { Response as ResponseType } from 'express';
 import { User } from './auth/user.decorateur';
 import { SanitizerPipe } from './common/sanitizer.pipe';
 import { UserRequest } from '@cookbook/models';
+import { JwtAuthGuard } from './auth/jwt-auth.gard';
 
 @Controller()
 export class AppController {
@@ -33,5 +34,16 @@ export class AppController {
   @Post('register')
   register(@Body(new SanitizerPipe()) body: RegisterDto): Promise<UserEntity> {
     return this.authService.register(body);
+  }
+
+  /**
+   * Logout a user
+   */
+  @UseGuards(JwtAuthGuard)
+  @Post('auth/logout')
+  logout(@Res() res: ResponseType): void {
+    this.authService.clearTokenInCookie(res);
+    res.status(200).send({ message: 'Logout' });
+    return;
   }
 }

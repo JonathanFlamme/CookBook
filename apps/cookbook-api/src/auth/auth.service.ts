@@ -78,4 +78,14 @@ export class AuthService {
       sameSite: 'strict',
     });
   }
+
+  // Remove Token from Cookie
+  public clearTokenInCookie(res: ResponseType) {
+    res.cookie('access_token', '', {
+      expires: new Date(0),
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+    });
+  }
 }
