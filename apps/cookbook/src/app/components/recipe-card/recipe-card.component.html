@@ -1,6 +1,11 @@
 <div class="cards">
   <mat-card
-    *ngFor="let recipe of recipes"
+    *ngFor="
+      let recipe of recipes
+        | slice
+          : paginator.pageIndex * paginator.pageSize
+          : (paginator.pageIndex + 1) * paginator.pageSize
+    "
     [routerLink]="['/recipes', recipe.id]"
     class="card"
   >
@@ -16,3 +21,13 @@
     />
   </mat-card>
 </div>
+<mat-paginator
+  class="paginator"
+  #paginator
+  [length]="recipes.length"
+  [pageSize]="16"
+  [hidePageSize]="true"
+  (page)="pageEvent = $event"
+  showFirstLastButtons="true"
+>
+</mat-paginator>
