@@ -14,7 +14,7 @@ import { RecipeDto } from './recipe.dto';
 import { RecipeModel, UserRequest, UserRole } from '@cookbook/models';
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { User } from '../auth/user.decorateur';
+import { User } from '../auth/user.decorator';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';

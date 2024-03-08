@@ -11,7 +11,7 @@ import { IngredientService } from './ingredient.service'; // Import the 'Ingredi
 import { IngredientDto } from './ingredient.dto';
 import { IngredientEntity } from './ingredient.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { User } from '../auth/user.decorateur';
+import { User } from '../auth/user.decorator';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { UserRequest, UserRole } from '@cookbook/models';
 import { Auth } from '../auth/auth.decorator';

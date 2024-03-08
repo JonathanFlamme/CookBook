@@ -11,7 +11,7 @@ import { StepService } from './step.service';
 import { StepDto } from './step.dto';
 import { StepEntity } from './step.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { User } from '../auth/user.decorateur';
+import { User } from '../auth/user.decorator';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { UserRequest, UserRole } from '@cookbook/models';
 import { Auth } from '../auth/auth.decorator';
