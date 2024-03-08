@@ -11,25 +11,34 @@
       <a mat-button [routerLink]="['/recipes']"><h1>CookBook</h1></a>
     </mat-toolbar>
     <mat-nav-list class="nav-list">
+      <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
+        >Recettes</a
+      >
+      <!-- display button if user IS LOGGED -->
+      @if(isLogged){
       <div class="menu-top">
-        <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
-          >Recettes</a
-        >
-        <a
-          *ngIf="isLogged"
-          mat-button
-          [routerLink]="['/my-recipes']"
-          routerLinkActive="active"
+        <a mat-button [routerLink]="['/my-recipes']" routerLinkActive="active"
           >Mes recettes</a
         >
         <a
-          *ngIf="isLogged"
           mat-button
           [routerLink]="['/recipes/create']"
           routerLinkActive="active"
           >Ajouter une recette</a
         >
       </div>
+      <div class="menu-bottom">
+        <a
+          *ngIf="isLogged"
+          mat-button
+          [routerLink]="['/profile']"
+          routerLinkActive="active"
+          >Profil</a
+        >
+        <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
+      </div>
+      <!-- display button if user is NOT LOGGED -->
+      } @else {
       <div class="menu-bottom">
         <a
           *ngIf="!isLogged"
@@ -45,18 +54,12 @@
           routerLinkActive="active"
           >S'inscrire</a
         >
-        <a
-          *ngIf="isLogged"
-          mat-button
-          [routerLink]="['/profile']"
-          routerLinkActive="active"
-          >Profil</a
-        >
-        <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
-        <a *ngIf="isAdmin" mat-button href="http://localhost:4300/admin/recipes"
-          >Mode Admin</a
-        >
       </div>
+      }
+      <!-- display button if user IS ADMIN -->
+      <a *ngIf="isAdmin" mat-button href="http://localhost:4300/admin/recipes"
+        >Mode Admin</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
