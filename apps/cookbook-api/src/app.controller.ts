@@ -4,7 +4,7 @@ import { RegisterDto } from './auth/register.dto';
 import { UserEntity } from './users/user.entity';
 import { LocalAuthGuard } from './auth/local-auth.gard';
 import { Response as ResponseType } from 'express';
-import { User } from './auth/user.decorateur';
+import { User } from './auth/user.decorator';
 import { SanitizerPipe } from './common/sanitizer.pipe';
 import { UserRequest } from '@cookbook/models';
 import { JwtAuthGuard } from './auth/jwt-auth.gard';
