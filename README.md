@@ -29,5 +29,5 @@
 👤 **Jonathan Flamme**
 
 - Website: https://jonathan-flamme.netlify.app/
-- Github: [@Joflamme88](https://github.com/Joflamme88)
+- Github: [@JoflammeFLamme](https://github.com/JonathanFlamme)
 - LinkedIn: [@Jonathan Flamme](https://www.linkedin.com/in/jonathan-flamme-5209b0153/)
