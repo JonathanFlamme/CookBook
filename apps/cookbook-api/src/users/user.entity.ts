@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserModel, UserRole } from '@cookbook/models';
+import { UserModel, UserQuotas, UserRole } from '@cookbook/models';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'user' })
@@ -22,6 +22,9 @@ export class UserEntity implements UserModel {
 
   @Column({ type: 'text' })
   familyName: string;
+
+  @Column('jsonb', { default: { recipePerMonth: 5 } })
+  quotas: UserQuotas;
 
   @Column({ type: 'text' })
   email: string;

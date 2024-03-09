@@ -5,6 +5,7 @@ export interface UserModel {
   role: UserRole;
   givenName: string;
   familyName: string;
+  quotas: UserQuotas;
   email: string;
   password: string;
   recipes: RecipeModel[];
@@ -15,6 +16,10 @@ export interface UserModel {
 export enum UserRole {
   Admin = 'admin',
   User = 'user',
+}
+
+export interface UserQuotas {
+  recipePerMonth: number;
 }
 
 export enum UserIdTemporaly {

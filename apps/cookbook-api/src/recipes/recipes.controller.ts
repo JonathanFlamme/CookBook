@@ -52,7 +52,7 @@ export class RecipeController {
   /**
    * Create a new recipe
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Post('recipes')
   create(
@@ -87,5 +87,15 @@ export class RecipeController {
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
   ): Promise<void> {
     return this.recipeService.delete(user.userId, recipeId);
+  }
+
+  /**
+   * count recipes by month
+   */
+  @Auth(UserRole.User)
+  @UseGuards(JwtAuthGuard, AuthGuard)
+  @Get('count/recipes')
+  getCount(@User() user: UserRequest): Promise<number> {
+    return this.recipeService.countByMonth(user.userId);
   }
 }

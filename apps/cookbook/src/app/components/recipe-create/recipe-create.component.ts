@@ -109,7 +109,10 @@ export class RecipeCreateComponent implements OnDestroy {
           this.router.navigate(['/recipes']);
         },
         error: (error) => {
-          console.log(error);
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: error.error.message },
+          });
         },
       });
     this.subscriptions.push(sub);

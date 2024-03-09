@@ -1,17 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { RecipeEntity } from './recipe.entity';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel } from '@cookbook/models';
+import { RecipeModel, UserRole } from '@cookbook/models';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
+import { UserEntity } from '../users/user.entity';
+import { DateTime } from 'luxon';
 
 @Injectable()
 export class RecipeService {
   constructor(
     @InjectRepository(RecipeEntity)
     private readonly recipeRepository: Repository<RecipeEntity>,
+
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   async view(recipeId: string): Promise<RecipeEntity> {
@@ -39,8 +44,23 @@ export class RecipeService {
   }
 
   async create(userId: string, body: RecipeDto): Promise<RecipeModel> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+
+    // Check if the user has reached the quota
+    if (user.role !== UserRole.Admin) {
+      // number of recipes created by the user THIS MONTH
+      const quota = await this.countByMonth(userId);
+      if (quota >= user.quotas.recipePerMonth) {
+        throw new BadRequestException(
+          'Vous avez atteint votre quota de recettes pour ce mois-ci',
+        );
+      }
+    }
+
     const recipe = this.recipeRepository.create({
-      userId,
+      userId: user.id,
       title: body.title,
       duration: body.duration,
       categories: body.categories,
@@ -129,5 +149,18 @@ export class RecipeService {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  // count the number of recipes created by the user THIS MONTH
+  async countByMonth(userId: string): Promise<number> {
+    const firstDayOfMonth = DateTime.local().startOf('month').toJSDate();
+    const lastDayOfMonth = DateTime.local().endOf('month').toJSDate();
+
+    return this.recipeRepository.count({
+      where: {
+        userId,
+        createdAt: Between(firstDayOfMonth, lastDayOfMonth),
+      },
+    });
   }
 }
