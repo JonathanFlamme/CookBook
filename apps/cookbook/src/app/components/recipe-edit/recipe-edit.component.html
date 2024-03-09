@@ -59,23 +59,16 @@
         type="button"
         class="trash"
         (click)="deleteIngredient(i)"
-        [disabled]="disableDeleteIngredientButton && recipe.ingredients[i]"
+        [disabled]="
+          ingredientButtonControls.disableDelete && recipe.ingredients[i]
+        "
       >
         <fa-icon icon="trash-can"></fa-icon>
       </button>
     </div>
     <ng-container>
       <button
-        *ngIf="ingredientCancelButton"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="cancel()"
-      >
-        <fa-icon icon="xmark"></fa-icon>
-      </button>
-      <button
-        *ngIf="ingredientConfirmButton"
+        *ngIf="ingredientButtonControls.confirm"
         mat-raised-button
         color="primary"
         type="button"
@@ -114,7 +107,7 @@
         type="button"
         class="trash"
         (click)="moveUp(steps, i)"
-        [disabled]="disableMoveStepButton"
+        [disabled]="stepButtonControls.disableMove"
       >
         <fa-icon icon="arrow-up"></fa-icon>
       </button>
@@ -124,7 +117,7 @@
         type="button"
         class="trash"
         (click)="moveDown(steps, i)"
-        [disabled]="disableMoveStepButton"
+        [disabled]="stepButtonControls.disableMove"
       >
         <fa-icon icon="arrow-down"></fa-icon>
       </button>
@@ -134,7 +127,7 @@
         type="button"
         class="trash"
         (click)="deleteStep(i)"
-        [disabled]="disableDeleteStepButton && recipe.steps[i]"
+        [disabled]="stepButtonControls.disableDelete && recipe.steps[i]"
       >
         <fa-icon icon="trash-can"></fa-icon>
       </button>
@@ -142,7 +135,7 @@
 
     <ng-container>
       <button
-        *ngIf="stepCancelButton"
+        *ngIf="stepButtonControls.cancel"
         mat-raised-button
         color="primary"
         type="button"
@@ -151,7 +144,7 @@
         <fa-icon icon="xmark"></fa-icon>
       </button>
       <button
-        *ngIf="stepConfirmButton"
+        *ngIf="stepButtonControls.confirm"
         mat-raised-button
         color="primary"
         type="button"
