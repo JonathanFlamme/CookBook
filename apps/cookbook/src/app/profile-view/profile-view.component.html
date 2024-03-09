@@ -22,5 +22,15 @@
       <td>Role :</td>
       <td><app-user-role [role]="profile.role"></app-user-role></td>
     </tr>
+    @if(profile.role !== UserRole.Admin){
+    <tr>
+      <td>Recette ajoutées ce mois ci :</td>
+      <td>
+        <app-quota-recipe-by-month
+          [quotas]="profile.quotas.recipePerMonth"
+        ></app-quota-recipe-by-month>
+      </td>
+    </tr>
+    }
   </table>
 </div>

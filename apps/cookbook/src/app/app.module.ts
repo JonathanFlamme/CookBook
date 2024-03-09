@@ -25,6 +25,7 @@ import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.compon
 import { UnitListComponent } from './components/unit-list.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { UserRoleComponent } from './components/user-role.component';
+import { QuotaRecipeByMonthComponent } from './components/quota-recipe-by-month/quota-recipe-by-month.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { UserRoleComponent } from './components/user-role.component';
     BrowserAnimationsModule,
     SharedModule,
     MaterialModule,
+    QuotaRecipeByMonthComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },

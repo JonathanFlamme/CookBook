@@ -73,4 +73,13 @@ export class RecipeService {
       withCredentials: true,
     });
   }
+
+  /**
+   * Count recipe by month
+   */
+  public count(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count/recipes`, {
+      withCredentials: true,
+    });
+  }
 }

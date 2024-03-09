@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
       this.reflector.get<UserRole>('authRole', context.getHandler()) ||
       UserRole.Admin;
 
-    if (user.role === role) {
+    if (user.role === role || user.role === UserRole.Admin) {
       return true;
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from '@cookbook/models';
+import { UserModel, UserRole } from '@cookbook/models';
 import { UserService } from '../shared/users/user.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { UserService } from '../shared/users/user.service';
 export class ProfileViewComponent implements OnInit {
   public loading = true;
   public profile!: UserModel;
+
+  public UserRole = UserRole;
 
   constructor(private readonly userService: UserService) {}
 
