@@ -10,6 +10,8 @@ import { StepDeleteConfirmComponent } from '../step-delete-confirm/step-delete-c
 import { StepService } from '../../shared/steps/step.service';
 import { IngredientService } from '../../shared/ingredients/ingredient.service';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -45,6 +47,7 @@ export class RecipeEditComponent implements OnInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly dialog: MatDialog,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   get ingredients(): FormArray {
@@ -138,6 +141,10 @@ export class RecipeEditComponent implements OnInit {
       )
       .subscribe({
         next: () => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'La recette a bien été modifié' },
+          });
           this.router.navigate(['/recipes', this.recipeId]);
         },
         error: (error) => {
@@ -281,6 +288,10 @@ export class RecipeEditComponent implements OnInit {
           this.recipeForm.patchValue({
             steps: steps,
           });
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'Les étapes ont bien été modifiés' },
+          });
         },
         error: (error) => {
           console.error(error);
@@ -298,6 +309,10 @@ export class RecipeEditComponent implements OnInit {
       .subscribe({
         next: (ingredients) => {
           this.recipe.ingredients = ingredients;
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'Les ingrédients ont bien été modifiés' },
+          });
           this.recipeForm.patchValue({
             ingredients: ingredients,
           });

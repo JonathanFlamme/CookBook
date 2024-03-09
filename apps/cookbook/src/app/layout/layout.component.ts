@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map } from 'rxjs';
 import { AuthService } from '../shared/auth/auth.service';
 import { UserModel } from '@cookbook/models';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../components/ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-layout',
@@ -21,6 +23,7 @@ export class LayoutComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private readonly authService: AuthService,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   public ngOnInit(): void {
@@ -35,5 +38,9 @@ export class LayoutComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 2000,
+      data: { message: 'Vous êtes maintenant déconnecté' },
+    });
   }
 }

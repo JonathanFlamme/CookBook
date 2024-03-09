@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatButtonToggleModule,
     MatPaginatorModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatSidenavModule,
@@ -46,6 +48,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatButtonToggleModule,
     MatPaginatorModule,
+    MatSnackBarModule,
   ],
   declarations: [],
   providers: [
