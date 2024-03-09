@@ -46,6 +46,18 @@ export class RecipeCreateComponent implements OnDestroy {
   });
 
   addIngredient() {
+    // Check if there are already 10 ingredients
+    if (this.ingredients.length >= 10) {
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 2000,
+        data: {
+          message:
+            'Il ne peut pas y avoir plus de 10 ingrédients dans une recette',
+        },
+      });
+      return;
+    }
+
     this.ingredients.push(
       this.fb.group({
         name: this.fb.nonNullable.control<string>('', Validators.required),
@@ -59,12 +71,21 @@ export class RecipeCreateComponent implements OnDestroy {
   }
 
   addStep() {
-    const currentSort = this.steps.length;
+    // Check if there are already 10 steps
+    if (this.steps.length >= 10) {
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 2000,
+        data: {
+          message: 'Il ne peut pas y avoir plus de 10 étapes dans une recette',
+        },
+      });
+      return;
+    }
 
     this.steps.push(
       this.fb.group({
         description: this.fb.control<string>('', Validators.required),
-        sort: this.fb.control<number>(currentSort, Validators.required),
+        sort: this.fb.control<number>(this.steps.length, Validators.required),
       }),
     );
   }

@@ -1,4 +1,6 @@
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -47,4 +49,15 @@ export class RecipeEntity implements RecipeModel {
     cascade: true,
   })
   steps: StepEntity[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  validateCounts() {
+    if (this.ingredients.length > 10) {
+      throw new Error('Une recette ne peut pas avoir plus de 10 ingredients');
+    }
+    if (this.steps.length > 10) {
+      throw new Error('Une recette ne peut pas avoir plus de 10 étapes');
+    }
+  }
 }
