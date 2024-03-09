@@ -24,7 +24,7 @@ export class StepsController {
   /**
    * Update steps
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('recipes/:recipeId/steps')
   update(
@@ -38,7 +38,7 @@ export class StepsController {
   /**
    * Delete a step
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('recipes/:recipeId/steps/:stepId')
   async delete(

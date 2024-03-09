@@ -65,7 +65,7 @@ export class RecipeController {
   /**
    * Update a recipe
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('recipes/:recipeId')
   update(
@@ -79,7 +79,7 @@ export class RecipeController {
   /**
    * Delete a recipe
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('recipes/:recipeId')
   delete(

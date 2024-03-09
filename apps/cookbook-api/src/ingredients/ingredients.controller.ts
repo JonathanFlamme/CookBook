@@ -24,7 +24,7 @@ export class IngredientsController {
   /**
    * Update ingredients
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('recipes/:recipeId/ingredients')
   update(
@@ -38,7 +38,7 @@ export class IngredientsController {
   /**
    * Delete an ingredient
    */
-  @Auth(UserRole.Admin)
+  @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('ingredients/:ingredientId')
   delete(
