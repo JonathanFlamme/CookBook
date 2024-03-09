@@ -159,6 +159,18 @@ export class RecipeEditComponent implements OnInit {
     this.ingredientConfirmButton = true;
     this.disableDeleteIngredientButton = true;
 
+    // Check if there are already 10 ingredients
+    if (this.ingredients.length >= 10) {
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 2000,
+        data: {
+          message:
+            'Il ne peut pas y avoir plus de 10 ingrédients dans une recette',
+        },
+      });
+      return;
+    }
+
     this.ingredients.push(
       this.fb.group({
         name: this.fb.nonNullable.control<string>('', Validators.required),
@@ -175,6 +187,17 @@ export class RecipeEditComponent implements OnInit {
     this.stepConfirmButton = true;
     this.disableDeleteStepButton = true;
     this.disableMoveStepButton = true;
+
+    // Check if there are already 10 steps
+    if (this.steps.length >= 10) {
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 2000,
+        data: {
+          message: 'Il ne peut pas y avoir plus de 10 étapes dans une recette',
+        },
+      });
+      return;
+    }
 
     this.steps.push(
       this.fb.group({
