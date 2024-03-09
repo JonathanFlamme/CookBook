@@ -26,15 +26,18 @@ export class RecipeEditComponent implements OnInit {
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
 
   //buttons to ingredient
-  public ingredientConfirmButton = false;
-  public ingredientCancelButton = false;
-  public disableDeleteIngredientButton = false;
+  public ingredientButtonControls = {
+    confirm: false,
+    disableDelete: false,
+  };
 
   //buttons to step
-  public stepConfirmButton = false;
-  public stepCancelButton = false;
-  public disableDeleteStepButton = false;
-  public disableMoveStepButton = false;
+  public stepButtonControls = {
+    confirm: false,
+    cancel: false,
+    disableDelete: false,
+    disableMove: false,
+  };
 
   private recipeId!: string;
   private subscriptions: Subscription[] = [];
@@ -154,10 +157,13 @@ export class RecipeEditComponent implements OnInit {
     this.subscriptions.push(sub);
   }
 
-  // Add
+  // Add a new ingredient
   addIngredient() {
-    this.ingredientConfirmButton = true;
-    this.disableDeleteIngredientButton = true;
+    this.ingredientButtonControls = {
+      ...this.ingredientButtonControls,
+      confirm: true,
+      disableDelete: true,
+    };
 
     // Check if there are already 10 ingredients
     if (this.ingredients.length >= 10) {
@@ -183,10 +189,14 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
+  // Add  a new step
   addStep() {
-    this.stepConfirmButton = true;
-    this.disableDeleteStepButton = true;
-    this.disableMoveStepButton = true;
+    this.stepButtonControls = {
+      ...this.stepButtonControls,
+      confirm: true,
+      disableDelete: true,
+      disableMove: true,
+    };
 
     // Check if there are already 10 steps
     if (this.steps.length >= 10) {
@@ -216,7 +226,7 @@ export class RecipeEditComponent implements OnInit {
       this.ingredients.removeAt(index);
 
       if (this.recipe.ingredients.length === this.ingredients.value.length) {
-        this.ingredientConfirmButton = false;
+        this.ingredientButtonControls.confirm = false;
       }
       return;
     }
@@ -233,12 +243,18 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
+  // Delete step
   public deleteStep(index: number): void {
     if (!this.recipe.steps[index]) {
       this.steps.removeAt(index);
 
       if (this.recipe.steps.length === this.steps.value.length) {
-        this.stepConfirmButton = false;
+        this.stepButtonControls = {
+          ...this.stepButtonControls,
+          confirm: false,
+          disableMove: false,
+          disableDelete: false,
+        };
       }
       return;
     }
@@ -255,15 +271,18 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
-  // Move
+  // MOVE UP step or ingredient in the list
   public moveUp(formArray: FormArray, index: number): void {
     this.recipeForm.get;
     if (index <= 0) {
       return;
     }
-    this.stepConfirmButton = true;
-    this.stepCancelButton = true;
-    this.disableDeleteStepButton = true;
+    this.stepButtonControls = {
+      ...this.stepButtonControls,
+      confirm: true,
+      cancel: true,
+      disableDelete: true,
+    };
 
     const step = formArray.controls[index].value;
     const previousStep = formArray.controls[index - 1].value;
@@ -275,13 +294,17 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
+  // MOVE DOWN step or ingredient in the list
   public moveDown(formArray: FormArray, index: number): void {
     if (index >= formArray.length - 1) {
       return;
     }
-    this.stepConfirmButton = true;
-    this.disableDeleteStepButton = true;
-    this.stepCancelButton = true;
+    this.stepButtonControls = {
+      ...this.stepButtonControls,
+      confirm: true,
+      cancel: true,
+      disableDelete: true,
+    };
 
     const step = formArray.controls[index].value;
     const nextStep = formArray.controls[index + 1].value;
@@ -295,13 +318,18 @@ export class RecipeEditComponent implements OnInit {
 
   // Validation
   public stepsValidated(): void {
-    this.ingredientConfirmButton = false;
-    this.ingredientCancelButton = false;
-    this.disableDeleteIngredientButton = false;
-    this.stepConfirmButton = false;
-    this.stepCancelButton = false;
-    this.disableDeleteStepButton = false;
-    this.disableMoveStepButton = false;
+    this.ingredientButtonControls = {
+      ...this.ingredientButtonControls,
+      confirm: false,
+      disableDelete: false,
+    };
+    this.stepButtonControls = {
+      ...this.stepButtonControls,
+      confirm: false,
+      cancel: false,
+      disableDelete: false,
+      disableMove: false,
+    };
 
     const sub = this.stepService
       .update(this.recipeId, this.recipeForm.value.steps!)
@@ -324,8 +352,11 @@ export class RecipeEditComponent implements OnInit {
   }
 
   public ingredientsValidated(): void {
-    this.ingredientConfirmButton = false;
-    this.disableDeleteIngredientButton = false;
+    this.ingredientButtonControls = {
+      ...this.ingredientButtonControls,
+      confirm: false,
+      disableDelete: false,
+    };
 
     const sub = this.ingredientService
       .update(this.recipeId, this.recipeForm.value.ingredients!)
@@ -349,11 +380,18 @@ export class RecipeEditComponent implements OnInit {
 
   // cancel
   public cancel(): void {
-    this.ingredientConfirmButton = false;
-    this.disableDeleteIngredientButton = false;
-    this.stepConfirmButton = false;
-    this.disableDeleteStepButton = false;
-    this.disableMoveStepButton = false;
+    this.ingredientButtonControls = {
+      ...this.ingredientButtonControls,
+      confirm: false,
+      disableDelete: false,
+    };
+    this.stepButtonControls = {
+      ...this.stepButtonControls,
+      confirm: false,
+      cancel: false,
+      disableDelete: false,
+      disableMove: false,
+    };
 
     this.recipeForm.patchValue({
       ingredients: this.recipe.ingredients,

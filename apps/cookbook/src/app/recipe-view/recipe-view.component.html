@@ -1,3 +1,4 @@
+@if (!loading) {
 <header>
   <div class="title">
     <h1>{{ recipe.title }}</h1>
@@ -23,7 +24,7 @@
   </div>
 </header>
 
-<ng-container *ngIf="!loading">
+<ng-container>
   <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
   <div class="container">
     <div class="container-header">
@@ -54,3 +55,4 @@
     </div>
   </div>
 </ng-container>
+} @else { }
