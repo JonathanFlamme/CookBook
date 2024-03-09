@@ -5,6 +5,8 @@ import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-recipe-create',
@@ -21,6 +23,7 @@ export class RecipeCreateComponent implements OnDestroy {
     private fb: FormBuilder,
     private readonly recipeService: RecipeService,
     private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   get ingredients(): FormArray {
@@ -78,6 +81,10 @@ export class RecipeCreateComponent implements OnDestroy {
       )
       .subscribe({
         next: () => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'La recette a bien été ajoutée' },
+          });
           this.router.navigate(['/recipes']);
         },
         error: (error) => {
