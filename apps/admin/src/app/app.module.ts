@@ -15,6 +15,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
+import { UserEditRoleComponent } from './components/user-edit-role/user-edit-role.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserTableComponent } from './components/user-table/user-table.component
     BrowserAnimationsModule,
     SharedModule,
     MaterialModule,
+    UserEditRoleComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,23 @@
+<h3 mat-dialog-title>Changement du role</h3>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Role</mat-label>
+    <mat-select [(ngModel)]="newRole">
+      <mat-option [value]="role.User">Utilisateur</mat-option>
+      <mat-option [value]="role.Admin">Administrateur</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button color="warn" mat-button mat-dialog-close type="button">Cancel</button>
+  <button
+    (click)="save(newRole)"
+    [disabled]="data.user.role === newRole"
+    color="primary"
+    mat-button
+    type="button"
+  >
+    Save
+  </button>
+</div>

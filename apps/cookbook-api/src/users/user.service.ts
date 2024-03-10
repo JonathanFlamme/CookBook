@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UserRole } from '@cookbook/models';
 
 @Injectable()
 export class UserService {
@@ -26,5 +27,19 @@ export class UserService {
   async list(): Promise<UserEntity[]> {
     const users = await this.userRepository.find();
     return users;
+  }
+
+  /**
+   * update Role user by Admin
+   */
+  async updateRoleByAdmin(userId: string, role: UserRole): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+    user.role = role;
+
+    await this.userRepository.save(user);
+
+    return user;
   }
 }
