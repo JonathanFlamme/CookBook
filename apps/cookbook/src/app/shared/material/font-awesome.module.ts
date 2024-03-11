@@ -14,6 +14,7 @@ import {
   faArrowUp,
   faCheck,
   faXmark,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [
@@ -24,6 +25,7 @@ const icons = [
   faArrowUp,
   faCheck,
   faXmark,
+  faSearch,
 ];
 
 @NgModule({

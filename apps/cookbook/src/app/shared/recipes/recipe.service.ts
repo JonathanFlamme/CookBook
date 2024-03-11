@@ -1,7 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CategoryType, RecipeModel, UnitList } from '@cookbook/models';
+import {
+  CategoryType,
+  PaginatedResult,
+  RecipeModel,
+  UnitList,
+} from '@cookbook/models';
 import { Observable } from 'rxjs';
+import { RecipeListQuery } from './recipe-list-query';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +23,22 @@ export class RecipeService {
     });
   }
 
-  public list(): Observable<RecipeModel[]> {
-    return this.http.get<RecipeModel[]>(`${this.baseUrl}/recipes`);
+  public list(
+    params: RecipeListQuery,
+  ): Observable<PaginatedResult<RecipeModel>> {
+    return this.http.get<PaginatedResult<RecipeModel>>(
+      `${this.baseUrl}/recipes`,
+      {
+        params: {
+          page: (params.page + 1 || 1).toString(),
+          limit: (params.limit || 12).toString(),
+          query: params.query || '',
+          category: params.category || '',
+          orderBy: params.orderBy || 'updatedAt',
+          order: params.order || 'DESC',
+        },
+      },
+    );
   }
 
   public listByUserId(): Observable<RecipeModel[]> {

@@ -21,6 +21,6 @@ export class RecipeAdminController {
    */
   @Get('recipes')
   list(): Promise<RecipeEntity[]> {
-    return this.recipeService.list();
+    return this.recipeService.listForAdmin();
   }
 }
