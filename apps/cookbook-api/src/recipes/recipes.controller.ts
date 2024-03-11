@@ -7,17 +7,24 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel, UserRequest, UserRole } from '@cookbook/models';
+import {
+  PaginatedResult,
+  RecipeModel,
+  UserRequest,
+  UserRole,
+} from '@cookbook/models';
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorator';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';
+import { RecipesListDto } from './recipes-list.dto';
 
 @Controller()
 export class RecipeController {
@@ -32,21 +39,25 @@ export class RecipeController {
   ): Promise<RecipeEntity> {
     return this.recipeService.view(recipeId);
   }
+
   /**
    * List all recipes
    */
   @Get('recipes')
-  list(): Promise<RecipeEntity[]> {
-    return this.recipeService.list();
+  list(@Query() query: RecipesListDto): Promise<PaginatedResult<RecipeEntity>> {
+    return this.recipeService.list(query);
   }
 
-  /*
+  /**
    * List all recipes by user id
    */
   @UseGuards(JwtAuthGuard)
   @Get('my-recipes')
-  listByUserId(@User() user: UserRequest): Promise<RecipeEntity[]> {
-    return this.recipeService.listByUserId(user.userId);
+  listByUserId(
+    @User() user: UserRequest,
+    @Query() query: RecipesListDto,
+  ): Promise<PaginatedResult<RecipeEntity>> {
+    return this.recipeService.listByUserId(query, user.userId);
   }
 
   /**

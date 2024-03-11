@@ -1,16 +1,11 @@
 <div class="cards">
   <mat-card
-    *ngFor="
-      let recipe of recipes
-        | slice
-          : paginator.pageIndex * paginator.pageSize
-          : (paginator.pageIndex + 1) * paginator.pageSize
-    "
+    *ngFor="let recipe of recipes"
     [routerLink]="['/recipes', recipe.id]"
     class="card"
   >
     <mat-card-header>
-      <mat-card-title>{{ recipe.title }}</mat-card-title>
+      <mat-card-title>{{ recipe.title | titlecase }} </mat-card-title>
       <mat-card-subtitle>{{ recipe.duration }} min</mat-card-subtitle>
     </mat-card-header>
     <img
@@ -21,13 +16,3 @@
     />
   </mat-card>
 </div>
-<mat-paginator
-  class="paginator"
-  #paginator
-  [length]="recipes.length"
-  [pageSize]="16"
-  [hidePageSize]="true"
-  (page)="pageEvent = $event"
-  showFirstLastButtons="true"
->
-</mat-paginator>

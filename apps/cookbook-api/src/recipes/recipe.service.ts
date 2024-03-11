@@ -3,11 +3,12 @@ import { RecipeEntity } from './recipe.entity';
 import { Between, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RecipeDto } from './recipe.dto';
-import { RecipeModel, UserRole } from '@cookbook/models';
+import { PaginatedResult, RecipeModel, UserRole } from '@cookbook/models';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
 import { UserEntity } from '../users/user.entity';
 import { DateTime } from 'luxon';
+import { RecipesListDto } from './recipes-list.dto';
 
 @Injectable()
 export class RecipeService {
@@ -28,19 +29,69 @@ export class RecipeService {
     return recipe;
   }
 
-  async list(): Promise<RecipeEntity[]> {
-    const recipes = await this.recipeRepository.find({
-      relations: ['ingredients', 'steps'],
-    });
+  async listForAdmin(): Promise<RecipeEntity[]> {
+    const recipes = await this.recipeRepository.find();
     return recipes;
   }
 
-  async listByUserId(userId: string): Promise<RecipeEntity[]> {
-    const recipes = await this.recipeRepository.find({
-      where: { userId },
-      relations: ['ingredients', 'steps'],
-    });
-    return recipes;
+  async list(query: RecipesListDto): Promise<PaginatedResult<RecipeEntity>> {
+    const queryBuilder = this.recipeRepository
+      .createQueryBuilder('recipe')
+      .select(['recipe', 'user.givenName', 'user.familyName'])
+      .leftJoin('recipe.user', 'user');
+
+    if (query.query) {
+      queryBuilder.where("LOWER(recipe.title || '' ) LIKE LOWER(:query)", {
+        query: `%${query.query}%`,
+      });
+    }
+
+    if (query.category) {
+      queryBuilder.andWhere(`:category = ANY(recipe.categories)`, {
+        category: query.category,
+      });
+    }
+
+    const [items, count] = await queryBuilder
+      .skip((query.page - 1) * query.limit)
+      .take(query.limit)
+      .orderBy(`recipe.${query.orderBy}`, query.order)
+      .getManyAndCount();
+
+    return { items, count };
+  }
+
+  /**
+   * List all recipes by user id
+   */
+  async listByUserId(
+    query: RecipesListDto,
+    userId: string,
+  ): Promise<PaginatedResult<RecipeEntity>> {
+    const queryBuilder = this.recipeRepository
+      .createQueryBuilder('recipe')
+      .select(['recipe'])
+      .where('recipe.userId = :userId', { userId: userId });
+
+    if (query.query) {
+      queryBuilder.where("LOWER(recipe.title || '' ) LIKE LOWER(:query)", {
+        query: `%${query.query}%`,
+      });
+    }
+
+    if (query.category) {
+      queryBuilder.andWhere(`:category = ANY(recipe.categories)`, {
+        category: query.category,
+      });
+    }
+
+    const [items, count] = await queryBuilder
+      .skip((query.page - 1) * query.limit)
+      .take(query.limit)
+      .orderBy(`recipe.${query.orderBy}`, query.order)
+      .getManyAndCount();
+
+    return { items, count };
   }
 
   async create(userId: string, body: RecipeDto): Promise<RecipeModel> {
