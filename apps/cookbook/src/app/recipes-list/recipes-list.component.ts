@@ -63,7 +63,8 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     const querySub = merge(
       this.paginator.page,
-      this.queryForm.valueChanges.pipe(debounceTime(300))
+      this.queryForm.valueChanges.pipe(debounceTime(300)),
+    )
       .pipe(
         startWith({}),
         map(
