@@ -48,13 +48,16 @@ export class RecipeController {
     return this.recipeService.list(query);
   }
 
-  /*
+  /**
    * List all recipes by user id
    */
   @UseGuards(JwtAuthGuard)
   @Get('my-recipes')
-  listByUserId(@User() user: UserRequest): Promise<RecipeEntity[]> {
-    return this.recipeService.listByUserId(user.userId);
+  listByUserId(
+    @User() user: UserRequest,
+    @Query() query: RecipesListDto,
+  ): Promise<PaginatedResult<RecipeEntity>> {
+    return this.recipeService.listByUserId(query, user.userId);
   }
 
   /**

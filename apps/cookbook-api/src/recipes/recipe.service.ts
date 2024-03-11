@@ -61,12 +61,37 @@ export class RecipeService {
     return { items, count };
   }
 
-  async listByUserId(userId: string): Promise<RecipeEntity[]> {
-    const recipes = await this.recipeRepository.find({
-      where: { userId },
-      relations: ['ingredients', 'steps'],
-    });
-    return recipes;
+  /**
+   * List all recipes by user id
+   */
+  async listByUserId(
+    query: RecipesListDto,
+    userId: string,
+  ): Promise<PaginatedResult<RecipeEntity>> {
+    const queryBuilder = this.recipeRepository
+      .createQueryBuilder('recipe')
+      .select(['recipe'])
+      .where('recipe.userId = :userId', { userId: userId });
+
+    if (query.query) {
+      queryBuilder.where("LOWER(recipe.title || '' ) LIKE LOWER(:query)", {
+        query: `%${query.query}%`,
+      });
+    }
+
+    if (query.category) {
+      queryBuilder.andWhere(`:category = ANY(recipe.categories)`, {
+        category: query.category,
+      });
+    }
+
+    const [items, count] = await queryBuilder
+      .skip((query.page - 1) * query.limit)
+      .take(query.limit)
+      .orderBy(`recipe.${query.orderBy}`, query.order)
+      .getManyAndCount();
+
+    return { items, count };
   }
 
   async create(userId: string, body: RecipeDto): Promise<RecipeModel> {

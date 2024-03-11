@@ -41,10 +41,23 @@ export class RecipeService {
     );
   }
 
-  public listByUserId(): Observable<RecipeModel[]> {
-    return this.http.get<RecipeModel[]>(`${this.baseUrl}/my-recipes`, {
-      withCredentials: true,
-    });
+  public listByUserId(
+    params: RecipeListQuery,
+  ): Observable<PaginatedResult<RecipeModel>> {
+    return this.http.get<PaginatedResult<RecipeModel>>(
+      `${this.baseUrl}/my-recipes`,
+      {
+        params: {
+          page: (params.page + 1 || 1).toString(),
+          limit: (params.limit || 12).toString(),
+          query: params.query || '',
+          category: params.category || '',
+          orderBy: params.orderBy || 'updatedAt',
+          order: params.order || 'DESC',
+        },
+        withCredentials: true,
+      },
+    );
   }
 
   public create(
