@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import {
+  Observable,
   Subscription,
   debounceTime,
   map,
@@ -14,6 +15,7 @@ import {
 } from 'rxjs';
 import { categoriesLabel } from '../components/ui/category-label';
 import { RecipeListQuery } from '../shared/recipes/recipe-list-query';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-my-recipes-list',
@@ -25,6 +27,7 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private readonly recipeService: RecipeService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
@@ -40,6 +43,11 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
     orderBy: this.fb.control<string>('updatedAt'),
     order: this.fb.control<string>('DESC'),
   });
+
+  // isLargeScreen = 1280px
+  public isLargeScreen$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Large)
+    .pipe(map((result) => !result.matches));
 
   public recipes: RecipeModel[] = [];
   public loading = true;

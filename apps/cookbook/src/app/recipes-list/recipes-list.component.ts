@@ -3,6 +3,7 @@ import { RecipeService } from '../shared/recipes/recipe.service';
 import { RecipeModel } from '@cookbook/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  Observable,
   Subscription,
   debounceTime,
   map,
@@ -14,6 +15,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { RecipeListQuery } from '../shared/recipes/recipe-list-query';
 import { categoriesLabel } from '../components/ui/category-label';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-recipes-list',
@@ -24,11 +26,17 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private readonly recipeService: RecipeService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly fb: FormBuilder,
   ) {}
+
+  // isLargeScreen = 1280px
+  public isLargeScreen$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Large)
+    .pipe(map((result) => !result.matches));
 
   public categoriesLabel: { value: string; label: string }[] = [];
   private subscriptions: Subscription[] = [];

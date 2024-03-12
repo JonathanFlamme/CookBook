@@ -100,12 +100,17 @@
   </div>
 
   <!-- Categories -->
-  <label class="container" for="categories">Catégories :</label>
-  <mat-button-toggle-group formControlName="categories" multiple>
-    <mat-button-toggle *ngFor="let category of categories" [value]="category">
-      <app-categories [category]="category"></app-categories>
-    </mat-button-toggle>
-  </mat-button-toggle-group>
+  <mat-chip-listbox
+    formControlName="categories"
+    aria-label="Selectionner une catégorie"
+    multiple
+  >
+    @for (option of categoriesLabel; track option.value) {
+    <mat-chip-option [value]="option.value">
+      {{ option.label }}
+    </mat-chip-option>
+    }
+  </mat-chip-listbox>
 
   <button
     class="button-submit"

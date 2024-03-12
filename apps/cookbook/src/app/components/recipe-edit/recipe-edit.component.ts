@@ -12,6 +12,7 @@ import { IngredientService } from '../../shared/ingredients/ingredient.service';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
+import { categoriesLabel } from '../ui/category-label';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -24,6 +25,7 @@ export class RecipeEditComponent implements OnInit {
   public categories = Object.values(CategoryType);
 
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
+  public categoriesLabel: { value: string; label: string }[] = categoriesLabel;
 
   //buttons to ingredient
   public ingredientButtonControls = {
