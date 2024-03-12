@@ -10,9 +10,13 @@
   </mat-form-field>
 
   <div class="filter">
-    <mat-form-field class="filter-category">
+    @if(isLargeScreen$ | async){
+    <mat-form-field>
       <mat-label>Category</mat-label>
-      <mat-select formControlName="category">
+      <mat-select
+        formControlName="category"
+        aria-label="Selectionner une catégorie"
+      >
         <mat-option value="">Tout</mat-option>
 
         @for (option of categoriesLabel; track option.value) {
@@ -22,6 +26,23 @@
         }
       </mat-select>
     </mat-form-field>
+    } @else{
+    <mat-chip-listbox
+      class="filter-category"
+      formControlName="category"
+      aria-label="Selectionner une catégorie"
+    >
+      <mat-chip-option value="">Tout</mat-chip-option>
+
+      @for (option of categoriesLabel; track option.value) {
+      <mat-chip-option [value]="option.value">
+        {{ option.label }}
+      </mat-chip-option>
+      }
+    </mat-chip-listbox>
+
+    }
+
     <div>
       <mat-form-field class="filter-order-by">
         <mat-label>Trier</mat-label>
