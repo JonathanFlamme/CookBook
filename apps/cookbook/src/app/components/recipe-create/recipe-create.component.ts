@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
+import { categoriesLabel } from '../ui/category-label';
 
 @Component({
   selector: 'app-recipe-create',
@@ -14,8 +15,8 @@ import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
   styleUrl: './recipe-create.component.scss',
 })
 export class RecipeCreateComponent implements OnDestroy {
-  public categories = Object.values(CategoryType);
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
+  public categoriesLabel: { value: string; label: string }[] = categoriesLabel;
 
   private subscriptions: Subscription[] = [];
 
