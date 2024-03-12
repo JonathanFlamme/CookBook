@@ -31,9 +31,13 @@
       <h3>{{ recipe.duration }} minutes</h3>
 
       <div class="categories">
-        <li *ngFor="let category of recipe.categories">
-          <app-categories [category]="category"></app-categories>
-        </li>
+        <mat-chip-set>
+          @for (category of recipe.categories; track category) {
+          <mat-chip [value]="category">
+            {{ category | titlecase }}
+          </mat-chip>
+          }
+        </mat-chip-set>
       </div>
     </div>
     <div class="list">
