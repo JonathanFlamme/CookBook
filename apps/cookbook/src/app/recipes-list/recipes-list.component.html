@@ -8,7 +8,8 @@
     <span matPrefix><fa-icon icon="search"></fa-icon></span>
     <input formControlName="query" matInput placeholder="Rechercher par nom" />
   </mat-form-field>
-
+</form>
+<form [formGroup]="filterForm">
   <div class="filter">
     @if(isLargeScreen$ | async){
     <mat-form-field>
