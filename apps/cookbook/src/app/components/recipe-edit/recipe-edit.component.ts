@@ -235,6 +235,7 @@ export class RecipeEditComponent implements OnInit {
     if (this.recipe.ingredients[index]) {
       const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
         data: this.recipe.ingredients[index],
+        width: 'auto',
       });
 
       dialogRef.afterClosed().subscribe((ingredient) => {
