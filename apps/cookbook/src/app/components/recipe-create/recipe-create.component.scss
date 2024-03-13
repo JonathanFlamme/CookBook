@@ -1,61 +1,79 @@
+.container {
+  padding: 0 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
 header {
   margin-top: 1rem;
   margin-bottom: 1.5rem;
-  padding: 0 6rem;
   color: #ff6f61;
 
-  & .title {
-    width: 100%;
+  & h1 {
     border-bottom: 2px solid #ff6f61;
-
-    & h1 {
-      margin-bottom: 0.5rem;
-    }
+    margin-bottom: 0.5rem;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  width: 80%;
-}
 
-.duration {
-  display: flex;
-  gap: 10px;
+  & .form-title {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    gap: 10px;
 
-  & mat-form-field {
-    width: 50%;
+    & mat-form-field {
+      & span {
+        margin-right: 30px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+
+      & mat-form-field:nth-child(1) {
+        width: 60%;
+      }
+
+      & mat-form-field:nth-child(2) {
+        width: 40%;
+      }
+    }
   }
 
-  & span {
-    padding-top: 20px;
-    font-size: 1.2rem;
+  & .title {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+
+    & h2 {
+      border-bottom: 2px solid #ff6f61;
+      width: 80%;
+      color: #ff6f61;
+      font-size: 1.5rem;
+    }
   }
-}
-
-label {
-  margin-bottom: 10px;
-}
-
-.container {
-  font-size: 1.2rem;
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.button-submit {
-  margin-top: 20px;
 }
 
 .form-container {
   display: flex;
+  flex-direction: column;
   font-size: 1.2rem;
   align-items: center;
   gap: 10px;
+  margin-bottom: 1rem;
+  width: 75%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 0rem;
+  }
+
   & span {
+    width: 10%;
     margin-right: 10px;
   }
 
@@ -70,4 +88,21 @@ label {
   & button {
     margin-left: 10px;
   }
+
+  & .textarea {
+    width: 100%;
+  }
+}
+
+.categories-list {
+  margin: auto;
+  margin-top: 3rem;
+
+  & mat-chip-option {
+    height: 2.5rem;
+  }
+}
+
+.button-submit {
+  margin: 3rem 0;
 }

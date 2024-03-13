@@ -2,12 +2,13 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryType, UnitList } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 import { categoriesLabel } from '../ui/category-label';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-recipe-create',
@@ -25,7 +26,18 @@ export class RecipeCreateComponent implements OnDestroy {
     private readonly recipeService: RecipeService,
     private readonly router: Router,
     private readonly snackBar: MatSnackBar,
+    private breakpointObserver: BreakpointObserver,
   ) {}
+
+  // isMediumScreen = 960px
+  public isMediumScreen$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Medium)
+    .pipe(map((result) => !result.matches));
+
+  // isSmallScreen = 960px
+  public isSmallScreen$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Small)
+    .pipe(map((result) => !result.matches));
 
   get ingredients(): FormArray {
     return this.recipeForm.get('ingredients') as FormArray;
