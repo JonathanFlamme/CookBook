@@ -1,48 +1,48 @@
 <app-back-button></app-back-button>
-
-@if (!loading) {
-<header>
-  <div class="title">
-    <h1>{{ recipe.title }}</h1>
-    <div class="title-button">
-      <button
-        mat-button
-        class="trash"
-        type="button"
-        *ngIf="ownRecipe"
-        routerLink="edit"
-      >
-        <fa-icon icon="pen"></fa-icon>
-      </button>
-      <button
-        *ngIf="ownRecipe"
-        mat-button
-        class="trash"
-        (click)="delete(recipe)"
-      >
-        <fa-icon icon="trash-can"></fa-icon>
-      </button>
-    </div>
-  </div>
-</header>
-
-<ng-container>
-  <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
-  <div class="container">
-    <div class="container-header">
-      <h3>{{ recipe.duration }} minutes</h3>
-
-      <div class="categories">
-        <mat-chip-set>
-          @for (category of recipe.categories; track category) {
-          <mat-chip [value]="category">
-            {{ category | titlecase }}
-          </mat-chip>
-          }
-        </mat-chip-set>
+<div class="container">
+  @if (!loading) {
+  <header>
+    <div class="title">
+      <h1>
+        {{ recipe.title }} <span> - {{ recipe.duration }} minutes</span>
+      </h1>
+      <div class="title-button">
+        <button
+          mat-button
+          class="trash"
+          type="button"
+          *ngIf="ownRecipe"
+          routerLink="edit"
+        >
+          <fa-icon icon="pen"></fa-icon>
+        </button>
+        <button
+          *ngIf="ownRecipe"
+          mat-button
+          class="trash"
+          (click)="delete(recipe)"
+        >
+          <fa-icon icon="trash-can"></fa-icon>
+        </button>
       </div>
     </div>
-    <div class="list">
+  </header>
+
+  <section class="container-categories">
+    <mat-chip-set>
+      @for (category of recipe.categories; track category) {
+      <mat-chip [value]="category">
+        {{ category | titlecase }}
+      </mat-chip>
+      }
+    </mat-chip-set>
+  </section>
+
+  <section class="container-ingredient">
+    <div class="container-image">
+      <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
+    </div>
+    <div class="ingredient">
       <h2>Ingrédients</h2>
       <ul>
         <li *ngFor="let ingredient of recipe.ingredients">
@@ -51,14 +51,15 @@
         </li>
       </ul>
     </div>
-    <div class="list">
-      <h2>Étapes</h2>
-      <ol>
-        <li *ngFor="let step of recipe.steps">
-          {{ step.description }}
-        </li>
-      </ol>
-    </div>
-  </div>
-</ng-container>
-} @else { }
+  </section>
+
+  <section class="container-step">
+    <h2>Étapes</h2>
+    <ol>
+      <li *ngFor="let step of recipe.steps">
+        {{ step.description }}
+      </li>
+    </ol>
+  </section>
+  }
+</div>
