@@ -39,6 +39,9 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
 
   public queryForm = this.fb.group({
     query: this.fb.control<string>(''),
+  });
+
+  public filterForm = this.fb.group({
     category: this.fb.control<string>(''),
     orderBy: this.fb.control<string>('updatedAt'),
     order: this.fb.control<string>('DESC'),
@@ -60,6 +63,10 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
       this.pageIndex = routeParams['page'] || 0;
       this.pageSize = routeParams['limit'] || this.pageSizeOptions[0];
       this.queryForm.patchValue({
+        query: routeParams['query'] || '',
+      });
+      this.filterForm.patchValue({
+        category: routeParams['category'] || '',
         orderBy: routeParams['orderBy'] || 'updatedAt',
         order: routeParams['order'] || 'DESC',
       });
@@ -73,6 +80,7 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
     const querySub = merge(
       this.paginator.page,
       this.queryForm.valueChanges.pipe(debounceTime(300)),
+      this.filterForm.valueChanges,
     )
       .pipe(
         startWith({}),
@@ -80,11 +88,11 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
           () =>
             ({
               query: this.queryForm.get('query')?.value || '',
-              category: this.queryForm.get('category')?.value || '',
+              category: this.filterForm.get('category')?.value || '',
               page: this.paginator.pageIndex,
               limit: this.paginator.pageSize,
-              orderBy: this.queryForm.get('orderBy')?.value || '',
-              order: this.queryForm.get('order')?.value || '',
+              orderBy: this.filterForm.get('orderBy')?.value || '',
+              order: this.filterForm.get('order')?.value || '',
             } as RecipeListQuery),
         ),
 
