@@ -59,6 +59,8 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
       this.pageIndex = routeParams['page'] || 0;
       this.pageSize = routeParams['limit'] || this.pageSizeOptions[0];
       this.queryForm.patchValue({
+        query: routeParams['query'] || '',
+        category: routeParams['category'] || '',
         orderBy: routeParams['orderBy'] || 'updatedAt',
         order: routeParams['order'] || 'DESC',
       });
