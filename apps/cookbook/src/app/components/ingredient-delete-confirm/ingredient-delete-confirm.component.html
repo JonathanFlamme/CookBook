@@ -1,10 +1,14 @@
-<h4 mat-dialog-title>Voulez vous vraiment supprimer l'ingrédient :</h4>
-<div mat-dialog-content class="dialog-content">
+<h2 mat-dialog-title>Supprimer cette ingrédient ?</h2>
+<div mat-dialog-content>
   <p>{{ ingredient.name }}</p>
-  <p>{{ ingredient.quantity }}</p>
+  <p>
+    {{ ingredient.quantity }}
+    <app-unit-list [unit]="ingredient.unit"></app-unit-list>
+  </p>
 </div>
 <div mat-dialog-actions>
-  <button class="custom-button" mat-button mat-dialog-close (click)="delete()">
+  <button mat-raised-button color="primary" mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="delete()">
     Supprimer
   </button>
 </div>

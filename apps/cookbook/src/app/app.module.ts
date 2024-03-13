@@ -27,6 +27,7 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { UserRoleComponent } from './components/user-role.component';
 import { QuotaRecipeByMonthComponent } from './components/quota-recipe-by-month/quota-recipe-by-month.component';
 import { BackButtonComponent } from './components/ui/back-button.component';
+import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { BackButtonComponent } from './components/ui/back-button.component';
     UnitListComponent,
     ProfileViewComponent,
     UserRoleComponent,
+    RecipeDeleteConfirmComponent,
   ],
   imports: [
     AppRoutingModule,
