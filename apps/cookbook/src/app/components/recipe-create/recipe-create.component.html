@@ -6,10 +6,17 @@
   <form class="form" [formGroup]="recipeForm" (ngSubmit)="addRecipe()">
     <section class="form-title">
       <mat-form-field>
-        <input matInput placeholder="Titre" formControlName="title" required />
+        <input
+          aria-label="Titre de la recette"
+          matInput
+          placeholder="Titre"
+          formControlName="title"
+          required
+        />
       </mat-form-field>
       <mat-form-field>
         <input
+          aria-label="Durée de la recette"
           matInput
           placeholder="Durée"
           formControlName="duration"
@@ -23,6 +30,7 @@
     <section class="title">
       <h2 for="ingredients">Ingrédients:</h2>
       <button
+        aria-label="Ajouter un ingrédient"
         color="primary"
         mat-raised-button
         type="button"
@@ -42,10 +50,17 @@
         [formGroupName]="i"
       >
         <mat-form-field class="name">
-          <input matInput formControlName="name" placeholder="Nom" required />
+          <input
+            aria-label="Nom de l'ingrédient"
+            matInput
+            formControlName="name"
+            placeholder="Nom"
+            required
+          />
         </mat-form-field>
         <mat-form-field class="quantity">
           <input
+            aria-label="Quantité"
             matInput
             formControlName="quantity"
             placeholder="Quantité"
@@ -63,6 +78,7 @@
           </mat-select>
         </mat-form-field>
         <button
+          aria-label="Supprimer l'ingrédient"
           mat-raised-button
           color="primary"
           type="button"
@@ -78,6 +94,7 @@
     <div class="title">
       <h2 for="steps">Étapes :</h2>
       <button
+        aria-label="Ajouter une étape"
         mat-raised-button
         color="primary"
         type="button"
@@ -99,6 +116,7 @@
         <span>Etape {{ step.value.sort + 1 }} :</span>
         <mat-form-field class="textarea">
           <textarea
+            aria-label="Description de l'étape"
             matInput
             formControlName="description"
             placeholder="Description"
@@ -107,6 +125,7 @@
           ></textarea>
         </mat-form-field>
         <button
+          aria-label="Supprimer l'étape"
           mat-raised-button
           color="primary"
           type="button"
@@ -133,6 +152,7 @@
     </mat-chip-listbox>
 
     <button
+      aria-label="Modifier la recette"
       class="button-submit"
       mat-raised-button
       color="primary"

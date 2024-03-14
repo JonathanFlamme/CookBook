@@ -13,7 +13,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
   standalone: true,
   imports: [CommonModule, MatButtonModule, FontAwesomeModule],
   template: `
-    <button mat-button (click)="goBack()">
+    <button aria-label="Retour en arrière" mat-button (click)="goBack()">
       <fa-icon icon="arrow-left"></fa-icon>
     </button>
   `,
