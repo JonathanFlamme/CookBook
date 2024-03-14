@@ -1,7 +1,7 @@
 <div class="cards">
   <mat-card
     *ngFor="let recipe of recipes"
-    (click)="recipeView(recipe.id)"
+    [routerLink]="['/recipes', recipe.id]"
     class="card"
   >
     <mat-card-header>
