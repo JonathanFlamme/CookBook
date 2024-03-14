@@ -1,174 +1,199 @@
-<header>
-  <div class="title">
-    <h1>Modifier la recette</h1>
-  </div>
-</header>
-
-<form class="form" [formGroup]="recipeForm" (ngSubmit)="edit()">
-  <mat-form-field>
-    <input matInput placeholder="Titre" formControlName="title" required />
-  </mat-form-field>
-  <div class="duration">
-    <mat-form-field>
-      <input matInput placeholder="Durée" formControlName="duration" required />
-    </mat-form-field>
-    <span matSuffix>minutes</span>
-  </div>
-  <!-- Ingredients -->
-  <div class="container">
-    <label for="ingredients">Ingrédients:</label>
-    <button
-      color="primary"
-      mat-flat-button
-      type="button"
-      (click)="addIngredient()"
-    >
-      <span>Ajouter un ingrédient</span>
-    </button>
-  </div>
-  <div formArrayName="ingredients" required>
-    <div
-      class="form-container"
-      *ngFor="let ingredient of ingredients.controls; let i = index"
-      [formGroupName]="i"
-    >
-      <mat-form-field class="name">
-        <input matInput formControlName="name" placeholder="Nom" required />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          formControlName="quantity"
-          placeholder="Quantité"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field class="unit">
-        <mat-select formControlName="unit">
-          <mat-option
-            *ngFor="let option of unitListLabel"
-            [value]="option.value"
-          >
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        class="trash"
-        (click)="deleteIngredient(i)"
-        [disabled]="
-          ingredientButtonControls.disableDelete && recipe.ingredients[i]
-        "
-      >
-        <fa-icon icon="trash-can"></fa-icon>
-      </button>
+<app-back-button></app-back-button>
+<div class="container">
+  <header>
+    <div class="title">
+      <h1>Modifier la recette</h1>
     </div>
-    <ng-container>
-      <button
-        *ngIf="ingredientButtonControls.confirm"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="ingredientsValidated()"
-      >
-        <fa-icon icon="check"></fa-icon>
-      </button>
-    </ng-container>
-  </div>
+  </header>
 
-  <!-- Steps -->
-  <div class="container">
-    <label for="steps">Étapes :</label>
-    <button mat-raised-button color="primary" type="button" (click)="addStep()">
-      <span>Ajouter une étape</span>
-    </button>
-  </div>
-  <div formArrayName="steps" required>
-    <div
-      class="form-container"
-      *ngFor="let step of steps.controls; let i = index"
-      [formGroupName]="i"
-    >
-      <span>Etape {{ step.value.sort }} :</span>
+  <form class="form" [formGroup]="recipeForm" (ngSubmit)="edit()">
+    <section class="form-title">
       <mat-form-field>
-        <input
-          matInput
-          formControlName="description"
-          placeholder="Description"
-          required
-        />
+        <input matInput placeholder="Titre" formControlName="title" required />
       </mat-form-field>
+      <div class="duration">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Durée"
+            formControlName="duration"
+            required
+          />
+          <span matSuffix>minutes</span>
+        </mat-form-field>
+      </div>
+    </section>
+
+    <!-- Ingredients -->
+    <section class="title">
+      <h2>Ingrédients:</h2>
       <button
-        mat-raised-button
         color="primary"
-        type="button"
-        class="trash"
-        (click)="moveUp(steps, i)"
-        [disabled]="stepButtonControls.disableMove"
-      >
-        <fa-icon icon="arrow-up"></fa-icon>
-      </button>
-      <button
         mat-raised-button
-        color="primary"
         type="button"
-        class="trash"
-        (click)="moveDown(steps, i)"
-        [disabled]="stepButtonControls.disableMove"
+        (click)="addIngredient()"
       >
-        <fa-icon icon="arrow-down"></fa-icon>
+        @if(isMediumScreen$ |async) {
+        <fa-icon icon="plus"></fa-icon>
+        } @else {
+        <span>Ajouter un ingrédient</span>
+        }
       </button>
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        class="trash"
-        (click)="deleteStep(i)"
-        [disabled]="stepButtonControls.disableDelete && recipe.steps[i]"
+    </section>
+    <div lass="form-ingredient" formArrayName="ingredients" required>
+      <div
+        class="form-container-ingredient"
+        *ngFor="let ingredient of ingredients.controls; let i = index"
+        [formGroupName]="i"
       >
-        <fa-icon icon="trash-can"></fa-icon>
-      </button>
+        <mat-form-field class="name">
+          <input matInput formControlName="name" placeholder="Nom" required />
+        </mat-form-field>
+        <mat-form-field class="quantity">
+          <input
+            matInput
+            formControlName="quantity"
+            placeholder="Quantité"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="unit">
+          <mat-select formControlName="unit">
+            <mat-option
+              *ngFor="let option of unitListLabel"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          class="trash"
+          (click)="deleteIngredient(i)"
+          [disabled]="
+            ingredientButtonControls.disableDelete && recipe.ingredients[i]
+          "
+        >
+          <fa-icon icon="trash-can"></fa-icon>
+        </button>
+      </div>
+      <ng-container>
+        <button
+          *ngIf="ingredientButtonControls.confirm"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="ingredientsValidated()"
+        >
+          <fa-icon icon="check"></fa-icon>
+        </button>
+      </ng-container>
     </div>
 
-    <ng-container>
+    <!-- Steps -->
+    <div class="title">
+      <h2>Étapes :</h2>
       <button
-        *ngIf="stepButtonControls.cancel"
         mat-raised-button
         color="primary"
         type="button"
-        (click)="cancel()"
+        (click)="addStep()"
       >
-        <fa-icon icon="xmark"></fa-icon>
+        @if(isMediumScreen$ |async) {
+        <fa-icon icon="plus"></fa-icon>
+        } @else {
+        <span>Ajouter une étape</span>
+        }
       </button>
-      <button
-        *ngIf="stepButtonControls.confirm"
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="stepsValidated()"
+    </div>
+    <div formArrayName="steps" required>
+      <div
+        class="form-container-step"
+        *ngFor="let step of steps.controls; let i = index"
+        [formGroupName]="i"
       >
-        <fa-icon icon="check"></fa-icon>
-      </button>
-    </ng-container>
-  </div>
+        <span>Etape {{ step.value.sort }} :</span>
+        <mat-form-field>
+          <textarea
+            class="'textarea"
+            matInput
+            formControlName="description"
+            placeholder="Description"
+            rows="1"
+            required
+          ></textarea>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          class="trash"
+          (click)="moveUp(steps, i)"
+          [disabled]="stepButtonControls.disableMove"
+        >
+          <fa-icon icon="arrow-up"></fa-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          class="trash"
+          (click)="moveDown(steps, i)"
+          [disabled]="stepButtonControls.disableMove"
+        >
+          <fa-icon icon="arrow-down"></fa-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          class="trash"
+          (click)="deleteStep(i)"
+          [disabled]="stepButtonControls.disableDelete && recipe.steps[i]"
+        >
+          <fa-icon icon="trash-can"></fa-icon>
+        </button>
+      </div>
 
-  <!-- Categories -->
-  <mat-chip-listbox
-    formControlName="categories"
-    aria-label="Selectionner une catégorie"
-    multiple
-  >
-    @for (option of categoriesLabel; track option.value) {
-    <mat-chip-option [value]="option.value">
-      {{ option.label }}
-    </mat-chip-option>
-    }
-  </mat-chip-listbox>
+      <ng-container>
+        <button
+          *ngIf="stepButtonControls.cancel"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="cancel()"
+        >
+          <fa-icon icon="xmark"></fa-icon>
+        </button>
+        <button
+          *ngIf="stepButtonControls.confirm"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="stepsValidated()"
+        >
+          <fa-icon icon="check"></fa-icon>
+        </button>
+      </ng-container>
+    </div>
 
-  <div>
+    <!-- Categories -->
+    <mat-chip-listbox
+      class="categories-list"
+      formControlName="categories"
+      aria-label="Selectionner une catégorie"
+      multiple
+    >
+      @for (option of categoriesLabel; track option.value) {
+      <mat-chip-option [value]="option.value">
+        {{ option.label }}
+      </mat-chip-option>
+      }
+    </mat-chip-listbox>
+
     <button
       class="button-submit"
       mat-raised-button
@@ -178,5 +203,5 @@
     >
       <span>Modifier la recette</span>
     </button>
-  </div>
-</form>
+  </form>
+</div>

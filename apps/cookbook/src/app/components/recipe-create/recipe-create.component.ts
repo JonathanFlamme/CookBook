@@ -29,14 +29,9 @@ export class RecipeCreateComponent implements OnDestroy {
     private breakpointObserver: BreakpointObserver,
   ) {}
 
-  // isMediumScreen = 960px
+  // isMediumScreen > 960px
   public isMediumScreen$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Medium)
-    .pipe(map((result) => !result.matches));
-
-  // isSmallScreen = 960px
-  public isSmallScreen$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Small)
+    .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
     .pipe(map((result) => !result.matches));
 
   get ingredients(): FormArray {
