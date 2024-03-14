@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryType, RecipeModel, UnitList } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { IngredientDeleteConfirmComponent } from '../ingredient-delete-confirm/ingredient-delete-confirm.component';
@@ -13,6 +13,7 @@ import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 import { categoriesLabel } from '../ui/category-label';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -53,7 +54,13 @@ export class RecipeEditComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly dialog: MatDialog,
     private readonly snackBar: MatSnackBar,
+    private readonly breakpointObserver: BreakpointObserver,
   ) {}
+
+  // isMediumScreen > 960px
+  public isMediumScreen$: Observable<boolean> = this.breakpointObserver
+    .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+    .pipe(map((result) => !result.matches));
 
   get ingredients(): FormArray {
     return this.recipeForm.get('ingredients') as FormArray;
