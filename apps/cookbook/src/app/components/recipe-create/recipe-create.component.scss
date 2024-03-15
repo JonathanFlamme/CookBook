@@ -21,13 +21,21 @@ header {
 
   & .form-title {
     display: flex;
-    justify-content: left;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
 
-    & mat-form-field {
-      & span {
-        margin-right: 30px;
+    & .title {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      width: 50%;
+
+      & mat-form-field {
+        width: 100%;
+        & span {
+          margin-right: 30px;
+        }
       }
     }
 
@@ -44,7 +52,8 @@ header {
     }
   }
 
-  & .title {
+  & .ingredient,
+  .step {
     display: flex;
     justify-content: space-between;
     margin: 1.5rem 0;
@@ -58,7 +67,7 @@ header {
   }
 }
 
-.form-container {
+.form-container-ingredient {
   display: flex;
   flex-direction: column;
   font-size: 1.2rem;
@@ -94,6 +103,33 @@ header {
   }
 }
 
+.form-container-step {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 0rem;
+  }
+
+  & span {
+    width: 10%;
+    margin-right: 10px;
+  }
+
+  & button {
+    margin-left: 10px;
+  }
+
+  & mat-form-field {
+    width: 100%;
+  }
+}
 .categories-list {
   margin: auto;
   margin-top: 3rem;

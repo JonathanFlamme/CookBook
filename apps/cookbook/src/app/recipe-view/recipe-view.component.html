@@ -42,7 +42,11 @@
 
   <section class="container-ingredient" aria-label="Liste des ingrédients">
     <div class="container-image">
+      @if (recipe.imageUrl) {
+      <img class="image" [src]="recipe.imageUrl" alt="Photo of recipe" />
+      } @else {
       <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
+      }
     </div>
     <div class="ingredient">
       <h2>Ingrédients</h2>

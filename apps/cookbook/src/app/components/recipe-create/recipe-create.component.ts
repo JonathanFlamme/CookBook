@@ -2,13 +2,14 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryType, UnitList } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 import { categoriesLabel } from '../ui/category-label';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { UploadService } from '../../shared/upload/upload-image.service';
 
 @Component({
   selector: 'app-recipe-create',
@@ -19,11 +20,13 @@ export class RecipeCreateComponent implements OnDestroy {
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
   public categoriesLabel: { value: string; label: string }[] = categoriesLabel;
 
+  private uploadApi!: File;
   private subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
     private readonly recipeService: RecipeService,
+    private readonly uploadService: UploadService,
     private readonly router: Router,
     private readonly snackBar: MatSnackBar,
     private breakpointObserver: BreakpointObserver,
@@ -100,13 +103,19 @@ export class RecipeCreateComponent implements OnDestroy {
 
   public addRecipe() {
     const recipe = this.recipeForm.value;
-    const sub = this.recipeService
-      .create(
-        recipe.title!,
-        recipe.duration!,
-        recipe.ingredients!,
-        recipe.steps!,
-        recipe.categories!,
+    const sub = this.uploadService
+      .uploadImage(this.uploadApi)
+      .pipe(
+        switchMap((imageUrl) => {
+          return this.recipeService.create(
+            recipe.title!,
+            recipe.duration!,
+            recipe.ingredients!,
+            recipe.steps!,
+            recipe.categories!,
+            imageUrl,
+          );
+        }),
       )
       .subscribe({
         next: () => {
@@ -138,5 +147,9 @@ export class RecipeCreateComponent implements OnDestroy {
         array.patchValue({ sort: array.value.sort - 1 });
       }
     });
+  }
+
+  public handleImageUrl(uploadApi: File) {
+    this.uploadApi = uploadApi;
   }
 }

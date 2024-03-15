@@ -18,4 +18,7 @@ export class RecipeDto {
 
   @IsOptional()
   categories?: CategoryType[];
+
+  @IsOptional()
+  imageUrl?: string;
 }

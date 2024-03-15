@@ -66,6 +66,7 @@ export class RecipeService {
     ingredients: { name: string; quantity: string; unit: UnitList }[],
     steps: { description: string; sort: number }[],
     categories: CategoryType[],
+    imageUrl: string,
   ): Observable<RecipeModel> {
     return this.http.post<RecipeModel>(
       `${this.baseUrl}/recipes`,
@@ -75,6 +76,7 @@ export class RecipeService {
         ingredients,
         steps,
         categories,
+        imageUrl,
       },
       { withCredentials: true },
     );
@@ -87,6 +89,7 @@ export class RecipeService {
     ingredients: { name: string; quantity: string; unit: UnitList }[],
     steps: { description: string; sort: number }[],
     categories: CategoryType[],
+    imageUrl: string,
   ): Observable<RecipeModel> {
     return this.http.patch<RecipeModel>(
       `${this.baseUrl}/recipes/${recipeId}`,
@@ -96,6 +99,7 @@ export class RecipeService {
         ingredients,
         steps,
         categories,
+        imageUrl,
       },
       { withCredentials: true },
     );

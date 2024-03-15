@@ -1,3 +1,4 @@
+@if(!loading){
 <app-back-button></app-back-button>
 <div class="container">
   <header>
@@ -8,16 +9,16 @@
 
   <form class="form" [formGroup]="recipeForm" (ngSubmit)="edit()">
     <section class="form-title">
-      <mat-form-field>
-        <input
-          aria-label="Titre de la recette"
-          matInput
-          placeholder="Titre"
-          formControlName="title"
-          required
-        />
-      </mat-form-field>
-      <div class="duration">
+      <div class="title">
+        <mat-form-field>
+          <input
+            aria-label="Titre de la recette"
+            matInput
+            placeholder="Titre"
+            formControlName="title"
+            required
+          />
+        </mat-form-field>
         <mat-form-field>
           <input
             aria-label="Durée de la recette"
@@ -29,10 +30,14 @@
           <span matSuffix>minutes</span>
         </mat-form-field>
       </div>
+      <app-upload-image
+        [imageUrl]="recipe.imageUrl"
+        (uploadApi)="handleImageUrl($event)"
+      ></app-upload-image>
     </section>
 
     <!-- Ingredients -->
-    <section class="title">
+    <section class="ingredient">
       <h2>Ingrédients:</h2>
       <button
         aria-label="Ajouter un ingrédient"
@@ -111,7 +116,7 @@
     </div>
 
     <!-- Steps -->
-    <div class="title">
+    <div class="step">
       <h2>Étapes :</h2>
       <button
         aria-label="Ajouter une étape"
@@ -221,10 +226,10 @@
       class="button-submit"
       mat-raised-button
       color="primary"
-      [disabled]="recipeForm.invalid || recipeForm.disabled"
       type="submit"
     >
       <span>Modifier la recette</span>
     </button>
   </form>
 </div>
+}
