@@ -38,6 +38,14 @@
       >
         <fa-icon icon="pen"></fa-icon>
       </button>
+      <button
+        color="primary"
+        (click)="delete(user)"
+        mat-icon-button
+        matTooltip="delete"
+      >
+        <fa-icon icon="trash-can"></fa-icon>
+      </button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

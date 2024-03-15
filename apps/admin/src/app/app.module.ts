@@ -16,6 +16,7 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { UserEditRoleComponent } from './components/user-edit-role/user-edit-role.component';
+import { UserDeleteConfirmComponent } from './components/user-delete-confirm/user-delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { UserEditRoleComponent } from './components/user-edit-role/user-edit-rol
     LoginComponent,
     UsersListComponent,
     UserTableComponent,
+    UserDeleteConfirmComponent,
   ],
   imports: [
     AppRoutingModule,
