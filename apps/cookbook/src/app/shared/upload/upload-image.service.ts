@@ -2,14 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ResponseApi } from '@cookbook/models';
 import { map } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UploadService {
-  private apiKey = 'd7dbaac5377ab890b62de416f8384b85';
-
-  private apiUrl = 'https://api.imgbb.com/1/upload';
+  private apiKey = environment.IMAGE_API_KEY;
+  private apiUrl = environment.IMAGE_API_URL;
 
   constructor(private readonly http: HttpClient) {}
 
