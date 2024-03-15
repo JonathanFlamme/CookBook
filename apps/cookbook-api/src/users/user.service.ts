@@ -42,4 +42,11 @@ export class UserService {
 
     return user;
   }
+
+  /**
+   * delete user
+   */
+  async delete(userId: string): Promise<void> {
+    await this.userRepository.delete({ id: userId });
+  }
 }

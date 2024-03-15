@@ -46,7 +46,6 @@ export class AuthService {
 
   public autoLogin(): void {
     const user = this.storageService.getSavedUser();
-    console.log(user);
     if (user) {
       this.isLoggedInSubject.next(user);
     }

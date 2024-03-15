@@ -3,6 +3,7 @@ import { UserModel } from '@cookbook/models';
 
 import { MatDialog } from '@angular/material/dialog';
 import { UserEditRoleComponent } from '../user-edit-role/user-edit-role.component';
+import { UserDeleteConfirmComponent } from '../user-delete-confirm/user-delete-confirm.component';
 
 @Component({
   selector: 'app-user-table',
@@ -24,6 +25,18 @@ export class UserTableComponent {
     dialogRef.afterClosed().subscribe((role) => {
       if (role) {
         user.role = role;
+      }
+    });
+  }
+
+  public delete(user: UserModel): void {
+    const dialogRef = this.dialog.open(UserDeleteConfirmComponent, {
+      data: { user },
+    });
+
+    dialogRef.afterClosed().subscribe((user) => {
+      if (user) {
+        this.users = this.users.filter((_user) => _user.id !== user);
       }
     });
   }

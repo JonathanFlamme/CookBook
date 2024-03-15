@@ -23,4 +23,10 @@ export class UserService {
       { withCredentials: true },
     );
   }
+
+  public delete(userId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/users/${userId}`, {
+      withCredentials: true,
+    });
+  }
 }
