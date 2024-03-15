@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryType, RecipeModel, UnitList } from '@cookbook/models';
 import { RecipeService } from '../../shared/recipes/recipe.service';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { IngredientDeleteConfirmComponent } from '../ingredient-delete-confirm/ingredient-delete-confirm.component';
@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 import { categoriesLabel } from '../ui/category-label';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { UploadService } from '../../shared/upload/upload-image.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -42,6 +43,7 @@ export class RecipeEditComponent implements OnInit {
     disableMove: false,
   };
 
+  private uploadApi!: File;
   private recipeId!: string;
   private subscriptions: Subscription[] = [];
 
@@ -49,6 +51,7 @@ export class RecipeEditComponent implements OnInit {
     private fb: FormBuilder,
     private readonly recipeService: RecipeService,
     private readonly stepService: StepService,
+    private readonly uploadService: UploadService,
     private readonly ingredientService: IngredientService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
@@ -142,14 +145,21 @@ export class RecipeEditComponent implements OnInit {
 
   edit() {
     const recipe = this.recipeForm.value;
-    const sub = this.recipeService
-      .update(
-        this.recipeId,
-        recipe.title!,
-        recipe.duration!,
-        recipe.ingredients!,
-        recipe.steps!,
-        recipe.categories!,
+
+    const sub = this.uploadService
+      .uploadImage(this.uploadApi)
+      .pipe(
+        switchMap((imageUrl) => {
+          return this.recipeService.update(
+            this.recipeId,
+            recipe.title!,
+            recipe.duration!,
+            recipe.ingredients!,
+            recipe.steps!,
+            recipe.categories!,
+            imageUrl,
+          );
+        }),
       )
       .subscribe({
         next: () => {
@@ -408,5 +418,9 @@ export class RecipeEditComponent implements OnInit {
       ingredients: this.recipe.ingredients,
       steps: this.recipe.steps,
     });
+  }
+
+  public handleImageUrl(uploadApi: File) {
+    this.uploadApi = uploadApi;
   }
 }

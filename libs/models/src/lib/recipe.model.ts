@@ -4,6 +4,7 @@ import { StepModel } from './step.model';
 export interface RecipeModel {
   id: string;
   userId: string;
+  imageUrl: string;
   title: string;
   duration: string;
   categories: CategoryType[];

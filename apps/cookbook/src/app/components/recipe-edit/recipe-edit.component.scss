@@ -21,16 +21,23 @@ header {
 
   & .form-title {
     display: flex;
-    justify-content: left;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
 
-    & mat-form-field {
-      & span {
-        margin-right: 30px;
+    & .title {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      width: 50%;
+
+      & mat-form-field {
+        width: 100%;
+        & span {
+          margin-right: 30px;
+        }
       }
     }
-
     @media (min-width: 768px) {
       flex-direction: row;
 
@@ -44,7 +51,8 @@ header {
     }
   }
 
-  & .title {
+  & .ingredient,
+  .step {
     display: flex;
     justify-content: space-between;
     margin: 1.5rem 0;

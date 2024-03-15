@@ -117,6 +117,7 @@ export class RecipeService {
       categories: body.categories,
       ingredients: body.ingredients,
       steps: body.steps,
+      imageUrl: body.imageUrl,
     });
 
     try {
@@ -179,6 +180,7 @@ export class RecipeService {
     recipe.title = body.title;
     recipe.duration = body.duration;
     recipe.categories = body.categories;
+    recipe.imageUrl = body.imageUrl;
     recipe.ingredients = ingredients;
     recipe.steps = steps;
 

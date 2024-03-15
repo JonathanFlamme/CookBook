@@ -22,6 +22,9 @@ export class RecipeEntity implements RecipeModel {
   @Column()
   userId: string;
 
+  @Column({ type: 'text', nullable: true })
+  imageUrl: string;
+
   @Column({ type: 'text' })
   title: string;
 
