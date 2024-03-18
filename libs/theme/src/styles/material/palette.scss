@@ -1,0 +1,31 @@
+// Default color palette
+// For each palette, you can optionally specify a default, lighter, and darker hue.
+// Available color palettes: https://material.io/design/color/
+
+@use '@angular/material' as mat;
+
+$theme-primary-light: mat.define-palette(mat.$deep-orange-palette, 50);
+$theme-primary: mat.define-palette(
+  mat.$deep-orange-palette,
+  300
+) !default; // Customizable
+$theme-primary-dark: mat.define-palette(mat.$deep-orange-palette, 700);
+$theme-accent: mat.define-palette(
+  mat.$teal-palette,
+  400
+) !default; // Customizable
+$theme-accent-light: mat.define-palette(mat.$teal-palette, 50);
+$theme-accent-dark: mat.define-palette(mat.$teal-palette, 600);
+$theme-warn: mat.define-palette(mat.$orange-palette);
+$theme-success: mat.define-palette(mat.$green-palette);
+$theme-error: mat.define-palette(mat.$red-palette);
+
+$primary-light: mat.get-color-from-palette($theme-primary-light);
+$primary: mat.get-color-from-palette($theme-primary);
+$primary-dark: mat.get-color-from-palette($theme-primary-dark);
+$accent-light: mat.get-color-from-palette($theme-accent-light);
+$accent: mat.get-color-from-palette($theme-accent);
+$accent-dark: mat.get-color-from-palette($theme-accent-dark);
+$warn: mat.get-color-from-palette($theme-warn);
+$success: mat.get-color-from-palette($theme-success);
+$error: mat.get-color-from-palette($theme-error);

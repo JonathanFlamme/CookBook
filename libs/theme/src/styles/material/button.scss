@@ -1,0 +1,45 @@
+@use 'material/palette' as palette;
+
+.mat-mdc-button-base {
+  &[color='primary'] {
+    color: palette.$primary !important;
+    background-color: palette.$primary-light !important;
+    border: 2px solid palette.$primary-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$primary !important;
+      color: white !important;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &[color='accent'] {
+    color: palette.$accent-dark !important;
+    background-color: palette.$accent-light !important;
+    border: 2px solid palette.$accent-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$accent !important;
+      color: white !important;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &[color='warn'] {
+    color: palette.$warn;
+  }
+
+  &[color='error'] {
+    color: palette.$error;
+  }
+
+  &[color='success'] {
+    color: palette.$success;
+  }
+}

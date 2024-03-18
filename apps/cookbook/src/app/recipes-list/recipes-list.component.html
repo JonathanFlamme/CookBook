@@ -6,6 +6,7 @@
 <form [formGroup]="queryForm">
   <mat-form-field class="filter-query">
     <span matPrefix><fa-icon icon="search"></fa-icon></span>
+    <mat-label>Rechercher par nom</mat-label>
     <input formControlName="query" matInput placeholder="Rechercher par nom" />
   </mat-form-field>
 </form>
@@ -66,7 +67,6 @@
 </form>
 <app-recipe-card [recipes]="recipes"></app-recipe-card>
 <mat-paginator
-  class="paginator"
   [pageIndex]="pageIndex"
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions"

@@ -77,6 +77,8 @@ export class MyRecipesListComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Recettes par page';
+
     const querySub = merge(
       this.paginator.page,
       this.queryForm.valueChanges.pipe(debounceTime(300)),

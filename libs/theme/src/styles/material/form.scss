@@ -1,0 +1,116 @@
+@use 'material/palette' as palette;
+
+.form-recipe {
+  display: flex;
+  flex-direction: column;
+
+  & .form-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+
+    & .title {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+
+      & mat-form-field {
+        width: 100%;
+        & span {
+          margin-right: 30px;
+        }
+      }
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+
+      & .title {
+        width: 50%;
+      }
+    }
+  }
+
+  & .ingredient,
+  .step {
+    display: flex;
+    justify-content: left;
+    margin: 1.5rem 0;
+
+    & h2 {
+      border-bottom: 2px solid palette.$primary-dark;
+      color: palette.$primary-dark;
+      font-size: 1.5rem;
+      width: 70%;
+    }
+  }
+
+  .form-container-ingredient {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      margin-bottom: 0rem;
+    }
+
+    & .name {
+      flex-grow: 2;
+    }
+
+    & .unit {
+      width: 100px;
+    }
+
+    & button {
+      margin-left: 10px;
+    }
+  }
+
+  .form-container-step {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 1rem;
+    width: 80%;
+
+    & span {
+      width: 100px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      margin-bottom: 0rem;
+    }
+
+    & button {
+      // margin-left: 10px;
+      // width: 20px;
+    }
+
+    & mat-form-field {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .categories-list {
+    margin: auto;
+    margin-top: 3rem;
+
+    & mat-chip-option {
+      height: 2.5rem;
+    }
+  }
+
+  .button-submit {
+    margin: 3rem 0;
+  }
+}
