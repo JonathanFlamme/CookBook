@@ -17,6 +17,11 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { UserEditRoleComponent } from './components/user-edit-role/user-edit-role.component';
 import { UserDeleteConfirmComponent } from './components/user-delete-confirm/user-delete-confirm.component';
+import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { UnitListComponent } from './components/unit-list.component';
+import { BackButtonComponent } from './components/ui/back-button.component';
+import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
+import { SnackBarComponent } from './components/ui/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,9 @@ import { UserDeleteConfirmComponent } from './components/user-delete-confirm/use
     UsersListComponent,
     UserTableComponent,
     UserDeleteConfirmComponent,
+    RecipeViewComponent,
+    UnitListComponent,
+    RecipeDeleteConfirmComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -37,6 +45,8 @@ import { UserDeleteConfirmComponent } from './components/user-delete-confirm/use
     SharedModule,
     MaterialModule,
     UserEditRoleComponent,
+    BackButtonComponent,
+    SnackBarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -35,4 +35,13 @@ export class RecipeService {
       },
     );
   }
+
+  public delete(userId: string, recipeId: string): Observable<void> {
+    return this.http.delete<void>(
+      `${this.baseUrl}/users/${userId}/recipes/${recipeId}`,
+      {
+        withCredentials: true,
+      },
+    );
+  }
 }
