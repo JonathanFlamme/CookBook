@@ -1,0 +1,118 @@
+@use 'material/palette' as palette;
+@use '@angular/material' as mat;
+
+// into layout sidenav
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: palette.$primary-light;
+  border: 2px solid palette.$primary-dark;
+  border-radius: 0 5px 5px 0;
+}
+
+.mat-sidenav {
+  height: 100vh;
+  width: 200px;
+  & .active {
+    color: palette.$accent-dark !important;
+    // border-bottom: 2px solid palette.$acce
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 6px;
+      background-color: palette.$accent;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+
+  // title "Cookbook"
+  & .mat-toolbar {
+    color: palette.$accent-dark;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: palette.$primary-light;
+    width: 100%;
+
+    & a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      width: 90%;
+      padding: 30px 0;
+      border-bottom: 2px solid palette.$primary-dark;
+    }
+  }
+
+  mat-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 0.6rem;
+
+    & a {
+      width: 100%;
+    }
+  }
+
+  & .menu-top {
+    flex: 1;
+    margin-top: 5rem;
+    transition: background-color 0.3s, color 0.3s;
+
+    :hover {
+      color: palette.$accent-dark;
+    }
+
+    & div:nth-child(1) {
+      & a {
+        padding: 1.5rem 0;
+      }
+    }
+    & div:nth-child(2) {
+      border-bottom: 2px solid palette.$primary-dark;
+      width: 80%;
+      margin: auto;
+    }
+    & div:nth-child(3) {
+      & a {
+        padding: 1.5rem 0;
+      }
+    }
+  }
+
+  & .menu-bottom {
+    & div:nth-child(1) {
+      border-bottom: 2px solid palette.$primary-dark;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 1rem;
+    }
+
+    // border-top: 2px solid palette.$primary-dark;
+    // margin: auto;
+    // padding-top: 1rem;
+    flex-shrink: 0;
+    flex-basis: auto;
+    margin-bottom: 3rem;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    :hover {
+      color: palette.$accent-dark;
+    }
+  }
+}
+
+// body container
+.mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 0 6rem 6rem 6rem;
+  height: 100vh;
+}

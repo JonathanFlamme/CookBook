@@ -17,7 +17,25 @@ const routes: Routes = [
     children: [
       {
         path: 'recipes',
-        component: RecipesListComponent,
+        children: [
+          {
+            path: ':recipeId',
+            component: RecipeViewComponent,
+          },
+          {
+            path: ':recipeId/edit',
+            component: RecipeEditComponent,
+          },
+          {
+            path: '',
+            component: RecipesListComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'recipes',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'my-recipes',
@@ -36,16 +54,8 @@ const routes: Routes = [
         component: ProfileViewComponent,
       },
       {
-        path: 'recipes/create',
+        path: 'recipe/create',
         component: RecipeCreateComponent,
-      },
-      {
-        path: 'recipes/:recipeId',
-        component: RecipeViewComponent,
-      },
-      {
-        path: 'recipes/:recipeId/edit',
-        component: RecipeEditComponent,
       },
     ],
   },

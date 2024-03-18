@@ -1,6 +1,5 @@
 <mat-sidenav-container>
   <mat-sidenav
-    class="sidenav"
     #sidenav
     mode="over"
     fixedInViewport
@@ -8,26 +7,38 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
   >
     <mat-toolbar>
-      <a mat-button [routerLink]="['/recipes']"><h1>CookBook</h1></a>
+      <a mat-button [routerLink]="['/recipes']">CookBook</a>
     </mat-toolbar>
-    <mat-nav-list class="nav-list">
-      <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
-        >Recettes</a
-      >
-      <!-- display button if user IS LOGGED -->
-      @if(isLogged){
-      <div class="menu-top">
-        <a mat-button [routerLink]="['/my-recipes']" routerLinkActive="active"
-          >Mes recettes</a
-        >
-        <a
-          mat-button
-          [routerLink]="['/recipes/create']"
-          routerLinkActive="active"
-          >Ajouter une recette</a
-        >
-      </div>
-      <div class="menu-bottom">
+
+    <div class="menu-top">
+      <mat-nav-list>
+        <div>
+          <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
+            >Recettes</a
+          >
+        </div>
+        <div></div>
+        <div>
+          <a
+            *ngIf="isLogged"
+            mat-button
+            [routerLink]="['/my-recipes']"
+            routerLinkActive="active"
+            >Mes recettes</a
+          >
+          <a
+            *ngIf="isLogged"
+            mat-button
+            [routerLink]="['/recipe/create']"
+            routerLinkActive="active"
+            >Ajouter une recette</a
+          >
+        </div>
+      </mat-nav-list>
+    </div>
+    <div class="menu-bottom">
+      <mat-nav-list>
+        <div></div>
         <a
           *ngIf="isLogged"
           mat-button
@@ -36,10 +47,6 @@
           >Profil</a
         >
         <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
-      </div>
-      <!-- display button if user is NOT LOGGED -->
-      } @else {
-      <div class="menu-bottom">
         <a
           *ngIf="!isLogged"
           mat-button
@@ -54,9 +61,8 @@
           routerLinkActive="active"
           >S'inscrire</a
         >
-      </div>
-      }
-    </mat-nav-list>
+      </mat-nav-list>
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content class="sidenav-content">
