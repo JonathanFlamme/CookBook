@@ -1,20 +1,25 @@
 <div class="cards">
-  <mat-card *ngFor="let recipe of recipes" class="card">
+  <mat-card
+    *ngFor="let recipe of recipes"
+    [routerLink]="['/recipes', recipe.id]"
+    class="card"
+  >
     <mat-card-header>
-      <mat-card-title>{{ recipe.title }}</mat-card-title>
-      <mat-card-subtitle>{{ recipe.duration }}</mat-card-subtitle>
+      <mat-card-title>{{ recipe.title | titlecase }} </mat-card-title>
+      <mat-card-subtitle>{{ recipe.duration }} min</mat-card-subtitle>
     </mat-card-header>
+    @if(recipe.imageUrl){
+    <img
+      class="image"
+      mat-card-image
+      [src]="recipe.imageUrl"
+      alt="Photo of recipe"
+    />} @else{
     <img
       class="image"
       mat-card-image
       src="../../assets/poke.png"
       alt="Photo of recipe"
-    />
-
-    <mat-card-actions>
-      <button mat-button [routerLink]="['/recipes', recipe.id]">
-        Voir la recette
-      </button>
-    </mat-card-actions>
+    />}
   </mat-card>
 </div>

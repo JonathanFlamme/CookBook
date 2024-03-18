@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -32,6 +34,8 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatButtonToggleModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatChipsModule,
   ],
   exports: [
     MatSidenavModule,
@@ -46,6 +50,8 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatButtonToggleModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatChipsModule,
   ],
   declarations: [],
   providers: [

@@ -31,17 +31,18 @@
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let user">
       <button
-        color="primary"
+        class="edit-button"
+        color="accent"
         (click)="editRole(user)"
-        mat-icon-button
+        mat-mini-fab
         matTooltip="edit role"
       >
         <fa-icon icon="pen"></fa-icon>
       </button>
       <button
-        color="primary"
+        color="accent"
         (click)="delete(user)"
-        mat-icon-button
+        mat-mini-fab
         matTooltip="delete"
       >
         <fa-icon icon="trash-can"></fa-icon>
