@@ -14,6 +14,9 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();
 
+  private isAdminInSubject = new BehaviorSubject<boolean>(false);
+  public isAdmin$ = this.isAdminInSubject.asObservable();
+
   constructor(
     private readonly http: HttpClient,
     private readonly storageService: StorageService,
@@ -40,6 +43,7 @@ export class AuthService {
         tap((user) => {
           this.storageService.saveUser(user);
           this.isLoggedInSubject.next(user);
+          this.isAdmin();
         }),
       );
   }
@@ -48,6 +52,7 @@ export class AuthService {
     const user = this.storageService.getSavedUser();
     if (user) {
       this.isLoggedInSubject.next(user);
+      this.isAdmin();
     }
   }
   public logout(): void {
@@ -56,7 +61,8 @@ export class AuthService {
       .subscribe({
         next: () => {
           this.isLoggedInSubject.next(null);
-          this.router.navigate(['/login']);
+          this.isAdmin();
+          this.router.navigate(['/admin/login']);
         },
       });
     this.storageService.clean();
@@ -64,14 +70,13 @@ export class AuthService {
 
   // check if user is admin
 
-  public isAdmin(): boolean {
+  public isAdmin(): void {
     const user = this.storageService.getSavedUser();
     if (!user) {
-      return false;
+      this.isAdminInSubject.next(false);
     }
-    if (user.role === UserRole.Admin) {
-      return true;
+    if (user?.role === UserRole.Admin) {
+      this.isAdminInSubject.next(true);
     }
-    return false;
   }
 }

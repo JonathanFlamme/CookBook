@@ -27,6 +27,8 @@ export class RecipeAdminController {
   /**
    * View a recipe
    */
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Get('recipes/:recipeId')
   view(
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
@@ -36,6 +38,8 @@ export class RecipeAdminController {
   /**
    * List all recipes
    */
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Get('recipes')
   list(@Query() query: RecipesListDto): Promise<PaginatedResult<RecipeEntity>> {
     return this.recipeService.list(query);

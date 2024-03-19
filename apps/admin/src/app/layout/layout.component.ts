@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LayoutComponent implements OnInit {
   public reduced = false;
   public isLogged: UserModel | null = null;
-  public isAdmin: boolean = false;
+  public isAdmin: Observable<boolean> = new Observable<boolean>();
 
   public isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -27,7 +27,7 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.isAdmin = this.authService.isAdmin();
+    this.isAdmin = this.authService.isAdmin$;
 
     this.authService.isLogged$.subscribe({
       next: (isLogged) => {
