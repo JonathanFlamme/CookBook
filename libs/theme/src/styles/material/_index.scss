@@ -7,6 +7,8 @@
 @forward 'paginator' as paginator-*;
 @forward 'select' as select-*;
 @forward 'sidenav' as sidenav-*;
+@forward 'table' as table-*;
+
 @use 'button' as button;
 @use 'chip' as chip;
 @use 'card' as card;
@@ -16,3 +18,4 @@
 @use 'palette' as palette;
 @use 'select' as select;
 @use 'sidenav' as sidenav;
+@use 'table' as table;
