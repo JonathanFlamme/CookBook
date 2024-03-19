@@ -9,6 +9,7 @@
 @forward 'sidenav' as sidenav-*;
 @forward 'table' as table-*;
 @forward 'dialog' as dialog-*;
+@forward 'snack' as snack-*;
 
 @use 'button' as button;
 @use 'chip' as chip;
@@ -21,3 +22,4 @@
 @use 'sidenav' as sidenav;
 @use 'table' as table;
 @use 'dialog' as dialog;
+@use 'snack' as snack;

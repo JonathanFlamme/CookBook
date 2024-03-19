@@ -165,11 +165,15 @@ export class RecipeEditComponent implements OnInit {
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: 'La recette a bien été modifié' },
+            data: { message: 'La recette a bien été modifié', success: true },
           });
           this.router.navigate(['/recipes', this.recipeId]);
         },
         error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
           console.error(error);
         },
       });
@@ -192,12 +196,19 @@ export class RecipeEditComponent implements OnInit {
       .subscribe({
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: 'La recette a bien été modifié' },
+            duration: 100000,
+            data: {
+              message: 'La recette a bien été modifié',
+              success: true,
+            },
           });
           this.router.navigate(['/recipes', this.recipeId]);
         },
         error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
           console.error(error);
         },
       });
@@ -218,6 +229,7 @@ export class RecipeEditComponent implements OnInit {
         data: {
           message:
             'Il ne peut pas y avoir plus de 10 ingrédients dans une recette',
+          success: false,
         },
       });
       return;
@@ -250,6 +262,7 @@ export class RecipeEditComponent implements OnInit {
         duration: 2000,
         data: {
           message: 'Il ne peut pas y avoir plus de 10 étapes dans une recette',
+          success: false,
         },
       });
       return;
@@ -389,10 +402,17 @@ export class RecipeEditComponent implements OnInit {
           });
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: 'Les étapes ont bien été modifiés' },
+            data: {
+              message: 'Les étapes ont bien été modifiés',
+              success: true,
+            },
           });
         },
         error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
           console.error(error);
         },
       });
@@ -413,13 +433,20 @@ export class RecipeEditComponent implements OnInit {
           this.recipe.ingredients = ingredients;
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: 'Les ingrédients ont bien été modifiés' },
+            data: {
+              message: 'Les ingrédients ont bien été modifiés',
+              success: true,
+            },
           });
           this.recipeForm.patchValue({
             ingredients: ingredients,
           });
         },
         error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
           console.error(error);
         },
       });

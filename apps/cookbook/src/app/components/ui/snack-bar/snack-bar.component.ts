@@ -15,6 +15,6 @@ import {
 export class SnackBarComponent {
   constructor(
     @Inject(MAT_SNACK_BAR_DATA)
-    public data: { message: string },
+    public data: { message: string; success: boolean },
   ) {}
 }

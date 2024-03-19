@@ -47,12 +47,16 @@ export class RegisterComponent {
 
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: 'Vous être bien inscrit' },
+            data: { message: 'Vous êtes bien inscrit', success: true },
           });
 
           this.router.navigate(['/login']);
         },
         error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
           console.error(error);
         },
       });

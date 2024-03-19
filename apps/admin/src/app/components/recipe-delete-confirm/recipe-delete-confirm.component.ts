@@ -23,11 +23,15 @@ export class RecipeDeleteConfirmComponent {
       next: () => {
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,
-          data: { message: 'La recette a bien été supprimée' },
+          data: { message: 'La recette a bien été supprimée', success: true },
         });
         this.dialogRef.close(this.recipe.id);
       },
       error: (error) => {
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: { message: "Une erreur s'est produite", success: false },
+        });
         this.dialogRef.close();
         console.error(error);
       },

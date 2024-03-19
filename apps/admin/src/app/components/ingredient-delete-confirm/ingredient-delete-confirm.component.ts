@@ -29,11 +29,18 @@ export class IngredientDeleteConfirmComponent {
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: "L'ingrédient a bien été supprimé" },
+            data: {
+              message: "L'ingrédient a bien été supprimé",
+              success: true,
+            },
           });
           this.dialogRef.close(this.data.ingredient.id);
         },
         error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
           this.dialogRef.close();
           console.error(error);
         },

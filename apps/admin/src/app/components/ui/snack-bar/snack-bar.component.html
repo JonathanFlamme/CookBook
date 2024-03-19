@@ -1,1 +1,9 @@
-<div class="snack" role="alert" aria-label="polite">{{ data.message }}</div>
+@if(data.success){
+<span class="snack-success" matSnackBarLabel role="alert" aria-label="polite">
+  {{ data.message }}
+</span>
+} @else {
+<span class="snack-error" matSnackBarLabel role="alert" aria-label="polite">
+  {{ data.message }}
+</span>
+}

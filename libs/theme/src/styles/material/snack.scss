@@ -1,0 +1,28 @@
+@use 'material/palette' as palette;
+@use '@angular/material' as mat;
+
+.mdc-snackbar__surface {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.snack-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: palette.$error-light !important;
+  color: palette.$error-dark !important;
+  border: 2px solid palette.$error-dark !important;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.snack-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: palette.$success-light !important;
+  color: palette.$success-dark !important;
+  border: 2px solid palette.$success-dark !important;
+  border-radius: 5px;
+  width: 100%;
+}
