@@ -72,11 +72,11 @@ export class AuthService {
       .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
-          this.storageService.clean();
           this.isLoggedInSubject.next(null);
           this.router.navigate(['/login']);
         },
       });
+    this.storageService.clean();
   }
 
   // check if user is admin

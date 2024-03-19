@@ -50,11 +50,16 @@ export class AuthService {
       this.isLoggedInSubject.next(user);
     }
   }
-
   public logout(): void {
+    this.http
+      .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
+      .subscribe({
+        next: () => {
+          this.isLoggedInSubject.next(null);
+          this.router.navigate(['/login']);
+        },
+      });
     this.storageService.clean();
-    this.isLoggedInSubject.next(null);
-    this.router.navigate(['/admin/login']);
   }
 
   // check if user is admin
