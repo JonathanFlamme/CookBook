@@ -12,10 +12,10 @@ import { StepDto } from './step.dto';
 import { StepEntity } from './step.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorator';
-import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { UserRequest, UserRole } from '@cookbook/models';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';
+import { SanitizerStepPipe } from '../common/sanitizer-step.pipe';
 
 @Controller()
 export class StepsController {
@@ -30,7 +30,7 @@ export class StepsController {
   update(
     @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
-    @Body(new SanitizerPipe()) body: StepDto[],
+    @Body(new SanitizerStepPipe()) body: StepDto[],
   ): Promise<StepEntity[]> {
     return this.stepService.update(user.userId, recipeId, body);
   }
