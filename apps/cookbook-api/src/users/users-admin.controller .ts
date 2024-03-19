@@ -20,7 +20,8 @@ export class UserAdminController {
   /**
    * View profile
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Get('users')
   list(): Promise<UserEntity[]> {
     return this.userService.list();
@@ -29,7 +30,8 @@ export class UserAdminController {
   /**
    * update Role user
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Patch('users/:userId')
   updateRole(
     @Param('userId') userId: string,
@@ -42,6 +44,7 @@ export class UserAdminController {
    * delete user
    */
   @Auth(UserRole.Admin)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('users/:userId')
   delete(@Param('userId') userId: string): Promise<void> {

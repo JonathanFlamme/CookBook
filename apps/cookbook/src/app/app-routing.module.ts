@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { canActivateIsLogged } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
             component: RecipeViewComponent,
           },
           {
+            canActivate: [canActivateIsLogged],
             path: ':recipeId/edit',
             component: RecipeEditComponent,
           },
@@ -38,6 +40,7 @@ const routes: Routes = [
         ],
       },
       {
+        canActivate: [canActivateIsLogged],
         path: 'my-recipes',
         component: MyRecipesListComponent,
       },
@@ -50,10 +53,12 @@ const routes: Routes = [
         component: RegisterComponent,
       },
       {
+        canActivate: [canActivateIsLogged],
         path: 'profile',
         component: ProfileViewComponent,
       },
       {
+        canActivate: [canActivateIsLogged],
         path: 'recipe/create',
         component: RecipeCreateComponent,
       },

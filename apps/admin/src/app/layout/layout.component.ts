@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map } from 'rxjs';
-import { UserModel } from '@cookbook/models';
 import { AuthService } from '../shared/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserModel } from '@cookbook/models';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +13,7 @@ import { AuthService } from '../shared/auth/auth.service';
 export class LayoutComponent implements OnInit {
   public reduced = false;
   public isLogged: UserModel | null = null;
-  public isAdmin: boolean = false;
+  public isAdmin: Observable<boolean> = new Observable<boolean>();
 
   public isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -21,10 +22,11 @@ export class LayoutComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private readonly authService: AuthService,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   public ngOnInit(): void {
-    this.isAdmin = this.authService.isAdmin();
+    this.isAdmin = this.authService.isAdmin$;
 
     this.authService.isLogged$.subscribe({
       next: (isLogged) => {

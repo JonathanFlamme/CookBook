@@ -4,6 +4,8 @@ import { UserModel, UserRole } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
+import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +16,14 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();
 
+  private isAdminInSubject = new BehaviorSubject<boolean>(false);
+  public isAdmin$ = this.isAdminInSubject.asObservable();
+
   constructor(
     private readonly http: HttpClient,
     private readonly storageService: StorageService,
     private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   public login(username: string, password: string): Observable<UserModel> {
@@ -40,6 +46,7 @@ export class AuthService {
         tap((user) => {
           this.storageService.saveUser(user);
           this.isLoggedInSubject.next(user);
+          this.isAdmin();
         }),
       );
   }
@@ -48,25 +55,43 @@ export class AuthService {
     const user = this.storageService.getSavedUser();
     if (user) {
       this.isLoggedInSubject.next(user);
+      this.isAdmin();
     }
   }
-
   public logout(): void {
     this.storageService.clean();
-    this.isLoggedInSubject.next(null);
-    this.router.navigate(['/admin/login']);
+    this.http
+      .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
+      .subscribe({
+        next: () => {
+          this.isLoggedInSubject.next(null);
+          this.isAdmin();
+          this.router.navigate(['/admin', 'login']);
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'Vous êtes maintenant déconnecté' },
+          });
+        },
+      });
   }
 
   // check if user is admin
+  public isAdmin(): void {
+    const user = this.storageService.getSavedUser();
+    if (!user) {
+      this.isAdminInSubject.next(false);
+    }
+    if (user?.role === UserRole.Admin) {
+      this.isAdminInSubject.next(true);
+    }
+  }
 
-  public isAdmin(): boolean {
+  // check if user is logged
+  public isLogged(): boolean {
     const user = this.storageService.getSavedUser();
     if (!user) {
       return false;
     }
-    if (user.role === UserRole.Admin) {
-      return true;
-    }
-    return false;
+    return true;
   }
 }

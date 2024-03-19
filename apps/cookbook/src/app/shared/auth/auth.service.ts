@@ -72,15 +72,14 @@ export class AuthService {
       .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
-          this.storageService.clean();
           this.isLoggedInSubject.next(null);
           this.router.navigate(['/login']);
         },
       });
+    this.storageService.clean();
   }
 
   // check if user is admin
-
   public isAdmin(): boolean {
     const user = this.storageService.getSavedUser();
     if (!user) {
@@ -90,5 +89,14 @@ export class AuthService {
       return true;
     }
     return false;
+  }
+
+  // check if user is logged
+  public isLogged(): boolean {
+    const user = this.storageService.getSavedUser();
+    if (!user) {
+      return false;
+    }
+    return true;
   }
 }

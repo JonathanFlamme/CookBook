@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
+import { canActivateIsAdmin } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        canActivate: [canActivateIsAdmin],
+        canActivateChild: [canActivateIsAdmin],
         path: 'recipes',
         children: [
           {
@@ -30,6 +33,7 @@ const routes: Routes = [
         ],
       },
       {
+        canActivate: [canActivateIsAdmin],
         path: 'users',
         component: UsersListComponent,
       },
