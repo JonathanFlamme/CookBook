@@ -6,9 +6,9 @@
     <app-unit-list [unit]="ingredient.unit"></app-unit-list>
   </p>
 </div>
-<div mat-dialog-actions>
-  <button mat-raised-button color="primary" mat-dialog-close>Annuler</button>
-  <button mat-raised-button color="primary" mat-dialog-close (click)="delete()">
+<div class="action-wrapper" mat-dialog-actions>
+  <button mat-button color="error" mat-dialog-close>Annuler</button>
+  <button mat-button color="accent" mat-dialog-close (click)="delete()">
     Supprimer
   </button>
 </div>

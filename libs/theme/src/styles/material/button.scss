@@ -56,5 +56,12 @@
 
   &[color='success'] {
     color: palette.$success;
+    background-color: palette.$success-light;
+    border: 2px solid palette.$success-dark;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$success;
+      color: white;
+    }
   }
 }

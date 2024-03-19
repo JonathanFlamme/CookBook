@@ -4,33 +4,33 @@
   </div>
 </header>
 
-<div *ngIf="!loading" class="profile-container">
-  <table>
-    <tr>
-      <td>Prénom :</td>
-      <td>{{ profile.givenName }}</td>
-    </tr>
-    <tr>
-      <td>Nom :</td>
-      <td>{{ profile.familyName }}</td>
-    </tr>
-    <tr>
-      <td>Email :</td>
-      <td>{{ profile.email }}</td>
-    </tr>
-    <tr>
-      <td>Role :</td>
-      <td><app-user-role [role]="profile.role"></app-user-role></td>
-    </tr>
-    @if(profile.role !== UserRole.Admin){
-    <tr>
-      <td>Recette ajoutées ce mois ci :</td>
-      <td>
-        <app-quota-recipe-by-month
-          [quotas]="profile.quotas.recipePerMonth"
-        ></app-quota-recipe-by-month>
-      </td>
-    </tr>
-    }
-  </table>
-</div>
+<!-- <div *ngIf="!loading" class="profile-container"> -->
+<table>
+  <tr>
+    <td>Prénom :</td>
+    <td>{{ profile.givenName }}</td>
+  </tr>
+  <tr>
+    <td>Nom :</td>
+    <td>{{ profile.familyName }}</td>
+  </tr>
+  <tr>
+    <td>Email :</td>
+    <td>{{ profile.email }}</td>
+  </tr>
+  <tr>
+    <td>Role :</td>
+    <td><app-user-role [role]="profile.role"></app-user-role></td>
+  </tr>
+  @if(profile.role !== UserRole.Admin){
+  <tr>
+    <td>Recette ajoutées ce mois ci :</td>
+    <td>
+      <app-quota-recipe-by-month
+        [quotas]="profile.quotas.recipePerMonth"
+      ></app-quota-recipe-by-month>
+    </td>
+  </tr>
+  }
+</table>
+<!-- </div> -->

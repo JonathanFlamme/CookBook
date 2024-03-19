@@ -56,17 +56,18 @@ header {
     flex-direction: column;
     justify-content: left;
     width: 50%;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    position: relative;
+    border: 2px solid palette.$primary-dark;
+    border-radius: 20px;
+    background-color: palette.$primary-light;
 
     & > ul {
-      padding-top: 30px;
-      padding-bottom: 30px;
+      padding-top: 20px;
+      padding-bottom: 20px;
       margin-left: 10px;
       column-count: 2;
       gap: 10px;
-      border: 2px solid palette.$primary-dark;
-      border-radius: 20px;
-      background-color: palette.$primary-light;
 
       & li {
         margin-bottom: 30px;
@@ -75,8 +76,15 @@ header {
 
     h2 {
       color: palette.$primary-dark;
-      border-bottom: 2px solid palette.$primary-dark;
-      margin-bottom: 2rem;
+      position: absolute;
+      top: -40px;
+      left: 40px;
+      background: linear-gradient(
+        to bottom,
+        #fafafa 50%,
+        palette.$primary-light
+      );
+      padding: 0 10px;
     }
   }
 }
@@ -89,19 +97,24 @@ fa-icon {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin-top: 1rem;
+  margin-top: 5rem;
+  position: relative;
+  border: 2px solid palette.$primary-dark;
+  border-radius: 20px;
+  background-color: palette.$primary-light;
 
   & h2 {
     color: palette.$primary-dark;
-    border-bottom: 2px solid palette.$primary-dark;
-    margin-bottom: 2rem;
+    position: absolute;
+    top: -40px;
+    left: 40px;
+    background: linear-gradient(to bottom, #fafafa 50%, palette.$primary-light);
+    padding: 0 10px;
   }
 
   & > ol {
-    border: 2px solid palette.$primary-dark;
-    border-radius: 20px;
     background-color: palette.$primary-light;
-    padding-top: 30px;
+    padding-top: 20px;
   }
   & li {
     margin-bottom: 30px;

@@ -6,7 +6,7 @@
   </div>
 </header>
 
-<form class="form-recipe" [formGroup]="recipeForm" (ngSubmit)="edit()">
+<form class="form-recipe" [formGroup]="recipeForm">
   <section class="form-title">
     <div class="title">
       <mat-form-field>
@@ -219,13 +219,13 @@
     </mat-chip-option>
     }
   </mat-chip-listbox>
-
   <button
     aria-label="Modifier la recette"
     class="button-submit"
     mat-raised-button
     color="accent"
     type="submit"
+    (click)="uploadApi ? updateWithUpload() : updateWithoutUpload()"
   >
     <span>Modifier la recette</span>
   </button>

@@ -22,11 +22,15 @@ export class StepDeleteConfirmComponent {
       next: () => {
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,
-          data: { message: "L'étape a bien été supprimé" },
+          data: { message: "L'étape a bien été supprimé", success: true },
         });
         this.dialogRef.close(this.step.id);
       },
       error: (error) => {
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: { message: "Une erreur s'est produite", success: false },
+        });
         this.dialogRef.close();
         console.error(error);
       },

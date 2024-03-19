@@ -20,6 +20,9 @@ $theme-warn-light: mat.define-palette(mat.$orange-palette, 50);
 $theme-warn: mat.define-palette(mat.$orange-palette);
 $theme-warn-dark: mat.define-palette(mat.$orange-palette, 700);
 $theme-success: mat.define-palette(mat.$green-palette);
+$theme-success-dark: mat.define-palette(mat.$green-palette, 700);
+$theme-success-light: mat.define-palette(mat.$green-palette, 50);
+
 $theme-error-light: mat.define-palette(mat.$red-palette, 50);
 $theme-error: mat.define-palette(mat.$red-palette);
 $theme-error-dark: mat.define-palette(mat.$red-palette, 700);
@@ -34,6 +37,8 @@ $warn-light: mat.get-color-from-palette($theme-warn-light);
 $warn: mat.get-color-from-palette($theme-warn);
 $warn-dark: mat.get-color-from-palette($theme-warn-dark);
 $success: mat.get-color-from-palette($theme-success);
+$success-light: mat.get-color-from-palette($theme-success-light);
+$success-dark: mat.get-color-from-palette($theme-success-dark);
 $error-light: mat.get-color-from-palette($theme-error-light);
 $error: mat.get-color-from-palette($theme-error);
 $error-dark: mat.get-color-from-palette($theme-error-dark);

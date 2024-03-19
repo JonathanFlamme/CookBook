@@ -30,11 +30,15 @@ export class LoginComponent {
       next: () => {
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,
-          data: { message: 'Vous êtes maintenant connecté' },
+          data: { message: 'Vous êtes maintenant connecté', success: true },
         });
         this.router.navigate(['/recipes']);
       },
       error: (err) => {
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: { message: "Une erreur s'est produite", success: false },
+        });
         console.error(err);
       },
     });

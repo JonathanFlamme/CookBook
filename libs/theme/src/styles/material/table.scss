@@ -10,3 +10,22 @@
 .mat-mdc-header-row {
   border-bottom: 1px solid palette.$primary-dark !important;
 }
+
+table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid palette.$primary-dark;
+    background-color: palette.$primary-light;
+    padding: 1rem;
+    border-radius: 20px;
+    margin: 0.5rem;
+    width: 50%;
+  }
+}

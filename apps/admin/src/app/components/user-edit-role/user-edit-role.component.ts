@@ -6,6 +6,8 @@ import { UserService } from '../../shared/users/user.service';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-user-edit-role',
@@ -22,6 +24,7 @@ export class UserEditRoleComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public readonly data: { user: UserModel },
     private readonly dialogRef: MatDialogRef<UserEditRoleComponent>,
     private readonly userService: UserService,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   public ngOnInit() {
@@ -30,8 +33,18 @@ export class UserEditRoleComponent implements OnInit {
 
   public save(newRole: UserRole) {
     this.userService.updateRole(this.data.user.id, newRole).subscribe({
-      next: () => this.dialogRef.close(newRole),
+      next: () => {
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: { message: 'Le role à été modifié', success: true },
+        });
+        this.dialogRef.close(newRole);
+      },
       error: () => {
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: { message: "Une erreur s'est produite", success: false },
+        });
         this.dialogRef.close();
       },
     });

@@ -19,8 +19,8 @@ import { UploadService } from '../../shared/upload/upload-image.service';
 export class RecipeCreateComponent implements OnDestroy {
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
   public categoriesLabel: { value: string; label: string }[] = categoriesLabel;
+  public uploadApi: File | null = null;
 
-  private uploadApi!: File;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -64,6 +64,7 @@ export class RecipeCreateComponent implements OnDestroy {
         data: {
           message:
             'Il ne peut pas y avoir plus de 10 ingrédients dans une recette',
+          success: false,
         },
       });
       return;
@@ -88,6 +89,7 @@ export class RecipeCreateComponent implements OnDestroy {
         duration: 2000,
         data: {
           message: 'Il ne peut pas y avoir plus de 10 étapes dans une recette',
+          success: false,
         },
       });
       return;
@@ -100,11 +102,41 @@ export class RecipeCreateComponent implements OnDestroy {
       }),
     );
   }
+  createWithoutUpload() {
+    const recipe = this.recipeForm.value;
+    const imageUrl: string = '';
 
-  public addRecipe() {
+    const sub = this.recipeService
+      .create(
+        recipe.title!,
+        recipe.duration!,
+        recipe.ingredients!,
+        recipe.steps!,
+        recipe.categories!,
+        imageUrl,
+      )
+      .subscribe({
+        next: () => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'La recette a bien été ajoutée', success: true },
+          });
+          this.router.navigate(['/recipes']);
+        },
+        error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: "Une erreur s'est produite", success: false },
+          });
+          console.error(error);
+        },
+      });
+    this.subscriptions.push(sub);
+  }
+  public createWithUpload() {
     const recipe = this.recipeForm.value;
     const sub = this.uploadService
-      .uploadImage(this.uploadApi)
+      .uploadImage(this.uploadApi!)
       .pipe(
         switchMap((imageUrl) => {
           return this.recipeService.create(
@@ -121,15 +153,16 @@ export class RecipeCreateComponent implements OnDestroy {
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: 'La recette a bien été ajoutée' },
+            data: { message: 'La recette a bien été ajoutée', success: true },
           });
           this.router.navigate(['/recipes']);
         },
         error: (error) => {
           this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
-            data: { message: error.error.message },
+            data: { message: "Une erreur s'est produite", success: false },
           });
+          console.error(error);
         },
       });
     this.subscriptions.push(sub);
