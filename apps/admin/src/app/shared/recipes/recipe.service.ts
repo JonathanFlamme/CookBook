@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PaginatedResult, RecipeModel } from '@cookbook/models';
+import {
+  CategoryType,
+  PaginatedResult,
+  RecipeModel,
+  UnitList,
+} from '@cookbook/models';
 import { Observable } from 'rxjs';
 import { RecipeListQuery } from './recipe-list-query';
 
@@ -33,6 +38,30 @@ export class RecipeService {
           order: params.order || 'DESC',
         },
       },
+    );
+  }
+
+  public update(
+    userId: string,
+    recipeId: string,
+    title: string,
+    duration: string,
+    ingredients: { name: string; quantity: string; unit: UnitList }[],
+    steps: { description: string; sort: number }[],
+    categories: CategoryType[],
+    imageUrl: string,
+  ): Observable<RecipeModel> {
+    return this.http.patch<RecipeModel>(
+      `${this.baseUrl}/users/${userId}/recipes/${recipeId}`,
+      {
+        title,
+        duration,
+        ingredients,
+        steps,
+        categories,
+        imageUrl,
+      },
+      { withCredentials: true },
     );
   }
 

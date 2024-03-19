@@ -5,6 +5,7 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   {
@@ -19,13 +20,12 @@ const routes: Routes = [
             component: RecipeViewComponent,
           },
           {
-            path: '',
-            component: RecipesListComponent,
+            path: ':recipeId/edit',
+            component: RecipeEditComponent,
           },
           {
             path: '',
-            redirectTo: 'recipes',
-            pathMatch: 'full',
+            component: RecipesListComponent,
           },
         ],
       },

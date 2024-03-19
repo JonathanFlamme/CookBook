@@ -1,0 +1,32 @@
+<div class="container">
+  @if(uploadedImage){
+  <img
+    class="image"
+    mat-card-image
+    [src]="uploadedImage"
+    alt="Photo of recipe"
+  />
+  }@else {
+  <img
+    class="image"
+    mat-card-image
+    [src]="imageUrl ? imageUrl : '../../assets/poke.png'"
+    alt="Photo of recipe"
+  />
+  }
+  <button
+    mat-mini-fab
+    color="accent"
+    type="button"
+    class="button-select-image"
+    (click)="imgInput.click()"
+  >
+    <fa-icon icon="pen"></fa-icon>
+  </button>
+  <input
+    type="file"
+    #imgInput
+    hidden="true"
+    (change)="onImageSelected($event)"
+  />
+</div>
