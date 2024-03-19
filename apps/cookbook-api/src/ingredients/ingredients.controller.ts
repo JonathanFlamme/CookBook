@@ -12,10 +12,10 @@ import { IngredientDto } from './ingredient.dto';
 import { IngredientEntity } from './ingredient.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorator';
-import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { UserRequest, UserRole } from '@cookbook/models';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';
+import { SanitizerIngredientPipe } from '../common/sanitizer-ingredient.pipe';
 
 @Controller()
 export class IngredientsController {
@@ -30,7 +30,7 @@ export class IngredientsController {
   update(
     @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
-    @Body(new SanitizerPipe()) body: IngredientDto[],
+    @Body(new SanitizerIngredientPipe()) body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
     return this.ingredientService.update(user.userId, recipeId, body);
   }

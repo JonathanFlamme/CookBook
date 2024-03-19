@@ -21,10 +21,10 @@ import {
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorator';
-import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';
 import { RecipesListDto } from './recipes-list.dto';
+import { SanitizerRecipePipe } from '../common/sanitize-recipe.pipe';
 
 @Controller()
 export class RecipeController {
@@ -68,7 +68,7 @@ export class RecipeController {
   @Post('recipes')
   create(
     @User() user: UserRequest,
-    @Body(new SanitizerPipe()) body: RecipeDto,
+    @Body(new SanitizerRecipePipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
     return this.recipeService.create(user.userId, body);
   }
@@ -82,7 +82,7 @@ export class RecipeController {
   update(
     @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
-    @Body(new SanitizerPipe()) body: RecipeDto,
+    @Body(new SanitizerRecipePipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
     return this.recipeService.update(user.userId, recipeId, body);
   }

@@ -1,6 +1,8 @@
 <h3 mat-dialog-title>Changement du role</h3>
 
 <div mat-dialog-content>
+  <p>{{ data.user.givenName }} {{ data.user.familyName }}</p>
+
   <mat-form-field>
     <mat-label>Role</mat-label>
     <mat-select [(ngModel)]="newRole">
@@ -9,12 +11,14 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
-  <button color="warn" mat-button mat-dialog-close type="button">Cancel</button>
+<div class="action-wrapper" mat-dialog-actions>
+  <button color="error" mat-button mat-dialog-close type="button">
+    Cancel
+  </button>
   <button
     (click)="save(newRole)"
     [disabled]="data.user.role === newRole"
-    color="primary"
+    color="accent"
     mat-button
     type="button"
   >

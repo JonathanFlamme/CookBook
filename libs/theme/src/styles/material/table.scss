@@ -1,0 +1,12 @@
+@use 'material/palette' as palette;
+@use '@angular/material' as mat;
+
+.mat-mdc-table {
+  border: 2px solid palette.$primary-dark !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mat-mdc-header-row {
+  border-bottom: 1px solid palette.$primary-dark !important;
+}

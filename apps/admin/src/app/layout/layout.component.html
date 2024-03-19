@@ -10,16 +10,18 @@
     <mat-toolbar>
       <a mat-button [routerLink]="['recipes']"><h1>CookBook</h1></a>
     </mat-toolbar>
-    <mat-nav-list class="nav-list">
-      <div class="menu-top">
+    <div class="menu-top">
+      <mat-nav-list>
         <a mat-button [routerLink]="['recipes']" routerLinkActive="active"
           >Recettes</a
         >
         <a mat-button [routerLink]="['users']" routerLinkActive="active"
           >Membres</a
         >
-      </div>
-      <div class="menu-bottom">
+      </mat-nav-list>
+    </div>
+    <div class="menu-bottom">
+      <mat-nav-list>
         <a
           *ngIf="!isLogged"
           mat-button
@@ -30,8 +32,8 @@
         <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
 
         <a mat-button href="http://localhost:4200/recipes">Mode User</a>
-      </div>
-    </mat-nav-list>
+      </mat-nav-list>
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content class="sidenav-content">

@@ -4,6 +4,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,20 @@ const routes: Routes = [
     children: [
       {
         path: 'recipes',
-        component: RecipesListComponent,
+        children: [
+          {
+            path: ':recipeId',
+            component: RecipeViewComponent,
+          },
+          {
+            path: ':recipeId/edit',
+            component: RecipeEditComponent,
+          },
+          {
+            path: '',
+            component: RecipesListComponent,
+          },
+        ],
       },
       {
         path: 'users',

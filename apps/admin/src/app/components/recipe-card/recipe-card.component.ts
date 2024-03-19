@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { RecipeModel } from '@cookbook/models';
 
 @Component({
@@ -8,4 +9,6 @@ import { RecipeModel } from '@cookbook/models';
 })
 export class RecipeCardComponent {
   @Input() public recipes: RecipeModel[] = [];
+
+  public pageEvent = new PageEvent();
 }
