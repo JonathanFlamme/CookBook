@@ -13,14 +13,14 @@
     <div class="menu-top">
       <mat-nav-list>
         <a
-          *ngIf="isAdmin | async"
+          *ngIf="isLogged && isAdmin | async"
           mat-button
           [routerLink]="['recipes']"
           routerLinkActive="active"
           >Recettes</a
         >
         <a
-          *ngIf="isAdmin | async"
+          *ngIf="isLogged && isAdmin | async"
           mat-button
           [routerLink]="['users']"
           routerLinkActive="active"

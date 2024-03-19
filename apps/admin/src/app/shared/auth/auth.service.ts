@@ -4,6 +4,8 @@ import { UserModel, UserRole } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
+import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,7 @@ export class AuthService {
     private readonly http: HttpClient,
     private readonly storageService: StorageService,
     private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   public login(username: string, password: string): Observable<UserModel> {
@@ -56,20 +59,23 @@ export class AuthService {
     }
   }
   public logout(): void {
+    this.storageService.clean();
     this.http
       .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
           this.isLoggedInSubject.next(null);
           this.isAdmin();
-          this.router.navigate(['/admin/login']);
+          this.router.navigate(['/admin', 'login']);
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'Vous êtes maintenant déconnecté' },
+          });
         },
       });
-    this.storageService.clean();
   }
 
   // check if user is admin
-
   public isAdmin(): void {
     const user = this.storageService.getSavedUser();
     if (!user) {
@@ -78,5 +84,14 @@ export class AuthService {
     if (user?.role === UserRole.Admin) {
       this.isAdminInSubject.next(true);
     }
+  }
+
+  // check if user is logged
+  public isLogged(): boolean {
+    const user = this.storageService.getSavedUser();
+    if (!user) {
+      return false;
+    }
+    return true;
   }
 }
