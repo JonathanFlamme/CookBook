@@ -2,9 +2,9 @@
 <div mat-dialog-content>
   <p>{{ data.user.givenName }} {{ data.user.familyName }}</p>
 </div>
-<div mat-dialog-actions>
-  <button mat-raised-button color="primary" mat-dialog-close>Annuler</button>
-  <button mat-raised-button color="primary" mat-dialog-close (click)="delete()">
+<div class="action-wrapper" mat-dialog-actions>
+  <button mat-raised-button color="error" mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="accent" mat-dialog-close (click)="delete()">
     Supprimer
   </button>
 </div>

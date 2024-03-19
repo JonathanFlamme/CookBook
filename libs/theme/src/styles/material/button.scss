@@ -32,11 +32,26 @@
   }
 
   &[color='warn'] {
-    color: palette.$warn;
+    color: palette.$warn !important;
+    background-color: palette.$warn-light !important;
+    border: 2px solid palette.$warn-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: palette.$warn;
+      color: white;
+    }
   }
 
   &[color='error'] {
-    color: palette.$error;
+    color: palette.$error !important;
+    background-color: palette.$error-light !important;
+    border: 2px solid palette.$error-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$error;
+      color: white;
+    }
   }
 
   &[color='success'] {

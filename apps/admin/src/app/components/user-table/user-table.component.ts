@@ -32,6 +32,7 @@ export class UserTableComponent {
   public delete(user: UserModel): void {
     const dialogRef = this.dialog.open(UserDeleteConfirmComponent, {
       data: { user },
+      width: 'auto',
     });
 
     dialogRef.afterClosed().subscribe((user) => {
