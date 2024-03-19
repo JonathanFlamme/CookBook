@@ -25,6 +25,7 @@ export class RecipeEditComponent implements OnInit {
   public loading = true;
   public recipe!: RecipeModel;
   public categories = Object.values(CategoryType);
+  public uploadApi: File | null = null;
 
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
   public categoriesLabel: { value: string; label: string }[] = categoriesLabel;
@@ -43,7 +44,6 @@ export class RecipeEditComponent implements OnInit {
     disableMove: false,
   };
 
-  private uploadApi!: File;
   private recipeId!: string;
   private subscriptions: Subscription[] = [];
 
@@ -143,11 +143,11 @@ export class RecipeEditComponent implements OnInit {
     this.subscriptions.push(sub);
   }
 
-  edit() {
+  updateWithUpload() {
     const recipe = this.recipeForm.value;
 
     const sub = this.uploadService
-      .uploadImage(this.uploadApi)
+      .uploadImage(this.uploadApi!)
       .pipe(
         switchMap((imageUrl) => {
           return this.recipeService.update(
@@ -170,12 +170,39 @@ export class RecipeEditComponent implements OnInit {
           this.router.navigate(['/recipes', this.recipeId]);
         },
         error: (error) => {
-          console.log(error);
+          console.error(error);
         },
       });
     this.subscriptions.push(sub);
   }
 
+  updateWithoutUpload() {
+    const recipe = this.recipeForm.value;
+
+    const sub = this.recipeService
+      .update(
+        this.recipeId,
+        recipe.title!,
+        recipe.duration!,
+        recipe.ingredients!,
+        recipe.steps!,
+        recipe.categories!,
+        this.recipe.imageUrl,
+      )
+      .subscribe({
+        next: () => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: { message: 'La recette a bien été modifié' },
+          });
+          this.router.navigate(['/recipes', this.recipeId]);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
+    this.subscriptions.push(sub);
+  }
   // Add a new ingredient
   addIngredient() {
     this.ingredientButtonControls = {
