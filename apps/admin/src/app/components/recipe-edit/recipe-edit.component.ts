@@ -135,10 +135,6 @@ export class RecipeEditComponent implements OnInit {
         this.recipe = recipe;
         this.loading = false;
       },
-      error: (error) => {
-        console.error(error);
-        this.loading = false;
-      },
     });
     this.subscriptions.push(sub);
   }

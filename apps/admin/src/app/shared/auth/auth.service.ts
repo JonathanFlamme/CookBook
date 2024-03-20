@@ -34,7 +34,6 @@ export class AuthService {
       })
       .pipe(
         catchError((error) => {
-          console.error(error);
           throw error;
         }),
         tap((user) => {
