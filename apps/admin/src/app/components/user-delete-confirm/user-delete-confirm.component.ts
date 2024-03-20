@@ -27,13 +27,8 @@ export class UserDeleteConfirmComponent {
         });
         this.dialogRef.close(this.data.user.id);
       },
-      error: (error: Error) => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "Une erreur s'est produite", success: false },
-        });
+      error: () => {
         this.dialogRef.close();
-        console.error(error);
       },
     });
   }

@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
 import { StepEntity } from './step.entity';
@@ -17,6 +21,7 @@ export class StepService {
     private readonly stepRepository: Repository<StepEntity>,
   ) {}
 
+  // ---------   UPDATE STEPS   --------- //
   async update(
     userId: string,
     recipeId: string,
@@ -27,7 +32,7 @@ export class StepService {
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
-      throw new Error('Recipe not found');
+      throw new NotFoundException("La recette n'a pas été trouvée");
     }
 
     const steps = body.map((step, index) => {
@@ -50,28 +55,37 @@ export class StepService {
     try {
       await this.recipeRepository.save(recipe);
     } catch (error) {
-      console.error(error);
+      throw new Error("Les étapes de la recette n'ont pas été mises à jour");
     }
     return steps;
   }
 
-  async delete(recipeId: string, stepId: string): Promise<void> {
-    //Use transaction to ensure data integrity
+  // ---------   DELETE STEP   --------- //
+  async delete(
+    userId: string,
+    recipeId: string,
+    stepId: string,
+  ): Promise<void> {
+    //Use transaction to ensure that all operations are successful
     await this.entityManager.transaction(async (entityManager) => {
       const recipe = await entityManager.findOne(RecipeEntity, {
-        where: { id: recipeId },
+        where: {
+          id: recipeId,
+          userId,
+        },
         relations: ['steps'],
       });
 
       if (!recipe) {
-        throw new Error('Recipe not found');
+        throw new UnauthorizedException(
+          "Vous n'êtes pas autorisé à supprimer cette étape",
+        );
       }
-
       const stepDelete = await entityManager.findOne(StepEntity, {
-        where: { id: stepId },
+        where: { id: stepId, recipeId: recipe.id },
       });
       if (!stepDelete) {
-        throw new Error('Step not found');
+        throw new NotFoundException("L'étape n'a pas été trouvée");
       }
       // reduce the sort of all steps after the deleted step by 1
       const updateSteps = recipe.steps.map((step) => {
@@ -90,8 +104,7 @@ export class StepService {
         // delete step
         await entityManager.remove(StepEntity, stepDelete);
       } catch (error) {
-        console.error('Transaction failed:', error);
-        throw error;
+        throw new Error("L'étape n'a pas été supprimée");
       }
     });
   }

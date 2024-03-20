@@ -27,13 +27,8 @@ export class StepDeleteConfirmComponent {
         });
         this.dialogRef.close(this.data.step.id);
       },
-      error: (error) => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "Une erreur s'est produite", success: false },
-        });
+      error: () => {
         this.dialogRef.close();
-        console.error(error);
       },
     });
   }

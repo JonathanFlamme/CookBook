@@ -42,10 +42,6 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
           this.ownRecipe = recipe.userId === user.id;
         }
       },
-      error: (error) => {
-        console.error(error);
-        this.loading = false;
-      },
     });
     this.subscriptions.push(sub);
   }

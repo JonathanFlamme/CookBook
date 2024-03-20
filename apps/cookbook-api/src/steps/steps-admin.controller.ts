@@ -45,6 +45,8 @@ export class StepsAdminController {
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Param('stepId', ParseUUIDPipe) stepId: string,
   ): Promise<void> {
+    console.log('delete recipe');
+
     await this.stepService.delete(userId, recipeId, stepId);
   }
 }

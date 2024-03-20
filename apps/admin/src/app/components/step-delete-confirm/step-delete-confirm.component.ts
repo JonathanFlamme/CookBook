@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { StepModel } from '@cookbook/models';
+import { RecipeModel, StepModel } from '@cookbook/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StepService } from '../../shared/steps/step.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,14 +13,14 @@ export class StepDeleteConfirmComponent {
   constructor(
     private dialogRef: MatDialogRef<StepDeleteConfirmComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public readonly data: { userId: string; step: StepModel },
+    public readonly data: { recipe: RecipeModel; step: StepModel },
     private readonly stepService: StepService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   public delete(): void {
     this.stepService
-      .delete(this.data.userId, this.data.step.recipeId, this.data.step.id)
+      .delete(this.data.recipe.userId, this.data.recipe.id, this.data.step.id)
       .subscribe({
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
@@ -29,13 +29,8 @@ export class StepDeleteConfirmComponent {
           });
           this.dialogRef.close(this.data.step.id);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
+        error: () => {
           this.dialogRef.close();
-          console.error(error);
         },
       });
   }

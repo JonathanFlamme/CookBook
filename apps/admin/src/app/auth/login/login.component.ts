@@ -34,13 +34,6 @@ export class LoginComponent {
         });
         this.router.navigate(['/admin/recipes']);
       },
-      error: (err) => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "Une erreur s'est produite", success: false },
-        });
-        console.error(err);
-      },
     });
   }
 }

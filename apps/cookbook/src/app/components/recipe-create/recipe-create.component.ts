@@ -45,6 +45,7 @@ export class RecipeCreateComponent implements OnDestroy {
     return this.recipeForm.get('steps') as FormArray;
   }
 
+  // ----------  RECIPE FORM  ---------- //
   public recipeForm = this.fb.group({
     title: this.fb.nonNullable.control<string>('', Validators.required),
     duration: this.fb.nonNullable.control<string>('', Validators.required),
@@ -56,6 +57,7 @@ export class RecipeCreateComponent implements OnDestroy {
     steps: this.fb.array<FormGroup>([]),
   });
 
+  // ---------- ADD INGREDIENT ---------- //
   addIngredient() {
     // Check if there are already 10 ingredients
     if (this.ingredients.length >= 10) {
@@ -82,6 +84,7 @@ export class RecipeCreateComponent implements OnDestroy {
     );
   }
 
+  // ---------- ADD STEP ---------- //
   addStep() {
     // Check if there are already 10 steps
     if (this.steps.length >= 10) {
@@ -102,6 +105,8 @@ export class RecipeCreateComponent implements OnDestroy {
       }),
     );
   }
+
+  // ---------- CREATE RECIPE WITHOUT IMAGE UPLOAD ---------- //
   createWithoutUpload() {
     const recipe = this.recipeForm.value;
     const imageUrl: string = '';
@@ -123,16 +128,11 @@ export class RecipeCreateComponent implements OnDestroy {
           });
           this.router.navigate(['/recipes']);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
-        },
       });
     this.subscriptions.push(sub);
   }
+
+  // ----------  CREATE RECIPE WHEN IMAGE IS UPLOADED ---------- //
   public createWithUpload() {
     const recipe = this.recipeForm.value;
     const sub = this.uploadService
@@ -157,13 +157,6 @@ export class RecipeCreateComponent implements OnDestroy {
           });
           this.router.navigate(['/recipes']);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
-        },
       });
     this.subscriptions.push(sub);
   }
@@ -182,6 +175,7 @@ export class RecipeCreateComponent implements OnDestroy {
     });
   }
 
+  // ---------- UPLOAD IMAGE ---------- //
   public handleImageUrl(uploadApi: File) {
     this.uploadApi = uploadApi;
   }

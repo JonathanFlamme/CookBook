@@ -20,7 +20,6 @@ export class IngredientDeleteConfirmComponent {
   ) {}
 
   public delete(): void {
-    console.log(this.data.recipeId);
     this.ingredientService
       .delete(this.data.recipeId, this.data.ingredient.id)
       .subscribe({
@@ -34,13 +33,8 @@ export class IngredientDeleteConfirmComponent {
           });
           this.dialogRef.close(this.data.ingredient.id);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
+        error: () => {
           this.dialogRef.close();
-          console.error(error);
         },
       });
   }

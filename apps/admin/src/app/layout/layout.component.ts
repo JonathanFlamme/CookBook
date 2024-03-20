@@ -26,8 +26,10 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    // check if user is an admin
     this.isAdmin = this.authService.isAdmin$;
 
+    // check if user is logged
     this.authService.isLogged$.subscribe({
       next: (isLogged) => {
         this.isLogged = isLogged;
