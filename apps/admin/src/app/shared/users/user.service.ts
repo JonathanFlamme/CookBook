@@ -12,9 +12,7 @@ export class UserService {
   constructor(private readonly http: HttpClient) {}
 
   public list(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(`${this.baseUrl}/users`, {
-      withCredentials: true,
-    });
+    return this.http.get<UserModel[]>(`${this.baseUrl}/users`);
   }
   public updateRole(userId: string, role: UserRole): Observable<UserModel> {
     return this.http.patch<UserModel>(
@@ -25,8 +23,6 @@ export class UserService {
   }
 
   public delete(userId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/users/${userId}`, {
-      withCredentials: true,
-    });
+    return this.http.delete<void>(`${this.baseUrl}/users/${userId}`);
   }
 }

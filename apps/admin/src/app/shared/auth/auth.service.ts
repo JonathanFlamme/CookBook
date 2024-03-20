@@ -28,16 +28,10 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<UserModel> {
     return this.http
-      .post<UserModel>(
-        `${this.baseUrl}/auth/login`,
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        },
-      )
+      .post<UserModel>(`${this.baseUrl}/auth/login`, {
+        username,
+        password,
+      })
       .pipe(
         catchError((error) => {
           console.error(error);
@@ -60,19 +54,17 @@ export class AuthService {
   }
   public logout(): void {
     this.storageService.clean();
-    this.http
-      .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
-      .subscribe({
-        next: () => {
-          this.isLoggedInSubject.next(null);
-          this.isAdmin();
-          this.router.navigate(['/admin', 'login']);
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: 'Vous êtes maintenant déconnecté' },
-          });
-        },
-      });
+    this.http.post(`${this.baseUrl}/auth/logout`, {}).subscribe({
+      next: () => {
+        this.isLoggedInSubject.next(null);
+        this.isAdmin();
+        this.router.navigate(['/admin', 'login']);
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: { message: 'Vous êtes maintenant déconnecté' },
+        });
+      },
+    });
   }
 
   // check if user is admin

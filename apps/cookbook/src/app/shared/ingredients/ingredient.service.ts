@@ -24,7 +24,6 @@ export class IngredientService {
   public delete(recipeId: string, ingredientId: string): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/recipes/${recipeId}/ingredients/${ingredientId}`,
-      { withCredentials: true },
     );
   }
 }
