@@ -18,14 +18,12 @@ export class IngredientService {
     return this.http.patch<IngredientModel[]>(
       `${this.baseUrl}/recipes/${recipeId}/ingredients`,
       ingredient,
-      { withCredentials: true },
     );
   }
 
   public delete(ingredientId: string): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/ingredients/${ingredientId}`,
-      { withCredentials: true },
     );
   }
 }
