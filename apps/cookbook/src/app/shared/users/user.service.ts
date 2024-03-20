@@ -12,8 +12,6 @@ export class UserService {
   constructor(private readonly http: HttpClient) {}
 
   public view(): Observable<UserModel> {
-    return this.http.get<UserModel>(`${this.baseUrl}/profile`, {
-      withCredentials: true,
-    });
+    return this.http.get<UserModel>(`${this.baseUrl}/profile`);
   }
 }

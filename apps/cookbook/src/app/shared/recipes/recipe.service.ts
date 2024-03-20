@@ -55,7 +55,6 @@ export class RecipeService {
           orderBy: params.orderBy || 'updatedAt',
           order: params.order || 'DESC',
         },
-        withCredentials: true,
       },
     );
   }
@@ -68,18 +67,14 @@ export class RecipeService {
     categories: CategoryType[],
     imageUrl: string,
   ): Observable<RecipeModel> {
-    return this.http.post<RecipeModel>(
-      `${this.baseUrl}/recipes`,
-      {
-        title,
-        duration,
-        ingredients,
-        steps,
-        categories,
-        imageUrl,
-      },
-      { withCredentials: true },
-    );
+    return this.http.post<RecipeModel>(`${this.baseUrl}/recipes`, {
+      title,
+      duration,
+      ingredients,
+      steps,
+      categories,
+      imageUrl,
+    });
   }
 
   public update(
@@ -91,32 +86,24 @@ export class RecipeService {
     categories: CategoryType[],
     imageUrl: string,
   ): Observable<RecipeModel> {
-    return this.http.patch<RecipeModel>(
-      `${this.baseUrl}/recipes/${recipeId}`,
-      {
-        title,
-        duration,
-        ingredients,
-        steps,
-        categories,
-        imageUrl,
-      },
-      { withCredentials: true },
-    );
+    return this.http.patch<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {
+      title,
+      duration,
+      ingredients,
+      steps,
+      categories,
+      imageUrl,
+    });
   }
 
   public delete(recipeId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`, {
-      withCredentials: true,
-    });
+    return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`);
   }
 
   /**
    * Count recipe by month
    */
   public count(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/count/recipes`, {
-      withCredentials: true,
-    });
+    return this.http.get<number>(`${this.baseUrl}/count/recipes`);
   }
 }
