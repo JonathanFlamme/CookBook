@@ -57,7 +57,6 @@ export class AuthService {
       next: () => {
         this.isLoggedInSubject.next(null);
         this.isAdmin();
-        this.router.navigate(['/admin', 'login']);
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,
           data: { message: 'Vous êtes maintenant déconnecté' },
@@ -74,6 +73,8 @@ export class AuthService {
     }
     if (user?.role === UserRole.Admin) {
       this.isAdminInSubject.next(true);
+    } else {
+      this.isAdminInSubject.next(false);
     }
   }
 

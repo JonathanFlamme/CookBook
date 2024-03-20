@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { AuthService } from '../shared/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserModel } from '@cookbook/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -23,6 +24,7 @@ export class LayoutComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private readonly authService: AuthService,
     private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
   ) {}
 
   public ngOnInit(): void {
@@ -39,5 +41,6 @@ export class LayoutComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
+    this.router.navigate(['/admin', 'login']);
   }
 }
