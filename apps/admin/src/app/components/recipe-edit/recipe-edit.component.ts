@@ -293,6 +293,7 @@ export class RecipeEditComponent implements OnInit {
       const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
         data: {
           userId: this.recipe.userId,
+          recipe: this.recipe.id,
           ingredient: this.recipe.ingredients[index],
         },
         width: 'auto',

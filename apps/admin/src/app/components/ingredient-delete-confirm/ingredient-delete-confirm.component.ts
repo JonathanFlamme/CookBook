@@ -16,6 +16,7 @@ export class IngredientDeleteConfirmComponent {
     @Inject(MAT_DIALOG_DATA)
     public readonly data: {
       userId: string;
+      recipeId: string;
       ingredient: IngredientModel;
     },
     private readonly ingredientService: IngredientService,
@@ -24,7 +25,7 @@ export class IngredientDeleteConfirmComponent {
 
   public delete(): void {
     this.ingredientService
-      .delete(this.data.userId, this.data.ingredient.id)
+      .delete(this.data.userId, this.data.recipeId, this.data.ingredient.id)
       .subscribe({
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
