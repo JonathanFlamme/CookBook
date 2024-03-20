@@ -51,7 +51,8 @@ export class RecipeController {
   /**
    * List all recipes by user id
    */
-  @UseGuards(JwtAuthGuard)
+  @Auth(UserRole.User)
+  @UseGuards(JwtAuthGuard, AuthGuard)
   @Get('my-recipes')
   listByUserId(
     @User() user: UserRequest,
