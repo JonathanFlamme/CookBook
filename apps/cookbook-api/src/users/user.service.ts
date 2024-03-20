@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -11,35 +11,40 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  /**
-   * View profile
-   */
+  // ---------   VIEW PROFILE   --------- //
   async view(userId: string): Promise<UserEntity> {
     const user = await this.userRepository.findOne({
       where: { id: userId },
     });
+
+    if (!user) {
+      throw new NotFoundException("L'utilisateur n'a pas été trouvé");
+    }
+
     return user;
   }
 
-  /**
-   * List users
-   */
+  // ---------   LIST ALL USERS  --------- //
   async list(): Promise<UserEntity[]> {
     const users = await this.userRepository.find();
     return users;
   }
 
-  /**
-   * update Role user by Admin
-   */
+  // ---------   UPDATE ROLE BY ADMIN   --------- //
   async updateRoleByAdmin(userId: string, role: UserRole): Promise<UserEntity> {
     const user = await this.userRepository.findOne({
       where: { id: userId },
     });
+    if (!user) {
+      throw new NotFoundException("L'utilisateur n'a pas été trouvé");
+    }
+
     user.role = role;
-
-    await this.userRepository.save(user);
-
+    try {
+      await this.userRepository.save(user);
+    } catch (error) {
+      throw new Error("Le rôle de l'utilisateur n'a pas été mis à jour");
+    }
     return user;
   }
 
@@ -47,6 +52,16 @@ export class UserService {
    * delete user
    */
   async delete(userId: string): Promise<void> {
-    await this.userRepository.delete({ id: userId });
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new NotFoundException("L'utilisateur n'a pas été trouvé");
+    }
+    try {
+      await this.userRepository.delete({ id: userId });
+    } catch (error) {
+      throw new Error("L'utilisateur n'a pas été supprimé");
+    }
   }
 }

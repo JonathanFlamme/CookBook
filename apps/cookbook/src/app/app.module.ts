@@ -29,6 +29,9 @@ import { QuotaRecipeByMonthComponent } from './components/quota-recipe-by-month/
 import { BackButtonComponent } from './components/ui/back-button.component';
 import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { NotFoundComponent } from './errors/not-found.component';
+import { HttpErrorInterceptor } from './errors/http.error.interceptor';
+import { UnauthorizedComponent } from './errors/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -60,9 +63,12 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
     QuotaRecipeByMonthComponent,
     BackButtonComponent,
     UploadImageComponent,
+    NotFoundComponent,
+    UnauthorizedComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

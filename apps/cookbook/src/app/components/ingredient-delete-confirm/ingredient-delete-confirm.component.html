@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>Supprimer cette ingrédient ?</h2>
 <div mat-dialog-content>
-  <p>{{ ingredient.name }}</p>
+  <p>{{ data.ingredient.name }}</p>
   <p>
-    {{ ingredient.quantity }}
-    <app-unit-list [unit]="ingredient.unit"></app-unit-list>
+    {{ data.ingredient.quantity }}
+    <app-unit-list [unit]="data.ingredient.unit"></app-unit-list>
   </p>
 </div>
 <div class="action-wrapper" mat-dialog-actions>

@@ -17,9 +17,6 @@ export class UsersListComponent implements OnInit {
       next: (users) => {
         this.users = users;
       },
-      error: (error) => {
-        console.error(error);
-      },
     });
   }
 }

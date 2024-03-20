@@ -42,9 +42,10 @@ export class StepsController {
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('recipes/:recipeId/steps/:stepId')
   async delete(
+    @User() user: UserRequest,
     @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Param('stepId', ParseUUIDPipe) stepId: string,
   ): Promise<void> {
-    await this.stepService.delete(recipeId, stepId);
+    await this.stepService.delete(user.userId, recipeId, stepId);
   }
 }

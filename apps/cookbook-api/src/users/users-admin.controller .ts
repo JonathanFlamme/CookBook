@@ -45,7 +45,6 @@ export class UserAdminController {
    */
   @Auth(UserRole.Admin)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @UseGuards(JwtAuthGuard, AuthGuard)
   @Delete('users/:userId')
   delete(@Param('userId') userId: string): Promise<void> {
     return this.userService.delete(userId);

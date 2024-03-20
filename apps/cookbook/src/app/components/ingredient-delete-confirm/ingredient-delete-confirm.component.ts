@@ -13,28 +13,29 @@ import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 export class IngredientDeleteConfirmComponent {
   constructor(
     private dialogRef: MatDialogRef<IngredientDeleteConfirmComponent>,
-    @Inject(MAT_DIALOG_DATA) public readonly ingredient: IngredientModel,
+    @Inject(MAT_DIALOG_DATA)
+    public readonly data: { ingredient: IngredientModel; recipeId: string },
     private readonly ingredientService: IngredientService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   public delete(): void {
-    this.ingredientService.delete(this.ingredient.id).subscribe({
-      next: () => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "L'ingrédient a bien été supprimé", success: true },
-        });
-        this.dialogRef.close(this.ingredient.id);
-      },
-      error: (error) => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "Une erreur s'est produite", success: false },
-        });
-        this.dialogRef.close();
-        console.error(error);
-      },
-    });
+    this.ingredientService
+      .delete(this.data.recipeId, this.data.ingredient.id)
+      .subscribe({
+        next: () => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: {
+              message: "L'ingrédient a bien été supprimé",
+              success: true,
+            },
+          });
+          this.dialogRef.close(this.data.ingredient.id);
+        },
+        error: () => {
+          this.dialogRef.close();
+        },
+      });
   }
 }

@@ -21,9 +21,10 @@ export class IngredientService {
     );
   }
 
-  public delete(ingredientId: string): Observable<void> {
+  public delete(recipeId: string, ingredientId: string): Observable<void> {
     return this.http.delete<void>(
-      `${this.baseUrl}/ingredients/${ingredientId}`,
+      `${this.baseUrl}/recipes/${recipeId}/ingredients/${ingredientId}`,
+      { withCredentials: true },
     );
   }
 }

@@ -12,27 +12,23 @@ import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 export class StepDeleteConfirmComponent {
   constructor(
     private dialogRef: MatDialogRef<StepDeleteConfirmComponent>,
-    @Inject(MAT_DIALOG_DATA) public readonly step: StepModel,
+    @Inject(MAT_DIALOG_DATA)
+    public readonly data: { step: StepModel; recipeId: string },
     private readonly stepService: StepService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   public delete(): void {
-    this.stepService.delete(this.step.recipeId, this.step.id).subscribe({
+    this.stepService.delete(this.data.recipeId, this.data.step.id).subscribe({
       next: () => {
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,
           data: { message: "L'étape a bien été supprimé", success: true },
         });
-        this.dialogRef.close(this.step.id);
+        this.dialogRef.close(this.data.step.id);
       },
-      error: (error) => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "Une erreur s'est produite", success: false },
-        });
+      error: () => {
         this.dialogRef.close();
-        console.error(error);
       },
     });
   }

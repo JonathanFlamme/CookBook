@@ -52,13 +52,6 @@ export class RegisterComponent {
 
           this.router.navigate(['/login']);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
-        },
       });
   }
 }

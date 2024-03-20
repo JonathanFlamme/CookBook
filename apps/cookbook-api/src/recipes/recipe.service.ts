@@ -1,4 +1,10 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { RecipeEntity } from './recipe.entity';
 import { Between, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,20 +26,26 @@ export class RecipeService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
+  // ---------   VIEW A RECIPE   --------- //
   async view(recipeId: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
       where: { id: recipeId },
       relations: ['ingredients', 'steps'],
       order: { steps: { sort: 'ASC' } },
     });
+    if (!recipe) {
+      throw new NotFoundException("La recette n'a pas été trouvée");
+    }
     return recipe;
   }
 
+  // ---------   LIST ALL RECIPES FOR ADMIN   --------- //
   async listForAdmin(): Promise<RecipeEntity[]> {
     const recipes = await this.recipeRepository.find();
     return recipes;
   }
 
+  // ---------   LIST ALL RECIPES   --------- //
   async list(query: RecipesListDto): Promise<PaginatedResult<RecipeEntity>> {
     const queryBuilder = this.recipeRepository
       .createQueryBuilder('recipe')
@@ -61,9 +73,7 @@ export class RecipeService {
     return { items, count };
   }
 
-  /**
-   * List all recipes by user id
-   */
+  // ---------   LIST ALL RECIPES BY USER ID   --------- //
   async listByUserId(
     query: RecipesListDto,
     userId: string,
@@ -94,10 +104,14 @@ export class RecipeService {
     return { items, count };
   }
 
+  // ---------   CREATE A NEW RECIPE   --------- //
   async create(userId: string, body: RecipeDto): Promise<RecipeModel> {
     const user = await this.userRepository.findOne({
       where: { id: userId },
     });
+    if (!user) {
+      throw new UnauthorizedException("L'utilisateur n'a pas été trouvé");
+    }
 
     // Check if the user has reached the quota
     if (user.role !== UserRole.Admin) {
@@ -123,12 +137,18 @@ export class RecipeService {
     try {
       await this.recipeRepository.save(recipe);
     } catch (error) {
-      console.error(error);
+      if (error.code === '23505') {
+        throw new ConflictException('La recette existe déjà');
+      }
+      throw new Error(
+        'Une erreur est survenue lors de la création de la recette',
+      );
     }
 
     return recipe;
   }
 
+  // ---------   UPDATE A RECIPE   --------- //
   async update(
     userId: string,
     recipeId: string,
@@ -139,8 +159,11 @@ export class RecipeService {
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
-      throw new Error('Recipe not found');
+      throw new UnauthorizedException(
+        "Vous n'êtes pas autorisé à modifier cette recette",
+      );
     }
+
     // update ingredients or create new ones
     const ingredients = body.ingredients.map((ingredient, index) => {
       // if the ingredient already exists, update it
@@ -187,24 +210,35 @@ export class RecipeService {
     try {
       await this.recipeRepository.save(recipe);
     } catch (error) {
-      console.error(error);
+      throw new Error(
+        'Une erreur est survenue lors de la mise à jour de la recette',
+      );
     }
 
     return recipe;
   }
 
+  // ---------   DELETE A RECIPE   --------- //
   async delete(userId: string, recipeId: string): Promise<void> {
+    const recipe = await this.recipeRepository.findOne({
+      where: { id: recipeId, userId },
+    });
+    if (!recipe) {
+      throw new NotFoundException("La recette n'a pas été trouvée");
+    }
     try {
       await this.recipeRepository.delete({
         id: recipeId,
         userId,
       });
     } catch (error) {
-      console.error(error);
+      throw new Error(
+        'Une erreur est survenue lors de la suppression de la recette',
+      );
     }
   }
 
-  // count the number of recipes created by the user THIS MONTH
+  // ---------   COUNT RECIPES CREATED BY USER THIS MONTH   --------- //
   async countByMonth(userId: string): Promise<number> {
     const firstDayOfMonth = DateTime.local().startOf('month').toJSDate();
     const lastDayOfMonth = DateTime.local().endOf('month').toJSDate();

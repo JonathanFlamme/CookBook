@@ -41,10 +41,6 @@ export class UserEditRoleComponent implements OnInit {
         this.dialogRef.close(newRole);
       },
       error: () => {
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-          data: { message: "Une erreur s'est produite", success: false },
-        });
         this.dialogRef.close();
       },
     });

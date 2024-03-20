@@ -1,5 +1,9 @@
 import bcrypt from 'bcrypt';
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { RegisterDto } from './register.dto';
 import { UserEntity } from '../users/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -19,9 +23,7 @@ export class AuthService {
     return { message: 'Hello API' };
   }
 
-  /**
-   *  Create new user
-   */
+  // ---------   CREATE A NEW USER  --------- //
   async register(body: RegisterDto): Promise<UserEntity> {
     // hash the password "Salt Rounds = 10"
     const saltRounds = 10;
@@ -38,16 +40,18 @@ export class AuthService {
       await this.userRepository.save(user);
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('Identifier already registered');
+        throw new ConflictException("L'utilisateur existe déjà");
       }
     }
     return null;
   }
 
-  /**
-   * Generate Token
-   */
+  // ---------   GENERATE TOKEN  --------- //
   async generateToken(user: UserEntity) {
+    if (!user) {
+      throw new NotFoundException("L'utilisateur n'a pas été trouvé");
+    }
+
     const payload = { id: user.id, role: user.role };
 
     return {
@@ -55,9 +59,8 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
-  /**
-   * Verify validate user
-   */
+
+  // ---------   VALIDATE USER  --------- //
   async validateUser(email: string, password: string): Promise<UserEntity> {
     const user = await this.userRepository.findOne({
       where: { email },
@@ -69,7 +72,7 @@ export class AuthService {
     return null;
   }
 
-  // Store Token in Cookie
+  // ---------   STORE TOKEN IN COOKIE  --------- //
   public storeTokenInCookie(res: ResponseType, authToken: string) {
     res.cookie('access_token', authToken, {
       maxAge: 1000 * 60 * 60 * 24,
@@ -79,7 +82,7 @@ export class AuthService {
     });
   }
 
-  // Remove Token from Cookie
+  // ---------   CLEAR TOKEN IN COOKIE  --------- //
   public clearTokenInCookie(res: ResponseType) {
     res.cookie('access_token', '', {
       expires: new Date(0),

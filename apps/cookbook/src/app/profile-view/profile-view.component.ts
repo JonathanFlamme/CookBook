@@ -21,10 +21,6 @@ export class ProfileViewComponent implements OnInit {
         this.profile = profile;
         this.loading = false;
       },
-      error: (error) => {
-        console.error(error);
-        this.loading = false;
-      },
     });
   }
 }

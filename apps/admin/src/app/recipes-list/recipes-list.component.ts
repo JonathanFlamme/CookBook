@@ -109,7 +109,6 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
       .subscribe(({ items, count }) => {
         this.loading = false;
         this.paginator.length = count;
-
         this.recipes = items;
       });
     this.subscriptions.push(querySub);

@@ -17,6 +17,7 @@ export class UserTableComponent {
 
   public displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
 
+  // ---------- EDIT ROLE ---------- //
   public editRole(user: UserModel): void {
     const dialogRef = this.dialog.open(UserEditRoleComponent, {
       data: { user },
@@ -29,6 +30,7 @@ export class UserTableComponent {
     });
   }
 
+  // ---------- DELETE USER ---------- //
   public delete(user: UserModel): void {
     const dialogRef = this.dialog.open(UserDeleteConfirmComponent, {
       data: { user },

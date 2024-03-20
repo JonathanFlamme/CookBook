@@ -10,6 +10,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { canActivateIsLogged } from './auth/auth.guard';
+import { NotFoundComponent } from './errors/not-found.component';
+import { UnauthorizedComponent } from './errors/unauthorized.component';
 
 const routes: Routes = [
   {
@@ -63,6 +65,18 @@ const routes: Routes = [
         component: RecipeCreateComponent,
       },
     ],
+  },
+  {
+    path: '404',
+    component: NotFoundComponent,
+  },
+  {
+    path: '401',
+    component: UnauthorizedComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '404',
   },
 ];
 

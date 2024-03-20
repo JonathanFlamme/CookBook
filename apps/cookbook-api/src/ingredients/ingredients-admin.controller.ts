@@ -39,10 +39,12 @@ export class IngredientsAdminController {
    */
   @Auth(UserRole.Admin)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Delete('users/:userId/ingredients/:ingredientId')
+  @Delete('users/:userId/recipes/:recipeId/ingredients/:ingredientId')
   delete(
+    @Param('userId', ParseUUIDPipe) userId: string,
+    @Param('recipeId', ParseUUIDPipe) recipeId: string,
     @Param('ingredientId', ParseUUIDPipe) ingredientId: string,
   ): Promise<void> {
-    return this.ingredientService.delete(ingredientId);
+    return this.ingredientService.delete(userId, recipeId, ingredientId);
   }
 }

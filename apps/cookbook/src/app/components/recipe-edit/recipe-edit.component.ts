@@ -30,13 +30,11 @@ export class RecipeEditComponent implements OnInit {
   public unitListLabel: { value: UnitList; label: string }[] = unitListLabels;
   public categoriesLabel: { value: string; label: string }[] = categoriesLabel;
 
-  //buttons to ingredient
+  // ----------------- BUTTONS CONTROLS ----------------- //
   public ingredientButtonControls = {
     confirm: false,
     disableDelete: false,
   };
-
-  //buttons to step
   public stepButtonControls = {
     confirm: false,
     cancel: false,
@@ -73,6 +71,7 @@ export class RecipeEditComponent implements OnInit {
     return this.recipeForm.get('steps') as FormArray;
   }
 
+  // ----------  RECIPE FORM  ---------- //
   public recipeForm = this.fb.group({
     title: this.fb.nonNullable.control<string>('', Validators.required),
     duration: this.fb.nonNullable.control<string>('', Validators.required),
@@ -84,6 +83,7 @@ export class RecipeEditComponent implements OnInit {
     steps: this.fb.array<FormGroup>([]),
   });
 
+  // ---------- GET RECIPE WITH DATA AND FILL THE FORM ---------- //
   ngOnInit(): void {
     this.recipeId = this.route.snapshot.params['recipeId'];
 
@@ -143,6 +143,7 @@ export class RecipeEditComponent implements OnInit {
     this.subscriptions.push(sub);
   }
 
+  // ----------  UPDATE RECIPE WHEN IMAGE IS UPLOADED ---------- //
   updateWithUpload() {
     const recipe = this.recipeForm.value;
 
@@ -169,17 +170,11 @@ export class RecipeEditComponent implements OnInit {
           });
           this.router.navigate(['/recipes', this.recipeId]);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
-        },
       });
     this.subscriptions.push(sub);
   }
 
+  // ---------- UPDATE RECIPE WITHOUT IMAGE UPLOAD ---------- //
   updateWithoutUpload() {
     const recipe = this.recipeForm.value;
 
@@ -204,17 +199,11 @@ export class RecipeEditComponent implements OnInit {
           });
           this.router.navigate(['/recipes', this.recipeId]);
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
-        },
       });
     this.subscriptions.push(sub);
   }
-  // Add a new ingredient
+
+  // ---------- ADD A NEW INGREDIENT  ---------- //
   addIngredient() {
     this.ingredientButtonControls = {
       ...this.ingredientButtonControls,
@@ -247,7 +236,7 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  // Add  a new step
+  // ---------- ADD A NEW STEP  ---------- //
   addStep() {
     this.stepButtonControls = {
       ...this.stepButtonControls,
@@ -279,7 +268,7 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  // Delete ingredient
+  // ---------- DELETE INGREDIENT ---------- //
   public deleteIngredient(index: number): void {
     if (!this.recipe.ingredients[index]) {
       this.ingredients.removeAt(index);
@@ -291,7 +280,10 @@ export class RecipeEditComponent implements OnInit {
     }
     if (this.recipe.ingredients[index]) {
       const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
-        data: this.recipe.ingredients[index],
+        data: {
+          ingredient: this.recipe.ingredients[index],
+          recipeId: this.recipe.id,
+        },
         width: 'auto',
       });
 
@@ -303,7 +295,7 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
-  // Delete step
+  // ---------- DELETE STEP ---------- //
   public deleteStep(index: number): void {
     if (!this.recipe.steps[index]) {
       this.steps.removeAt(index);
@@ -321,7 +313,10 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.recipe.steps[index]) {
       const dialogRef = this.dialog.open(StepDeleteConfirmComponent, {
-        data: this.recipe.steps[index],
+        data: {
+          step: this.recipe.steps[index],
+          recipeId: this.recipe.id,
+        },
         width: 'auto',
       });
       dialogRef.afterClosed().subscribe((step) => {
@@ -332,7 +327,7 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
-  // MOVE UP step or ingredient in the list
+  // ---------- MOVE UP  STEP OR INGREDIENT IN THE LIST ---------- //
   public moveUp(formArray: FormArray, index: number): void {
     this.recipeForm.get;
     if (index <= 0) {
@@ -355,7 +350,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  // MOVE DOWN step or ingredient in the list
+  // ---------- MOVE DOWN  STEP OR INGREDIENT IN THE LIST ---------- //
   public moveDown(formArray: FormArray, index: number): void {
     if (index >= formArray.length - 1) {
       return;
@@ -377,7 +372,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  // Validation
+  // ---------- VALIDATE ONLY STEPS ---------- //
   public stepsValidated(): void {
     this.ingredientButtonControls = {
       ...this.ingredientButtonControls,
@@ -408,17 +403,11 @@ export class RecipeEditComponent implements OnInit {
             },
           });
         },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
-        },
       });
     this.subscriptions.push(sub);
   }
 
+  // ---------- VALIDATE ONLY INGREDIENTS ---------- //
   public ingredientsValidated(): void {
     this.ingredientButtonControls = {
       ...this.ingredientButtonControls,
@@ -453,7 +442,7 @@ export class RecipeEditComponent implements OnInit {
     this.subscriptions.push(sub);
   }
 
-  // cancel
+  // ---------- CANCEL MODIFICATION ---------- //
   public cancel(): void {
     this.ingredientButtonControls = {
       ...this.ingredientButtonControls,
@@ -474,6 +463,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
+  // ---------- UPLOAD IMAGE ---------- //
   public handleImageUrl(uploadApi: File) {
     this.uploadApi = uploadApi;
   }

@@ -1,6 +1,6 @@
 // External dependencies
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
@@ -26,6 +26,9 @@ import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.compon
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
+import { NotFoundComponent } from './errors/not-found.component';
+import { UnauthorizedComponent } from './errors/unauthorized.component';
+import { HttpErrorInterceptor } from './errors/http.error.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,8 +58,12 @@ import { StepDeleteConfirmComponent } from './components/step-delete-confirm/ste
     BackButtonComponent,
     SnackBarComponent,
     UploadImageComponent,
+    NotFoundComponent,
+    UnauthorizedComponent,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

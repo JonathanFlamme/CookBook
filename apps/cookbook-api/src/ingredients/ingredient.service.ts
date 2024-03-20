@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IngredientEntity } from './ingredient.entity';
 import { Repository } from 'typeorm';
@@ -15,6 +19,7 @@ export class IngredientService {
     private readonly recipeRepository: Repository<RecipeEntity>,
   ) {}
 
+  // ---------   UPDATE INGREDIENTS   --------- //
   async update(
     userId: string,
     recipeId: string,
@@ -25,7 +30,7 @@ export class IngredientService {
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
-      throw new Error('Recipe not found');
+      throw new NotFoundException("La recette n'a pas été trouvée");
     }
 
     const ingredients = body.map((ingredient, index) => {
@@ -51,12 +56,35 @@ export class IngredientService {
     try {
       await this.recipeRepository.save(recipe);
     } catch (error) {
-      console.error(error);
+      throw new Error("Les ingrédients de la recette n'ont pas été mis à jour");
     }
     return ingredients;
   }
 
-  async delete(ingredientId: string): Promise<void> {
-    await this.ingredientRepository.delete({ id: ingredientId });
+  // ---------   DELETE INGREDIENT   --------- //
+  async delete(
+    userId: string,
+    recipeId: string,
+    ingredientId: string,
+  ): Promise<void> {
+    const recipe = await this.recipeRepository.findOne({
+      where: { id: recipeId, userId },
+    });
+    if (!recipe) {
+      throw new UnauthorizedException(
+        "Vous n'êtes pas autorisé à supprimer cet ingrédient",
+      );
+    }
+    const ingredient = await this.ingredientRepository.findOne({
+      where: { id: ingredientId, recipeId: recipe.id },
+    });
+    if (!ingredient) {
+      throw new NotFoundException("L'ingrédient n'a pas été trouvé");
+    }
+    try {
+      await this.ingredientRepository.delete({ id: ingredientId });
+    } catch (error) {
+      throw new Error("L'ingrédient n'a pas été supprimé");
+    }
   }
 }

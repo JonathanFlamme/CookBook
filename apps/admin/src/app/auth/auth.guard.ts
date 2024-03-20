@@ -1,8 +1,9 @@
 import { inject } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 
 export const canActivateIsAdmin: CanActivateFn = () => {
+  const router = inject(Router);
   const auth = inject(AuthService);
   let isAdmin: boolean = false;
 
@@ -12,6 +13,7 @@ export const canActivateIsAdmin: CanActivateFn = () => {
 
   if (!isAdmin) {
     auth.logout();
+    router.navigate(['401']);
     return false;
   }
   return true;
