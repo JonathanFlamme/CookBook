@@ -19,7 +19,6 @@ export class IngredientService {
     return this.http.patch<IngredientModel[]>(
       `${this.baseUrl}/users/${userId}/recipes/${recipeId}/ingredients`,
       ingredient,
-      { withCredentials: true },
     );
   }
 
@@ -30,7 +29,6 @@ export class IngredientService {
   ): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/users/${userId}/recipes/${recipeId}/ingredients/${ingredientId}`,
-      { withCredentials: true },
     );
   }
 }

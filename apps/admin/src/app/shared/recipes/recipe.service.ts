@@ -18,9 +18,7 @@ export class RecipeService {
   constructor(private readonly http: HttpClient) {}
 
   public view(recipeId: string): Observable<RecipeModel> {
-    return this.http.get<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {
-      withCredentials: true,
-    });
+    return this.http.get<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`);
   }
 
   public list(
@@ -37,7 +35,6 @@ export class RecipeService {
           orderBy: params.orderBy || 'updatedAt',
           order: params.order || 'DESC',
         },
-        withCredentials: true,
       },
     );
   }
@@ -62,16 +59,12 @@ export class RecipeService {
         categories,
         imageUrl,
       },
-      { withCredentials: true },
     );
   }
 
   public delete(userId: string, recipeId: string): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/users/${userId}/recipes/${recipeId}`,
-      {
-        withCredentials: true,
-      },
     );
   }
 }

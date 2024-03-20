@@ -14,6 +14,9 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();
 
+  private isAdminInSubject = new BehaviorSubject<boolean>(false);
+  public isAdmin$ = this.isAdminInSubject.asObservable();
+
   constructor(
     private readonly http: HttpClient,
     private readonly storageService: StorageService,
@@ -38,24 +41,18 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<UserModel> {
     return this.http
-      .post<UserModel>(
-        `${this.baseUrl}/auth/login`,
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        },
-      )
+      .post<UserModel>(`${this.baseUrl}/auth/login`, {
+        username,
+        password,
+      })
       .pipe(
         catchError((error) => {
-          console.error(error);
           throw error;
         }),
         tap((user) => {
           this.storageService.saveUser(user);
           this.isLoggedInSubject.next(user);
+          this.isAdmin();
         }),
       );
   }
@@ -64,31 +61,32 @@ export class AuthService {
     const user = this.storageService.getSavedUser();
     if (user) {
       this.isLoggedInSubject.next(user);
+      this.isAdmin();
     }
   }
 
   public logout(): void {
-    this.http
-      .post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
-      .subscribe({
-        next: () => {
-          this.isLoggedInSubject.next(null);
-          this.router.navigate(['/login']);
-        },
-      });
+    this.http.post(`${this.baseUrl}/auth/logout`, {}).subscribe({
+      next: () => {
+        this.isLoggedInSubject.next(null);
+        this.router.navigate(['/login']);
+        this.isAdmin();
+      },
+    });
     this.storageService.clean();
   }
 
   // check if user is admin
-  public isAdmin(): boolean {
+  public isAdmin(): void {
     const user = this.storageService.getSavedUser();
     if (!user) {
-      return false;
+      this.isAdminInSubject.next(false);
     }
-    if (user.role === UserRole.Admin) {
-      return true;
+    if (user?.role === UserRole.Admin) {
+      this.isAdminInSubject.next(true);
+    } else {
+      this.isAdminInSubject.next(false);
     }
-    return false;
   }
 
   // check if user is logged

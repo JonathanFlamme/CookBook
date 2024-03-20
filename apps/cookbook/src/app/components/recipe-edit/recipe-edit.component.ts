@@ -135,10 +135,6 @@ export class RecipeEditComponent implements OnInit {
         this.recipe = recipe;
         this.loading = false;
       },
-      error: (error) => {
-        console.error(error);
-        this.loading = false;
-      },
     });
     this.subscriptions.push(sub);
   }
@@ -430,13 +426,6 @@ export class RecipeEditComponent implements OnInit {
           this.recipeForm.patchValue({
             ingredients: ingredients,
           });
-        },
-        error: (error) => {
-          this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 2000,
-            data: { message: "Une erreur s'est produite", success: false },
-          });
-          console.error(error);
         },
       });
     this.subscriptions.push(sub);

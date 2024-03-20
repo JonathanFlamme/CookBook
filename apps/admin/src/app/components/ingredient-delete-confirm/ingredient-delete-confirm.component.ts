@@ -23,11 +23,6 @@ export class IngredientDeleteConfirmComponent {
   ) {}
 
   public delete(): void {
-    console.log(
-      this.data.recipe.userId,
-      this.data.recipe.id,
-      this.data.ingredient.id,
-    );
     this.ingredientService
       .delete(
         this.data.recipe.userId,

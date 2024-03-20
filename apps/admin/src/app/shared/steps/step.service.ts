@@ -19,7 +19,6 @@ export class StepService {
     return this.http.patch<StepModel[]>(
       `${this.baseUrl}/users/${userId}/recipes/${recipeId}/steps`,
       steps,
-      { withCredentials: true },
     );
   }
 
@@ -30,7 +29,6 @@ export class StepService {
   ): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/users/${userId}/recipes/${recipeId}/steps/${stepId}`,
-      { withCredentials: true },
     );
   }
 }
