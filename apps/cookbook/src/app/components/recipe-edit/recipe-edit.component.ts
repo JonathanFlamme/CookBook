@@ -324,7 +324,10 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.recipe.steps[index]) {
       const dialogRef = this.dialog.open(StepDeleteConfirmComponent, {
-        data: this.recipe.steps[index],
+        data: {
+          step: this.recipe.steps[index],
+          recipeId: this.recipe.id,
+        },
         width: 'auto',
       });
       dialogRef.afterClosed().subscribe((step) => {
