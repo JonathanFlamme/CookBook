@@ -29,6 +29,7 @@ import { StepDeleteConfirmComponent } from './components/step-delete-confirm/ste
 import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { HttpErrorInterceptor } from './errors/http.error.interceptor';
+import { HttpInterceptor } from './auth/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { HttpErrorInterceptor } from './errors/http.error.interceptor';
     UnauthorizedComponent,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
