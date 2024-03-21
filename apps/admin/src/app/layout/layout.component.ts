@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, map } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { AuthService } from '../shared/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserModel } from '@cookbook/models';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-layout',
@@ -42,5 +43,13 @@ export class LayoutComponent implements OnInit {
   public logout(): void {
     this.authService.logout();
     this.router.navigate(['/admin', 'login']);
+  }
+
+  public closeNavbar(drawer: MatSidenav): void {
+    this.isHandset$.pipe(take(1)).subscribe((isHandset) => {
+      if (isHandset) {
+        drawer.close();
+      }
+    });
   }
 }

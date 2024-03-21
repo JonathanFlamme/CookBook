@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, map } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { AuthService } from '../shared/auth/auth.service';
 import { UserModel } from '@cookbook/models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../components/ui/snack-bar/snack-bar.component';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-layout',
@@ -41,6 +42,14 @@ export class LayoutComponent implements OnInit {
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 2000,
       data: { message: 'Vous êtes maintenant déconnecté' },
+    });
+  }
+
+  public closeNavbar(drawer: MatSidenav): void {
+    this.isHandset$.pipe(take(1)).subscribe((isHandset) => {
+      if (isHandset) {
+        drawer.close();
+      }
     });
   }
 }

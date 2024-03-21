@@ -11,7 +11,7 @@
       <a mat-button [routerLink]="['recipes']"><h1>CookBook</h1></a>
     </mat-toolbar>
     <div class="menu-top">
-      <mat-nav-list>
+      <mat-nav-list (click)="closeNavbar(sidenav)">
         <a
           *ngIf="isLogged && isAdmin | async"
           mat-button
@@ -29,7 +29,7 @@
       </mat-nav-list>
     </div>
     <div class="menu-bottom">
-      <mat-nav-list>
+      <mat-nav-list (click)="closeNavbar(sidenav)">
         <a
           *ngIf="!isLogged"
           mat-button
