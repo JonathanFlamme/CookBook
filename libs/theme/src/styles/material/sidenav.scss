@@ -1,5 +1,6 @@
 @use 'material/palette' as palette;
 @use '@angular/material' as mat;
+@use 'utils/variables' as variables;
 
 // into layout sidenav
 .mat-drawer-inner-container {
@@ -105,11 +106,37 @@
   }
 }
 
+.menu-reduced {
+  display: flex;
+  justify-content: space-between;
+  background-color: palette.$primary-light !important;
+  border: 2px solid palette.$primary-dark;
+  border-radius: 5px;
+
+  & h1 {
+    color: palette.$accent-dark;
+    font-weight: bold !important;
+  }
+}
+
+.menu-burger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.sidenav-content {
+  margin-left: 0;
+}
+
 // body container
 .mat-sidenav-content {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  padding: 0 6rem 6rem 6rem;
   height: 100vh;
+  padding: 0 2rem 2rem 2rem;
+
+  @media (min-width: variables.$screen-small) {
+    padding: 0 6rem 6rem 6rem;
+  }
 }

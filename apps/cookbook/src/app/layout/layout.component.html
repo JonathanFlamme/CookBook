@@ -11,7 +11,7 @@
     </mat-toolbar>
 
     <div class="menu-top">
-      <mat-nav-list>
+      <mat-nav-list (click)="closeNavbar(sidenav)">
         <div>
           <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
             >Recettes</a
@@ -37,7 +37,7 @@
       </mat-nav-list>
     </div>
     <div class="menu-bottom">
-      <mat-nav-list>
+      <mat-nav-list (click)="closeNavbar(sidenav)">
         <div></div>
         <a
           *ngIf="isLogged"

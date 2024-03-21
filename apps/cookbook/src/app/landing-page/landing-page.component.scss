@@ -1,34 +1,46 @@
 @use 'material/palette' as palette;
+@use 'utils/variables' as variables;
 
 .title-explain {
-  margin-top: 4rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   justify-content: center;
-  margin-top: 4rem;
+  text-align: center;
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 
-  & p {
-    font-size: 1.3rem;
+  & div {
+    margin-bottom: 2rem;
+  }
+}
 
-    & span {
-      margin-right: 10px;
+@media screen and (min-width: variables.$screen-medium) {
+  .title-explain {
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+  }
+  .container {
+    justify-content: left;
+    margin-bottom: 3rem;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      width: 100%;
+      margin-bottom: 5rem;
+
+      button {
+        margin-left: 2rem;
+      }
     }
   }
-
-  & li {
-    margin-bottom: 4rem;
-  }
-}
-
-button {
-  margin-left: 2rem;
-}
-
-.last {
-  margin-top: 4rem;
 }
