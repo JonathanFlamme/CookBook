@@ -19,6 +19,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     MatSnackBarModule,
     MatChipsModule,
+    SlickCarouselModule,
   ],
   exports: [
     MatSidenavModule,
@@ -52,6 +54,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     MatSnackBarModule,
     MatChipsModule,
+    SlickCarouselModule,
   ],
   declarations: [],
   providers: [

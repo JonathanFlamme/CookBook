@@ -110,4 +110,12 @@ export class RecipeController {
   getCount(@User() user: UserRequest): Promise<number> {
     return this.recipeService.countByMonth(user.userId);
   }
+
+  /**
+   * Get last 10 recipes
+   */
+  @Get('last')
+  lastRecipes(): Promise<RecipeModel[]> {
+    return this.recipeService.lastRecipes();
+  }
 }
