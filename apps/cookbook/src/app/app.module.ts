@@ -32,6 +32,7 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
 import { NotFoundComponent } from './errors/not-found.component';
 import { HttpErrorInterceptor } from './errors/http.error.interceptor';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { UnauthorizedComponent } from './errors/unauthorized.component';
     UploadImageComponent,
     NotFoundComponent,
     UnauthorizedComponent,
+    LandingPageComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },

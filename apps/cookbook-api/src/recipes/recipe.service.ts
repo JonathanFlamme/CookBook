@@ -250,4 +250,12 @@ export class RecipeService {
       },
     });
   }
+
+  // ---------   GET LAST 10 RECIPES  --------- //
+  async lastRecipes(): Promise<RecipeEntity[]> {
+    return this.recipeRepository.find({
+      order: { createdAt: 'DESC' },
+      take: 10,
+    });
+  }
 }

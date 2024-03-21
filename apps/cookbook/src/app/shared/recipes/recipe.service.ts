@@ -104,4 +104,11 @@ export class RecipeService {
   public count(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/count/recipes`);
   }
+
+  /**
+   * Get 10 last recipes
+   */
+  public lastRecipes(): Observable<RecipeModel[]> {
+    return this.http.get<RecipeModel[]>(`${this.baseUrl}/last`);
+  }
 }

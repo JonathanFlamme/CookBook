@@ -12,8 +12,14 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { canActivateIsLogged } from './auth/auth.guard';
 import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -64,6 +70,10 @@ const routes: Routes = [
         path: 'recipe/create',
         component: RecipeCreateComponent,
       },
+      {
+        path: 'home',
+        component: LandingPageComponent,
+      },
     ],
   },
   {
@@ -74,6 +84,7 @@ const routes: Routes = [
     path: '401',
     component: UnauthorizedComponent,
   },
+
   {
     path: '**',
     redirectTo: '404',

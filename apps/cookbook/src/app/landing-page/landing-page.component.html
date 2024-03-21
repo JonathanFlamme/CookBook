@@ -1,0 +1,49 @@
+<header>
+  <div class="title">
+    <h1>Bienvenur sur le livre de recettes numériques</h1>
+  </div>
+</header>
+
+<section class="title-explain">
+  <h2>Ce livre est le compagnon idéal pour échanger nos recettes favorites.</h2>
+</section>
+
+<section class="container">
+  <ul>
+    <li>
+      <p>
+        <span>En tant que visiteur :</span>Vous avez accès à la liste des
+        recettes.
+        <button [routerLink]="['/recipes']" mat-raised-button color="accent">
+          Recettes
+        </button>
+      </p>
+    </li>
+    <li>
+      <p>
+        <span>En tant que membre :</span>Vous avez accès à la fonctionnalité
+        d'ajout de recette.
+        <button [routerLink]="['/login']" mat-raised-button color="accent">
+          Se connecter
+        </button>
+      </p>
+    </li>
+  </ul>
+</section>
+
+<h3 class="last">Dernières recettes ajoutées:</h3>
+<ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+>
+  @for (recipe of recipes; track recipe.id) {
+  <div ngxSlickItem class="slide">
+    @if(recipe.imageUrl){
+    <img src="{{ recipe.imageUrl }}" alt="" width="100%" />
+    } @else{
+    <img src="../../assets/poke.png" alt="" width="100%" />
+    }
+  </div>
+  }
+</ngx-slick-carousel>
