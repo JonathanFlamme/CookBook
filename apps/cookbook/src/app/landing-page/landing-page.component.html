@@ -40,9 +40,19 @@
   @for (recipe of recipes; track recipe.id) {
   <div ngxSlickItem class="slide">
     @if(recipe.imageUrl){
-    <img src="{{ recipe.imageUrl }}" alt="" width="100%" />
+    <img
+      src="{{ recipe.imageUrl }}"
+      alt=""
+      width="100%"
+      [routerLink]="['/recipes', recipe.id]"
+    />
     } @else{
-    <img src="../../assets/poke.png" alt="" width="100%" />
+    <img
+      src="../../assets/poke.png"
+      alt=""
+      width="100%"
+      [routerLink]="['/recipes', recipe.id]"
+    />
     }
   </div>
   }
