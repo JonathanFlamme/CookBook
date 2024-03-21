@@ -1,4 +1,5 @@
 @use 'material/palette' as palette;
+@use 'utils/variables' as variables;
 
 header {
   margin-bottom: 1.5rem;
@@ -38,9 +39,13 @@ header {
 
 .container-ingredient {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 
+  @media (min-width: variables.$screen-medium) {
+    flex-direction: row-reverse;
+  }
   & .container-image {
     display: flex;
     justify-content: center;
@@ -55,19 +60,27 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    width: 50%;
+    width: 100%;
     margin-top: 2rem;
     position: relative;
     border: 2px solid palette.$primary-dark;
     border-radius: 20px;
     background-color: palette.$primary-light;
 
+    @media (min-width: variables.$screen-medium) {
+      width: 50%;
+    }
+
     & > ul {
       padding-top: 20px;
       padding-bottom: 20px;
       margin-left: 10px;
-      column-count: 2;
+      column-count: 1;
       gap: 10px;
+
+      @media (min-width: variables.$screen-large) {
+        column-count: 2;
+      }
 
       & li {
         margin-bottom: 30px;

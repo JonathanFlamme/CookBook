@@ -1,5 +1,6 @@
 @use 'material/palette' as palette;
 @use '@angular/material' as mat;
+@use 'utils/variables' as variables;
 
 .mat-mdc-table {
   border: 2px solid palette.$primary-dark !important;
@@ -26,6 +27,11 @@ table {
     padding: 1rem;
     border-radius: 20px;
     margin: 0.5rem;
-    width: 50%;
+    width: 100%;
+  }
+  @media (min-width: variables.$screen-medium) {
+    tr {
+      width: 50%;
+    }
   }
 }

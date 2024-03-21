@@ -1,6 +1,6 @@
 <header>
   <div class="title">
-    <h1>Bienvenur sur le livre de recettes numériques</h1>
+    <h1>Bienvenue sur cookbook</h1>
   </div>
 </header>
 
@@ -9,26 +9,20 @@
 </section>
 
 <section class="container">
-  <ul>
-    <li>
-      <p>
-        <span>En tant que visiteur :</span>Vous avez accès à la liste des
-        recettes.
-        <button [routerLink]="['/recipes']" mat-raised-button color="accent">
-          Recettes
-        </button>
-      </p>
-    </li>
-    <li>
-      <p>
-        <span>En tant que membre :</span>Vous avez accès à la fonctionnalité
-        d'ajout de recette.
-        <button [routerLink]="['/login']" mat-raised-button color="accent">
-          Se connecter
-        </button>
-      </p>
-    </li>
-  </ul>
+  <div>
+    <p>En tant que visiteur :</p>
+    <p>vous avez accès à la liste des recettes.</p>
+    <button [routerLink]="['/recipes']" mat-raised-button color="accent">
+      Recettes
+    </button>
+  </div>
+  <div>
+    <p>En tant que membre :</p>
+    <p>vous avez accès à la fonctionnalité d'ajout de recette.</p>
+    <button [routerLink]="['/login']" mat-raised-button color="accent">
+      Se connecter
+    </button>
+  </div>
 </section>
 
 <h3 class="last">Dernières recettes ajoutées:</h3>
