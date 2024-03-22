@@ -9,7 +9,6 @@
   overflow-x: hidden;
   background-color: palette.$primary-light;
   border: 2px solid palette.$primary-dark;
-  border-radius: 0 5px 5px 0;
 }
 
 .mat-sidenav {
@@ -17,7 +16,6 @@
   width: 200px;
   & .active {
     color: palette.$accent-dark !important;
-    // border-bottom: 2px solid palette.$acce
     &::before {
       content: '';
       position: absolute;
@@ -111,7 +109,6 @@
   justify-content: space-between;
   background-color: palette.$primary-light !important;
   border: 2px solid palette.$primary-dark;
-  border-radius: 5px;
 
   & h1 {
     color: palette.$accent-dark;
