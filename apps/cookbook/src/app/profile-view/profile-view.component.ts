@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from '../auth/change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SnackBarComponent } from '../components/ui/snack-bar/snack-bar.component';
+import { UserEditComponent } from '../auth/user-edit/user-edit.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -44,6 +45,19 @@ export class ProfileViewComponent implements OnInit {
             success: true,
           },
         });
+      }
+    });
+  }
+  public editProfile(): void {
+    const dialogRef = this.dialog.open(UserEditComponent, {
+      data: {
+        user: this.profile,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((profile: UserModel) => {
+      if (profile) {
+        this.profile = profile;
       }
     });
   }

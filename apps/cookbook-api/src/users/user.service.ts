@@ -1,10 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserRole } from '@cookbook/models';
 import { ChangePasswordDto } from './change-password.dto';
 import bcrypt from 'bcrypt';
+import { EditProfiledDto } from './edit-profile.dto';
 
 @Injectable()
 export class UserService {
@@ -91,5 +96,27 @@ export class UserService {
     } catch (error) {
       throw new Error("Le mot de passe n'a pas été mis à jour");
     }
+  }
+
+  // ---------   EDIT PROFILE   --------- //
+  async edit(userId: string, body: EditProfiledDto): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new BadRequestException("L'utilisateur n'a pas été trouvé");
+    }
+
+    user.familyName = body.familyName;
+    user.givenName = body.givenName;
+    user.email = body.email;
+
+    try {
+      await this.userRepository.save(user);
+    } catch (error) {
+      throw new Error("Le profil n'a pas été mis à jour");
+    }
+
+    return user;
   }
 }

@@ -10,9 +10,23 @@ header {
     display: flex;
     justify-content: space-between;
 
+    & h1 {
+      margin-bottom: 0.5rem;
+    }
     & .title-button {
       padding-top: 2rem;
+      margin-right: 2rem;
     }
+    & fa-icon {
+      font-size: large;
+    }
+  }
+}
+.container-profile {
+  & .container-buttons {
+    padding-top: 2rem;
+    text-align: center;
+
     & fa-icon {
       padding-right: 0.7rem;
     }

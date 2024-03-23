@@ -37,6 +37,7 @@ import { VerificationEmailComponent } from './auth/verification-email/verificati
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { PasswordForgotComponent } from './auth/password-forgot/password-forgot.component';
 import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
+import { UserEditComponent } from './auth/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { PasswordResetComponent } from './auth/password-reset/password-reset.com
     ProfileViewComponent,
     UserRoleComponent,
     RecipeDeleteConfirmComponent,
+    UserEditComponent,
   ],
   imports: [
     AppRoutingModule,

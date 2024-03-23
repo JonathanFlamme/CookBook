@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Modifier votre profil</h2>
+
+<div class="container-profile" mat-dialog-content>
+  <form class="form" [formGroup]="profileForm">
+    <mat-form-field>
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="givenName" required />
+      <mat-error *ngIf="profileForm.controls.givenName.errors?.['required']"
+        >Ce champ est obligatoire</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="familyName" required />
+      <mat-error *ngIf="profileForm.controls.familyName.errors?.['required']"
+        >Ce champ est obligatoire</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required />
+      <mat-error *ngIf="profileForm.controls.email.errors?.['required']"
+        >Ce champ est obligatoire</mat-error
+      >
+    </mat-form-field>
+  </form>
+</div>
+<div class="action-wrapper" mat-dialog-actions>
+  <button mat-button color="error" mat-dialog-close>Annuler</button>
+  <button mat-button color="accent" mat-dialog-close (click)="edit()">
+    Modifier
+  </button>
+</div>
