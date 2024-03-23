@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +11,13 @@ import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.compo
 @Component({
   selector: 'app-password-forgot',
   standalone: true,
-  imports: [CommonModule, MatInputModule, ReactiveFormsModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
+  ],
   templateUrl: './password-forgot.component.html',
   styleUrl: './password-forgot.component.scss',
 })
