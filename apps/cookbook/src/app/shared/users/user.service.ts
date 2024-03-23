@@ -14,4 +14,8 @@ export class UserService {
   public view(): Observable<UserModel> {
     return this.http.get<UserModel>(`${this.baseUrl}/profile`);
   }
+
+  public verify(token: string): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/verify`, { token });
+  }
 }

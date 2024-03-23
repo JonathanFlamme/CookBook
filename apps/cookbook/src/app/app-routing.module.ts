@@ -13,6 +13,7 @@ import { canActivateIsLogged } from './auth/auth.guard';
 import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
       {
         path: 'home',
         component: LandingPageComponent,
+      },
+      {
+        path: 'verify/:token',
+        component: VerificationEmailComponent,
       },
     ],
   },

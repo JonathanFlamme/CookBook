@@ -3,7 +3,7 @@
     <h1>S'inscrire</h1>
   </div>
 </header>
-
+@if(!isRegister){
 <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
   <mat-form-field>
     <mat-label>Prénom</mat-label>
@@ -70,3 +70,8 @@
     S'inscrire
   </button>
 </form>
+} @else{
+<h2 class="title-explain">Inscription réussi</h2>
+<p>Un courriel vous a été envoyé avec un lien pour activer votre compte.</p>
+
+}

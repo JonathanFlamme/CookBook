@@ -1,4 +1,12 @@
-import { Body, Controller, Post, UseGuards, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UseGuards,
+  Res,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { RegisterDto } from './auth/register.dto';
 import { UserEntity } from './users/user.entity';
@@ -22,7 +30,7 @@ export class AppController {
     @User() user: UserEntity,
     @Res() res: ResponseType,
   ): Promise<UserRequest> {
-    const authToken = await this.authService.generateToken(user);
+    const authToken = await this.authService.generateJwtToken(user);
     this.authService.storeTokenInCookie(res, authToken.access_token);
     res.status(200).send(authToken.payload);
     return;
@@ -45,5 +53,14 @@ export class AppController {
     this.authService.clearTokenInCookie(res);
     res.status(200).send({ message: 'Logout' });
     return;
+  }
+
+  /**
+   * Verify a user email
+   */
+  @Post('verify')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  verify(@Body('token') token: string): Promise<void> {
+    return this.authService.verifyEmail(token);
   }
 }

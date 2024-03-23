@@ -11,6 +11,7 @@ export interface UserModel {
   recipes: RecipeModel[];
   createdAt: Date;
   updatedAt: Date;
+  verifiedAt: Date;
 }
 
 export enum UserRole {

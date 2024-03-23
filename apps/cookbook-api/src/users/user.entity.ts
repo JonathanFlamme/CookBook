@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { UserModel, UserQuotas, UserRole } from '@cookbook/models';
 import { RecipeEntity } from '../recipes/recipe.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'user' })
 export class UserEntity implements UserModel {
@@ -29,8 +30,15 @@ export class UserEntity implements UserModel {
   @Column({ type: 'text' })
   email: string;
 
+  @Exclude()
+  @Column({ type: 'json', nullable: true })
+  emailToken: { token: string; expiredAt: Date };
+
   @Column({ type: 'text' })
   password: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  verifiedAt: Date;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
