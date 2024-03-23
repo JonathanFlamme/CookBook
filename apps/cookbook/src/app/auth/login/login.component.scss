@@ -1,4 +1,5 @@
 @use 'utils/variables' as variables;
+@use 'material/palette' as palette;
 
 .form {
   display: flex;
@@ -8,5 +9,20 @@
 
   @media (min-width: variables.$screen-medium) {
     width: 50%;
+  }
+
+  mat-form-field {
+    margin-bottom: 1rem;
+  }
+  mat-form-field:nth-child(2) {
+    margin-bottom: 0;
+  }
+
+  & a {
+    color: palette.$accent-dark;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    text-align: right;
+    cursor: pointer;
   }
 }

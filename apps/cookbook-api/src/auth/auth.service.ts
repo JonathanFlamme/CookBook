@@ -15,12 +15,15 @@ import { randomBytes } from 'crypto';
 import { promisify } from 'util';
 import { DateTime } from 'luxon';
 import { EmailService } from '../email/email.service';
+import { UserService } from '../users/user.service';
+import { PasswordResetDto } from './password-reset.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly emailService: EmailService,
+    private readonly userService: UserService,
 
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -139,6 +142,71 @@ export class AuthService {
       this.userRepository.save(user);
     } catch (error) {
       throw new Error("Erreur lors de la validation de l'e-mail");
+    }
+  }
+
+  // ---------   FORGOT PASSWORD  --------- //
+  async forgotPassword(email: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: { email },
+    });
+
+    if (!user) {
+      throw new BadRequestException("L'utilisateur n'a pas été trouvé");
+    }
+
+    user.passwordToken = await this.generateToken();
+
+    try {
+      await this.userRepository.save(user);
+      await this.emailService.sendForgotPassword(user);
+    } catch (error) {
+      throw new BadRequestException("Erreur lors de l'envoi de l'e-mail");
+    }
+  }
+
+  // --------- VERIFY RESET PASSWORD TOKEN --------- //
+  async verifyResetPasswordToken(token: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: {
+        passwordToken: JsonContains({ token }),
+      },
+    });
+
+    if (!user) {
+      throw new BadRequestException('Le lien de vérification est invalide');
+    }
+
+    if (user.passwordToken.expiredAt < new Date()) {
+      throw new BadRequestException('Le lien de vérification a expiré');
+    }
+  }
+
+  // --------- CHANGE PASSWORD WITH TOKEN --------- //
+  async changePasswordWithToken(body: PasswordResetDto): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: {
+        passwordToken: JsonContains({ token: body.token }),
+      },
+    });
+    if (!user) {
+      throw new NotFoundException("L'utilisateur n'a pas été trouvé");
+    }
+
+    if (user.passwordToken.expiredAt < new Date()) {
+      throw new BadRequestException('Le lien de vérification a expiré');
+    }
+
+    const hashedPassword = await bcrypt.hash(body.password, 10);
+
+    user.password = hashedPassword;
+    user.passwordToken.token = null;
+    user.passwordToken.expiredAt = null;
+
+    try {
+      await this.userRepository.save(user);
+    } catch (error) {
+      throw new Error("Le mot de passe n'a pas été mis à jour");
     }
   }
 }

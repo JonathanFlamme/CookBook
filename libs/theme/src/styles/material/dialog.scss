@@ -2,7 +2,7 @@
 @use '@angular/material' as mat;
 
 .cdk-overlay-pane {
-  width: auto !important;
+  width: 400px !important;
 }
 .mat-mdc-dialog-container {
   background-color: palette.$primary-light !important;

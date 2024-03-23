@@ -8,6 +8,7 @@ import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EmailService } from '../email/email.service';
+import { UserService } from '../users/user.service';
 
 @Module({
   imports: [
@@ -24,7 +25,13 @@ import { EmailService } from '../email/email.service';
     }),
     TypeOrmModule.forFeature([UserEntity]),
   ],
-  providers: [AuthService, JwtStrategy, LocalStrategy, EmailService],
-  exports: [AuthService, JwtModule, PassportModule, EmailService],
+  providers: [
+    AuthService,
+    JwtStrategy,
+    LocalStrategy,
+    EmailService,
+    UserService,
+  ],
+  exports: [AuthService, JwtModule, PassportModule, EmailService, UserService],
 })
 export class AuthModule {}

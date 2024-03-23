@@ -11,7 +11,7 @@
       Login
     </button>
   </section>
-  <section *ngSwitchCase="'loading'" class="title-explain">
+  <section *ngSwitchCase="'invalid'" class="title-explain">
     <h2>Désolé, {{ errorMessage }} !</h2>
   </section>
   <section *ngSwitchCase="'error'" class="title-explain">

@@ -15,6 +15,7 @@ import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,10 @@ const routes: Routes = [
       {
         path: 'verify/:token',
         component: VerificationEmailComponent,
+      },
+      {
+        path: 'reset/:token',
+        component: PasswordResetComponent,
       },
     ],
   },

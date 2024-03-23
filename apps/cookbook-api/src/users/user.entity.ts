@@ -34,6 +34,10 @@ export class UserEntity implements UserModel {
   @Column({ type: 'json', nullable: true })
   emailToken: { token: string; expiredAt: Date };
 
+  @Exclude()
+  @Column({ type: 'json', nullable: true })
+  passwordToken: { token: string; expiredAt: Date };
+
   @Column({ type: 'text' })
   password: string;
 

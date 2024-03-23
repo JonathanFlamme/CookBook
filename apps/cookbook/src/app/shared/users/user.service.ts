@@ -28,4 +28,21 @@ export class UserService {
       password,
     });
   }
+
+  public forgotPassword(email: string): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/forgot`, { email });
+  }
+
+  public verifyResetToken(token: string): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/verify-reset-token`, {
+      token,
+    });
+  }
+
+  public changePasswordWithToken(
+    token: string,
+    password: string,
+  ): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/reset`, { token, password });
+  }
 }
