@@ -34,6 +34,7 @@ import { HttpErrorInterceptor } from './errors/http.error.interceptor';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { VerificationEmailComponent } from './auth/verification-email/verificati
     UnauthorizedComponent,
     LandingPageComponent,
     VerificationEmailComponent,
+    ChangePasswordComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },

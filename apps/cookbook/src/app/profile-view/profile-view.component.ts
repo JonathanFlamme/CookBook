@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel, UserRole } from '@cookbook/models';
 import { UserService } from '../shared/users/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ChangePasswordComponent } from '../auth/change-password/change-password.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SnackBarComponent } from '../components/ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -13,7 +17,11 @@ export class ProfileViewComponent implements OnInit {
 
   public UserRole = UserRole;
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly snackbar: MatSnackBar,
+    private readonly dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.userService.view().subscribe({
@@ -21,6 +29,22 @@ export class ProfileViewComponent implements OnInit {
         this.profile = profile;
         this.loading = false;
       },
+    });
+  }
+
+  public changePassword(): void {
+    const dialogRef = this.dialog.open(ChangePasswordComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.snackbar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: {
+            message: 'Le mot de passe a bien été modifié',
+            success: true,
+          },
+        });
+      }
     });
   }
 }

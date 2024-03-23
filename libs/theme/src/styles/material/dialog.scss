@@ -1,11 +1,15 @@
 @use 'material/palette' as palette;
 @use '@angular/material' as mat;
 
+.cdk-overlay-pane {
+  width: auto !important;
+}
 .mat-mdc-dialog-container {
   background-color: palette.$primary-light !important;
   border: 2px solid palette.$primary-dark !important;
   border-radius: 10px;
   overflow: hidden;
+  width: 1000px;
 
   .mdc-dialog__surface {
     display: flex;
