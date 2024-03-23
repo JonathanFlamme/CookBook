@@ -25,11 +25,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // ------ BAD REQUEST ------ //
-        if (error.status === 400) {
-          this.router.navigate(['404']);
-        }
-
         // ------ UNAUTHORIZED ------ //
         if (error.status === 401) {
           this.router.navigate(['401']);

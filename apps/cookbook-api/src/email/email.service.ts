@@ -53,4 +53,33 @@ export class EmailService {
       );
     }
   }
+
+  // ---------   SEND FORGOT PASSWORD  --------- //
+  async sendForgotPassword(user: UserEntity): Promise<void> {
+    try {
+      const resetPasswordUrl: string = `${this.cookbookUrl}/reset/${user.passwordToken.token}`;
+
+      await this.transporter.sendMail({
+        from: this.configService.get<string>('EMAIL_USERNAME'),
+        to: user.email,
+        subject: 'Réinitialisation de votre mot de passe',
+        html: `
+        <p>Bonjour ${user.givenName},</p>
+        <p>Nous avons reçu une demande de réinitialisation de votre mot de passe.</p>
+        <p>Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe :</p>
+        <p><a href="${this.cookbookUrl}/reset/${user.passwordToken.token}">Réinitialiser mon mot de passe</a></p>
+        <p>Sinon, copiez et collez ce lien dans votre barre d'adresse.
+         <div class="button-alt-url">${resetPasswordUrl}</div></p>
+        <p>Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignorer cet e-mail.</p>
+        <p>Merci,</p>
+        <p>L'équipe de CookBook</p>
+      `,
+      });
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'envoi de l'e-mail de réinitialisation de mot de passe :",
+        error,
+      );
+    }
+  }
 }

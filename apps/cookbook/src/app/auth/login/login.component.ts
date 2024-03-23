@@ -4,6 +4,8 @@ import { AuthService } from '../../shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { MatDialog } from '@angular/material/dialog';
+import { PasswordForgotComponent } from '../password-forgot/password-forgot.component';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,7 @@ export class LoginComponent {
     private readonly authService: AuthService,
     private readonly router: Router,
     private readonly snackBar: MatSnackBar,
+    private readonly dialog: MatDialog,
   ) {}
 
   public login(): void {
@@ -45,5 +48,9 @@ export class LoginComponent {
         });
       },
     });
+  }
+
+  public forgotPassword(): void {
+    this.dialog.open(PasswordForgotComponent);
   }
 }
