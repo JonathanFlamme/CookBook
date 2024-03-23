@@ -10,6 +10,7 @@ import { StepsModule } from './steps/steps.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { EmailsModule } from './email/emails.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { AuthModule } from './auth/auth.module';
     StepsModule,
     UsersModule,
     AuthModule,
+    EmailsModule,
   ],
   controllers: [AppController],
   providers: [],

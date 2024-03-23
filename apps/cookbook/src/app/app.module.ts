@@ -33,6 +33,7 @@ import { NotFoundComponent } from './errors/not-found.component';
 import { HttpErrorInterceptor } from './errors/http.error.interceptor';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     NotFoundComponent,
     UnauthorizedComponent,
     LandingPageComponent,
+    VerificationEmailComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },

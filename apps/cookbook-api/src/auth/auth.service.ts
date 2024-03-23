@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -7,13 +8,19 @@ import {
 import { RegisterDto } from './register.dto';
 import { UserEntity } from '../users/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { JsonContains, Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Response as ResponseType } from 'express';
+import { randomBytes } from 'crypto';
+import { promisify } from 'util';
+import { DateTime } from 'luxon';
+import { EmailService } from '../email/email.service';
+
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
+    private readonly emailService: EmailService,
 
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -29,15 +36,21 @@ export class AuthService {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(body.password, saltRounds);
 
+    const emailToken = await this.generateToken();
+
     const user = this.userRepository.create({
       givenName: body.givenName.trim(),
       familyName: body.familyName.trim(),
       email: body.email.toLowerCase().trim(),
       password: hashedPassword,
+      emailToken,
     });
 
     try {
       await this.userRepository.save(user);
+
+      // send email validation
+      await this.emailService.sendEmailValidation(user);
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException("L'utilisateur existe déjà");
@@ -47,7 +60,18 @@ export class AuthService {
   }
 
   // ---------   GENERATE TOKEN  --------- //
-  async generateToken(user: UserEntity) {
+  async generateToken(): Promise<{ token: string; expiredAt: Date }> {
+    const randomBytesAsync = promisify(randomBytes);
+    const token = (await randomBytesAsync(16)).toString('hex');
+
+    return {
+      token,
+      expiredAt: DateTime.now().plus({ days: 1 }).toJSDate(),
+    };
+  }
+
+  // ---------   GENERATE JWT TOKEN  --------- //
+  async generateJwtToken(user: UserEntity) {
     if (!user) {
       throw new NotFoundException("L'utilisateur n'a pas été trouvé");
     }
@@ -90,5 +114,31 @@ export class AuthService {
       secure: true,
       sameSite: 'strict',
     });
+  }
+
+  // ---------   VERIFY EMAIL  --------- //
+  async verifyEmail(token: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: {
+        emailToken: JsonContains({ token: token }),
+      },
+    });
+
+    if (!user) {
+      throw new BadRequestException('Le lien de vérification est invalide');
+    }
+
+    if (user.emailToken.expiredAt < new Date()) {
+      throw new BadRequestException('Le lien de vérification a expiré');
+    }
+
+    user.verifiedAt = new Date();
+    user.emailToken.token = null;
+    user.emailToken.expiredAt = null;
+    try {
+      this.userRepository.save(user);
+    } catch (error) {
+      throw new Error("Erreur lors de la validation de l'e-mail");
+    }
   }
 }
