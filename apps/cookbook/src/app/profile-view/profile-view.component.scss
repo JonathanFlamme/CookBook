@@ -1,0 +1,20 @@
+@use 'material/palette' as palette;
+@use 'utils/variables' as variables;
+
+header {
+  margin-bottom: 1.5rem;
+  color: palette.$primary-dark;
+
+  & .title {
+    border-bottom: 2px solid palette.$primary-dark;
+    display: flex;
+    justify-content: space-between;
+
+    & .title-button {
+      padding-top: 2rem;
+    }
+    & fa-icon {
+      padding-right: 0.7rem;
+    }
+  }
+}

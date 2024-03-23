@@ -14,6 +14,7 @@ import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -63,8 +64,18 @@ const routes: Routes = [
       },
       {
         canActivate: [canActivateIsLogged],
+        canActivateChild: [canActivateIsLogged],
         path: 'profile',
-        component: ProfileViewComponent,
+        children: [
+          {
+            path: '',
+            component: ProfileViewComponent,
+          },
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
+          },
+        ],
       },
       {
         canActivate: [canActivateIsLogged],

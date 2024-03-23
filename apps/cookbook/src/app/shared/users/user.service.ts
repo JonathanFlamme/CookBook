@@ -18,4 +18,14 @@ export class UserService {
   public verify(token: string): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/verify`, { token });
   }
+
+  public changePassword(
+    currentPassword: string,
+    password: string,
+  ): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/profile/password`, {
+      currentPassword,
+      password,
+    });
+  }
 }

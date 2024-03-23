@@ -3,6 +3,8 @@ import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserRole } from '@cookbook/models';
+import { ChangePasswordDto } from './change-password.dto';
+import bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -62,6 +64,32 @@ export class UserService {
       await this.userRepository.delete({ id: userId });
     } catch (error) {
       throw new Error("L'utilisateur n'a pas été supprimé");
+    }
+  }
+
+  // ---------   CHANGE PASSWORD   --------- //
+  async changePassword(userId: string, body: ChangePasswordDto): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new Error("L'utilisateur n'a pas été trouvé");
+    }
+
+    // check is currentPassword is valid
+    const isValid = await bcrypt.compare(body.currentPassword, user.password);
+    if (!isValid) {
+      throw new Error("Le mot de passe actuel n'est pas valide");
+    }
+
+    const hashedPassword = await bcrypt.hash(body.password, 10);
+
+    user.password = hashedPassword;
+
+    try {
+      await this.userRepository.save(user);
+    } catch (error) {
+      throw new Error("Le mot de passe n'a pas été mis à jour");
     }
   }
 }

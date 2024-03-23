@@ -34,6 +34,16 @@ export class LoginComponent {
         });
         this.router.navigate(['/recipes']);
       },
+      error: () => {
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+          data: {
+            message:
+              "L'identifiant ou le mot de passe que vous avez saisi est incorrect",
+            success: false,
+          },
+        });
+      },
     });
   }
 }

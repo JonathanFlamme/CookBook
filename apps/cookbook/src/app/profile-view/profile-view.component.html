@@ -1,6 +1,17 @@
 <header>
   <div class="title">
     <h1>Profile</h1>
+    <div class="title-button">
+      <button
+        aria-label="Modifier le mot de passe"
+        mat-stroked-button
+        type="button"
+        color="accent"
+        (click)="changePassword()"
+      >
+        <fa-icon icon="pen"></fa-icon> <span>Modifier le mot de passe</span>
+      </button>
+    </div>
   </div>
 </header>
 
