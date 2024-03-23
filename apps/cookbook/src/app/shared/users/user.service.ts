@@ -45,4 +45,16 @@ export class UserService {
   ): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/reset`, { token, password });
   }
+
+  public edit(
+    givenName: string,
+    familyName: string,
+    email: string,
+  ): Observable<UserModel> {
+    return this.http.patch<UserModel>(`${this.baseUrl}/profile`, {
+      givenName,
+      familyName,
+      email,
+    });
+  }
 }

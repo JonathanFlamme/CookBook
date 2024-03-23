@@ -3,45 +3,57 @@
     <h1>Profile</h1>
     <div class="title-button">
       <button
-        aria-label="Modifier le mot de passe"
-        mat-stroked-button
+        aria-label="Modifier la recette"
+        mat-mini-fab
         type="button"
         color="accent"
-        (click)="changePassword()"
+        (click)="editProfile()"
       >
-        <fa-icon icon="pen"></fa-icon> <span>Modifier le mot de passe</span>
+        <fa-icon icon="pen"></fa-icon>
       </button>
     </div>
   </div>
 </header>
-
-@if(!loading){
-<table>
-  <tr>
-    <td>Prénom :</td>
-    <td>{{ profile.givenName }}</td>
-  </tr>
-  <tr>
-    <td>Nom :</td>
-    <td>{{ profile.familyName }}</td>
-  </tr>
-  <tr>
-    <td>Email :</td>
-    <td>{{ profile.email }}</td>
-  </tr>
-  <tr>
-    <td>Role :</td>
-    <td><app-user-role [role]="profile.role"></app-user-role></td>
-  </tr>
-  @if(profile.role !== UserRole.Admin){
-  <tr>
-    <td>Recette ajoutées ce mois ci :</td>
-    <td>
-      <app-quota-recipe-by-month
-        [quotas]="profile.quotas.recipePerMonth"
-      ></app-quota-recipe-by-month>
-    </td>
-  </tr>
+<div class="container-profile">
+  @if(!loading){
+  <table>
+    <tr>
+      <td>Prénom :</td>
+      <td>{{ profile.givenName }}</td>
+    </tr>
+    <tr>
+      <td>Nom :</td>
+      <td>{{ profile.familyName }}</td>
+    </tr>
+    <tr>
+      <td>Email :</td>
+      <td>{{ profile.email }}</td>
+    </tr>
+    <tr>
+      <td>Role :</td>
+      <td><app-user-role [role]="profile.role"></app-user-role></td>
+    </tr>
+    @if(profile.role !== UserRole.Admin){
+    <tr>
+      <td>Recette ajoutées ce mois ci :</td>
+      <td>
+        <app-quota-recipe-by-month
+          [quotas]="profile.quotas.recipePerMonth"
+        ></app-quota-recipe-by-month>
+      </td>
+    </tr>
+    }
+  </table>
   }
-</table>
-}
+  <div class="container-buttons">
+    <button
+      aria-label="Modifier le mot de passe"
+      mat-stroked-button
+      type="button"
+      color="accent"
+      (click)="changePassword()"
+    >
+      <fa-icon icon="pen"></fa-icon> <span>Modifier le mot de passe</span>
+    </button>
+  </div>
+</div>
