@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from '../layout/layout.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { canActivateIsLogged } from '../public/auth.guard';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
@@ -9,33 +8,27 @@ import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
 
 const routes: Routes = [
   {
+    path: 'create',
+    component: RecipeCreateComponent,
+    canActivate: [canActivateIsLogged],
+  },
+  {
+    path: ':recipeId',
+    component: RecipeViewComponent,
+  },
+  {
+    path: ':recipeId/edit',
+    component: RecipeEditComponent,
+    canActivate: [canActivateIsLogged],
+  },
+  {
     path: '',
-    component: LayoutComponent,
-    children: [
-      {
-        path: 'create',
-        component: RecipeCreateComponent,
-        canActivate: [canActivateIsLogged],
-      },
-      {
-        path: ':recipeId',
-        component: RecipeViewComponent,
-      },
-      {
-        path: ':recipeId/edit',
-        component: RecipeEditComponent,
-        canActivate: [canActivateIsLogged],
-      },
-      {
-        path: '',
-        component: RecipesListComponent,
-      },
-      {
-        path: '',
-        redirectTo: 'recipes',
-        pathMatch: 'full',
-      },
-    ],
+    component: RecipesListComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'recipes',
+    pathMatch: 'full',
   },
 ];
 
