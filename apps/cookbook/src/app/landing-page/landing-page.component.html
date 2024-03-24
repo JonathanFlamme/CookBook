@@ -5,49 +5,75 @@
 </header>
 
 <section class="title-explain">
-  <h2>Ce livre est le compagnon idéal pour échanger nos recettes favorites.</h2>
+  <h2>
+    Rejoignez-nous dans l'aventure culinaire et échangez vos meilleures
+    recettes.
+  </h2>
 </section>
 
 <section class="container">
   <div>
-    <p>En tant que visiteur :</p>
-    <p>vous avez accès à la liste des recettes.</p>
+    <img class="logo" src="../../assets/livre.png" alt="livre" />
+
+    <h3>Découvrez de nouvelles idées culinaires</h3>
+    <p>
+      Explorez une multitude de recettes variées et découvrez de nouvelles idées
+      culinaires pour inspirer votre prochain repas.
+    </p>
     <button [routerLink]="['/recipes']" mat-raised-button color="accent">
       Recettes
     </button>
   </div>
   <div>
-    <p>En tant que membre :</p>
-    <p>vous avez accès à la fonctionnalité d'ajout de recette.</p>
-    <button [routerLink]="['/login']" mat-raised-button color="accent">
-      Se connecter
+    <img class="logo" src="../../assets/page.png" alt="livre" />
+    <h3>Partagez vos recettes préférées</h3>
+    <p>
+      Rejoignez une communauté passionnée de cuisiniers amateurs et partagez vos
+      meilleures recettes avec le monde entier.
+    </p>
+    <button [routerLink]="['/register']" mat-raised-button color="accent">
+      Rejoignez-nous
+    </button>
+  </div>
+  <div>
+    <img class="logo" src="../../assets/write.png" alt="livre" />
+    <h3>Gardez une trace de vos créations</h3>
+    <p>
+      Organisez vos recettes préférées, ajoutez une photo, et gardez une trace
+      de vos propres créations culinaires.
+    </p>
+
+    <button [routerLink]="['/my-recipes']" mat-raised-button color="accent">
+      Mes recettes
     </button>
   </div>
 </section>
 
-<h3 class="last">Dernières recettes ajoutées:</h3>
-<ngx-slick-carousel
-  class="carousel"
-  #slickModal="slick-carousel"
-  [config]="slideConfig"
->
-  @for (recipe of recipes; track recipe.id) {
-  <div ngxSlickItem class="slide">
-    @if(recipe.imageUrl){
-    <img
-      src="{{ recipe.imageUrl }}"
-      alt=""
-      width="100%"
-      [routerLink]="['/recipes', recipe.id]"
-    />
-    } @else{
-    <img
-      src="../../assets/poke.png"
-      alt=""
-      width="100%"
-      [routerLink]="['/recipes', recipe.id]"
-    />
+<section class="container-carousel">
+  <h2 class="container-carousel-title">Découvrez nos dernières recettes :</h2>
+  <ngx-slick-carousel
+    class="slide-carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+  >
+    @for (recipe of recipes; track recipe.id) {
+    <div ngxSlickItem class="slide">
+      @if(recipe.imageUrl){
+      <img
+        src="{{ recipe.imageUrl }}"
+        alt=""
+        class="img"
+        [routerLink]="['/recipes', recipe.id]"
+      />
+      } @else{
+      <img
+        src="../../assets/poke.png"
+        alt=""
+        class="img"
+        [routerLink]="['/recipes', recipe.id]"
+      />
+      }
+    </div>
     }
-  </div>
-  }
-</ngx-slick-carousel>
+  </ngx-slick-carousel>
+</section>
