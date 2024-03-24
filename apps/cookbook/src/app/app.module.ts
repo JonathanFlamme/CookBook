@@ -8,11 +8,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { LayoutComponent } from './layout/layout.component';
-import { MaterialModule } from './shared/material/material.module';
+// import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
-import { BackButtonComponent } from './shared/ui/back-button.component';
-import { UploadImageComponent } from './shared/upload/upload-image/upload-image.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ErrorsModule } from './errors/errors.module';
 import { PublicModule } from './public/public.module';
@@ -25,9 +23,7 @@ import { PublicModule } from './public/public.module';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    MaterialModule,
-    BackButtonComponent,
-    UploadImageComponent,
+    // MaterialModule,
     LandingPageComponent,
     PublicModule,
     ErrorsModule,
