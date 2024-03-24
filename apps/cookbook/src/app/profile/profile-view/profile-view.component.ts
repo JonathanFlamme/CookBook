@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel, UserRole } from '@cookbook/models';
-import { UserService } from '../shared/users/user.service';
+import { UserService } from '../../shared/users/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ChangePasswordComponent } from '../auth/change-password/change-password.component';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SnackBarComponent } from '../shared/ui/snack-bar/snack-bar.component';
-import { UserEditComponent } from '../auth/user-edit/user-edit.component';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-profile-view',
