@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { RecipeService } from '../shared/recipes/recipe.service';
+import { RecipeService } from '../../shared/recipes/recipe.service';
 import { RecipeModel } from '@cookbook/models';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,8 +13,8 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import { categoriesLabel } from '../shared/ui/category-label';
-import { RecipeListQuery } from '../shared/recipes/recipe-list-query';
+import { categoriesLabel } from '../../shared/ui/category-label';
+import { RecipeListQuery } from '../../shared/recipes/recipe-list-query';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({

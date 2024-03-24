@@ -11,7 +11,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
-import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 import { BackButtonComponent } from './shared/ui/back-button.component';
 import { UploadImageComponent } from './shared/upload/upload-image/upload-image.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -19,7 +18,7 @@ import { ErrorsModule } from './errors/errors.module';
 import { PublicModule } from './public/public.module';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, MyRecipesListComponent],
+  declarations: [AppComponent, LayoutComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
