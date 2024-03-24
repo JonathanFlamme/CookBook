@@ -29,15 +29,13 @@ import { QuotaRecipeByMonthComponent } from './components/quota-recipe-by-month/
 import { BackButtonComponent } from './components/ui/back-button.component';
 import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
-import { NotFoundComponent } from './errors/not-found.component';
-import { HttpErrorInterceptor } from './errors/http.error.interceptor';
-import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { PasswordForgotComponent } from './auth/password-forgot/password-forgot.component';
 import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 import { UserEditComponent } from './auth/user-edit/user-edit.component';
+import { ErrorsModule } from './errors/errors.module';
 
 @NgModule({
   declarations: [
@@ -70,17 +68,15 @@ import { UserEditComponent } from './auth/user-edit/user-edit.component';
     QuotaRecipeByMonthComponent,
     BackButtonComponent,
     UploadImageComponent,
-    NotFoundComponent,
-    UnauthorizedComponent,
     LandingPageComponent,
     VerificationEmailComponent,
     ChangePasswordComponent,
     PasswordForgotComponent,
     PasswordResetComponent,
+    ErrorsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

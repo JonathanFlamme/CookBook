@@ -10,8 +10,6 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { canActivateIsLogged } from './auth/auth.guard';
-import { NotFoundComponent } from './errors/not-found.component';
-import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
@@ -96,19 +94,6 @@ const routes: Routes = [
         component: PasswordResetComponent,
       },
     ],
-  },
-  {
-    path: '404',
-    component: NotFoundComponent,
-  },
-  {
-    path: '401',
-    component: UnauthorizedComponent,
-  },
-
-  {
-    path: '**',
-    redirectTo: '404',
   },
 ];
 
