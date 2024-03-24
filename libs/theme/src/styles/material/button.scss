@@ -20,6 +20,7 @@
     color: palette.$accent-dark !important;
     background-color: palette.$accent-light !important;
     border: 2px solid palette.$accent-dark !important;
+    font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
     &:hover {
       background-color: palette.$accent !important;

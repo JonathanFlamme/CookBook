@@ -2,7 +2,8 @@
 @use 'utils/variables' as variables;
 
 .title-explain {
-  margin-top: 2rem;
+  margin-top: 2rem !important;
+  margin-bottom: 3rem !important;
   text-align: center;
 }
 
@@ -15,8 +16,11 @@
   list-style-type: none;
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin: 0 0 3rem 0;
 
+  & .logo {
+    width: 80px;
+  }
   & div {
     margin-bottom: 2rem;
   }
@@ -24,22 +28,24 @@
 
 @media screen and (min-width: variables.$screen-medium) {
   .title-explain {
-    margin-top: 4rem;
-    margin-bottom: 6rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
   .container {
-    justify-content: left;
-    margin-bottom: 3rem;
+    flex-direction: row;
 
     div {
       display: flex;
-      flex-direction: row;
-      justify-content: left;
-      width: 100%;
-      margin-bottom: 5rem;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding: 0 2rem;
 
-      button {
-        margin-left: 2rem;
+      & .logo {
+        width: 100px;
+      }
+      & button {
+        margin-top: 1rem;
       }
     }
   }

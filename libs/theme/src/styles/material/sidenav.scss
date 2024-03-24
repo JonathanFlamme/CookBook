@@ -16,6 +16,7 @@
   width: 200px;
   & .active {
     color: palette.$accent-dark !important;
+    font-weight: bold;
     &::before {
       content: '';
       position: absolute;
@@ -56,6 +57,7 @@
 
     & a {
       width: 100%;
+      font-size: 1.1rem;
     }
   }
 

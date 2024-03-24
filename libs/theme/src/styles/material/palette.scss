@@ -10,12 +10,14 @@ $theme-primary: mat.define-palette(
   300
 ) !default; // Customizable
 $theme-primary-dark: mat.define-palette(mat.$deep-orange-palette, 700);
+
 $theme-accent: mat.define-palette(
-  mat.$teal-palette,
+  mat.$light-green-palette,
   400
 ) !default; // Customizable
-$theme-accent-light: mat.define-palette(mat.$teal-palette, 50);
-$theme-accent-dark: mat.define-palette(mat.$teal-palette, 600);
+$theme-accent-light: mat.define-palette(mat.$light-green-palette, 50);
+$theme-accent-dark: mat.define-palette(mat.$light-green-palette, 800);
+
 $theme-warn-light: mat.define-palette(mat.$orange-palette, 50);
 $theme-warn: mat.define-palette(mat.$orange-palette);
 $theme-warn-dark: mat.define-palette(mat.$orange-palette, 700);
