@@ -4,7 +4,7 @@ import { UserService } from '../shared/users/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from '../auth/change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SnackBarComponent } from '../components/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../shared/ui/snack-bar/snack-bar.component';
 import { UserEditComponent } from '../auth/user-edit/user-edit.component';
 
 @Component({

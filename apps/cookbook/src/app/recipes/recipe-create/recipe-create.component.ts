@@ -6,8 +6,8 @@ import { Observable, Subscription, map, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
-import { categoriesLabel } from '../ui/category-label';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
+import { categoriesLabel } from '../../shared/ui/category-label';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { UploadService } from '../../shared/upload/upload-image.service';
 

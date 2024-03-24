@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordForgotComponent } from '../password-forgot/password-forgot.component';
 

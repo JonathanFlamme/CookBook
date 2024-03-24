@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../shared/users/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-password-forgot',

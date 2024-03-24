@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipeService } from '../shared/recipes/recipe.service';
+import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
 import { RecipeModel } from '@cookbook/models';
-import { StorageService } from '../shared/auth/storage.service';
+import { StorageService } from '../../shared/auth/storage.service';
 import { RecipeDeleteConfirmComponent } from '../components/recipe-delete-confirm/recipe-delete-confirm.component';
 import { MatDialog } from '@angular/material/dialog';
 

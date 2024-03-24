@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { StepModel } from '@cookbook/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { StepService } from '../../shared/steps/step.service';
+import { StepService } from '../../../shared/steps/step.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../../shared/ui/snack-bar/snack-bar.component';
+
 @Component({
   selector: 'app-step-delete-confirm',
   templateUrl: './step-delete-confirm.component.html',

@@ -10,26 +10,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
-import { CategoriesComponent } from './components/categories.component';
-import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
-import { RecipesListComponent } from './recipes-list/recipes-list.component';
-import { RecipeViewComponent } from './recipe-view/recipe-view.component';
-import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
-import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
-import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
-import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
-import { UnitListComponent } from './components/unit-list.component';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
-import { UserRoleComponent } from './components/user-role.component';
-import { QuotaRecipeByMonthComponent } from './components/quota-recipe-by-month/quota-recipe-by-month.component';
-import { BackButtonComponent } from './components/ui/back-button.component';
-import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
-import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { ProfileViewComponent } from './profile/profile-view/profile-view.component';
+import { BackButtonComponent } from './shared/ui/back-button.component';
+import { UploadImageComponent } from './shared/upload/upload-image/upload-image.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { UserEditComponent } from './auth/user-edit/user-edit.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import { UserEditComponent } from './profile/user-edit/user-edit.component';
 import { ErrorsModule } from './errors/errors.module';
 import { PublicModule } from './public/public.module';
 
@@ -37,19 +25,8 @@ import { PublicModule } from './public/public.module';
   declarations: [
     AppComponent,
     LayoutComponent,
-    CategoriesComponent,
-    RecipeCreateComponent,
-    RecipesListComponent,
-    RecipeViewComponent,
-    RecipeEditComponent,
-    IngredientDeleteConfirmComponent,
-    StepDeleteConfirmComponent,
-    RecipeCardComponent,
     MyRecipesListComponent,
-    UnitListComponent,
     ProfileViewComponent,
-    UserRoleComponent,
-    RecipeDeleteConfirmComponent,
     UserEditComponent,
   ],
   imports: [
@@ -59,7 +36,6 @@ import { PublicModule } from './public/public.module';
     BrowserAnimationsModule,
     SharedModule,
     MaterialModule,
-    QuotaRecipeByMonthComponent,
     BackButtonComponent,
     UploadImageComponent,
     LandingPageComponent,

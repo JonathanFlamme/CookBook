@@ -1,5 +1,5 @@
 <div class="cards">
-  <mat-card *ngIf="isLogged" [routerLink]="['/recipe', 'create']" class="card">
+  <mat-card *ngIf="isLogged" [routerLink]="['/recipes', 'create']" class="card">
     <mat-card-header>
       <mat-card-title>Ajouter une recette </mat-card-title>
     </mat-card-header>
@@ -7,7 +7,7 @@
     <img
       class="image"
       mat-card-image
-      src="../../../assets/add.png"
+      src="../../../../assets/add-recipe.png"
       alt="Photo of recipe"
     />
   </mat-card>
@@ -30,7 +30,7 @@
     <img
       class="image"
       mat-card-image
-      src="../../../assets/poke.png"
+      src="../../../../assets/poke.png"
       alt="Photo of recipe"
     />}
   </mat-card>

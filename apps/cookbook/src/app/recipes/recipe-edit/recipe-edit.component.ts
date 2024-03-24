@@ -5,14 +5,14 @@ import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Observable, Subscription, map, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { IngredientDeleteConfirmComponent } from '../ingredient-delete-confirm/ingredient-delete-confirm.component';
-import { StepDeleteConfirmComponent } from '../step-delete-confirm/step-delete-confirm.component';
+import { IngredientDeleteConfirmComponent } from '../components/ingredient-delete-confirm/ingredient-delete-confirm.component';
+import { StepDeleteConfirmComponent } from '../components/step-delete-confirm/step-delete-confirm.component';
 import { StepService } from '../../shared/steps/step.service';
 import { IngredientService } from '../../shared/ingredients/ingredient.service';
 import { unitListLabels } from '../../shared/ingredients/unit-list-label';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
-import { categoriesLabel } from '../ui/category-label';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
+import { categoriesLabel } from '../../shared/ui/category-label';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { UploadService } from '../../shared/upload/upload-image.service';
 

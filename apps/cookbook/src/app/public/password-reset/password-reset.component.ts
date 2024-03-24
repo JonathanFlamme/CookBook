@@ -7,7 +7,7 @@ import { mergeMap } from 'rxjs';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { matchPassword } from '../register/match-password.validator';
 import { MatInputModule } from '@angular/material/input';
-import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

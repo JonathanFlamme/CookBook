@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RecipeService } from '../../shared/recipes/recipe.service';
+import { RecipeService } from '../../recipes/recipe.service';
 
 @Component({
   selector: 'app-quota-recipe-by-month',
