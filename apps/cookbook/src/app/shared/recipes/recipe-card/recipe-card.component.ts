@@ -1,10 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { RecipeModel, UserModel } from '@cookbook/models';
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-card',
+  standalone: true,
+  imports: [CommonModule, MatCardModule, RouterModule],
   templateUrl: './recipe-card.component.html',
   styleUrl: './recipe-card.component.scss',
 })
