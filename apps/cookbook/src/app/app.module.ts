@@ -18,8 +18,6 @@ import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.compon
 import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
 import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
 import { UnitListComponent } from './components/unit-list.component';
@@ -30,12 +28,10 @@ import { BackButtonComponent } from './components/ui/back-button.component';
 import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { PasswordForgotComponent } from './auth/password-forgot/password-forgot.component';
-import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 import { UserEditComponent } from './auth/user-edit/user-edit.component';
 import { ErrorsModule } from './errors/errors.module';
+import { PublicModule } from './public/public.module';
 
 @NgModule({
   declarations: [
@@ -49,8 +45,6 @@ import { ErrorsModule } from './errors/errors.module';
     IngredientDeleteConfirmComponent,
     StepDeleteConfirmComponent,
     RecipeCardComponent,
-    LoginComponent,
-    RegisterComponent,
     MyRecipesListComponent,
     UnitListComponent,
     ProfileViewComponent,
@@ -69,10 +63,8 @@ import { ErrorsModule } from './errors/errors.module';
     BackButtonComponent,
     UploadImageComponent,
     LandingPageComponent,
-    VerificationEmailComponent,
     ChangePasswordComponent,
-    PasswordForgotComponent,
-    PasswordResetComponent,
+    PublicModule,
     ErrorsModule,
   ],
   providers: [

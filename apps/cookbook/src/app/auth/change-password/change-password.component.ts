@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { matchPassword } from '../register/match-password.validator';
+import { matchPassword } from '../../public/register/match-password.validator';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
