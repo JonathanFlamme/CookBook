@@ -10,56 +10,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
-import { CategoriesComponent } from './components/categories.component';
-import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
-import { RecipesListComponent } from './recipes-list/recipes-list.component';
-import { RecipeViewComponent } from './recipe-view/recipe-view.component';
-import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
-import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
-import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
-import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
-import { MyRecipesListComponent } from './my-recipes-list/my-recipes-list.component';
-import { UnitListComponent } from './components/unit-list.component';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
-import { UserRoleComponent } from './components/user-role.component';
-import { QuotaRecipeByMonthComponent } from './components/quota-recipe-by-month/quota-recipe-by-month.component';
-import { BackButtonComponent } from './components/ui/back-button.component';
-import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
-import { UploadImageComponent } from './components/upload-image/upload-image.component';
-import { NotFoundComponent } from './errors/not-found.component';
-import { HttpErrorInterceptor } from './errors/http.error.interceptor';
-import { UnauthorizedComponent } from './errors/unauthorized.component';
+import { BackButtonComponent } from './shared/ui/back-button.component';
+import { UploadImageComponent } from './shared/upload/upload-image/upload-image.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { VerificationEmailComponent } from './auth/verification-email/verification-email.component';
-import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { PasswordForgotComponent } from './auth/password-forgot/password-forgot.component';
-import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
-import { UserEditComponent } from './auth/user-edit/user-edit.component';
+import { ErrorsModule } from './errors/errors.module';
+import { PublicModule } from './public/public.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent,
-    CategoriesComponent,
-    RecipeCreateComponent,
-    RecipesListComponent,
-    RecipeViewComponent,
-    RecipeEditComponent,
-    IngredientDeleteConfirmComponent,
-    StepDeleteConfirmComponent,
-    RecipeCardComponent,
-    LoginComponent,
-    RegisterComponent,
-    MyRecipesListComponent,
-    UnitListComponent,
-    ProfileViewComponent,
-    UserRoleComponent,
-    RecipeDeleteConfirmComponent,
-    UserEditComponent,
-  ],
+  declarations: [AppComponent, LayoutComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
@@ -67,20 +26,14 @@ import { UserEditComponent } from './auth/user-edit/user-edit.component';
     BrowserAnimationsModule,
     SharedModule,
     MaterialModule,
-    QuotaRecipeByMonthComponent,
     BackButtonComponent,
     UploadImageComponent,
-    NotFoundComponent,
-    UnauthorizedComponent,
     LandingPageComponent,
-    VerificationEmailComponent,
-    ChangePasswordComponent,
-    PasswordForgotComponent,
-    PasswordResetComponent,
+    PublicModule,
+    ErrorsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
