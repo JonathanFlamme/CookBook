@@ -11,11 +11,11 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivateChild: [canActivateIsLogged],
     children: [
       {
         path: 'create',
         component: RecipeCreateComponent,
+        canActivate: [canActivateIsLogged],
       },
       {
         path: ':recipeId',
@@ -24,6 +24,7 @@ const routes: Routes = [
       {
         path: ':recipeId/edit',
         component: RecipeEditComponent,
+        canActivate: [canActivateIsLogged],
       },
       {
         path: '',
