@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { SnackBarComponent } from '../components/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../shared/ui/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()

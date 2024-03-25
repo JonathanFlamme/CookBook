@@ -19,11 +19,8 @@ import { UserEditRoleComponent } from './components/user-edit-role/user-edit-rol
 import { UserDeleteConfirmComponent } from './components/user-delete-confirm/user-delete-confirm.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { UnitListComponent } from './components/unit-list.component';
-import { BackButtonComponent } from './components/ui/back-button.component';
 import { RecipeDeleteConfirmComponent } from './components/recipe-delete-confirm/recipe-delete-confirm.component';
-import { SnackBarComponent } from './components/ui/snack-bar/snack-bar.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
-import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { IngredientDeleteConfirmComponent } from './components/ingredient-delete-confirm/ingredient-delete-confirm.component';
 import { StepDeleteConfirmComponent } from './components/step-delete-confirm/step-delete-confirm.component';
 import { NotFoundComponent } from './errors/not-found.component';
@@ -56,9 +53,6 @@ import { HttpInterceptor } from './auth/http.interceptor';
     SharedModule,
     MaterialModule,
     UserEditRoleComponent,
-    BackButtonComponent,
-    SnackBarComponent,
-    UploadImageComponent,
     NotFoundComponent,
     UnauthorizedComponent,
   ],

@@ -3,7 +3,7 @@ import { RecipeService } from '../../shared/recipes/recipe.service';
 import { RecipeModel } from '@cookbook/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-recipe-delete-confirm',

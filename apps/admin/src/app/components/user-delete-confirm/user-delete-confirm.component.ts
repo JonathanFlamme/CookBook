@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { UserModel } from '@cookbook/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../shared/users/user.service';
-import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

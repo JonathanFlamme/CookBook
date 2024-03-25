@@ -14,7 +14,7 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import { categoriesLabel } from '../components/ui/category-label';
+import { categoriesLabel } from '../shared/ui/category-label';
 import { RecipeListQuery } from '../shared/recipes/recipe-list-query';
 
 @Component({
