@@ -136,8 +136,11 @@ export class AuthService {
     }
 
     user.verifiedAt = new Date();
+    user.quotas.recipePerMonth = 10;
+
     user.emailToken.token = null;
     user.emailToken.expiredAt = null;
+
     try {
       this.userRepository.save(user);
     } catch (error) {
