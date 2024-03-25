@@ -26,7 +26,7 @@ export class AppController {
    * Login a new user
    */
   @UseGuards(LocalAuthGuard)
-  @Post('auth/login')
+  @Post('login')
   async login(
     @User() user: UserEntity,
     @Res() res: ResponseType,
@@ -49,7 +49,7 @@ export class AppController {
    * Logout a user
    */
   @UseGuards(JwtAuthGuard)
-  @Post('auth/logout')
+  @Post('logout')
   logout(@Res() res: ResponseType): void {
     this.authService.clearTokenInCookie(res);
     res.status(200).send({ message: 'Logout' });
