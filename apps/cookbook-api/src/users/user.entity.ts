@@ -24,7 +24,7 @@ export class UserEntity implements UserModel {
   @Column({ type: 'text' })
   familyName: string;
 
-  @Column('jsonb', { default: { recipePerMonth: 5 } })
+  @Column('jsonb', { default: { recipePerMonth: 1 } })
   quotas: UserQuotas;
 
   @Column({ type: 'text' })
