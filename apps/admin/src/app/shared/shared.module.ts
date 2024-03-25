@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BackButtonComponent } from './ui/back-button.component';
 import { SnackBarComponent } from './ui/snack-bar/snack-bar.component';
 import { UploadImageComponent } from './upload/upload-image/upload-image.component';
+import { UnitListComponent } from './ingredients/unit-list.component';
 
 @NgModule({
   imports: [
@@ -22,8 +23,9 @@ import { UploadImageComponent } from './upload/upload-image/upload-image.compone
     BackButtonComponent,
     SnackBarComponent,
     UploadImageComponent,
+    UnitListComponent,
   ],
-  declarations: [],
+  declarations: [UnitListComponent],
   providers: [],
 })
 export class SharedModule {}

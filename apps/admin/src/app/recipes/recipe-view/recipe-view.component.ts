@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipeService } from '../shared/recipes/recipe.service';
+import { RecipeService } from '../../shared/recipes/recipe.service';
 import { Subscription } from 'rxjs';
 import { RecipeModel } from '@cookbook/models';
 import { MatDialog } from '@angular/material/dialog';

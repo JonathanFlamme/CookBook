@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { RecipeViewComponent } from './recipe-view/recipe-view.component';
-import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 import { canActivateIsAdmin } from './auth/auth.guard';
 import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
@@ -16,23 +13,9 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        canActivate: [canActivateIsAdmin],
-        canActivateChild: [canActivateIsAdmin],
         path: 'recipes',
-        children: [
-          {
-            path: ':recipeId',
-            component: RecipeViewComponent,
-          },
-          {
-            path: ':recipeId/edit',
-            component: RecipeEditComponent,
-          },
-          {
-            path: '',
-            component: RecipesListComponent,
-          },
-        ],
+        loadChildren: () =>
+          import('./recipes/recipes.module').then((m) => m.RecipesModule),
       },
       {
         canActivate: [canActivateIsAdmin],
