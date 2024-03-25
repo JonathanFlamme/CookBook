@@ -4,7 +4,7 @@ import { UserModel, UserRole } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
-import { SnackBarComponent } from '../../components/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
