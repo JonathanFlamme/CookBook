@@ -11,24 +11,13 @@ import { MaterialModule } from './shared/material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './auth/login/login.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { UserEditRoleComponent } from './components/user-edit-role/user-edit-role.component';
-import { UserDeleteConfirmComponent } from './components/user-delete-confirm/user-delete-confirm.component';
 import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 import { HttpErrorInterceptor } from './errors/http.error.interceptor';
 import { HttpInterceptor } from './auth/http.interceptor';
-import { UserTableComponent } from './components/user-table/user-table.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent,
-    LoginComponent,
-    UsersListComponent,
-    UserTableComponent,
-    UserDeleteConfirmComponent,
-  ],
+  declarations: [AppComponent, LayoutComponent, LoginComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
@@ -36,7 +25,6 @@ import { UserTableComponent } from './components/user-table/user-table.component
     BrowserAnimationsModule,
     SharedModule,
     MaterialModule,
-    UserEditRoleComponent,
     NotFoundComponent,
     UnauthorizedComponent,
   ],

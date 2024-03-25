@@ -6,12 +6,12 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { UserModel, UserRole } from '@cookbook/models';
-import { UserService } from '../../shared/users/user.service';
+import { UserService } from '../../../shared/users/user.service';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../../shared/ui/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-user-edit-role',

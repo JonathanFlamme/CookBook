@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/users/user.service';
+import { UserService } from '../../shared/users/user.service';
 import { UserModel } from '@cookbook/models';
 
 @Component({

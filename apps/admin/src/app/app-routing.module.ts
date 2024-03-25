@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './auth/login/login.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { canActivateIsAdmin } from './auth/auth.guard';
+
 import { NotFoundComponent } from './errors/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized.component';
 
@@ -18,9 +17,9 @@ const routes: Routes = [
           import('./recipes/recipes.module').then((m) => m.RecipesModule),
       },
       {
-        canActivate: [canActivateIsAdmin],
         path: 'users',
-        component: UsersListComponent,
+        loadChildren: () =>
+          import('./users/users.module').then((m) => m.UsersModule),
       },
       {
         path: 'login',
