@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RecipeService } from '../../recipes/recipe.service';
+import { RecipeService } from '../recipes/recipe.service';
 
 @Component({
   selector: 'app-quota-recipe-by-month',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './quota-recipe-by-month.component.html',
-  styleUrl: './quota-recipe-by-month.component.scss',
+  template: '{{ count }} / {{ quotas }}',
+  styles: [],
 })
 export class QuotaRecipeByMonthComponent implements OnInit {
   @Input() quotas: number = 0;

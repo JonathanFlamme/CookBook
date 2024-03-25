@@ -8,8 +8,8 @@ import { BackButtonComponent } from './ui/back-button.component';
 import { UploadImageComponent } from './upload/upload-image/upload-image.component';
 import { CategoriesComponent } from './ui/categories.component';
 import { UserRoleComponent } from './users/user-role.component';
-import { QuotaRecipeByMonthComponent } from './users/quota-recipe-by-month/quota-recipe-by-month.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
+import { QuotaRecipeByMonthComponent } from './users/quota-recipe-by-month.component';
 
 @NgModule({
   declarations: [UnitListComponent, CategoriesComponent, UserRoleComponent],
