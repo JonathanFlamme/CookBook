@@ -28,7 +28,7 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<UserModel> {
     return this.http
-      .post<UserModel>(`${this.baseUrl}/auth/login`, {
+      .post<UserModel>(`${this.baseUrl}/login`, {
         username,
         password,
       })
@@ -53,7 +53,7 @@ export class AuthService {
   }
   public logout(): void {
     this.storageService.clean();
-    this.http.post(`${this.baseUrl}/auth/logout`, {}).subscribe({
+    this.http.post(`${this.baseUrl}/logout`, {}).subscribe({
       next: () => {
         this.isLoggedInSubject.next(null);
         this.isAdmin();
