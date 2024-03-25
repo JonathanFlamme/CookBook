@@ -4,6 +4,7 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserModel, UserQuotas, UserRole } from '@cookbook/models';
@@ -11,6 +12,7 @@ import { RecipeEntity } from '../recipes/recipe.entity';
 import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'user' })
+@Unique(['email'])
 export class UserEntity implements UserModel {
   @PrimaryGeneratedColumn('uuid')
   id: string;
