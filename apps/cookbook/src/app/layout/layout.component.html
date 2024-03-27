@@ -41,13 +41,6 @@
         >
         <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
         <a
-          *ngIf="isAdmin$ | async"
-          mat-button
-          href="http://localhost:4300/admin/login"
-          >Mode Admin</a
-        >
-
-        <a
           *ngIf="!isLogged"
           mat-button
           [routerLink]="['/login']"
