@@ -8,7 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": ["{options.outputPath}", ".vercel/**"],
       "options": {
         "outputPath": "dist/apps/cookbook",
         "index": "apps/cookbook/src/index.html",
