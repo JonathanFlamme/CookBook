@@ -1,0 +1,69 @@
+<app-back-button></app-back-button>
+@if (!loading) {
+<header>
+  <div class="title">
+    <h1>
+      {{ recipe.title }} <span> - {{ recipe.duration }} minutes</span>
+    </h1>
+    <div class="title-button">
+      <button
+        aria-label="Modifier la recette"
+        mat-mini-fab
+        type="button"
+        color="accent"
+        *ngIf="ownRecipe"
+        routerLink="edit"
+      >
+        <fa-icon icon="pen"></fa-icon>
+      </button>
+      <button
+        aria-label="Supprimer la recette"
+        *ngIf="ownRecipe"
+        mat-mini-fab
+        (click)="delete(recipe)"
+        color="accent"
+      >
+        <fa-icon icon="trash-can"></fa-icon>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="container-categories" aria-label="Liste des catégories">
+  <mat-chip-set>
+    @for (category of recipe.categories; track category) {
+    <mat-chip [value]="category">
+      {{ category | titlecase }}
+    </mat-chip>
+    }
+  </mat-chip-set>
+</section>
+
+<section class="container-ingredient" aria-label="Liste des ingrédients">
+  <div class="container-image">
+    @if (recipe.imageUrl) {
+    <img class="image" [src]="recipe.imageUrl" alt="Photo of recipe" />
+    } @else {
+    <img class="image" src="../../assets/poke.png" alt="Photo of recipe" />
+    }
+  </div>
+  <div class="ingredient">
+    <h2>Ingrédients</h2>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        {{ ingredient.name }} : {{ ingredient.quantity }}
+        <app-unit-list [unit]="ingredient.unit"></app-unit-list>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="container-step" aria-label="Liste des étapes">
+  <h2>Étapes</h2>
+  <ol>
+    <li *ngFor="let step of recipe.steps">
+      {{ step.description }}
+    </li>
+  </ol>
+</section>
+}

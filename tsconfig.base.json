@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@cookbook/models": ["libs/models/src/index.ts"],
+      "theme": ["libs/theme/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -47,6 +47,38 @@
       "options": {
         "jestConfig": "apps/cookbook-api/jest.config.ts"
       }
+    },
+    "migration:run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cookbook-api",
+        "command": "ts-node -P tsconfig.app.json -r tsconfig-paths/register ../../node_modules/typeorm/cli.js migration:run -d orm/datasource.ts"
+      }
+    },
+    "migration:generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cookbook-api",
+        "command": "ts-node -P tsconfig.app.json -r tsconfig-paths/register ../../node_modules/typeorm/cli.js migration:generate -d orm/datasource.ts migrations/{args.name}"
+      }
+    },
+    "migration:create": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cookbook-api",
+        "command": "ts-node -P tsconfig.app.json -r tsconfig-paths/register ../../node_modules/typeorm/cli.js migration:create  migrations/{args.name}"
+      }
+    },
+    "migration:revert": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cookbook-api",
+        "command": "ts-node -P tsconfig.app.json -r tsconfig-paths/register ../../node_modules/typeorm/cli.js migration:revert -d orm/datasource.ts"
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/cookbook-api/Dockerfile . -t cookbook-api"
     }
   },
   "tags": []

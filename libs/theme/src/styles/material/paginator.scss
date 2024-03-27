@@ -1,0 +1,19 @@
+.mat-mdc-paginator {
+  .mat-mdc-paginator-container {
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mat-mdc-form-field {
+      height: 20px;
+    }
+
+    .mat-mdc-paginator-page-size {
+      margin-bottom: 1rem;
+    }
+    .mdc-notched-outline {
+      display: none;
+    }
+  }
+}

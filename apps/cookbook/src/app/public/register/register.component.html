@@ -1,0 +1,77 @@
+<header>
+  <div class="title">
+    <h1>S'inscrire</h1>
+  </div>
+</header>
+@if(!isRegister){
+<form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+  <mat-form-field>
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="givenName" required />
+    <mat-error *ngIf="registerForm.controls.givenName.errors?.['required']"
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="familyName" required />
+    <mat-error *ngIf="registerForm.controls.familyName.errors?.['required']"
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" required />
+    <mat-error *ngIf="registerForm.controls.email.errors?.['required']"
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Mot de passe</mat-label>
+    <input
+      matInput
+      formControlName="password"
+      type="password"
+      minLength="8"
+      required
+    />
+    <mat-error *ngIf="registerForm.controls.password.errors?.['required']"
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Confirmation du Mot de passe</mat-label>
+    <input
+      matInput
+      formControlName="confirmPassword"
+      type="password"
+      required
+    />
+    <mat-error
+      *ngIf="registerForm.controls.confirmPassword.errors?.['required']"
+      >Ce champ est obligatoire</mat-error
+    >
+    <mat-error
+      *ngIf="registerForm.controls.confirmPassword.errors?.['passwordmatcherror']"
+      >Les mots de passe ne correspondent pas</mat-error
+    >
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="accent"
+    type="submit"
+    [disabled]="registerForm.invalid"
+  >
+    S'inscrire
+  </button>
+</form>
+} @else{
+<h2 class="title-explain">Inscription réussi</h2>
+<p>Un courriel vous a été envoyé avec un lien pour activer votre compte.</p>
+
+}

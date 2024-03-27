@@ -1,0 +1,36 @@
+@use 'material/palette' as palette;
+@use '@angular/material' as mat;
+
+.mat-mdc-dialog-container {
+  background-color: palette.$primary-light !important;
+  border: 2px solid palette.$primary-dark !important;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 1000px;
+
+  .mdc-dialog__surface {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  & .mat-mdc-form-field {
+    margin: 1.5rem 0;
+  }
+
+  & h3 {
+    font-size: 1.3rem;
+  }
+  & .action-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+
+    & button {
+      padding: 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+}

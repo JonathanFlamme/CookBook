@@ -1,0 +1,14 @@
+@use 'material/palette' as palette;
+
+header {
+  margin-bottom: 1.5rem;
+  color: palette.$accent;
+
+  & .title {
+    border-bottom: 2px solid palette.$primary-dark;
+
+    & h1 {
+      margin-bottom: 0.1rem;
+    }
+  }
+}

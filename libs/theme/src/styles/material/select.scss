@@ -1,0 +1,15 @@
+@use 'material/palette' as palette;
+
+.mat-mdc-select-panel {
+  border-radius: 5px 5px 20px 20px !important;
+  border: 1px solid palette.$primary-dark;
+  background-color: palette.$primary-light !important;
+
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+    .mdc-list-item__primary-text {
+    color: palette.$primary-dark;
+  }
+  .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+    color: palette.$primary-dark;
+  }
+}

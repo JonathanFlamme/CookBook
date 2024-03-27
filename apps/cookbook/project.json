@@ -2,7 +2,7 @@
   "name": "cookbook",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "cookbook",
+  "prefix": "app",
   "sourceRoot": "apps/cookbook/src",
   "tags": [],
   "targets": {
@@ -17,8 +17,19 @@
         "tsConfig": "apps/cookbook/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/cookbook/src/favicon.ico", "apps/cookbook/src/assets"],
-        "styles": ["apps/cookbook/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "node_modules/slick-carousel/slick/slick.scss",
+          "node_modules/slick-carousel/slick/slick-theme.scss",
+          "apps/cookbook/src/styles.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/theme/src/styles"]
+        },
+        "scripts": [
+          "node_modules/jquery/dist/jquery.min.js",
+          "node_modules/slick-carousel/slick/slick.min.js"
+        ]
       },
       "configurations": {
         "production": {
@@ -46,6 +57,10 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "cookbook:build",
+        "port": 4200
+      },
       "configurations": {
         "production": {
           "buildTarget": "cookbook:build:production"
@@ -64,10 +79,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/cookbook/**/*.ts", "apps/cookbook/**/*.html"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",

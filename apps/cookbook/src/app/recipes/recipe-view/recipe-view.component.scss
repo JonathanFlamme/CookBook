@@ -1,0 +1,136 @@
+@use 'material/palette' as palette;
+@use 'utils/variables' as variables;
+
+header {
+  margin-bottom: 1.5rem;
+  color: palette.$accent-dark;
+
+  & .title {
+    border-bottom: 2px solid palette.$primary-dark;
+    display: flex;
+    justify-content: space-between;
+
+    & h1 {
+      margin-bottom: 0.5rem;
+      span {
+        font-size: 0.9rem;
+      }
+    }
+    & .title-button {
+      padding-top: 1.5rem;
+      margin-right: 2rem;
+      & button:nth-child(1) {
+        margin-right: 1.5rem;
+      }
+    }
+    & fa-icon {
+      font-size: large;
+      padding-left: 10px;
+    }
+  }
+}
+
+.container-categories {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 15px;
+}
+
+.container-ingredient {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: variables.$screen-medium) {
+    flex-direction: row-reverse;
+  }
+
+  & .container-image {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+
+    & .image {
+      width: 17rem;
+      height: 17rem;
+    }
+  }
+
+  & .ingredient {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+    margin-top: 2rem;
+    position: relative;
+    border: 2px solid palette.$accent-dark;
+    border-radius: 20px;
+    background-color: palette.$primary-light;
+
+    @media (min-width: variables.$screen-medium) {
+      width: 50%;
+    }
+
+    & > ul {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-left: 10px;
+      gap: 10px;
+
+      @media (min-width: variables.$screen-large) {
+        column-count: 2;
+      }
+
+      & li {
+        margin-bottom: 30px;
+      }
+    }
+
+    h2 {
+      color: palette.$accent-dark;
+      position: absolute;
+      top: -40px;
+      left: 40px;
+      background: linear-gradient(
+        to bottom,
+        #fafafa 50%,
+        palette.$primary-light
+      );
+      padding: 0 10px;
+    }
+  }
+}
+
+fa-icon {
+  margin-right: 10px;
+}
+
+.container-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-top: 5rem;
+  position: relative;
+  border: 2px solid palette.$accent;
+  border-radius: 20px;
+  background-color: palette.$primary-light;
+
+  & h2 {
+    color: palette.$accent;
+    position: absolute;
+    top: -40px;
+    left: 40px;
+    background: linear-gradient(to bottom, #fafafa 50%, palette.$primary-light);
+    padding: 0 10px;
+  }
+
+  & > ol {
+    background-color: palette.$primary-light;
+    padding-top: 20px;
+  }
+  & li {
+    margin-bottom: 30px;
+  }
+}

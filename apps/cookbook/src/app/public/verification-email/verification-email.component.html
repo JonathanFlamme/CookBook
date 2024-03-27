@@ -1,0 +1,27 @@
+<header>
+  <div class="title">
+    <h1>Vérification de l'adresse mail</h1>
+  </div>
+</header>
+
+@switch (state) { @case ('done') {
+<section class="title-explain">
+  <h2>Félicitations, votre e-mail a été vérifié avec succès !</h2>
+  <button [routerLink]="['/login']" mat-raised-button color="accent">
+    Login
+  </button>
+</section>
+} @case ('invalid') {
+<section class="title-explain">
+  <h2>Désolé, {{ errorMessage }} !</h2>
+</section>
+} @case ('error') {
+<section *ngSwitchCase="'error'" class="title-explain">
+  <h2>Une erreur s'est produite</h2>
+  <p>Veuillez réessayer plus tard.</p>
+</section>
+} @case ('loading') {
+<section *ngSwitchCase="'loading'" class="title-explain">
+  <h2>Vérification en cours</h2>
+</section>
+} }

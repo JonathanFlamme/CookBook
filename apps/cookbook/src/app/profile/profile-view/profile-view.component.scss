@@ -1,0 +1,34 @@
+@use 'material/palette' as palette;
+@use 'utils/variables' as variables;
+
+header {
+  margin-bottom: 1.5rem;
+  color: palette.$accent-dark;
+
+  & .title {
+    border-bottom: 2px solid palette.$accent-dark;
+    display: flex;
+    justify-content: space-between;
+
+    & h1 {
+      margin-bottom: 0.5rem;
+    }
+    & .title-button {
+      padding-top: 1.5rem;
+      margin-right: 2rem;
+    }
+    & fa-icon {
+      font-size: large;
+    }
+  }
+}
+.container-profile {
+  & .container-buttons {
+    padding-top: 2rem;
+    text-align: center;
+
+    & fa-icon {
+      padding-right: 0.7rem;
+    }
+  }
+}

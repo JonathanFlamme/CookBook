@@ -1,0 +1,49 @@
+@use 'material/palette' as palette;
+@use '@angular/material' as mat;
+@use 'utils/variables' as variables;
+
+.container-carousel {
+  position: relative;
+
+  &-title {
+    color: palette.$accent-dark;
+    position: absolute;
+    top: -40px;
+    padding: 0 1rem;
+    z-index: 2;
+    font-size: 1rem;
+  }
+  .slide-carousel {
+    border: 2px solid palette.$accent-dark;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    background-color: palette.$primary-light;
+    display: flex;
+  }
+
+  .img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+@media screen and (min-width: variables.$screen-medium) {
+  .container-carousel {
+    position: relative;
+
+    &-title {
+      top: -40px;
+      left: 30px;
+      font-size: 1.5rem;
+      background: linear-gradient(
+        to bottom,
+        #fafafa 50%,
+        palette.$primary-light
+      );
+    }
+  }
+}
+.slick-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

@@ -1,0 +1,73 @@
+<header>
+  <div class="title">
+    <h1>Mes recettes</h1>
+  </div>
+</header>
+<form [formGroup]="queryForm">
+  <mat-form-field class="filter-query">
+    <span matPrefix><fa-icon icon="search"></fa-icon></span>
+    <input formControlName="query" matInput placeholder="Rechercher par nom" />
+  </mat-form-field>
+</form>
+<form [formGroup]="filterForm">
+  <div class="filter">
+    @if(isLargeScreen$ | async){
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select
+        formControlName="category"
+        aria-label="Selectionner une catégorie"
+      >
+        <mat-option value="">Tout</mat-option>
+
+        @for (option of categoriesLabel; track option.value) {
+        <mat-option [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    } @else{
+    <mat-chip-listbox
+      class="filter-category"
+      formControlName="category"
+      aria-label="Selectionner une catégorie"
+    >
+      <mat-chip-option value="">Tout</mat-chip-option>
+
+      @for (option of categoriesLabel; track option.value) {
+      <mat-chip-option [value]="option.value">
+        {{ option.label }}
+      </mat-chip-option>
+      }
+    </mat-chip-listbox>
+
+    }
+    <div>
+      <mat-form-field class="filter-order-by">
+        <mat-label>Trier</mat-label>
+        <mat-select formControlName="orderBy">
+          <mat-option value="title">Nom</mat-option>
+          <mat-option value="duration">Durée</mat-option>
+          <mat-option value="updatedAt">Date</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filter-order">
+        <mat-label>Ordre</mat-label>
+        <mat-select formControlName="order">
+          <mat-option value="ASC">Asc</mat-option>
+          <mat-option value="DESC">Desc</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<app-recipe-card [recipes]="recipes"></app-recipe-card>
+<mat-paginator
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  showFirstLastButtons="true"
+>
+</mat-paginator>

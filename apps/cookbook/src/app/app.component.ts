@@ -1,29 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { AuthService } from './shared/auth/auth.service';
 
 @Component({
-  selector: 'cookbook-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public title = 'cookbook';
-  public helloApi : string = '';
 
+  constructor(private readonly authService: AuthService) {}
 
-  constructor(private readonly http: HttpClient) {}
-
-  ngOnInit() {
-
-    this.http.get<{ message: string }>(`http://localhost:3000`).subscribe({
-    next:(res) => {
-      console.log(res.message);
-      this.helloApi = res.message
-    },
-    error: () => {
-    console.log('error');
-    },
-  })
+  public ngOnInit(): void {
+    this.authService.autoLogin();
   }
 }

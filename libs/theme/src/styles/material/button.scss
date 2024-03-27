@@ -1,0 +1,68 @@
+@use 'material/palette' as palette;
+
+.mat-mdc-button-base {
+  &[color='primary'] {
+    color: palette.$primary !important;
+    background-color: palette.$primary-light !important;
+    border: 2px solid palette.$primary-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$primary !important;
+      color: white !important;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &[color='accent'] {
+    color: palette.$accent-dark !important;
+    background-color: palette.$accent-light !important;
+    border: 2px solid palette.$accent-dark !important;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$accent !important;
+      color: white !important;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &[color='warn'] {
+    color: palette.$warn !important;
+    background-color: palette.$warn-light !important;
+    border: 2px solid palette.$warn-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: palette.$warn;
+      color: white;
+    }
+  }
+
+  &[color='error'] {
+    color: palette.$error !important;
+    background-color: palette.$error-light !important;
+    border: 2px solid palette.$error-dark !important;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$error;
+      color: white;
+    }
+  }
+
+  &[color='success'] {
+    color: palette.$success;
+    background-color: palette.$success-light;
+    border: 2px solid palette.$success-dark;
+    transition: background-color 0.3s, color 0.3s;
+    &:hover {
+      background-color: palette.$success;
+      color: white;
+    }
+  }
+}

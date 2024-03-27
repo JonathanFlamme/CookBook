@@ -1,0 +1,28 @@
+@use 'material/palette' as palette;
+@use '@angular/material' as mat;
+
+.mat-mdc-chip {
+  background-color: palette.$primary-light !important;
+  border: 2px solid palette.$primary-dark !important;
+  color: palette.$primary-dark !important;
+  transition: background-color 0.3s, color 0.3s;
+  height: 40px !important;
+
+  &:hover {
+    background-color: palette.$primary !important;
+  }
+
+  .mdc-evolution-chip__text-label {
+    color: black;
+    font-size: 1.1rem !important;
+  }
+}
+.mdc-evolution-chip--selected {
+  background-color: palette.$primary !important;
+  .mdc-evolution-chip__text-label {
+    color: black !important;
+  }
+  .mdc-evolution-chip__checkmark {
+    color: black !important;
+  }
+}

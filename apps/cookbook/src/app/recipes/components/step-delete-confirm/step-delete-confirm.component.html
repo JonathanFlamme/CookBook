@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Supprimer cette étape ?</h2>
+<div mat-dialog-content>
+  <p>Etape : {{ data.step.sort }}</p>
+  <p>{{ data.step.description }}</p>
+</div>
+<div class="action-wrapper" mat-dialog-actions>
+  <button mat-raised-button color="error" mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="accent" mat-dialog-close (click)="delete()">
+    Supprimer
+  </button>
+</div>

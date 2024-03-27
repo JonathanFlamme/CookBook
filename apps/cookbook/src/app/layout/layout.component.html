@@ -1,0 +1,75 @@
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    fixedInViewport
+    [opened]="(isHandset$ | async) === false"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  >
+    <mat-toolbar>
+      <a mat-button [routerLink]="['/home']">Yummy book</a>
+    </mat-toolbar>
+
+    <div class="menu-top">
+      <mat-nav-list (click)="closeNavbar(sidenav)">
+        <div>
+          <a mat-button [routerLink]="['/recipes']" routerLinkActive="active"
+            >Recettes</a
+          >
+        </div>
+        <div></div>
+        <div>
+          <a
+            *ngIf="isLogged"
+            mat-button
+            [routerLink]="['/my-recipes']"
+            routerLinkActive="active"
+            >Mes recettes</a
+          >
+        </div>
+      </mat-nav-list>
+    </div>
+    <div class="menu-bottom">
+      <mat-nav-list (click)="closeNavbar(sidenav)">
+        <div></div>
+        <a
+          *ngIf="isLogged"
+          mat-button
+          [routerLink]="['/profile']"
+          routerLinkActive="active"
+          >Profil</a
+        >
+        <a *ngIf="isLogged" mat-button (click)="logout()">Déconnexion</a>
+        <a
+          *ngIf="!isLogged"
+          mat-button
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          >Se connecter</a
+        >
+        <a
+          *ngIf="!isLogged"
+          mat-button
+          [routerLink]="['/register']"
+          routerLinkActive="active"
+          >S'inscrire</a
+        >
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <mat-toolbar class="menu-reduced" *ngIf="(isHandset$ | async) === true">
+      <a mat-button [routerLink]="['/home']"><h1>CookBook</h1></a>
+
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        *ngIf="(isHandset$ | async) === true"
+      >
+        <fa-icon icon="bars"></fa-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
