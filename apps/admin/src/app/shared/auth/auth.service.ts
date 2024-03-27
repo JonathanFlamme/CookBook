@@ -6,12 +6,13 @@ import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import { SnackBarComponent } from '../ui/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = environment.yummyBookUrl;
 
   private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();

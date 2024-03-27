@@ -4,12 +4,13 @@ import { UserModel, UserRole } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = environment.yummyBookUrl;
 
   private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();

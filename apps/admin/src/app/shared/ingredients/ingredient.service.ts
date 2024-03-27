@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IngredientModel, UnitList } from '@cookbook/models';
+import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IngredientService {
-  private baseUrl = 'http://localhost:3000/admin';
+  private baseUrl = environment.yummyBookUrl;
 
   constructor(private readonly http: HttpClient) {}
 

@@ -8,12 +8,13 @@ import {
 } from '@cookbook/models';
 import { Observable } from 'rxjs';
 import { RecipeListQuery } from './recipe-list-query';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
-  private baseUrl = 'http://localhost:3000/admin';
+  private baseUrl = environment.yummyBookUrl;
 
   constructor(private readonly http: HttpClient) {}
 
