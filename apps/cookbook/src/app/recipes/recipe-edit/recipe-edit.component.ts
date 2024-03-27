@@ -187,7 +187,7 @@ export class RecipeEditComponent implements OnInit {
       .subscribe({
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {
-            duration: 100000,
+            duration: 2000,
             data: {
               message: 'La recette a bien été modifié',
               success: true,

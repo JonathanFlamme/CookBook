@@ -25,14 +25,23 @@ export class LandingPageComponent implements OnInit {
   }
 
   slideConfig = {
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     infinite: true,
     pauseOnHover: true,
     arrows: true,
     responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          arrow: true,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+        },
+      },
       {
         breakpoint: 992,
         settings: {

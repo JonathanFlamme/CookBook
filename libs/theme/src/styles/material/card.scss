@@ -5,7 +5,7 @@
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
   margin: 1.5rem auto;
-  overflow: hidden;
+  overflow: visible;
 
   .mat-mdc-card {
     max-width: 100%;
@@ -13,6 +13,8 @@
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
     transition: background-color 0.3s, box-shadow 0.3s;
 
     .mdc-card__media:last-child {
@@ -21,7 +23,8 @@
     }
 
     &:hover {
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3);
+      transition: box-shadow 0.3s ease;
       background-color: palette.$primary-light;
     }
 

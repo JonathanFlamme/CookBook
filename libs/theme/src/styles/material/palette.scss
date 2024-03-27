@@ -4,23 +4,29 @@
 
 @use '@angular/material' as mat;
 
-$theme-primary-light: mat.define-palette(mat.$deep-orange-palette, 50);
+$theme-layout: mat.define-palette(mat.$light-green-palette, 200);
+$layout: mat.get-color-from-palette($theme-layout);
+
+$selected-menu: orange;
+
+// ---------------------- Color Palette THEME 1 ---------------------- //
+$theme-primary-light: mat.define-palette(mat.$light-green-palette, 50);
 $theme-primary: mat.define-palette(
-  mat.$deep-orange-palette,
+  mat.$light-green-palette,
   300
 ) !default; // Customizable
-$theme-primary-dark: mat.define-palette(mat.$deep-orange-palette, 700);
+$theme-primary-dark: mat.define-palette(mat.$light-green-palette, 700);
 
 $theme-accent: mat.define-palette(
-  mat.$light-green-palette,
-  400
+  mat.$brown-palette,
+  500
 ) !default; // Customizable
-$theme-accent-light: mat.define-palette(mat.$light-green-palette, 50);
-$theme-accent-dark: mat.define-palette(mat.$light-green-palette, 800);
+$theme-accent-light: mat.define-palette(mat.$brown-palette, 50);
+$theme-accent-dark: mat.define-palette(mat.$brown-palette, 600);
 
 $theme-warn-light: mat.define-palette(mat.$orange-palette, 50);
 $theme-warn: mat.define-palette(mat.$orange-palette);
-$theme-warn-dark: mat.define-palette(mat.$orange-palette, 700);
+$theme-warn-dark: mat.define-palette(mat.$deep-orange-palette, 700);
 $theme-success: mat.define-palette(mat.$green-palette);
 $theme-success-dark: mat.define-palette(mat.$green-palette, 700);
 $theme-success-light: mat.define-palette(mat.$green-palette, 50);
@@ -31,6 +37,7 @@ $theme-error-dark: mat.define-palette(mat.$red-palette, 700);
 
 $primary-light: mat.get-color-from-palette($theme-primary-light);
 $primary: mat.get-color-from-palette($theme-primary);
+
 $primary-dark: mat.get-color-from-palette($theme-primary-dark);
 $accent-light: mat.get-color-from-palette($theme-accent-light);
 $accent: mat.get-color-from-palette($theme-accent);
@@ -44,3 +51,12 @@ $success-dark: mat.get-color-from-palette($theme-success-dark);
 $error-light: mat.get-color-from-palette($theme-error-light);
 $error: mat.get-color-from-palette($theme-error);
 $error-dark: mat.get-color-from-palette($theme-error-dark);
+
+$selected-color: mat.get-color-from-palette($theme-primary-dark);
+@function changeColor($color) {
+  @if $color == 'primary' {
+    $selected-color: mat.get-color-from-palette($theme-primary-dark);
+  } @else if $color == 'accent' {
+    $selected-color: mat.get-color-from-palette($theme-accent);
+  }
+}

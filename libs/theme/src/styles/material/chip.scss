@@ -10,25 +10,19 @@
 
   &:hover {
     background-color: palette.$primary !important;
-    .mdc-evolution-chip__text-label {
-      color: white !important;
-    }
-  }
-
-  .mdc-evolution-chip__checkmark {
-    color: white !important;
   }
 
   .mdc-evolution-chip__text-label {
     color: black;
+    font-size: 1.1rem !important;
   }
 }
 .mdc-evolution-chip--selected {
   background-color: palette.$primary !important;
   .mdc-evolution-chip__text-label {
-    color: white !important;
+    color: black !important;
   }
   .mdc-evolution-chip__checkmark {
-    color: white !important;
+    color: black !important;
   }
 }
