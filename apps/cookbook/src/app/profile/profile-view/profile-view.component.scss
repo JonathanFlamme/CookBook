@@ -3,10 +3,10 @@
 
 header {
   margin-bottom: 1.5rem;
-  color: palette.$primary-dark;
+  color: palette.$accent-dark;
 
   & .title {
-    border-bottom: 2px solid palette.$primary-dark;
+    border-bottom: 2px solid palette.$accent-dark;
     display: flex;
     justify-content: space-between;
 
@@ -14,7 +14,7 @@ header {
       margin-bottom: 0.5rem;
     }
     & .title-button {
-      padding-top: 2rem;
+      padding-top: 1.5rem;
       margin-right: 2rem;
     }
     & fa-icon {

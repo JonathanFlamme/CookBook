@@ -19,6 +19,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
   `,
   styles: [
     `
+      @use 'material/palette' as palette;
       button {
         position: absolute;
         top: 29px;
@@ -26,7 +27,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
         font-size: 2rem;
 
         & fa-icon {
-          color: #ff6f61;
+          color: palette.$accent;
         }
       }
     `,

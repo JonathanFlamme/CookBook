@@ -6,7 +6,7 @@
   position: relative;
 
   &-title {
-    color: palette.$primary-dark;
+    color: palette.$accent-dark;
     position: absolute;
     top: -40px;
     padding: 0 1rem;
@@ -14,7 +14,7 @@
     font-size: 1rem;
   }
   .slide-carousel {
-    border: 2px solid palette.$primary-dark;
+    border: 2px solid palette.$accent-dark;
     border-radius: 20px;
     padding: 0.5rem 1rem;
     background-color: palette.$primary-light;

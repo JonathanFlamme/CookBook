@@ -3,7 +3,7 @@
 
 header {
   margin-bottom: 1.5rem;
-  color: palette.$primary-dark;
+  color: palette.$accent-dark;
 
   & .title {
     border-bottom: 2px solid palette.$primary-dark;
@@ -17,7 +17,7 @@ header {
       }
     }
     & .title-button {
-      padding-top: 2rem;
+      padding-top: 1.5rem;
       margin-right: 2rem;
       & button:nth-child(1) {
         margin-right: 1.5rem;
@@ -65,7 +65,7 @@ header {
     width: 100%;
     margin-top: 2rem;
     position: relative;
-    border: 2px solid palette.$primary-dark;
+    border: 2px solid palette.$accent-dark;
     border-radius: 20px;
     background-color: palette.$primary-light;
 
@@ -89,7 +89,7 @@ header {
     }
 
     h2 {
-      color: palette.$primary-dark;
+      color: palette.$accent-dark;
       position: absolute;
       top: -40px;
       left: 40px;
@@ -113,12 +113,12 @@ fa-icon {
   justify-content: left;
   margin-top: 5rem;
   position: relative;
-  border: 2px solid palette.$primary-dark;
+  border: 2px solid palette.$accent;
   border-radius: 20px;
   background-color: palette.$primary-light;
 
   & h2 {
-    color: palette.$primary-dark;
+    color: palette.$accent;
     position: absolute;
     top: -40px;
     left: 40px;
