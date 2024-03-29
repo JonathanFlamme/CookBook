@@ -5,7 +5,9 @@
   "scripts": {
     "ng": "nx",
     "start": "nx run-many --target=serve --projects=cookbook,cookbook-api,admin --parallel",
-    "build": "nx build",
+    "build-cookbook": "nx build cookbook:build",
+    "build-admin": "nx build admin:build",
+    "build-cookbook-api": "nx build cookbook-api:build",
     "test": "nx test"
   },
   "private": true,
