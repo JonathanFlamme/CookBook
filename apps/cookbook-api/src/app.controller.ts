@@ -6,6 +6,7 @@ import {
   Res,
   HttpCode,
   HttpStatus,
+  Get,
 } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { RegisterDto } from './auth/register.dto';
@@ -22,6 +23,10 @@ import { PasswordResetDto } from './auth/password-reset.dto';
 export class AppController {
   constructor(private readonly authService: AuthService) {}
 
+  @Get()
+  getHello(): string {
+    return 'Hello World!';
+  }
   /**
    * Login a new user
    */

@@ -26,7 +26,7 @@
 
 ## Author
 
-👤 **Jonathan Flamme**
+👤 **Jonathan Flammie**
 
 - Website: https://jonathan-flamme.netlify.app/
 - Github: [@JoflammeFLamme](https://github.com/JonathanFlamme)

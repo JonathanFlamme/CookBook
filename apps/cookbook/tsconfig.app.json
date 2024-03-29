@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "../../api/dist/out-tsc",
     "types": []
   },
   "files": ["src/main.ts"],

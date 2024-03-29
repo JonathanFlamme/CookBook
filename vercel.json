@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "nx build cookbook-api:build",
+
+  "builds": [
+    {
+      "src": "dist/apps/cookbook-api/src/main.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/apps/cookbook-api/src/main.js"
+    }
+  ]
+}

@@ -11,8 +11,9 @@ async function bootstrap() {
   });
 
   app.use(cookieParser());
+
   app.enableCors({
-    origin: true,
+    origin: 'https://cook-book-git-deploy-jo-test.vercel.app',
     credentials: true,
   });
 
