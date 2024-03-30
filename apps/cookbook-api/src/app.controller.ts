@@ -63,7 +63,7 @@ export class AppController {
    * Register a new user
    */
   @Post('register')
-  register(@Body(new SanitizerPipe()) body: RegisterDto): Promise<UserEntity> {
+  register(@Body() body: RegisterDto): Promise<UserEntity> {
     return this.authService.register(body);
   }
 

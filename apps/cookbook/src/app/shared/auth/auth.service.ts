@@ -31,13 +31,17 @@ export class AuthService {
     password: string,
     confirmPassword: string,
   ): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.baseUrl}/register`, {
-      givenName,
-      familyName,
-      email,
-      password,
-      confirmPassword,
-    });
+    return this.http.post<UserModel>(
+      `${this.baseUrl}/register`,
+      {
+        givenName,
+        familyName,
+        email,
+        password,
+        confirmPassword,
+      },
+      { withCredentials: true },
+    );
   }
 
   public login(username: string, password: string): Observable<UserToken> {
@@ -68,13 +72,15 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.http.post(`${this.baseUrl}/logout`, {}).subscribe({
-      next: () => {
-        this.isLoggedInSubject.next(null);
-        this.router.navigate(['/login']);
-        this.isAdmin();
-      },
-    });
+    this.http
+      .post(`${this.baseUrl}/logout`, { withCredentials: true })
+      .subscribe({
+        next: () => {
+          this.isLoggedInSubject.next(null);
+          this.router.navigate(['/login']);
+          this.isAdmin();
+        },
+      });
     this.storageService.clean();
   }
 

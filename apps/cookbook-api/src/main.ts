@@ -14,7 +14,15 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: 'https://cook-book-git-deploy-jo-test.vercel.app',
+    // origin: 'https://deploy--cookbook-nx.netlify.app',
+    // origin: ' https://cookbook-nx.netlify.app',
+
+    origin: [
+      'https://cook-book-git-deploy-jo-test.vercel.app',
+      'https://deploy--cookbook-nx.netlify.app',
+      'https://cookbook-nx.netlify.app',
+    ],
+
     credentials: true,
   });
 

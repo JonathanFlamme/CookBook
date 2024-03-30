@@ -36,6 +36,7 @@ export class RecipeService {
           orderBy: params.orderBy || 'updatedAt',
           order: params.order || 'DESC',
         },
+        withCredentials: true,
       },
     );
   }

@@ -39,21 +39,21 @@ export class AuthService {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(body.password, saltRounds);
 
-    const emailToken = await this.generateToken();
+    // const emailToken = await this.generateToken();
 
     const user = this.userRepository.create({
       givenName: body.givenName.trim(),
       familyName: body.familyName.trim(),
       email: body.email.toLowerCase().trim(),
       password: hashedPassword,
-      emailToken,
+      // emailToken,
     });
 
     try {
       await this.userRepository.save(user);
 
       // send email validation
-      await this.emailService.sendEmailValidation(user);
+      // await this.emailService.sendEmailValidation(user);
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException("L'utilisateur existe déjà");
@@ -105,7 +105,7 @@ export class AuthService {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       secure: true,
-      sameSite: 'strict',
+      sameSite: 'none',
     });
   }
 
@@ -115,7 +115,7 @@ export class AuthService {
       expires: new Date(0),
       httpOnly: true,
       secure: true,
-      sameSite: 'strict',
+      sameSite: 'none',
     });
   }
 

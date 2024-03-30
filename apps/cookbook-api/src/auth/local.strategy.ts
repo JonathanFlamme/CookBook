@@ -13,7 +13,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   async validate(email: string, password: string): Promise<UserEntity> {
     const user = await this.authService.validateUser(email, password);
     if (!user) {
-      throw new Error('invalid identifier');
+      throw new Error('invalid identifier after login');
     }
     return user;
   }
