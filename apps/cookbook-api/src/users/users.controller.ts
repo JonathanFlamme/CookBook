@@ -3,7 +3,7 @@ import { UserEntity } from './user.entity';
 import { User } from '../auth/user.decorator';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { UserRequest, UserRole } from '@cookbook/models';
+import { UserRequest, UserRole } from '../models/src/index';
 import { ChangePasswordDto } from './change-password.dto';
 import { SanitizerPipe } from '../common/sanitizer.pipe';
 import { Auth } from '../auth/auth.decorator';

@@ -10,7 +10,7 @@ import {
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
-import { UserRole } from '@cookbook/models';
+import { UserRole } from '../models/src/index';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';
 @Controller('admin')

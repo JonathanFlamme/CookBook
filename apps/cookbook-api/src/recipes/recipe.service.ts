@@ -9,7 +9,7 @@ import { RecipeEntity } from './recipe.entity';
 import { Between, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RecipeDto } from './recipe.dto';
-import { PaginatedResult, RecipeModel, UserRole } from '@cookbook/models';
+import { PaginatedResult, RecipeModel, UserRole } from '../models/src/index';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { StepEntity } from '../steps/step.entity';
 import { UserEntity } from '../users/user.entity';

@@ -17,7 +17,7 @@ import {
   RecipeModel,
   UserRequest,
   UserRole,
-} from '@cookbook/models';
+} from '../models/src/index';
 import { RecipeEntity } from './recipe.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorator';

@@ -1,4 +1,5 @@
-import { UserRequest, UserRole } from '@cookbook/models';
+import { UserRequest, UserRole } from '../models/src/index';
+
 import {
   CanActivate,
   ExecutionContext,

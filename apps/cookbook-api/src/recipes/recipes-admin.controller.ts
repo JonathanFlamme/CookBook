@@ -13,7 +13,7 @@ import { RecipeService } from './recipe.service';
 
 import { RecipeEntity } from './recipe.entity';
 import { RecipesListDto } from './recipes-list.dto';
-import { PaginatedResult, RecipeModel, UserRole } from '@cookbook/models';
+import { PaginatedResult, RecipeModel, UserRole } from '../models/src/index';
 import { Auth } from '../auth/auth.decorator';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { AuthGuard } from '../auth/auth.guard';

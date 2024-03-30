@@ -12,7 +12,7 @@ import { IngredientDto } from './ingredient.dto';
 import { IngredientEntity } from './ingredient.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.gard';
 import { User } from '../auth/user.decorator';
-import { UserRequest, UserRole } from '@cookbook/models';
+import { UserRequest, UserRole } from '../models/src/index';
 import { Auth } from '../auth/auth.decorator';
 import { AuthGuard } from '../auth/auth.guard';
 import { SanitizerIngredientPipe } from '../common/sanitizer-ingredient.pipe';

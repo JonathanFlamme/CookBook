@@ -1,7 +1,7 @@
 import { IsString, IsOptional } from 'class-validator';
 import { IngredientDto } from '../ingredients/ingredient.dto';
 import { StepDto } from '../steps/step.dto';
-import { CategoryType } from '@cookbook/models';
+import { CategoryType } from '../models/src/index';
 
 export class RecipeDto {
   @IsString()

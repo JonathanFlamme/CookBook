@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { StepModel } from '@cookbook/models';
+import { StepModel } from '../models/src/index';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'step' })

@@ -7,7 +7,7 @@ import {
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserModel, UserQuotas, UserRole } from '@cookbook/models';
+import { UserModel, UserQuotas, UserRole } from '../models/src/index';
 import { RecipeEntity } from '../recipes/recipe.entity';
 import { Exclude } from 'class-transformer';
 

@@ -6,7 +6,7 @@ import {
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserRole } from '@cookbook/models';
+import { UserRole } from '../models/src/index';
 import { ChangePasswordDto } from './change-password.dto';
 import bcrypt from 'bcrypt';
 import { EditProfiledDto } from './edit-profile.dto';

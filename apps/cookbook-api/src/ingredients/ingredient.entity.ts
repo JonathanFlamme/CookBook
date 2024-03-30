@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IngredientModel, UnitList } from '@cookbook/models';
+import { IngredientModel, UnitList } from '../models/src/index';
 import { RecipeEntity } from '../recipes/recipe.entity';
 
 @Entity({ name: 'ingredient' })

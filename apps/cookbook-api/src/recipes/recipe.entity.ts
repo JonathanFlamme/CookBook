@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CategoryType, RecipeModel } from '@cookbook/models';
+import { CategoryType, RecipeModel } from '../models/src/index';
 import { StepEntity } from '../steps/step.entity';
 import { IngredientEntity } from '../ingredients/ingredient.entity';
 import { UserEntity } from '../users/user.entity';

@@ -18,14 +18,23 @@ import { SanitizerPipe } from './common/sanitizer.pipe';
 import { UserRequest, UserToken } from '@cookbook/models';
 import { JwtAuthGuard } from './auth/jwt-auth.gard';
 import { PasswordResetDto } from './auth/password-reset.dto';
+import { AppsService } from './apps.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly appsService: AppsService,
+  ) {}
 
   @Get()
   getHello(): string {
     return 'Hello World!';
+  }
+
+  @Get('fuck')
+  getFuck(): string {
+    return 'Hello fucking World!';
   }
   /**
    * Login a new user

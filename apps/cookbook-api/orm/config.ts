@@ -14,7 +14,9 @@ export const config: DataSourceOptions = {
   database: configService.get<string>('DATABASE_DATABASE'),
   entities,
   migrations,
-  ssl: true,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 };
 
 export default config;

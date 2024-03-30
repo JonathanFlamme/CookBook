@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
-    "start": "nx run-many --target=serve --projects=cookbook,cookbook-api,admin --parallel",
+    "dev": "nx run-many --target=serve --projects=cookbook,cookbook-api,admin --parallel",
+    "build": "nx run-many --target=build --projects=cookbook-api",
+    "start": "node dist/apps/cookbook-api/main.js",
     "build-cookbook": "nx build cookbook:build",
     "build-admin": "nx build admin:build",
     "build-cookbook-api": "nx build cookbook-api:build",
