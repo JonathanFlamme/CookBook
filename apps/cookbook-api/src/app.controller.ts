@@ -14,7 +14,7 @@ import { UserEntity } from './users/user.entity';
 import { LocalAuthGuard } from './auth/local-auth.gard';
 import { Response as ResponseType } from 'express';
 import { User } from './auth/user.decorator';
-import { SanitizerPipe } from './common/sanitizer.pipe';
+// import { SanitizerPipe } from './common/sanitizer.pipe';
 import { UserRequest, UserToken } from '@cookbook/models';
 import { JwtAuthGuard } from './auth/jwt-auth.gard';
 import { PasswordResetDto } from './auth/password-reset.dto';
