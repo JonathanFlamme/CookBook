@@ -1,5 +1,6 @@
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -23,7 +24,7 @@ export class HttpInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     const authToken = localStorage.getItem('access_token');
-    if (authToken) {
+    if (authToken && this.isToCookbookAPI(request.url)) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${authToken}`,
@@ -34,4 +35,10 @@ export class HttpInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
   // -------- TOKEN IN HEADER ------- //
+
+  // Check if the request is to the cookbook-API
+  private isToCookbookAPI(url: string): boolean {
+    const baseUrl = environment.yummyBookUrl;
+    return url.includes(baseUrl);
+  }
 }
