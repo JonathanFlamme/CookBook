@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map, take } from 'rxjs';
 import { AuthService } from '../shared/auth/auth.service';
-import { UserModel } from '@cookbook/models';
+import { UserRequest } from '@cookbook/models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../shared/ui/snack-bar/snack-bar.component';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -14,7 +14,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class LayoutComponent implements OnInit {
   public reduced = false;
-  public isLogged: UserModel | null = null;
+  public isLogged: UserRequest | null = null;
   public isAdmin$: Observable<boolean> = new Observable<boolean>();
 
   public isHandset$: Observable<boolean> = this.breakpointObserver

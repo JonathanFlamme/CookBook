@@ -14,7 +14,7 @@ import { LocalAuthGuard } from './auth/local-auth.gard';
 import { Response as ResponseType } from 'express';
 import { User } from './auth/user.decorator';
 import { SanitizerPipe } from './common/sanitizer.pipe';
-import { UserRequest } from '@cookbook/models';
+import { UserRequest, UserToken } from '@cookbook/models';
 import { JwtAuthGuard } from './auth/jwt-auth.gard';
 import { PasswordResetDto } from './auth/password-reset.dto';
 
@@ -31,9 +31,17 @@ export class AppController {
     @User() user: UserEntity,
     @Res() res: ResponseType,
   ): Promise<UserRequest> {
-    const authToken = await this.authService.generateJwtToken(user);
-    this.authService.storeTokenInCookie(res, authToken.access_token);
-    res.status(200).send(authToken.payload);
+    const authToken: UserToken = await this.authService.generateJwtToken(user);
+
+    // !! Choice between cookies or token headers mode
+    // ------ COOKIES MODE ------ //
+    // this.authService.storeTokenInCookie(res, authToken.access_token);
+    // res.status(200).send(authToken.payload);
+    // ------ END COOKIES MODE ------ //
+
+    // ------ TOKEN HEADER MODE ------ //
+    res.status(200).json(authToken);
+    // ------ TOKEN END HEADER MODE ------ //
     return;
   }
 

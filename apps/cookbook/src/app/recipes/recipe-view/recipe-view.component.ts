@@ -39,7 +39,7 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
 
         const user = this.storageService.getSavedUser();
         if (user) {
-          this.ownRecipe = recipe.userId === user.id;
+          this.ownRecipe = recipe.userId === user.userId;
         }
       },
     });
