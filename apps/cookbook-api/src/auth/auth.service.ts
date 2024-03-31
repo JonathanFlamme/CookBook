@@ -79,7 +79,7 @@ export class AuthService {
       throw new NotFoundException("L'utilisateur n'a pas été trouvé");
     }
 
-    const payload = { id: user.id, role: user.role };
+    const payload = { userId: user.id, role: user.role };
 
     return {
       payload,

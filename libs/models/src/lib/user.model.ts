@@ -27,3 +27,8 @@ export interface UserRequest {
   userId: string;
   role: string;
 }
+
+export interface UserToken {
+  access_token: string;
+  payload: UserRequest;
+}

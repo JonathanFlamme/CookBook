@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { RecipeModel, UserModel } from '@cookbook/models';
+import { RecipeModel, UserRequest } from '@cookbook/models';
 import { AuthService } from '../../auth/auth.service';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class RecipeCardComponent implements OnInit {
   @Input() public recipes: RecipeModel[] = [];
 
-  public isLogged: UserModel | null = null;
+  public isLogged: UserRequest | null = null;
   public pageEvent = new PageEvent();
 
   constructor(private readonly authService: AuthService) {}
