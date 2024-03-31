@@ -4,10 +4,11 @@ import { Repository } from 'typeorm';
 import { UserEntity } from '../users/user.entity';
 import * as nodemailer from 'nodemailer';
 import { ConfigService } from '@nestjs/config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class EmailService {
-  private cookbookUrl = 'http://localhost:4200';
+  private cookbookUrl = environment.yummyBookUrl;
 
   constructor(
     private readonly configService: ConfigService,
