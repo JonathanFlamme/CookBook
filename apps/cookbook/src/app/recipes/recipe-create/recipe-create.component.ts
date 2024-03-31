@@ -128,6 +128,15 @@ export class RecipeCreateComponent implements OnDestroy {
           });
           this.router.navigate(['/recipes']);
         },
+        error: (error) => {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+            data: {
+              message: error.error.message || 'Une erreur est survenue',
+              success: false,
+            },
+          });
+        },
       });
     this.subscriptions.push(sub);
   }

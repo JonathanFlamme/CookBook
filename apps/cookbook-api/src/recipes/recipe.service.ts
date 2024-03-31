@@ -119,7 +119,7 @@ export class RecipeService {
       const quota = await this.countByMonth(userId);
       if (quota >= user.quotas.recipePerMonth) {
         throw new BadRequestException(
-          'Vous avez atteint votre quota de recettes pour ce mois-ci',
+          `Vous ne pouvez pas ajouter plus de ${quota} recette(s) ce mois-ci`,
         );
       }
     }
