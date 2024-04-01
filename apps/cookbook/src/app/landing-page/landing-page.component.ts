@@ -15,12 +15,14 @@ import { RecipeModel } from '@cookbook/models';
 })
 export class LandingPageComponent implements OnInit {
   public recipes: RecipeModel[] = [];
+  public loading = true;
 
   constructor(private readonly recipeService: RecipeService) {}
 
   public ngOnInit(): void {
     this.recipeService.lastRecipes().subscribe((recipes) => {
       this.recipes = recipes;
+      this.loading = false;
     });
   }
 

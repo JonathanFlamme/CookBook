@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class IngredientService {
-  private baseUrl = environment.yummyBookUrl;
+  private baseUrl = `${environment.yummyBookUrl}/admin`;
 
   constructor(private readonly http: HttpClient) {}
 

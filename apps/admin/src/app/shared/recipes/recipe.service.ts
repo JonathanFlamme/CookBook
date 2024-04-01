@@ -14,7 +14,7 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class RecipeService {
-  private baseUrl = environment.yummyBookUrl;
+  private baseUrl = `${environment.yummyBookUrl}/admin`;
 
   constructor(private readonly http: HttpClient) {}
 
