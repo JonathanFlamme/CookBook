@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserModel, UserRole } from '@cookbook/models';
+import { UserRequest, UserRole, UserToken } from '@cookbook/models';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
@@ -12,9 +12,9 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = environment.yummyBookUrl;
+  private baseUrl = `${environment.yummyBookUrl}`;
 
-  private isLoggedInSubject = new BehaviorSubject<UserModel | null>(null);
+  private isLoggedInSubject = new BehaviorSubject<UserRequest | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();
 
   private isAdminInSubject = new BehaviorSubject<boolean>(false);
@@ -27,9 +27,9 @@ export class AuthService {
     private readonly snackBar: MatSnackBar,
   ) {}
 
-  public login(username: string, password: string): Observable<UserModel> {
+  public login(username: string, password: string): Observable<UserToken> {
     return this.http
-      .post<UserModel>(`${this.baseUrl}/login`, {
+      .post<UserToken>(`${this.baseUrl}/login`, {
         username,
         password,
       })
@@ -37,10 +37,11 @@ export class AuthService {
         catchError((error) => {
           throw error;
         }),
-        tap((user) => {
-          this.storageService.saveUser(user);
-          this.isLoggedInSubject.next(user);
+        tap((authToken) => {
+          this.storageService.saveUser(authToken.payload);
+          this.isLoggedInSubject.next(authToken.payload);
           this.isAdmin();
+          this.storageService.saveToken(authToken.access_token); // --- WITHOUT COOKIE - store JWT in localStorage ---  Remove it when cookie mode//
         }),
       );
   }
@@ -53,17 +54,18 @@ export class AuthService {
     }
   }
   public logout(): void {
-    this.storageService.clean();
     this.http.post(`${this.baseUrl}/logout`, {}).subscribe({
       next: () => {
         this.isLoggedInSubject.next(null);
         this.isAdmin();
+        this.router.navigate(['/login']);
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,
           data: { message: 'Vous êtes maintenant déconnecté' },
         });
       },
     });
+    this.storageService.clean();
   }
 
   // check if user is admin
