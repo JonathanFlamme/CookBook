@@ -51,6 +51,7 @@
 
 <section class="container-carousel">
   <h2 class="container-carousel-title">Découvrez nos dernières recettes :</h2>
+  @if(!loading){
   <ngx-slick-carousel
     class="slide-carousel"
     #slickModal="slick-carousel"
@@ -76,4 +77,5 @@
     </div>
     }
   </ngx-slick-carousel>
+  }
 </section>
