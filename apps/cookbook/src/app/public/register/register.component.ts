@@ -18,8 +18,14 @@ export class RegisterComponent {
       userName: this.fb.control<string>('', Validators.required),
       givenName: this.fb.control<string>(''),
       familyName: this.fb.control<string>(''),
-      email: this.fb.control<string>('', Validators.required),
-      password: this.fb.control<string>('', Validators.required),
+      email: this.fb.control<string>('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: this.fb.control<string>('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       confirmPassword: this.fb.control<string>('', Validators.required),
     },
     { validators: matchPassword },
