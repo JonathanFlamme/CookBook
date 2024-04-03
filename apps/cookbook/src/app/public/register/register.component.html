@@ -6,19 +6,22 @@
 @if(!isRegister){
 <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
   <mat-form-field>
-    <mat-label>Prénom</mat-label>
-    <input matInput formControlName="givenName" required />
-    <mat-error *ngIf="registerForm.controls.givenName.errors?.['required']"
+    <mat-label>Nom d'utilisateur</mat-label>
+    <input matInput formControlName="userName" required />
+    <mat-error *ngIf="registerForm.controls.userName.errors?.['required']"
       >Ce champ est obligatoire</mat-error
     >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="givenName" />
+    <mat-hint>Optionnel</mat-hint>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Nom</mat-label>
-    <input matInput formControlName="familyName" required />
-    <mat-error *ngIf="registerForm.controls.familyName.errors?.['required']"
-      >Ce champ est obligatoire</mat-error
-    >
+    <input matInput formControlName="familyName" />
+    <mat-hint>Optionnel</mat-hint>
   </mat-form-field>
 
   <mat-form-field>

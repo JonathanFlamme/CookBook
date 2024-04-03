@@ -42,6 +42,7 @@ export class AuthService {
     const emailToken = await this.generateToken();
 
     const user = this.userRepository.create({
+      userName: body.userName.trim(),
       givenName: body.givenName.trim(),
       familyName: body.familyName.trim(),
       email: body.email.toLowerCase().trim(),

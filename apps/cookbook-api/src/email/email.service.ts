@@ -36,7 +36,7 @@ export class EmailService {
         to: user.email,
         subject: 'Vérification de votre adresse e-mail',
         html: `
-        <p>Bonjour ${user.givenName},</p>
+        <p>Bonjour ${user.userName},</p>
         <p>Merci de vous être inscrit.</p>
         <p>Cliquez sur le lien ci-dessous pour valider votre adresse e-mail :</p>
         <p><a href="${this.cookbookUrl}/verify/${user.emailToken.token}">Valider mon adresse e-mail</a></p>
@@ -65,7 +65,7 @@ export class EmailService {
         to: user.email,
         subject: 'Réinitialisation de votre mot de passe',
         html: `
-        <p>Bonjour ${user.givenName},</p>
+        <p>Bonjour ${user.userName},</p>
         <p>Nous avons reçu une demande de réinitialisation de votre mot de passe.</p>
         <p>Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe :</p>
         <p><a href="${this.cookbookUrl}/reset/${user.passwordToken.token}">Réinitialiser mon mot de passe</a></p>

@@ -15,8 +15,9 @@ export class RegisterComponent {
 
   public registerForm = this.fb.group(
     {
-      givenName: this.fb.control<string>('', Validators.required),
-      familyName: this.fb.control<string>('', Validators.required),
+      userName: this.fb.control<string>('', Validators.required),
+      givenName: this.fb.control<string>(''),
+      familyName: this.fb.control<string>(''),
       email: this.fb.control<string>('', Validators.required),
       password: this.fb.control<string>('', Validators.required),
       confirmPassword: this.fb.control<string>('', Validators.required),
@@ -35,6 +36,7 @@ export class RegisterComponent {
 
     this.authService
       .register(
+        register.userName!,
         register.givenName!,
         register.familyName!,
         register.email!,
