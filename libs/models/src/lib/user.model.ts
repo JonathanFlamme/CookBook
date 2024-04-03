@@ -3,6 +3,7 @@ import { RecipeModel } from './recipe.model';
 export interface UserModel {
   id: string;
   role: UserRole;
+  userName: string;
   givenName: string;
   familyName: string;
   quotas: UserQuotas;
