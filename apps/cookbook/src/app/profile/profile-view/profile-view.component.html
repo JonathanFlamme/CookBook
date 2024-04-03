@@ -3,13 +3,22 @@
     <h1>Profile</h1>
     <div class="title-button">
       <button
-        aria-label="Modifier la recette"
+        aria-label="Modifier le profile"
         mat-mini-fab
         type="button"
         color="accent"
         (click)="editProfile()"
       >
         <fa-icon icon="pen"></fa-icon>
+      </button>
+      <button
+        aria-label="Suprrimer le profile"
+        mat-mini-fab
+        type="button"
+        color="accent"
+        (click)="removeProfile()"
+      >
+        <fa-icon icon="trash-alt"></fa-icon>
       </button>
     </div>
   </div>

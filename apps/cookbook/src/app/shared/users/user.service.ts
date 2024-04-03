@@ -58,4 +58,8 @@ export class UserService {
       email,
     });
   }
+
+  public delete(userId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/profile/${userId}`);
+  }
 }

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { UserEntity } from './user.entity';
 import { User } from '../auth/user.decorator';
 import { UserService } from './user.service';
@@ -46,5 +54,15 @@ export class UserController {
     @Body(new SanitizerPipe()) body: EditProfiledDto,
   ): Promise<UserEntity> {
     return this.userService.edit(user.userId, body);
+  }
+
+  /**
+   * Delete profile
+   */
+  @Auth(UserRole.User)
+  @UseGuards(JwtAuthGuard, AuthGuard)
+  @Delete('profile/:userId')
+  delete(@User() user: UserRequest): Promise<void> {
+    return this.userService.delete(user.userId);
   }
 }

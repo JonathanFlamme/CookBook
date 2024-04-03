@@ -6,6 +6,7 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { MatDialog } from '@angular/material/dialog';
 import { SnackBarComponent } from '../../shared/ui/snack-bar/snack-bar.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { UserDeleteComponent } from '../user-delete/user-delete.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -59,6 +60,14 @@ export class ProfileViewComponent implements OnInit {
       if (profile) {
         this.profile = profile;
       }
+    });
+  }
+
+  public removeProfile(): void {
+    this.dialog.open(UserDeleteComponent, {
+      data: {
+        user: this.profile,
+      },
     });
   }
 }
