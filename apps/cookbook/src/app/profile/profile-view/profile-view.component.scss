@@ -14,8 +14,9 @@ header {
       margin-bottom: 0.5rem;
     }
     & .title-button {
+      display: flex;
+      gap: 1rem;
       padding-top: 1.5rem;
-      margin-right: 2rem;
     }
     & fa-icon {
       font-size: large;
