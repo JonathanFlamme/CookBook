@@ -48,11 +48,13 @@ export class UserService {
   }
 
   public edit(
+    userName: string,
     givenName: string,
     familyName: string,
     email: string,
   ): Observable<UserModel> {
     return this.http.patch<UserModel>(`${this.baseUrl}/profile`, {
+      userName,
       givenName,
       familyName,
       email,

@@ -107,6 +107,7 @@ export class UserService {
       throw new BadRequestException("L'utilisateur n'a pas été trouvé");
     }
 
+    user.userName = body.userName;
     user.familyName = body.familyName;
     user.givenName = body.givenName;
     user.email = body.email;
