@@ -19,6 +19,7 @@ export class UserEditComponent implements OnInit {
   ) {}
 
   public profileForm = this.fb.group({
+    userName: this.fb.control<string>(this.data.user.userName),
     givenName: this.fb.control<string>(this.data.user.givenName),
     familyName: this.fb.control<string>(this.data.user.familyName),
     email: this.fb.control<string>(this.data.user.email),
@@ -29,13 +30,15 @@ export class UserEditComponent implements OnInit {
   }
 
   public edit(): void {
-    const { givenName, familyName, email } = this.profileForm.value;
+    const { userName, givenName, familyName, email } = this.profileForm.value;
 
-    this.userService.edit(givenName!, familyName!, email!).subscribe({
-      next: (profile) => {
-        this.dialogRef.close(profile);
-      },
-      error: () => this.dialogRef.close(),
-    });
+    this.userService
+      .edit(userName!, givenName!, familyName!, email!)
+      .subscribe({
+        next: (profile) => {
+          this.dialogRef.close(profile);
+        },
+        error: () => this.dialogRef.close(),
+      });
   }
 }

@@ -8,4 +8,8 @@
   @media (min-width: variables.$screen-medium) {
     width: 50%;
   }
+
+  & mat-form-field {
+    margin-bottom: 0.5rem !important;
+  }
 }

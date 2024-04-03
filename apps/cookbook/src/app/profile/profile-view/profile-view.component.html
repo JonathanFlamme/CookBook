@@ -27,12 +27,24 @@
   @if(!loading){
   <table>
     <tr>
+      <td>Nom d'utilisateur :</td>
+      <td>{{ profile.userName }}</td>
+    </tr>
+    <tr>
       <td>Prénom :</td>
+      @if(profile.givenName){
       <td>{{ profile.givenName }}</td>
+      } @else{
+      <td>Non renseigné</td>
+      }
     </tr>
     <tr>
       <td>Nom :</td>
+      @if(profile.familyName){
       <td>{{ profile.familyName }}</td>
+      } @else{
+      <td>Non renseigné</td>
+      }
     </tr>
     <tr>
       <td>Email :</td>

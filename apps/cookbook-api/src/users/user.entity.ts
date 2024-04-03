@@ -21,9 +21,12 @@ export class UserEntity implements UserModel {
   role: UserRole;
 
   @Column({ type: 'text' })
+  userName: string;
+
+  @Column({ type: 'text', nullable: true })
   givenName: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   familyName: string;
 
   @Column('jsonb', { default: { recipePerMonth: 1 } })

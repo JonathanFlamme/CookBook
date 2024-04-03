@@ -25,6 +25,7 @@ export class AuthService {
   ) {}
 
   public register(
+    userName: string,
     givenName: string,
     familyName: string,
     email: string,
@@ -32,6 +33,7 @@ export class AuthService {
     confirmPassword: string,
   ): Observable<UserModel> {
     return this.http.post<UserModel>(`${this.baseUrl}/register`, {
+      userName,
       givenName,
       familyName,
       email,
