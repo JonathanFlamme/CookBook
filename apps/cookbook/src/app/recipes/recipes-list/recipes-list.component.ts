@@ -59,6 +59,7 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
   public pageIndex = 0;
   public pageSize = 12;
   public pageSizeOptions: number[] = [12, 25, 50, 100];
+  public filtersCount: number = 0;
 
   public ngOnInit(): void {
     const routeSub = this.route.queryParams.subscribe((routeParams) => {
@@ -130,7 +131,25 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
     bottomSheetRef.afterDismissed().subscribe((filterDataForm) => {
       if (filterDataForm) {
         this.filterForm.patchValue(filterDataForm);
+        this.filtersCount = this.getFiltersCount(filterDataForm);
       }
     });
+  }
+
+  public getFiltersCount(filterDataForm: {
+    orderBy: string;
+    order: string;
+    [key: string]: string;
+  }): number {
+    const defaultValues: { [key: string]: string } = {
+      orderBy: 'updatedAt',
+      order: 'DESC',
+    };
+    return Object.keys(this.filterForm.value).reduce((count, key) => {
+      if (filterDataForm[key] !== defaultValues[key]) {
+        return count + 1;
+      }
+      return count;
+    }, 0);
   }
 }

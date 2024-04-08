@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatChipsModule,
     SlickCarouselModule,
     MatBottomSheetModule,
+    MatBadgeModule,
   ],
   exports: [
     MatSidenavModule,
@@ -58,6 +60,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatChipsModule,
     SlickCarouselModule,
     MatBottomSheetModule,
+    MatBadgeModule,
   ],
   declarations: [],
   providers: [

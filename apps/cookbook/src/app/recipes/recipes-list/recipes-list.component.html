@@ -12,7 +12,13 @@
 <form [formGroup]="filterForm">
   <div class="filter">
     <div>
-      <button class="filter-button" type="button" (click)="openFilter()">
+      <button
+        class="filter-button"
+        type="button"
+        (click)="openFilter()"
+        [matBadge]="filtersCount"
+        [matBadgeHidden]="!filtersCount"
+      >
         <fa-icon icon="sliders"></fa-icon>
       </button>
     </div>
