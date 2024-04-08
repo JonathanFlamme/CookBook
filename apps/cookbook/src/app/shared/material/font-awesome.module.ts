@@ -16,6 +16,7 @@ import {
   faXmark,
   faSearch,
   faPlus,
+  faSliders,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [
@@ -28,6 +29,7 @@ const icons = [
   faXmark,
   faSearch,
   faPlus,
+  faSliders,
 ];
 
 @NgModule({
