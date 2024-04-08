@@ -10,6 +10,7 @@
 @forward 'table' as table-*;
 @forward 'dialog' as dialog-*;
 @forward 'snack' as snack-*;
+@forward 'bottom-sheet' as bottom-sheet-*;
 
 @use 'button' as button;
 @use 'chip' as chip;
@@ -23,3 +24,4 @@
 @use 'table' as table;
 @use 'dialog' as dialog;
 @use 'snack' as snack;
+@use 'bottom-sheet' as bottom-sheet;

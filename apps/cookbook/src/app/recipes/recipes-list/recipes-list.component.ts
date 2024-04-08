@@ -16,6 +16,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { RecipeListQuery } from '../../shared/recipes/recipe-list-query';
 import { categoriesLabel } from '../../shared/ui/category-label';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { RecipesFilterBottomSheetComponent } from '../../shared/recipes/recipes-filter-bottom-sheet/recipes-filter-bottom-sheet.component';
 
 @Component({
   selector: 'app-recipes-list',
@@ -31,6 +33,7 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly fb: FormBuilder,
+    private readonly bottomSheet: MatBottomSheet,
   ) {}
 
   // isLargeScreen = 1280px
@@ -112,5 +115,22 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
         this.recipes = items;
       });
     this.subscriptions.push(querySub);
+  }
+
+  public openFilter(): void {
+    const bottomSheetRef = this.bottomSheet.open(
+      RecipesFilterBottomSheetComponent,
+      {
+        data: {
+          order: this.filterForm.value.order,
+          orderBy: this.filterForm.value.orderBy,
+        },
+      },
+    );
+    bottomSheetRef.afterDismissed().subscribe((filterDataForm) => {
+      if (filterDataForm) {
+        this.filterForm.patchValue(filterDataForm);
+      }
+    });
   }
 }

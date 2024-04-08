@@ -1,5 +1,6 @@
 @use 'material/palette' as palette;
 
+// ------ BUTTONS ------//
 .mat-mdc-button-base {
   &[color='primary'] {
     color: palette.$primary !important;
@@ -65,4 +66,27 @@
       color: white;
     }
   }
+}
+
+// ------ TOGGLE BUTTONS ------//
+
+.mat-button-toggle-group {
+  display: flex;
+  border-radius: 20px !important;
+  margin-bottom: 1.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+
+  & .mat-button-toggle {
+    display: flex;
+    flex: 1;
+    &.mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+      background-color: palette.$green !important;
+      color: white !important;
+    }
+  }
+}
+
+.label-toggle-group {
+  font-size: 1.1rem;
+  font-weight: bold;
 }

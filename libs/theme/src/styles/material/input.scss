@@ -2,10 +2,12 @@
 @use '@angular/material' as mat;
 
 .mat-mdc-form-field {
-  height: 70px;
+  height: 45px;
+  margin-bottom: 1rem;
+
   .mat-mdc-text-field-wrapper {
     border: 2px solid palette.$primary-dark;
-    border-radius: 20px;
+    border-radius: 10px;
     align-items: center;
     background-color: palette.$primary-light !important;
 
@@ -17,4 +19,8 @@
 
 .mat-mdc-floating-label {
   color: black !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  height: 0px;
 }

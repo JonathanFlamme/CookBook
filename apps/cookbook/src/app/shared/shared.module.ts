@@ -10,9 +10,15 @@ import { CategoriesComponent } from './ui/categories.component';
 import { UserRoleComponent } from './users/user-role.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { QuotaRecipeByMonthComponent } from './users/quota-recipe-by-month.component';
+import { RecipesFilterBottomSheetComponent } from './recipes/recipes-filter-bottom-sheet/recipes-filter-bottom-sheet.component';
 
 @NgModule({
-  declarations: [UnitListComponent, CategoriesComponent, UserRoleComponent],
+  declarations: [
+    UnitListComponent,
+    CategoriesComponent,
+    UserRoleComponent,
+    RecipesFilterBottomSheetComponent,
+  ],
   imports: [
     MaterialModule,
     FontAwesomeLibraryModule,
@@ -35,6 +41,7 @@ import { QuotaRecipeByMonthComponent } from './users/quota-recipe-by-month.compo
     UserRoleComponent,
     QuotaRecipeByMonthComponent,
     RecipeCardComponent,
+    RecipesFilterBottomSheetComponent,
   ],
   providers: [],
 })
