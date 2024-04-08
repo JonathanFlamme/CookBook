@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { LayoutComponent } from './layout/layout.component';
-// import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpInterceptor } from './shared/auth/http.interceptor';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -23,7 +22,6 @@ import { PublicModule } from './public/public.module';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    // MaterialModule,
     LandingPageComponent,
     PublicModule,
     ErrorsModule,

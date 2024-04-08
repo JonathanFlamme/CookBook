@@ -1,0 +1,24 @@
+<div class="bottom-sheet-title">
+  <h2>Filtres</h2>
+  <div class="bottom-sheet-title-button">
+    <button class="bottom-sheet-title-button-reset" (click)="reset()">
+      Reset
+    </button>
+    <button class="bottom-sheet-title-button-ok" (click)="sent()">Ok!</button>
+  </div>
+</div>
+
+<form [formGroup]="filterForm">
+  <label for="orderBy" class="label-toggle-group">Trier par</label>
+  <mat-button-toggle-group id="orderBy" formControlName="orderBy">
+    <mat-button-toggle value="title">Nom</mat-button-toggle>
+    <mat-button-toggle value="duration">Durée</mat-button-toggle>
+    <mat-button-toggle value="updatedAt">Date</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <label for="order" class="label-toggle-group">Ordre de tri</label>
+  <mat-button-toggle-group id="order" formControlName="order">
+    <mat-button-toggle value="ASC">Croissant</mat-button-toggle>
+    <mat-button-toggle value="DESC">Décroissant</mat-button-toggle>
+  </mat-button-toggle-group>
+</form>

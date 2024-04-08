@@ -6,15 +6,25 @@
 <form [formGroup]="queryForm">
   <mat-form-field class="filter-query">
     <span matPrefix><fa-icon icon="search"></fa-icon></span>
-    <mat-label>Rechercher par nom</mat-label>
     <input formControlName="query" matInput placeholder="Rechercher par nom" />
   </mat-form-field>
 </form>
 <form [formGroup]="filterForm">
   <div class="filter">
+    <div>
+      <button
+        class="filter-button"
+        type="button"
+        (click)="openFilter()"
+        [matBadge]="filtersCount"
+        [matBadgeHidden]="!filtersCount"
+      >
+        <fa-icon icon="sliders"></fa-icon>
+      </button>
+    </div>
     @if(isLargeScreen$ | async){
     <mat-form-field>
-      <mat-label>Category</mat-label>
+      <mat-label>Catégorie</mat-label>
       <mat-select
         formControlName="category"
         aria-label="Selectionner une catégorie"
@@ -44,25 +54,6 @@
     </mat-chip-listbox>
 
     }
-
-    <div>
-      <mat-form-field class="filter-order-by">
-        <mat-label>Trier</mat-label>
-        <mat-select formControlName="orderBy">
-          <mat-option value="title">Nom</mat-option>
-          <mat-option value="duration">Durée</mat-option>
-          <mat-option value="updatedAt">Date</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="filter-order">
-        <mat-label>Ordre</mat-label>
-        <mat-select formControlName="order">
-          <mat-option value="ASC">Asc</mat-option>
-          <mat-option value="DESC">Desc</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
   </div>
 </form>
 <app-recipe-card [recipes]="recipes"></app-recipe-card>
