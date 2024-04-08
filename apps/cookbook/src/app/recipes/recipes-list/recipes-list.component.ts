@@ -38,7 +38,7 @@ export class RecipesListComponent implements OnInit, AfterViewInit {
 
   // isLargeScreen = 1280px
   public isLargeScreen$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Large)
+    .observe([Breakpoints.Large, Breakpoints.Medium])
     .pipe(map((result) => !result.matches));
 
   public categoriesLabel: { value: string; label: string }[] = [];
