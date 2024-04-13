@@ -1,5 +1,6 @@
-<h2 mat-dialog-title>Modifier votre profil</h2>
-
+<div class="dialog-title">
+  <h2>Modifier le profil ?</h2>
+</div>
 <div class="container-profile" mat-dialog-content>
   <form class="form" [formGroup]="profileForm">
     <mat-form-field>
@@ -31,8 +32,8 @@
   </form>
 </div>
 <div class="action-wrapper" mat-dialog-actions>
-  <button mat-button color="error" mat-dialog-close>Annuler</button>
-  <button mat-button color="accent" mat-dialog-close (click)="edit()">
+  <button mat-button color="red" mat-dialog-close>Annuler</button>
+  <button mat-button color="green" mat-dialog-close (click)="edit()">
     Modifier
   </button>
 </div>

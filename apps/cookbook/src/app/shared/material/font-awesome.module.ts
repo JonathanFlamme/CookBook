@@ -17,6 +17,10 @@ import {
   faSearch,
   faPlus,
   faSliders,
+  faEnvelope,
+  faLock,
+  faUser,
+  faCircleUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [
@@ -30,6 +34,10 @@ const icons = [
   faSearch,
   faPlus,
   faSliders,
+  faEnvelope,
+  faLock,
+  faUser,
+  faCircleUser,
 ];
 
 @NgModule({

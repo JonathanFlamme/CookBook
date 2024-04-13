@@ -6,19 +6,21 @@
   position: relative;
 
   &-title {
-    color: palette.$accent-dark;
+    color: palette.$gray;
     position: absolute;
-    top: -40px;
+    top: -25px;
+
     padding: 0 1rem;
     z-index: 2;
     font-size: 1rem;
+    background-color: #fafafa;
   }
   .slide-carousel {
-    border: 2px solid palette.$accent-dark;
-    border-radius: 20px;
+    border-top: 2px solid palette.$gray;
     padding: 0.5rem 1rem;
-    background-color: palette.$primary-light;
     display: flex;
+    margin: auto;
+    width: 90%;
   }
 
   .img {
@@ -32,14 +34,14 @@
 
     &-title {
       top: -40px;
-      left: 30px;
+      left: 40px;
       font-size: 1.5rem;
-      background: linear-gradient(
-        to bottom,
-        #fafafa 50%,
-        palette.$primary-light
-      );
+      background-color: #fafafa;
     }
+  }
+  .slide-carousel {
+    border-top: 2px solid palette.$gray;
+    width: 100%;
   }
 }
 .slick-track {

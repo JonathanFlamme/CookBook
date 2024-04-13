@@ -2,17 +2,24 @@
 @use '@angular/material' as mat;
 
 .mat-mdc-form-field {
-  height: 45px;
-  margin-bottom: 1rem;
+  height: 35px;
+  margin-bottom: 0.5rem;
 
   .mat-mdc-text-field-wrapper {
-    border: 2px solid palette.$primary-dark;
-    border-radius: 10px;
+    border-radius: 20px;
     align-items: center;
-    background-color: palette.$primary-light !important;
+    background-color: transparent !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3) !important;
 
     .mdc-line-ripple {
       background-color: black;
+
+      &::before {
+        border: none;
+      }
+      &--active::after {
+        transform: scale(0) !important;
+      }
     }
   }
 }
@@ -23,4 +30,14 @@
 
 .mat-mdc-form-field-subscript-wrapper {
   height: 0px;
+}
+
+.mat-form-field-icon {
+  & span {
+    padding: 0 0.5rem 0 1rem;
+  }
+  & fa-icon {
+    color: palette.$green;
+    font-size: 1.2rem;
+  }
 }

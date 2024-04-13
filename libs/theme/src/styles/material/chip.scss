@@ -8,8 +8,13 @@
   height: 35px !important;
 
   &:hover {
+    color: white !important;
     background-color: palette.$green !important;
-    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 5px solid #1e9c4e;
+
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
 
     .mdc-evolution-chip__text-label {
       color: white !important;
@@ -20,10 +25,15 @@
     color: black !important;
   }
 }
-.mdc-evolution-chip--selected {
-  background-color: palette.$green !important;
+.mdc-evolution-chip--selected,
+.chips-selected {
   color: white !important;
-  border: none !important;
+  background-color: palette.$green !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 5px solid #1e9c4e;
+
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
 
   .mdc-evolution-chip__text-label {
     color: white !important;

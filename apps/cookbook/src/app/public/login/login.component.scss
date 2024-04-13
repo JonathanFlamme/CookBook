@@ -4,18 +4,25 @@
 .form {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
-  @media (min-width: variables.$screen-medium) {
-    width: 50%;
+  & mat-form-field {
+    width: 100%;
+    margin-bottom: 2rem !important;
+
+    @media (min-width: variables.$screen-small) {
+      width: 50%;
+    }
   }
 
-  mat-form-field {
-    margin-bottom: 1rem;
-  }
-  mat-form-field:nth-child(2) {
-    margin-bottom: 0;
+  button {
+    width: 100%;
+
+    @media (min-width: variables.$screen-small) {
+      width: 50%;
+    }
   }
 
   & a {
@@ -24,5 +31,15 @@
     margin-bottom: 2rem;
     text-align: right;
     cursor: pointer;
+  }
+}
+
+.mat-form-field-icon {
+  & span {
+    padding: 0 0.5rem 0 1rem;
+  }
+  & fa-icon {
+    color: palette.$green;
+    font-size: 1.2rem;
   }
 }

@@ -1,14 +1,28 @@
 @use 'material/palette' as palette;
+@use 'utils/variables' as variables;
 
 header {
   margin-bottom: 1.5rem;
   color: palette.$accent;
+  background-color: #efeff0;
 
   & .title {
-    border-bottom: 2px solid palette.$primary-dark;
+    padding: 1rem 2rem 0.5rem 2rem;
+    color: #656566;
 
+    @media screen and (min-width: variables.$screen-medium) {
+      padding: 0.6rem 2rem 0.3rem 4rem;
+    }
     & h1 {
+      margin: 0rem;
       margin-bottom: 0.1rem;
+      font-size: 1.4rem;
+      text-align: center;
+
+      @media screen and (min-width: variables.$screen-medium) {
+        font-size: 2rem;
+        text-align: left;
+      }
     }
   }
 }

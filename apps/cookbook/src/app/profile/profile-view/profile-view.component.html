@@ -6,16 +6,16 @@
         aria-label="Modifier le profile"
         mat-mini-fab
         type="button"
-        color="accent"
+        color="gray"
         (click)="editProfile()"
       >
         <fa-icon icon="pen"></fa-icon>
       </button>
       <button
-        aria-label="Suprrimer le profile"
+        aria-label="Suprrimer  le profile"
         mat-mini-fab
         type="button"
-        color="accent"
+        color="gray"
         (click)="removeProfile()"
       >
         <fa-icon icon="trash-alt"></fa-icon>
@@ -23,15 +23,16 @@
     </div>
   </div>
 </header>
-<div class="container-profile">
+<div class="container">
   @if(!loading){
   <table>
     <tr>
-      <td>Nom d'utilisateur :</td>
+      <!-- <span matPrefix></span> -->
+      <td><fa-icon icon="circle-user"></fa-icon>Nom d'utilisateur :</td>
       <td>{{ profile.userName }}</td>
     </tr>
     <tr>
-      <td>Prénom :</td>
+      <td><fa-icon icon="user"></fa-icon>Prénom :</td>
       @if(profile.givenName){
       <td>{{ profile.givenName }}</td>
       } @else{
@@ -39,7 +40,7 @@
       }
     </tr>
     <tr>
-      <td>Nom :</td>
+      <td><fa-icon icon="user"></fa-icon>Nom :</td>
       @if(profile.familyName){
       <td>{{ profile.familyName }}</td>
       } @else{
@@ -47,11 +48,11 @@
       }
     </tr>
     <tr>
-      <td>Email :</td>
+      <td><fa-icon icon="envelope"></fa-icon>Email :</td>
       <td>{{ profile.email }}</td>
     </tr>
     <tr>
-      <td>Role :</td>
+      <td><fa-icon icon="lock"></fa-icon>Role :</td>
       <td><app-user-role [role]="profile.role"></app-user-role></td>
     </tr>
     @if(profile.role !== UserRole.Admin){
@@ -73,10 +74,10 @@
       aria-label="Modifier le mot de passe"
       mat-stroked-button
       type="button"
-      color="accent"
+      color="green"
       (click)="changePassword()"
     >
-      <fa-icon icon="pen"></fa-icon> <span>Modifier le mot de passe</span>
+      <fa-icon icon="pen"></fa-icon><span>Modifier le mot de passe</span>
     </button>
   </div>
 </div>

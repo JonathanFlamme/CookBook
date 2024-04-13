@@ -3,13 +3,24 @@
 .form {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  overflow: hidden;
-  @media (min-width: variables.$screen-medium) {
-    width: 50%;
-  }
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
   & mat-form-field {
-    margin-bottom: 0.5rem !important;
+    width: 100%;
+    margin-bottom: 2rem !important;
+
+    @media (min-width: variables.$screen-small) {
+      width: 50%;
+    }
+  }
+
+  button {
+    width: 100%;
+
+    @media (min-width: variables.$screen-small) {
+      width: 50%;
+    }
   }
 }
