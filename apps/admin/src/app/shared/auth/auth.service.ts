@@ -42,6 +42,7 @@ export class AuthService {
           this.isLoggedInSubject.next(authToken.payload);
           this.isAdmin();
           this.storageService.saveToken(authToken.access_token); // --- WITHOUT COOKIE - store JWT in localStorage ---  Remove it when cookie mode//
+          this.storageService.setExpiration();
         }),
       );
   }
