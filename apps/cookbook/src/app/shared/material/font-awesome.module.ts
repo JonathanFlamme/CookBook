@@ -5,7 +5,6 @@ import {
   FaIconLibrary,
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
-// app.module.ts
 import {
   faBars,
   faTrashCan,
@@ -21,7 +20,14 @@ import {
   faLock,
   faUser,
   faCircleUser,
+  faBook,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  faFileLines,
+  faUser as farUser,
+} from '@fortawesome/free-regular-svg-icons';
 
 const icons = [
   faBars,
@@ -38,6 +44,10 @@ const icons = [
   faLock,
   faUser,
   faCircleUser,
+  faFileLines,
+  farUser,
+  faBook,
+  faUserPlus,
 ];
 
 @NgModule({

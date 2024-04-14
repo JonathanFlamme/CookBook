@@ -13,9 +13,10 @@ import { HttpInterceptor } from './shared/auth/http.interceptor';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ErrorsModule } from './errors/errors.module';
 import { PublicModule } from './public/public.module';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent],
+  declarations: [AppComponent, LayoutComponent, FooterComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
