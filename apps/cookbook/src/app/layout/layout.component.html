@@ -60,7 +60,7 @@
 
   <mat-sidenav-content class="sidenav-content">
     <mat-toolbar class="menu-reduced" *ngIf="(isHandset$ | async) === true">
-      <a mat-button [routerLink]="['/home']"><h1>Yummy Book</h1></a>
+      <a mat-button [routerLink]="['/home']"><h1>Yummy Cook</h1></a>
 
       <button
         mat-icon-button
@@ -71,5 +71,6 @@
       </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

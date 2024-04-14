@@ -3,64 +3,71 @@
     <h1>Recettes</h1>
   </div>
 </header>
-<form [formGroup]="queryForm">
-  <mat-form-field class="filter-query">
-    <span matPrefix><fa-icon icon="search"></fa-icon></span>
-    <input formControlName="query" matInput placeholder="Rechercher par nom" />
-  </mat-form-field>
-</form>
-<form [formGroup]="filterForm">
-  <div class="filter">
-    <div>
-      <button
-        class="filter-button"
-        type="button"
-        (click)="openFilter()"
-        [matBadge]="filtersCount"
-        [matBadgeHidden]="!filtersCount"
-      >
-        <fa-icon icon="sliders"></fa-icon>
-      </button>
-    </div>
-    @if(isLargeScreen$ | async){
-    <mat-form-field>
-      <mat-label>Catégorie</mat-label>
-      <mat-select
+<div class="container">
+  <form [formGroup]="queryForm">
+    <mat-form-field class="filter-query">
+      <span matPrefix><fa-icon icon="search"></fa-icon></span>
+      <input
+        formControlName="query"
+        matInput
+        placeholder="Rechercher par nom"
+      />
+    </mat-form-field>
+  </form>
+  <form [formGroup]="filterForm">
+    <div class="filter">
+      <div>
+        <button
+          class="filter-button"
+          type="button"
+          (click)="openFilter()"
+          [matBadge]="filtersCount"
+          [matBadgeHidden]="!filtersCount"
+        >
+          <fa-icon icon="sliders"></fa-icon>
+        </button>
+      </div>
+      @if(isLargeScreen$ | async){
+      <mat-form-field>
+        <mat-select
+          formControlName="category"
+          aria-label="Selectionner une catégorie"
+        >
+          <mat-option class="all-categories" value=""
+            >Toutes les catégories</mat-option
+          >
+
+          @for (option of categoriesLabel; track option.value) {
+          <mat-option [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      } @else{
+      <mat-chip-listbox
+        class="filter-category"
         formControlName="category"
         aria-label="Selectionner une catégorie"
       >
-        <mat-option value="">Tout</mat-option>
+        <mat-chip-option value="">Tout</mat-chip-option>
 
         @for (option of categoriesLabel; track option.value) {
-        <mat-option [value]="option.value">
+        <mat-chip-option [value]="option.value">
           {{ option.label }}
-        </mat-option>
+        </mat-chip-option>
         }
-      </mat-select>
-    </mat-form-field>
-    } @else{
-    <mat-chip-listbox
-      class="filter-category"
-      formControlName="category"
-      aria-label="Selectionner une catégorie"
-    >
-      <mat-chip-option value="">Tout</mat-chip-option>
+      </mat-chip-listbox>
 
-      @for (option of categoriesLabel; track option.value) {
-      <mat-chip-option [value]="option.value">
-        {{ option.label }}
-      </mat-chip-option>
       }
-    </mat-chip-listbox>
-
-    }
-  </div>
-</form>
-<app-recipe-card [recipes]="recipes"></app-recipe-card>
-<mat-paginator
-  [pageIndex]="pageIndex"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  showFirstLastButtons="true"
->
-</mat-paginator>
+    </div>
+  </form>
+  <app-recipe-card [recipes]="recipes"></app-recipe-card>
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    showFirstLastButtons="true"
+  >
+  </mat-paginator>
+</div>

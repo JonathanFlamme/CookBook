@@ -1,7 +1,8 @@
 <div class="cards">
   <mat-card *ngIf="isLogged" [routerLink]="['/recipes', 'create']" class="card">
     <mat-card-header>
-      <mat-card-title>Ajouter une recette </mat-card-title>
+      <mat-card-title class="add-recipe">Ajouter une recette </mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
 
     <img
@@ -18,6 +19,7 @@
   >
     <mat-card-header>
       <mat-card-title>{{ recipe.title | titlecase }} </mat-card-title>
+      <div class="separate-bar"></div>
       <mat-card-subtitle>{{ recipe.duration }} min</mat-card-subtitle>
     </mat-card-header>
     @if(recipe.imageUrl){

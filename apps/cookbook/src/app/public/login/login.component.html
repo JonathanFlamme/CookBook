@@ -3,32 +3,45 @@
     <h1>Se connecter</h1>
   </div>
 </header>
+<div class="container">
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field class="mat-form-field-icon">
+      <span matPrefix><fa-icon icon="envelope"></fa-icon></span>
+      <input
+        matInput
+        placeholder="Addresse Mail"
+        formControlName="email"
+        type="email"
+        required
+      />
+      <mat-error *ngIf="loginForm.controls.email.errors?.['required']">
+        Ce champ est obligatoire
+      </mat-error>
+    </mat-form-field>
 
-<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
-  <mat-form-field>
-    <mat-label>Identifiant</mat-label>
-    <input matInput formControlName="email" type="email" required />
-    <mat-error *ngIf="loginForm.controls.email.errors?.['required']">
-      Ce champ est obligatoire
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field class="mat-form-field-icon">
+      <span matPrefix><fa-icon icon="lock"></fa-icon></span>
+      <input
+        matInput
+        placeholder="Mot de passe"
+        formControlName="password"
+        type="password"
+        required
+      />
+      <mat-error *ngIf="loginForm.controls.password.errors?.['required']">
+        Ce champ est obligatoire
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Mot de passe</mat-label>
-    <input matInput formControlName="password" type="password" required />
-    <mat-error *ngIf="loginForm.controls.password.errors?.['required']">
-      Ce champ est obligatoire
-    </mat-error>
-  </mat-form-field>
+    <a (click)="forgotPassword()">Mot de passe oublié?</a>
 
-  <a (click)="forgotPassword()">Mot de passe oublié?</a>
-
-  <button
-    mat-raised-button
-    color="accent"
-    type="submit"
-    [disabled]="loginForm.invalid"
-  >
-    Se connecter
-  </button>
-</form>
+    <button
+      mat-raised-button
+      color="green"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Se connecter
+    </button>
+  </form>
+</div>

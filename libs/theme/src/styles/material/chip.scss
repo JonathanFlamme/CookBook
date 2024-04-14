@@ -2,27 +2,43 @@
 @use '@angular/material' as mat;
 
 .mat-mdc-chip {
-  background-color: palette.$primary-light !important;
-  border: 2px solid palette.$primary-dark !important;
-  color: palette.$primary-dark !important;
+  background-color: white !important;
   transition: background-color 0.3s, color 0.3s;
-  height: 40px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  height: 35px !important;
 
   &:hover {
-    background-color: palette.$primary !important;
+    color: white !important;
+    background-color: palette.$green !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 5px solid #1e9c4e;
+
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+
+    .mdc-evolution-chip__text-label {
+      color: white !important;
+    }
   }
 
   .mdc-evolution-chip__text-label {
-    color: black;
-    font-size: 1.1rem !important;
+    color: black !important;
   }
 }
-.mdc-evolution-chip--selected {
-  background-color: palette.$primary !important;
+.mdc-evolution-chip--selected,
+.chips-selected {
+  color: white !important;
+  background-color: palette.$green !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 5px solid #1e9c4e;
+
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+
   .mdc-evolution-chip__text-label {
-    color: black !important;
+    color: white !important;
   }
   .mdc-evolution-chip__checkmark {
-    color: black !important;
+    color: white !important;
   }
 }

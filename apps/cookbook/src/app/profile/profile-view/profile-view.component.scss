@@ -2,34 +2,38 @@
 @use 'utils/variables' as variables;
 
 header {
-  margin-bottom: 1.5rem;
-  color: palette.$accent-dark;
-
   & .title {
-    border-bottom: 2px solid palette.$accent-dark;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1rem 0.3rem 2rem;
 
-    & h1 {
-      margin-bottom: 0.5rem;
-    }
-    & .title-button {
+    &-button {
       display: flex;
       gap: 1rem;
-      padding-top: 1.5rem;
     }
+
     & fa-icon {
       font-size: large;
     }
   }
 }
-.container-profile {
-  & .container-buttons {
+
+.container {
+  &-buttons {
     padding-top: 2rem;
     text-align: center;
 
     & fa-icon {
+      color: white !important;
       padding-right: 0.7rem;
+      font-size: 0.9rem !important;
     }
+  }
+
+  & fa-icon {
+    color: palette.$green;
+    font-size: 1.2rem;
+    padding-right: 0.7rem;
   }
 }

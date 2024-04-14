@@ -7,16 +7,20 @@
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background-color: palette.$layout;
-  border: 2px solid palette.$primary-dark;
+  // background-color: palette.$gray-light;
+  border: 1px solid palette.$green;
+
+  .mat-mdc-button .mat-mdc-button-persistent-ripple::before {
+    background: none;
+  }
 }
 
 .mat-sidenav {
   height: 100vh;
   width: 200px;
   & .active {
-    color: palette.$warn-dark !important;
     font-weight: bold;
+
     &::before {
       content: '';
       position: absolute;
@@ -25,7 +29,7 @@
       bottom: 0;
       height: 100%;
       width: 6px;
-      background-color: palette.$warn-dark;
+      background-color: palette.$green;
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
     }
@@ -33,11 +37,11 @@
 
   // title "Cookbook"
   & .mat-toolbar {
-    color: palette.$accent-dark;
+    color: white;
     display: flex;
     justify-content: center;
     margin: auto;
-    background-color: palette.$layout;
+    background-color: palette.$green;
     width: 100%;
 
     & a {
@@ -45,7 +49,6 @@
       font-weight: bold;
       width: 90%;
       padding: 30px 0;
-      border-bottom: 2px solid palette.$success-dark;
     }
   }
 
@@ -58,6 +61,7 @@
     & a {
       width: 100%;
       font-size: 1.2rem;
+      color: palette.$gray !important;
     }
   }
 
@@ -67,7 +71,7 @@
     transition: background-color 0.3s, color 0.3s;
 
     :hover {
-      color: palette.$warn-dark;
+      color: palette.$green;
     }
 
     & div:nth-child(1) {
@@ -76,7 +80,7 @@
       }
     }
     & div:nth-child(2) {
-      border-bottom: 2px solid palette.$success-dark;
+      border-bottom: 2px solid palette.$green;
       width: 80%;
       margin: auto;
     }
@@ -89,7 +93,7 @@
 
   & .menu-bottom {
     & div:nth-child(1) {
-      border-bottom: 2px solid palette.$success-dark;
+      border-bottom: 2px solid palette.$green;
       width: 80%;
       margin: auto;
       margin-bottom: 1rem;
@@ -101,7 +105,7 @@
     transition: background-color 0.3s, color 0.3s;
     width: 100%;
     :hover {
-      color: palette.$warn-dark;
+      color: palette.$green;
     }
   }
 }
@@ -109,36 +113,53 @@
 .menu-reduced {
   display: flex;
   justify-content: space-between;
-  background-color: palette.$primary-light !important;
-  border: 2px solid palette.$primary-dark;
-
+  background-color: palette.$green !important;
   & a {
-    margin-left: 3rem;
+    margin-left: 4rem;
     & h1 {
-      color: palette.$accent-dark;
+      color: white;
       font-weight: bold !important;
+      font-size: 1.5rem;
+    }
+  }
+  & button {
+    & fa-icon {
+      color: white;
     }
   }
 }
 
-.menu-burger {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-.sidenav-content {
-  margin-left: 0;
-}
+// .menu-burger {
+//   background-color: transparent;
+//   border: none;
+//   cursor: pointer;
+
+//   & fa-icon {
+//     color: palette.$green;
+//     font-size: 1.5rem;
+//   }
+// }
+// .sidenav-content {
+//   margin-left: 0;
+// }
 
 // body container
 .mat-sidenav-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  height: 100vh;
-  padding: 0 2rem 2rem 2rem;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: left;
+  // height: 100vh;
+  // padding: 0.5rem;
 
-  @media (min-width: variables.$screen-small) {
-    padding: 0 6rem 6rem 6rem;
+  // @media (min-width: variables.$screen-small) {
+  //   padding: 0 2rem 2rem 2rem;
+  // }
+
+  .container {
+    padding: 0 0.5rem 0 0.5rem;
+
+    @media (min-width: variables.$screen-small) {
+      padding: 0 2rem 2rem 2rem;
+    }
   }
 }

@@ -1,19 +1,18 @@
 @use 'material/palette' as palette;
+@use 'utils/variables' as variables;
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin: 1.5rem auto;
   overflow: visible;
 
   .mat-mdc-card {
-    max-width: 100%;
-    border: 2px solid palette.$primary-dark;
     border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
     transition: background-color 0.3s, box-shadow 0.3s;
 
@@ -23,9 +22,13 @@
     }
 
     &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 6px rgba(0, 128, 0, 0.2),
+        0 4px 12px rgba(0, 128, 0, 0.3);
       transition: box-shadow 0.3s ease;
-      background-color: palette.$primary-light;
+    }
+    &:active {
+      transform: translateY(2px);
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
     }
 
     .image {
@@ -34,26 +37,25 @@
     }
 
     & .mat-mdc-card-header {
-      padding: 5px;
+      padding: 0.1rem;
       display: flex;
       justify-content: center;
-      width: 100%;
 
       & .mat-mdc-card-header-text {
-        width: 80%;
-      }
-
-      & .mat-mdc-card-text {
-        width: 100%;
+        width: 90%;
       }
 
       .mat-mdc-card-title {
         text-align: center;
         line-height: normal;
         padding: 5px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid palette.$primary-dark;
-        font-size: 1.5rem;
+        border-bottom: 1px solid palette.$green;
+        font-size: 1.2rem;
+
+        @media screen and (min-width: variables.$screen-medium) {
+          font-size: 1.5rem !important;
+          padding: 0.7rem;
+        }
       }
 
       .mat-mdc-card-subtitle {
@@ -62,6 +64,10 @@
       }
     }
   }
+}
+.add-recipe {
+  font-size: 1.1rem !important;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -72,16 +78,16 @@
 
 @media (min-width: 768px) {
   .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (min-width: 1024px) {
   .cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-@media (min-width: 1280px) {
-  .cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+// @media (min-width: 1280px) {
+//   .cards {
+//     grid-template-columns: repeat(4, minmax(0, 1fr));
+//   }
+// }

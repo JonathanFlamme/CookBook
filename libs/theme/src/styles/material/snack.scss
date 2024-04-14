@@ -4,14 +4,16 @@
 .mdc-snackbar__surface {
   background-color: transparent !important;
   box-shadow: none !important;
+  margin-bottom: 2rem;
 }
 .snack-error {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: palette.$error-light !important;
-  color: palette.$error-dark !important;
-  border: 2px solid palette.$error-dark !important;
+  color: white !important;
+  background-color: palette.$error !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 5px solid palette.$error-dark;
   border-radius: 5px;
   width: 100%;
 }
@@ -20,9 +22,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: palette.$success-light !important;
-  color: palette.$success-dark !important;
-  border: 2px solid palette.$success-dark !important;
   border-radius: 5px;
   width: 100%;
+  color: white !important;
+  background-color: palette.$green !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 5px solid #1e9c4e;
 }

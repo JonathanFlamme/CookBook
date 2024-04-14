@@ -1,3 +1,5 @@
+@use 'material/palette' as palette;
+@use 'utils/variables' as variable;
 form {
   display: flex;
   flex-direction: column;
@@ -6,31 +8,48 @@ form {
 
 .filter-query {
   width: 100%;
+  margin-bottom: 1rem;
   & span {
     padding: 0 1rem;
+  }
+  & fa-icon {
+    color: palette.$green;
+    font-size: 1.1rem;
   }
 }
 
 .filter {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
 
-  & > div {
-    display: flex;
-    gap: 10px;
-  }
-
-  & .filter-order-by {
-    width: 120px;
-  }
-  & .filter-order {
-    width: 110px;
+  @media screen and (max-width: variable.$screen-medium) {
+    justify-content: space-between;
   }
 }
 
-@media (min-width: 768px) {
-  .filter {
-    flex-direction: row;
+.all-categories {
+  font-size: 0.9rem;
+}
+
+.filter-button {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+
+  cursor: pointer;
+  background-color: white !important;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: palette.$green;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  & fa-icon {
+    color: palette.$green;
+    font-size: 1.1rem;
   }
 }

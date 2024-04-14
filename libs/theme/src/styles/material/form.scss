@@ -1,4 +1,5 @@
 @use 'material/palette' as palette;
+@use 'utils/variables' as variables;
 
 .form-recipe {
   display: flex;
@@ -25,7 +26,7 @@
       }
     }
 
-    @media (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       flex-direction: row;
 
       & .title {
@@ -41,8 +42,8 @@
     margin: 1.5rem 0;
 
     & h2 {
-      border-bottom: 2px solid palette.$accent-dark;
-      color: palette.$accent-dark;
+      border-bottom: 2px solid #656566;
+      color: #656566;
       font-size: 1.5rem;
       width: 70%;
     }
@@ -51,65 +52,98 @@
     }
   }
 
-  .form-container-ingredient {
+  .form-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 80%;
-    margin-bottom: 2rem;
+    align-items: center;
 
-    @media (min-width: 768px) {
+    @media screen and (min-width: variables.$screen-medium) {
       flex-direction: row;
+      gap: 10px;
+    }
+
+    &-ingredient {
+      display: flex;
+      gap: 5px;
+      width: 100%;
       margin-bottom: 0rem;
+
+      @media screen and (min-width: variables.$screen-medium) {
+        gap: 10px;
+      }
+
+      &-name {
+        flex: 3;
+      }
+      &-quantity {
+        flex: 2;
+      }
+      & input::placeholder {
+        font-size: 0.8rem;
+      }
+      &-unit {
+        flex: 1;
+
+        .mat-mdc-select-arrow svg {
+          transform: translate(-20%, -40%);
+        }
+        .mat-mdc-select-value {
+          overflow: visible;
+        }
+      }
     }
 
-    & .name {
-      flex-grow: 2;
-    }
+    &-step {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      width: 100%;
+      margin-bottom: 0rem;
 
-    & .unit {
-      width: 100px;
+      @media screen and (min-width: variables.$screen-medium) {
+        margin-bottom: 1rem;
+      }
+
+      & span {
+        display: flex;
+        align-items: center;
+        width: 70px;
+      }
+
+      & mat-form-field {
+        width: 100%;
+        height: auto;
+      }
+      @media (min-width: variables.$screen-medium) {
+        gap: 10px;
+      }
+
+      &-button {
+        display: flex;
+        justify-content: right;
+        gap: 5px;
+      }
     }
 
     & button {
-      margin-left: 10px;
+      margin-bottom: 1rem;
     }
   }
 
-  .form-container-step {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 2rem;
-    width: 80%;
+  &-categories {
+    margin: 1rem 0 3rem 0;
 
-    & span {
-      width: 100px;
+    @media screen and (min-width: variables.$screen-medium) {
+      gap: 10px;
     }
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      margin-bottom: 0rem;
-    }
-
-    & mat-form-field {
-      width: 100%;
-      height: auto;
+    .mdc-evolution-chip-set__chips {
+      display: flex;
+      justify-content: center;
     }
   }
+}
 
-  .categories-list {
-    margin: auto;
-    margin-top: 3rem;
-
-    & mat-chip-option {
-      height: 2.5rem;
-    }
-  }
-
-  .button-submit {
-    margin: 3rem 0;
-  }
+.button-submit {
+  margin-bottom: 1rem;
 }

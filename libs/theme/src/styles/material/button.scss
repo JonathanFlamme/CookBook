@@ -1,5 +1,9 @@
 @use 'material/palette' as palette;
 
+.mat-mdc-mini-fab {
+  box-shadow: none !important;
+}
+
 // ------ BUTTONS ------//
 .mat-mdc-button-base {
   &[color='primary'] {
@@ -66,8 +70,56 @@
       color: white;
     }
   }
+
+  &[color='green'] {
+    color: white !important;
+    background-color: palette.$green !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 5px solid #1e9c4e;
+
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    &:active {
+      transform: translate(O, 3px);
+      -webkit-transform: translate(0, 3px);
+      border-bottom: 1px solid #1e9c4e;
+    }
+  }
+
+  &[color='red'] {
+    color: white !important;
+    background-color: palette.$error !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 5px solid palette.$error-dark;
+
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    &:active {
+      transform: translate(O, 3px);
+      -webkit-transform: translate(0, 3px);
+      border-bottom: 1px solid palette.$error-dark;
+    }
+  }
+
+  &[color='gray'] {
+    color: #656566 !important;
+    background-color: transparent !important;
+  }
 }
 
+.mat-badge-content {
+  background-color: palette.$green !important;
+}
 // ------ TOGGLE BUTTONS ------//
 
 .mat-button-toggle-group {
@@ -80,8 +132,10 @@
     display: flex;
     flex: 1;
     &.mat-button-toggle-appearance-standard.mat-button-toggle-checked {
-      background-color: palette.$green !important;
       color: white !important;
+      background-color: palette.$green !important;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+      border-bottom: 5px solid #1e9c4e;
     }
   }
 }

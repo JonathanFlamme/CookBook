@@ -3,13 +3,13 @@
 @use 'utils/variables' as variables;
 
 .mat-mdc-table {
-  border: 2px solid palette.$primary-dark !important;
+  border: 2px solid palette.$green !important;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .mat-mdc-header-row {
-  border-bottom: 1px solid palette.$primary-dark !important;
+  border-bottom: 1px solid palette.$green !important;
 }
 
 table {
@@ -22,12 +22,15 @@ table {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 2px solid palette.$primary-dark;
-    background-color: palette.$primary-light;
-    padding: 1rem;
-    border-radius: 20px;
-    margin: 0.5rem;
     width: 100%;
+
+    padding: 0.7rem;
+    margin: 0.5rem;
+
+    border-radius: 20px;
+    align-items: center;
+    background-color: transparent !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3) !important;
   }
   @media (min-width: variables.$screen-medium) {
     tr {

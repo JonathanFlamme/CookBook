@@ -2,11 +2,21 @@
 @use '@angular/material' as mat;
 
 .mat-mdc-dialog-container {
-  background-color: palette.$primary-light !important;
-  border: 2px solid palette.$primary-dark !important;
+  // background-color: palette.$primary-light !important;
+  // border: 2px solid palette.$primary-dark !important;
   border-radius: 10px;
   overflow: hidden;
   width: 1000px;
+
+  .dialog-title {
+    // display: flex;
+    padding-left: 0.7rem;
+    // justify-content: space-between;
+    background-color: #efeff0;
+    color: #656566;
+    // margin-bottom: 1rem;
+    width: 100%;
+  }
 
   .mdc-dialog__surface {
     display: flex;

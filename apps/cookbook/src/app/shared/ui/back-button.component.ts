@@ -30,17 +30,20 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
       button {
         position: absolute;
-        top: 29px;
-        left: 23px;
+        top: 15px;
         font-size: 2rem;
 
         & fa-icon {
-          color: palette.$accent;
+          color: palette.$gray;
         }
 
         &.isHandset {
           top: 12px;
-          left: 30px;
+          left: 10px;
+
+          & fa-icon {
+            color: white;
+          }
         }
       }
     `,

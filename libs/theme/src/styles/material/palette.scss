@@ -7,6 +7,9 @@
 // --------------------- Color Predefined --------------------- //
 
 $green: #2dc268;
+$gray: #656566;
+$gray-light: #efeff0;
+$red: #ff0000;
 
 $theme-layout: mat.define-palette(mat.$light-green-palette, 200);
 $layout: mat.get-color-from-palette($theme-layout);

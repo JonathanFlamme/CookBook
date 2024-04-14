@@ -1,21 +1,13 @@
 .container {
-  position: relative;
   display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-left: 40px;
+  gap: 10px;
 
   & .image {
-    width: 10rem;
-    height: 10rem;
-  }
-  @media (min-width: 960px) {
-    & .image {
-      width: 13rem;
-      height: 13rem;
-    }
-  }
-
-  & .button-select-image {
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 10px;
   }
 }

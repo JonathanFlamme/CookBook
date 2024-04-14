@@ -57,8 +57,8 @@ export class LandingPageComponent implements OnInit {
         breakpoint: 768,
         settings: {
           arrow: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
         },
       },

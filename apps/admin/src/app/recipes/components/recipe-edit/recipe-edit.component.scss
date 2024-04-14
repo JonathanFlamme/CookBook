@@ -1,5 +1,20 @@
+@use 'utils/variables' as variables;
+
 .button-validation {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   gap: 10px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  & button {
+    width: 100%;
+    & span {
+      margin-left: 1rem;
+    }
+
+    @media screen and (min-width: variables.$screen-medium) {
+      width: 30%;
+    }
+  }
 }
