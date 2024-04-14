@@ -1,5 +1,6 @@
-<h3 mat-dialog-title>Changement du role</h3>
-
+<div class="dialog-title">
+  <h2>Changement du role</h2>
+</div>
 <div mat-dialog-content>
   <p>{{ data.user.givenName }} {{ data.user.familyName }}</p>
 
@@ -12,13 +13,11 @@
   </mat-form-field>
 </div>
 <div class="action-wrapper" mat-dialog-actions>
-  <button color="error" mat-button mat-dialog-close type="button">
-    Cancel
-  </button>
+  <button color="red" mat-button mat-dialog-close type="button">Cancel</button>
   <button
     (click)="save(newRole)"
     [disabled]="data.user.role === newRole"
-    color="accent"
+    color="green"
     mat-button
     type="button"
   >

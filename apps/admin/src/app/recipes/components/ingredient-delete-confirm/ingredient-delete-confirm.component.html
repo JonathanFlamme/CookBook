@@ -1,4 +1,6 @@
-<h2 mat-dialog-title>Supprimer cette ingrédient ?</h2>
+<div class="dialog-title">
+  <h2>Supprimer ?</h2>
+</div>
 <div mat-dialog-content>
   <p>{{ data.ingredient.name }}</p>
   <p>
@@ -7,8 +9,8 @@
   </p>
 </div>
 <div class="action-wrapper" mat-dialog-actions>
-  <button mat-button color="error" mat-dialog-close>Annuler</button>
-  <button mat-button color="accent" mat-dialog-close (click)="delete()">
+  <button mat-button color="red" mat-dialog-close>Annuler</button>
+  <button mat-button color="green" mat-dialog-close (click)="delete()">
     Supprimer
   </button>
 </div>

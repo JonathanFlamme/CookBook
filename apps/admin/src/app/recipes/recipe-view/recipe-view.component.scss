@@ -2,27 +2,31 @@
 @use 'utils/variables' as variables;
 
 header {
-  margin-bottom: 1.5rem;
-  color: palette.$primary-dark;
-
   & .title {
-    border-bottom: 2px solid palette.$primary-dark;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.5rem 0.3rem 0.7rem;
 
-    & h1 {
-      margin-bottom: 0.5rem;
-      span {
+    @media screen and (min-width: variables.$screen-medium) {
+      padding: 0.6rem 2rem 0.3rem 4rem;
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      & span {
         font-size: 0.9rem;
       }
     }
-    & .title-button {
-      padding-top: 2rem;
-      margin-right: 2rem;
-      & button:nth-child(1) {
-        margin-right: 1.5rem;
-      }
+
+    &-button {
+      display: flex;
+      gap: 0.5rem;
     }
+
     & fa-icon {
       font-size: large;
       padding-left: 10px;
@@ -33,8 +37,6 @@ header {
 .container-categories {
   display: flex;
   justify-content: center;
-  margin: 1rem 0;
-  gap: 15px;
 }
 
 .container-ingredient {
@@ -46,13 +48,16 @@ header {
   @media (min-width: variables.$screen-medium) {
     flex-direction: row-reverse;
   }
+
   & .container-image {
     display: flex;
     justify-content: center;
     width: 50%;
 
     & .image {
-      width: 17rem;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 10px;
     }
   }
 
@@ -61,11 +66,9 @@ header {
     flex-direction: column;
     justify-content: left;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 3rem;
     position: relative;
-    border: 2px solid palette.$primary-dark;
-    border-radius: 20px;
-    background-color: palette.$primary-light;
+    border-top: 2px solid palette.$gray;
 
     @media (min-width: variables.$screen-medium) {
       width: 50%;
@@ -75,7 +78,6 @@ header {
       padding-top: 20px;
       padding-bottom: 20px;
       margin-left: 10px;
-      column-count: 1;
       gap: 10px;
 
       @media (min-width: variables.$screen-large) {
@@ -88,15 +90,11 @@ header {
     }
 
     h2 {
-      color: palette.$primary-dark;
+      color: palette.$gray;
       position: absolute;
       top: -40px;
       left: 40px;
-      background: linear-gradient(
-        to bottom,
-        #fafafa 50%,
-        palette.$primary-light
-      );
+      background-color: #fafafa;
       padding: 0 10px;
     }
   }
@@ -110,24 +108,25 @@ fa-icon {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin-top: 5rem;
   position: relative;
-  border: 2px solid palette.$primary-dark;
-  border-radius: 20px;
-  background-color: palette.$primary-light;
+  border-top: 2px solid palette.$gray;
+  margin-top: 3rem;
+
+  @media screen and (min-width: variables.$screen-medium) {
+    margin-top: 5rem;
+  }
 
   & h2 {
-    color: palette.$primary-dark;
+    color: palette.$gray;
     position: absolute;
     top: -40px;
     left: 40px;
-    background: linear-gradient(to bottom, #fafafa 50%, palette.$primary-light);
-    padding: 0 10px;
+    background-color: #fafafa;
+    padding: 0 5px;
   }
 
   & > ol {
-    background-color: palette.$primary-light;
-    padding-top: 20px;
+    padding: 1.5rem 1rem 1rem 1.5rem;
   }
   & li {
     margin-bottom: 30px;
