@@ -129,34 +129,9 @@
   }
 }
 
-// .menu-burger {
-//   background-color: transparent;
-//   border: none;
-//   cursor: pointer;
-
-//   & fa-icon {
-//     color: palette.$green;
-//     font-size: 1.5rem;
-//   }
-// }
-// .sidenav-content {
-//   margin-left: 0;
-// }
-
-// body container
 .mat-sidenav-content {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: left;
-  // height: 100vh;
-  // padding: 0.5rem;
-
-  // @media (min-width: variables.$screen-small) {
-  //   padding: 0 2rem 2rem 2rem;
-  // }
-
   .container {
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 0.5rem 4rem 0.5rem;
 
     @media (min-width: variables.$screen-small) {
       padding: 0 2rem 2rem 2rem;

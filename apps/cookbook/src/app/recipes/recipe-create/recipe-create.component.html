@@ -76,6 +76,7 @@
           </mat-form-field>
           <mat-form-field class="form-container-ingredient-unit">
             <mat-select formControlName="unit">
+              <mat-option [value]="null"></mat-option>
               <mat-option
                 *ngFor="let option of unitListLabel"
                 [value]="option.value"
