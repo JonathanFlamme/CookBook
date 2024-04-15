@@ -17,14 +17,16 @@
   }
   .slide-carousel {
     border-top: 2px solid palette.$gray;
-    padding: 0.5rem 1rem;
+    border-bottom: 2px solid palette.$gray;
+    padding: 1.5rem 1rem;
     display: flex;
     margin: auto;
     width: 90%;
   }
 
   .img {
-    width: 100%;
+    width: 130px;
+    height: 130px;
     border-radius: 10px;
   }
 }
@@ -37,6 +39,12 @@
       left: 40px;
       font-size: 1.5rem;
       background-color: #fafafa;
+    }
+
+    .img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
     }
   }
   .slide-carousel {
