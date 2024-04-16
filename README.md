@@ -7,9 +7,9 @@
   </a>
 </p>
 
-> Cookbook allows you to manage your own recipes
+> Platform for sharing recipes among amateur cooks
 
-### 🏠 [Lien du site](https://yummy-cook-dev.netlify.app/)
+### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/)
 
 ## Install
 
