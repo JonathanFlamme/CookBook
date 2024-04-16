@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { StorageService } from '../shared/auth/storage.service';
 
 @Component({
   selector: 'app-unauthorized',
   standalone: true,
-  imports: [CommonModule],
-  template: '',
+  imports: [CommonModule, MatButtonModule],
+  template: `
+    <div class="container">
+      <button mat-raised-button color="green" (click)="return()">
+        Connectez-vous
+      </button>
+    </div>
+  `,
   styles: [
     `
       :host {
@@ -16,7 +25,21 @@ import { CommonModule } from '@angular/common';
         background-size: cover;
         background-position: center;
       }
+      .container {
+        text-align: center;
+        padding-top: 87vh;
+      }
     `,
   ],
 })
-export class UnauthorizedComponent {}
+export class UnauthorizedComponent {
+  constructor(
+    private readonly storageService: StorageService,
+    private readonly router: Router,
+  ) {}
+
+  public return(): void {
+    this.storageService.clean();
+    this.router.navigate(['/login']);
+  }
+}
