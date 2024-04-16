@@ -9,7 +9,7 @@
 
 > Cookbook allows you to manage your own recipes
 
-### 🏠 [Homepage](https://github.com/Joflamme88/CookBook)
+### 🏠 [Lien du site](https://yummy-cook-dev.netlify.app/)
 
 ## Install
 
