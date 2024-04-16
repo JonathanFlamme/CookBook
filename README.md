@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to cookbook 👋</h1>
+<h1 align="center">Welcome to Yummy Cook 👋</h1>
 <p>
     <img alt="Version" src="https://img.shields.io/badge/Version-0.1.0-blue.svg">
     <img alt="Version" src="https://img.shields.io/npm/v/cookbook.svg">
@@ -9,7 +9,8 @@
 
 > Platform for sharing recipes among amateur cooks
 
-### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/) : https://yummy-cook-dev.netlify.app/
+### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/) : 
+https://yummy-cook-dev.netlify.app/
 
 ## Install
 
