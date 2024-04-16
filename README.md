@@ -9,7 +9,7 @@
 
 > Platform for sharing recipes among amateur cooks
 
-### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/)
+### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/) : https://yummy-cook-dev.netlify.app/
 
 ## Install
 
