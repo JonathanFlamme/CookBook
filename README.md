@@ -12,6 +12,15 @@
 ### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/) : 
 https://yummy-cook-dev.netlify.app/
 
+## Description
+Recipe Sharing Platform for Amateur Cooks:
+1. Display of all recipes with filtering and pagination
+2. Account creation to add and view your recipes
+3. Creation/modification/deletion of your recipes
+4. Adding a personalized photo for each recipe
+5. Favorite management (coming soon)
+6. And many other features to come
+
 ## Install
 
 1. Copy the `.env.sample` file and rename it to `.env`
