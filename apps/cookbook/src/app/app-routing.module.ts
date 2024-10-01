@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         component: LandingPageComponent,
       },
       {
@@ -31,7 +31,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: '',
         pathMatch: 'full',
       },
     ],
