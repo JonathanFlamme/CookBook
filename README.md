@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Yummy Cook 👋</h1>
+<h1 align="center">Welcome to Flam's cook book 👋</h1>
 <p>
     <img alt="Version" src="https://img.shields.io/badge/Version-0.1.0-blue.svg">
     <img alt="Version" src="https://img.shields.io/npm/v/cookbook.svg">
@@ -9,11 +9,14 @@
 
 > Platform for sharing recipes among amateur cooks
 
-### 🏠 [HomePage](https://yummy-cook-dev.netlify.app/) : 
-https://yummy-cook-dev.netlify.app/
+### 🏠 [HomePage](https://flamscookbook.netlify.app/) :
+
+https://flamscookbook.netlify.app/
 
 ## Description
+
 Recipe Sharing Platform for Amateur Cooks:
+
 1. Display of all recipes with filtering and pagination
 2. Account creation to add and view your recipes
 3. Creation/modification/deletion of your recipes

@@ -8,7 +8,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
   >
     <mat-toolbar>
-      <a mat-button [routerLink]="['login']"><h1>Yummy Cook</h1></a>
+      <a mat-button [routerLink]="['login']"><h1>Flam's cookbook</h1></a>
     </mat-toolbar>
     <div class="menu-top">
       <mat-nav-list (click)="closeNavbar(sidenav)">
@@ -46,7 +46,7 @@
 
   <mat-sidenav-content class="sidenav-content">
     <mat-toolbar class="menu-reduced" *ngIf="(isHandset$ | async) === true">
-      <a mat-button [routerLink]="['']"><h1>Yummy Cook</h1></a>
+      <a mat-button [routerLink]="['']"><h1>Flam's cookbook</h1></a>
 
       <button
         mat-icon-button

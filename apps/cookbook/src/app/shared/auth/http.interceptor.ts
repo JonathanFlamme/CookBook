@@ -38,7 +38,7 @@ export class HttpInterceptor implements HttpInterceptor {
 
   // Check if the request is to the cookbook-API
   private isToCookbookAPI(url: string): boolean {
-    const baseUrl = environment.yummyBookUrl;
+    const baseUrl = environment.flamsUrl;
     return url.includes(baseUrl);
   }
 }

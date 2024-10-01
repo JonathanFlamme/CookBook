@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  yummyBookUrl: 'http://localhost:4200',
+  flamsUrl: 'http://localhost:4200',
 };
