@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class EmailService {
-  private cookbookUrl = environment.yummyBookUrl;
+  private cookbookUrl = environment.flamsUrl;
 
   constructor(
     private readonly configService: ConfigService,

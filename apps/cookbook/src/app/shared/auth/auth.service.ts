@@ -10,7 +10,7 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = environment.yummyBookUrl;
+  private baseUrl = environment.flamsUrl;
 
   private isLoggedInSubject = new BehaviorSubject<UserRequest | null>(null);
   public isLogged$ = this.isLoggedInSubject.asObservable();

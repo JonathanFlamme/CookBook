@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class StepService {
-  private baseUrl = environment.yummyBookUrl;
+  private baseUrl = environment.flamsUrl;
 
   constructor(private readonly http: HttpClient) {}
 

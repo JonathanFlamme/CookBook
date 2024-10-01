@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = `${environment.yummyBookUrl}/admin`;
+  private baseUrl = `${environment.flamsUrl}/admin`;
 
   constructor(private readonly http: HttpClient) {}
 

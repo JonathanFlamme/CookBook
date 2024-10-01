@@ -7,7 +7,7 @@ import { AuthService } from './shared/auth/auth.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  public title = 'Yummy Cook';
+  public title = "Flam's cookbook";
 
   constructor(private readonly authService: AuthService) {}
 
