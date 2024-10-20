@@ -13,18 +13,18 @@ export class StepService {
   constructor(private readonly http: HttpClient) {}
 
   public update(
-    recipeId: string,
+    slug: string,
     steps: { description: string; sort: number }[],
   ): Observable<StepModel[]> {
     return this.http.patch<StepModel[]>(
-      `${this.baseUrl}/recipes/${recipeId}/steps`,
+      `${this.baseUrl}/recipes/${slug}/steps`,
       steps,
     );
   }
 
-  public delete(recipeId: string, stepId: string): Observable<void> {
+  public delete(slug: string, stepId: string): Observable<void> {
     return this.http.delete<void>(
-      `${this.baseUrl}/recipes/${recipeId}/steps/${stepId}`,
+      `${this.baseUrl}/recipes/${slug}/steps/${stepId}`,
     );
   }
 }

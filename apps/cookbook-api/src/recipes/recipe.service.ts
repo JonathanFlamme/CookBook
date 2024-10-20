@@ -27,9 +27,9 @@ export class RecipeService {
   ) {}
 
   // ---------   VIEW A RECIPE   --------- //
-  async view(recipeId: string): Promise<RecipeEntity> {
+  async view(slug: string): Promise<RecipeEntity> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId },
+      where: { slug },
       relations: ['ingredients', 'steps'],
       order: { steps: { sort: 'ASC' } },
     });
@@ -124,9 +124,12 @@ export class RecipeService {
       }
     }
 
+    const slug = body.title.trim().toLowerCase().replace(/\s+/g, '-');
+
     const recipe = this.recipeRepository.create({
       userId: user.id,
       title: body.title,
+      slug,
       duration: body.duration,
       categories: body.categories,
       ingredients: body.ingredients,
@@ -151,11 +154,11 @@ export class RecipeService {
   // ---------   UPDATE A RECIPE   --------- //
   async update(
     userId: string,
-    recipeId: string,
+    slug: string,
     body: RecipeDto,
   ): Promise<RecipeModel> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId },
+      where: { slug, userId },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
@@ -201,6 +204,7 @@ export class RecipeService {
     });
 
     recipe.title = body.title;
+    recipe.slug = body.title.trim().toLowerCase().replace(/\s+/g, '-');
     recipe.duration = body.duration;
     recipe.categories = body.categories;
     recipe.imageUrl = body.imageUrl;
@@ -219,16 +223,16 @@ export class RecipeService {
   }
 
   // ---------   DELETE A RECIPE   --------- //
-  async delete(userId: string, recipeId: string): Promise<void> {
+  async delete(userId: string, slug: string): Promise<void> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId },
+      where: { slug, userId },
     });
     if (!recipe) {
       throw new NotFoundException("La recette n'a pas été trouvée");
     }
     try {
       await this.recipeRepository.delete({
-        id: recipeId,
+        slug,
         userId,
       });
     } catch (error) {

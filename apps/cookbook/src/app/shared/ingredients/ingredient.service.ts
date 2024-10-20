@@ -13,18 +13,18 @@ export class IngredientService {
   constructor(private readonly http: HttpClient) {}
 
   public update(
-    recipeId: string,
+    slug: string,
     ingredient: { name: string; quantity: string; unit: UnitList }[],
   ): Observable<IngredientModel[]> {
     return this.http.patch<IngredientModel[]>(
-      `${this.baseUrl}/recipes/${recipeId}/ingredients`,
+      `${this.baseUrl}/recipes/${slug}/ingredients`,
       ingredient,
     );
   }
 
-  public delete(recipeId: string, ingredientId: string): Observable<void> {
+  public delete(slug: string, ingredientId: string): Observable<void> {
     return this.http.delete<void>(
-      `${this.baseUrl}/recipes/${recipeId}/ingredients/${ingredientId}`,
+      `${this.baseUrl}/recipes/${slug}/ingredients/${ingredientId}`,
     );
   }
 }

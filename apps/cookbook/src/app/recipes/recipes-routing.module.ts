@@ -13,11 +13,11 @@ const routes: Routes = [
     canActivate: [canActivateIsLogged],
   },
   {
-    path: ':recipeId',
+    path: ':slug',
     component: RecipeViewComponent,
   },
   {
-    path: ':recipeId/edit',
+    path: ':slug/edit',
     component: RecipeEditComponent,
     canActivate: [canActivateIsLogged],
   },

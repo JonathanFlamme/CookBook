@@ -14,14 +14,14 @@ export class IngredientDeleteConfirmComponent {
   constructor(
     private dialogRef: MatDialogRef<IngredientDeleteConfirmComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public readonly data: { ingredient: IngredientModel; recipeId: string },
+    public readonly data: { ingredient: IngredientModel; slug: string },
     private readonly ingredientService: IngredientService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   public delete(): void {
     this.ingredientService
-      .delete(this.data.recipeId, this.data.ingredient.id)
+      .delete(this.data.slug, this.data.ingredient.id)
       .subscribe({
         next: () => {
           this.snackBar.openFromComponent(SnackBarComponent, {

@@ -14,7 +14,7 @@
   </mat-card>
   <mat-card
     *ngFor="let recipe of recipes"
-    [routerLink]="['/recipes', recipe.id]"
+    [routerLink]="['/recipes', recipe.slug]"
     class="card"
   >
     <mat-card-header>

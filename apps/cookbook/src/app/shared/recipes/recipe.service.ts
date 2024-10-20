@@ -18,8 +18,8 @@ export class RecipeService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public view(recipeId: string): Observable<RecipeModel> {
-    return this.http.get<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`);
+  public view(slug: string): Observable<RecipeModel> {
+    return this.http.get<RecipeModel>(`${this.baseUrl}/recipes/${slug}`);
   }
 
   public list(
@@ -77,7 +77,7 @@ export class RecipeService {
   }
 
   public update(
-    recipeId: string,
+    slug: string,
     title: string,
     duration: string,
     ingredients: { name: string; quantity: string; unit: UnitList }[],
@@ -85,7 +85,7 @@ export class RecipeService {
     categories: CategoryType[],
     imageUrl: string,
   ): Observable<RecipeModel> {
-    return this.http.patch<RecipeModel>(`${this.baseUrl}/recipes/${recipeId}`, {
+    return this.http.patch<RecipeModel>(`${this.baseUrl}/recipes/${slug}`, {
       title,
       duration,
       ingredients,
@@ -95,8 +95,8 @@ export class RecipeService {
     });
   }
 
-  public delete(recipeId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/recipes/${recipeId}`);
+  public delete(slug: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/recipes/${slug}`);
   }
 
   /**

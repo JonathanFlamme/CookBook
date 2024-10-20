@@ -14,13 +14,13 @@ export class StepDeleteConfirmComponent {
   constructor(
     private dialogRef: MatDialogRef<StepDeleteConfirmComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public readonly data: { step: StepModel; recipeId: string },
+    public readonly data: { step: StepModel; slug: string },
     private readonly stepService: StepService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   public delete(): void {
-    this.stepService.delete(this.data.recipeId, this.data.step.id).subscribe({
+    this.stepService.delete(this.data.slug, this.data.step.id).subscribe({
       next: () => {
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,

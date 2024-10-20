@@ -26,13 +26,13 @@ export class IngredientsController {
    */
   @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Patch('recipes/:recipeId/ingredients')
+  @Patch('recipes/:slug/ingredients')
   update(
     @User() user: UserRequest,
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Param('slug') slug: string,
     @Body(new SanitizerIngredientPipe()) body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
-    return this.ingredientService.update(user.userId, recipeId, body);
+    return this.ingredientService.update(user.userId, slug, body);
   }
 
   /**
@@ -40,12 +40,12 @@ export class IngredientsController {
    */
   @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Delete('recipes/:recipeId/ingredients/:ingredientId')
+  @Delete('recipes/:slug/ingredients/:ingredientId')
   delete(
     @User() user: UserRequest,
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Param('slug') slug: string,
     @Param('ingredientId', ParseUUIDPipe) ingredientId: string,
   ): Promise<void> {
-    return this.ingredientService.delete(user.userId, recipeId, ingredientId);
+    return this.ingredientService.delete(user.userId, slug, ingredientId);
   }
 }
