@@ -30,9 +30,9 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    const { recipeId } = this.route.snapshot.params;
-
-    const sub = this.recipeService.view(recipeId).subscribe({
+    const { slug } = this.route.snapshot.params;
+    console.log('slug', slug);
+    const sub = this.recipeService.view(slug).subscribe({
       next: (recipe) => {
         this.recipe = recipe;
         this.loading = false;

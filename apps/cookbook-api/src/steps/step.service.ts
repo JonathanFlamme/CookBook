@@ -24,11 +24,11 @@ export class StepService {
   // ---------   UPDATE STEPS   --------- //
   async update(
     userId: string,
-    recipeId: string,
+    slug: string,
     body: StepDto[],
   ): Promise<StepEntity[]> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId },
+      where: { slug, userId },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
@@ -61,16 +61,12 @@ export class StepService {
   }
 
   // ---------   DELETE STEP   --------- //
-  async delete(
-    userId: string,
-    recipeId: string,
-    stepId: string,
-  ): Promise<void> {
+  async delete(userId: string, slug: string, stepId: string): Promise<void> {
     //Use transaction to ensure that all operations are successful
     await this.entityManager.transaction(async (entityManager) => {
       const recipe = await entityManager.findOne(RecipeEntity, {
         where: {
-          id: recipeId,
+          slug,
           userId,
         },
         relations: ['steps'],

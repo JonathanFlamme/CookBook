@@ -28,6 +28,9 @@ export class RecipeEntity implements RecipeModel {
   @Column({ type: 'text' })
   title: string;
 
+  @Column({ type: 'text', unique: true, nullable: true })
+  slug: string;
+
   @Column({ type: 'text' })
   duration: string;
 

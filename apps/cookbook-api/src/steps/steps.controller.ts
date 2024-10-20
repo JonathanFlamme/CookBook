@@ -26,13 +26,13 @@ export class StepsController {
    */
   @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Patch('recipes/:recipeId/steps')
+  @Patch('recipes/:slug/steps')
   update(
     @User() user: UserRequest,
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Param('slug') slug: string,
     @Body(new SanitizerStepPipe()) body: StepDto[],
   ): Promise<StepEntity[]> {
-    return this.stepService.update(user.userId, recipeId, body);
+    return this.stepService.update(user.userId, slug, body);
   }
 
   /**
@@ -40,12 +40,12 @@ export class StepsController {
    */
   @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Delete('recipes/:recipeId/steps/:stepId')
+  @Delete('recipes/:slug/steps/:stepId')
   async delete(
     @User() user: UserRequest,
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Param('slug') slug: string,
     @Param('stepId', ParseUUIDPipe) stepId: string,
   ): Promise<void> {
-    await this.stepService.delete(user.userId, recipeId, stepId);
+    await this.stepService.delete(user.userId, slug, stepId);
   }
 }

@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseUUIDPipe,
   Patch,
   Post,
   Query,
@@ -33,11 +32,10 @@ export class RecipeController {
   /**
    * View a recipe
    */
-  @Get('recipes/:recipeId')
-  view(
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
-  ): Promise<RecipeEntity> {
-    return this.recipeService.view(recipeId);
+  @Get('recipes/:slug')
+  view(@Param('slug') slug: string): Promise<RecipeEntity> {
+    console.log('slug', slug);
+    return this.recipeService.view(slug);
   }
 
   /**
@@ -79,13 +77,13 @@ export class RecipeController {
    */
   @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Patch('recipes/:recipeId')
+  @Patch('recipes/:slug')
   update(
     @User() user: UserRequest,
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Param('slug') slug: string,
     @Body(new SanitizerRecipePipe()) body: RecipeDto,
   ): Promise<RecipeModel> {
-    return this.recipeService.update(user.userId, recipeId, body);
+    return this.recipeService.update(user.userId, slug, body);
   }
 
   /**
@@ -93,12 +91,12 @@ export class RecipeController {
    */
   @Auth(UserRole.User)
   @UseGuards(JwtAuthGuard, AuthGuard)
-  @Delete('recipes/:recipeId')
+  @Delete('recipes/:slug')
   delete(
     @User() user: UserRequest,
-    @Param('recipeId', ParseUUIDPipe) recipeId: string,
+    @Param('slug') slug: string,
   ): Promise<void> {
-    return this.recipeService.delete(user.userId, recipeId);
+    return this.recipeService.delete(user.userId, slug);
   }
 
   /**

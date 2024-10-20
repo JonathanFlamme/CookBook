@@ -19,7 +19,7 @@ export class RecipeDeleteConfirmComponent {
   ) {}
 
   public delete(): void {
-    this.recipeService.delete(this.recipe.id).subscribe({
+    this.recipeService.delete(this.recipe.slug).subscribe({
       next: () => {
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,

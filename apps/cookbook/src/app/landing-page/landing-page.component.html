@@ -57,21 +57,21 @@
       #slickModal="slick-carousel"
       [config]="slideConfig"
     >
-      @for (recipe of recipes; track recipe.id) {
+      @for (recipe of recipes; track recipe.slug) {
       <div ngxSlickItem class="slide">
         @if(recipe.imageUrl){
         <img
           src="{{ recipe.imageUrl }}"
           alt=""
           class="img"
-          [routerLink]="['/recipes', recipe.id]"
+          [routerLink]="['/recipes', recipe.slug]"
         />
         } @else{
         <img
           src="../../assets/poke.png"
           alt=""
           class="img"
-          [routerLink]="['/recipes', recipe.id]"
+          [routerLink]="['/recipes', recipe.slug]"
         />
         }
       </div>

@@ -6,6 +6,7 @@ export interface RecipeModel {
   userId: string;
   imageUrl: string;
   title: string;
+  slug: string;
   duration: string;
   categories: CategoryType[];
   ingredients: IngredientModel[];

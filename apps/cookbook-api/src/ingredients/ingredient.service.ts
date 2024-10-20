@@ -22,11 +22,11 @@ export class IngredientService {
   // ---------   UPDATE INGREDIENTS   --------- //
   async update(
     userId: string,
-    recipeId: string,
+    slug: string,
     body: IngredientDto[],
   ): Promise<IngredientEntity[]> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId },
+      where: { slug, userId },
       relations: ['ingredients', 'steps'],
     });
     if (!recipe) {
@@ -64,11 +64,11 @@ export class IngredientService {
   // ---------   DELETE INGREDIENT   --------- //
   async delete(
     userId: string,
-    recipeId: string,
+    slug: string,
     ingredientId: string,
   ): Promise<void> {
     const recipe = await this.recipeRepository.findOne({
-      where: { id: recipeId, userId },
+      where: { slug, userId },
     });
     if (!recipe) {
       throw new UnauthorizedException(

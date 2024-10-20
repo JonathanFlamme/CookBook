@@ -42,7 +42,7 @@ export class RecipeEditComponent implements OnInit {
     disableMove: false,
   };
 
-  private recipeId!: string;
+  private slug!: string;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -85,9 +85,9 @@ export class RecipeEditComponent implements OnInit {
 
   // ---------- GET RECIPE WITH DATA AND FILL THE FORM ---------- //
   ngOnInit(): void {
-    this.recipeId = this.route.snapshot.params['recipeId'];
+    this.slug = this.route.snapshot.params['slug'];
 
-    const sub = this.recipeService.view(this.recipeId).subscribe({
+    const sub = this.recipeService.view(this.slug).subscribe({
       next: (recipe) => {
         // fill the form with the recipe data
         this.recipeForm.patchValue({
@@ -148,7 +148,7 @@ export class RecipeEditComponent implements OnInit {
       .pipe(
         switchMap((imageUrl) => {
           return this.recipeService.update(
-            this.recipeId,
+            this.slug,
             recipe.title!,
             recipe.duration!,
             recipe.ingredients!,
@@ -164,7 +164,7 @@ export class RecipeEditComponent implements OnInit {
             duration: 2000,
             data: { message: 'La recette a bien été modifié', success: true },
           });
-          this.router.navigate(['/recipes', this.recipeId]);
+          this.router.navigate(['/recipes', this.slug]);
         },
       });
     this.subscriptions.push(sub);
@@ -173,10 +173,11 @@ export class RecipeEditComponent implements OnInit {
   // ---------- UPDATE RECIPE WITHOUT IMAGE UPLOAD ---------- //
   updateWithoutUpload() {
     const recipe = this.recipeForm.value;
+    const updatedSlug = recipe.title?.trim().toLowerCase().replace(/\s+/g, '-');
 
     const sub = this.recipeService
       .update(
-        this.recipeId,
+        this.slug,
         recipe.title!,
         recipe.duration!,
         recipe.ingredients!,
@@ -193,7 +194,7 @@ export class RecipeEditComponent implements OnInit {
               success: true,
             },
           });
-          this.router.navigate(['/recipes', this.recipeId]);
+          this.router.navigate(['/recipes', updatedSlug]);
         },
       });
     this.subscriptions.push(sub);
@@ -278,14 +279,14 @@ export class RecipeEditComponent implements OnInit {
       const dialogRef = this.dialog.open(IngredientDeleteConfirmComponent, {
         data: {
           ingredient: this.recipe.ingredients[index],
-          recipeId: this.recipe.id,
+          slug: this.recipe.slug,
         },
         width: 'auto',
       });
 
       dialogRef.afterClosed().subscribe((ingredient) => {
         if (ingredient) {
-          this.router.navigate(['/recipes', this.recipeId]);
+          this.router.navigate(['/recipes', this.slug]);
         }
       });
     }
@@ -311,13 +312,13 @@ export class RecipeEditComponent implements OnInit {
       const dialogRef = this.dialog.open(StepDeleteConfirmComponent, {
         data: {
           step: this.recipe.steps[index],
-          recipeId: this.recipe.id,
+          slug: this.recipe.slug,
         },
         width: 'auto',
       });
       dialogRef.afterClosed().subscribe((step) => {
         if (step) {
-          this.router.navigate(['/recipes', this.recipeId]);
+          this.router.navigate(['/recipes', this.slug]);
         }
       });
     }
@@ -384,7 +385,7 @@ export class RecipeEditComponent implements OnInit {
     };
 
     const sub = this.stepService
-      .update(this.recipeId, this.recipeForm.value.steps!)
+      .update(this.slug, this.recipeForm.value.steps!)
       .subscribe({
         next: (steps) => {
           this.recipe.steps = steps;
@@ -412,7 +413,7 @@ export class RecipeEditComponent implements OnInit {
     };
 
     const sub = this.ingredientService
-      .update(this.recipeId, this.recipeForm.value.ingredients!)
+      .update(this.slug, this.recipeForm.value.ingredients!)
       .subscribe({
         next: (ingredients) => {
           this.recipe.ingredients = ingredients;
